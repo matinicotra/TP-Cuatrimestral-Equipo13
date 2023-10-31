@@ -83,6 +83,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="detalleViaje.aspx" />
     <Content Include="Global.asax" />
     <Content Include="homeAdmin.aspx" />
     <Content Include="homeChofer.aspx" />
@@ -96,6 +97,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="detalleViaje.aspx.cs">
+      <DependentUpon>detalleViaje.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="detalleViaje.aspx.designer.cs">
+      <DependentUpon>detalleViaje.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

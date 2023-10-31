@@ -26,7 +26,7 @@
         </div>
 
         <div>
-            <asp:Button ID="btnChoferes" runat="server" Text="Copiar" />
+            <asp:Button ID="btnCopiarDatosViajeSeleccionado" runat="server" Text="Copiar" />
         </div>
 
         <div>

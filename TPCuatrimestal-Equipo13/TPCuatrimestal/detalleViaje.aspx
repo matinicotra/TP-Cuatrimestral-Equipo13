@@ -7,7 +7,7 @@
                         HAY QUE ACOMODAR BIEN EL TEMA DE BOTONES ASP-->
     <div>
         <div>
-            <h1>NOMBRE DEL CLIENTE/EMPRESA</h1>
+            <h1>VIAJE DE (NOMBRE DEL CLIENTE/EMPRESA)</h1>
         </div>
 
         <div>

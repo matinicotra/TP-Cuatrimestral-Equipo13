@@ -3,9 +3,13 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-                <!-- DETALLE VIAJE DEBERIA SE ACCEDIDA DESDE HOME-ADMIN O HOME-CHOFER
+                <!-- DETALLE VIAJE DEBERIA SE ACCEDIDA DESDE homeAdmin, homeChofer, detalleChofer, etc..
                         HAY QUE ACOMODAR BIEN EL TEMA DE BOTONES ASP-->
     <div>
+        <div>
+            <h1>NOMBRE DEL CLIENTE/EMPRESA</h1>
+        </div>
+
         <div>
              <ul class="list-group list-group-horizontal">
               <li class="list-group-item">Direccion Origen</li>
@@ -47,7 +51,7 @@
         </div>
 
         <div>
-            <asp:Button ID="btnHome" runat="server" Text="Home" />
+            <asp:Button ID="btnAtras" runat="server" Text="Atras" />
         </div>
 
     </div>

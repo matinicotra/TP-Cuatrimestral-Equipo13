@@ -67,7 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="choferes.aspx" />
+    <Content Include="adminChoferes.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -84,6 +84,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="detalleChofer.aspx" />
     <Content Include="detalleViaje.aspx" />
     <Content Include="Global.asax" />
     <Content Include="homeAdmin.aspx" />
@@ -98,12 +99,19 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="choferes.aspx.cs">
-      <DependentUpon>choferes.aspx</DependentUpon>
+    <Compile Include="adminChoferes.aspx.cs">
+      <DependentUpon>adminChoferes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="choferes.aspx.designer.cs">
-      <DependentUpon>choferes.aspx</DependentUpon>
+    <Compile Include="adminChoferes.aspx.designer.cs">
+      <DependentUpon>adminChoferes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="detalleChofer.aspx.cs">
+      <DependentUpon>detalleChofer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="detalleChofer.aspx.designer.cs">
+      <DependentUpon>detalleChofer.aspx</DependentUpon>
     </Compile>
     <Compile Include="detalleViaje.aspx.cs">
       <DependentUpon>detalleViaje.aspx</DependentUpon>

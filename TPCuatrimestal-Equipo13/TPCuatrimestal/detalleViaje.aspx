@@ -3,6 +3,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+                <!-- DETALLE VIAJE DEBERIA SE ACCEDIDA DESDE HOME-ADMIN O HOME-CHOFER
+                        HAY QUE ACOMODAR BIEN EL TEMA DE BOTONES ASP-->
     <div>
         <div>
              <ul class="list-group list-group-horizontal">

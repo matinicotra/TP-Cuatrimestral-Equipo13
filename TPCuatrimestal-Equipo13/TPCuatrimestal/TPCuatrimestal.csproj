@@ -85,6 +85,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Global.asax" />
     <Content Include="homeAdmin.aspx" />
+    <Content Include="homeChofer.aspx" />
     <Content Include="login.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -104,6 +105,13 @@
     </Compile>
     <Compile Include="homeAdmin.aspx.designer.cs">
       <DependentUpon>homeAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="homeChofer.aspx.cs">
+      <DependentUpon>homeChofer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="homeChofer.aspx.designer.cs">
+      <DependentUpon>homeChofer.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>

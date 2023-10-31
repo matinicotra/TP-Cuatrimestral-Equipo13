@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPCuatrimestal", "TPCuatrimestal\TPCuatrimestal.csproj", "{3D941F5C-F201-402A-A33F-874DAB964C9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio", "..\..\..\TPCuatrismestral-Equipo13\Dominio\Dominio.csproj", "{97FACD40-4052-4B68-9EBE-21C19DF34B65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio", "Dominio\Dominio.csproj", "{97FACD40-4052-4B68-9EBE-21C19DF34B65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

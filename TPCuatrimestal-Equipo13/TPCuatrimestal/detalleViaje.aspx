@@ -9,7 +9,8 @@
         <div>
             <h1>VIAJE DE (NOMBRE DEL CLIENTE/EMPRESA)</h1>
         </div>
-
+                <!-- SI ES ACCEDIDA DESDE CHOFER SOLO DEJAR CAMBIAR DIRECCIONES Y QUIZÁS ALGUNA COSITA MAS
+                    SI ES DESDE ADMIN SE PUEDE MODIFICAR TODO-->
         <div>
              <ul class="list-group list-group-horizontal">
               <li class="list-group-item">Direccion Origen</li>

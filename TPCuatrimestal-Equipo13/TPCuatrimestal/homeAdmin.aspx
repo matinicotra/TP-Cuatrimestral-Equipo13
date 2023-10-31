@@ -12,7 +12,7 @@
 
         <div>
             <h5>ABM Viajes</h5>
-            <asp:Button ID="btnAltaViaje" runat="server" Text="Alta" />
+            <asp:Button ID="btnAltaViaje" runat="server" Text="Alta" /> <!-- DARLE MUCHAS MAS IMPORTANCIA A ESTE BOTON-->
             <asp:Button ID="btnBajaViaje" runat="server" Text="Baja" />
             <asp:Button ID="btnModificarViaje" runat="server" Text="Modificar" />
         </div>

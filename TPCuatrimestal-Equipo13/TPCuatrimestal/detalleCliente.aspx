@@ -36,5 +36,12 @@
             <h5>Opciones de ver otros dias</h5>
             <asp:Calendar ID="verDiaCliente" runat="server"></asp:Calendar>
         </div>
+
+        <div>
+            <h5>Resumenes del Cliente</h5>
+            <asp:Button ID="btnResumenAnioCliente" runat="server" Text="Por Anio" />
+            <asp:Button ID="btnResumenMesCliente" runat="server" Text="Por Mes" />
+            <asp:Button ID="btnResumenTotalCliente" runat="server" Text="Total" />
+        </div>
     </div>
 </asp:Content>

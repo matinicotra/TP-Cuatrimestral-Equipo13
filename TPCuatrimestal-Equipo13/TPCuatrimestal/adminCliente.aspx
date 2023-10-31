@@ -27,8 +27,8 @@
         </div>
 
         <div>
-            <h5>Detalles del Cliente Seleccionado</h5>
-            <asp:Button ID="btnDetalleCliente" runat="server" Text="Detalle Cliente" />
+            <h5>Detalles del Cliente Seleccionado</h5> <!-- TAMBIEN ACCEDER CON DOBLE CLICK SOBRE DATA GRID-->
+            <asp:Button ID="btnDetalleCliente" runat="server" Text="Detalle Cliente" /> 
         </div>
 
     </div>

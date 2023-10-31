@@ -11,7 +11,7 @@ namespace TPCuatrimestal
 {
 
 
-    public partial class detalleEmpresa
+    public partial class adminEmpresas
     {
 
         /// <summary>
@@ -24,15 +24,6 @@ namespace TPCuatrimestal
         protected global::System.Web.UI.WebControls.TextBox txtFiltrar;
 
         /// <summary>
-        /// Control DropDownList1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
-
-        /// <summary>
         /// Control btnFiltrar.
         /// </summary>
         /// <remarks>
@@ -42,48 +33,48 @@ namespace TPCuatrimestal
         protected global::System.Web.UI.WebControls.Button btnFiltrar;
 
         /// <summary>
-        /// Control listaViajesPorEmpresa.
+        /// Control listaClientes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox listaViajesPorEmpresa;
+        protected global::System.Web.UI.WebControls.ListBox listaClientes;
 
         /// <summary>
-        /// Control btnDetalleViaje.
+        /// Control btnAltaCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDetalleViaje;
+        protected global::System.Web.UI.WebControls.Button btnAltaCliente;
 
         /// <summary>
-        /// Control btnBajaEmpresa.
+        /// Control btnBajaCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBajaEmpresa;
+        protected global::System.Web.UI.WebControls.Button btnBajaCliente;
 
         /// <summary>
-        /// Control btnModificarViaje.
+        /// Control btnModificarCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificarViaje;
+        protected global::System.Web.UI.WebControls.Button btnModificarCliente;
 
         /// <summary>
-        /// Control verDiaEmpresa.
+        /// Control btnDetalleCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar verDiaEmpresa;
+        protected global::System.Web.UI.WebControls.Button btnDetalleCliente;
     }
 }

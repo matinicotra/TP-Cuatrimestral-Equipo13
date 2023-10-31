@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageAgencia.Master" AutoEventWireup="true" CodeBehind="detalleEmpresa.aspx.cs" Inherits="TPCuatrimestal.detalleEmpresa" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageAgencia.Master" AutoEventWireup="true" CodeBehind="detalleCliente.aspx.cs" Inherits="TPCuatrimestal.detalleEmpresa" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
 </asp:Content>
@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <div class="container-lg" style="display:flex; align-items:center; justify-content:center; flex-direction:column;">
         <div>
-            <h1>NOMBRE DE LA EMPRESA</h1>
+            <h1>NOMBRE DEL CLIENTE</h1>
         </div>
 
        <div>
@@ -17,8 +17,8 @@
         </div>
 
         <div>
-            <h5>Listado de viajes de la Empresa</h5>
-            <asp:ListBox ID="listaViajesPorEmpresa" runat="server"></asp:ListBox>
+            <h5>Listado de viajes del Cliente</h5>
+            <asp:ListBox ID="listaViajesPorCliente" runat="server"></asp:ListBox>
         </div>
 
         <div>
@@ -28,13 +28,13 @@
 
         <div>
             <h5>ABM Empresa</h5>
-            <asp:Button ID="btnBajaEmpresa" runat="server" Text="Eliminar Empresa" />
+            <asp:Button ID="btnBajaCliente" runat="server" Text="Eliminar Cliente" />
             <asp:Button ID="btnModificarViaje" runat="server" Text="Modificar" />
         </div>
 
         <div>
             <h5>Opciones de ver otros dias</h5>
-            <asp:Calendar ID="verDiaEmpresa" runat="server"></asp:Calendar>
+            <asp:Calendar ID="verDiaCliente" runat="server"></asp:Calendar>
         </div>
     </div>
 </asp:Content>

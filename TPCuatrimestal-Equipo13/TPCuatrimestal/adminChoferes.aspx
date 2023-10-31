@@ -6,6 +6,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-lg" style="display:flex; align-items:center; justify-content:center; flex-direction:column;">
         <div>
+             <h1>ADMINISTRACION CHOFERES</h1>
+        </div>
+        <div>
             <h5>Filtrado por distintos criterios</h5>
             <asp:TextBox ID="txtFiltrar" runat="server"></asp:TextBox>
             <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" />
@@ -24,7 +27,7 @@
         </div>
 
         <div>
-            <h5>Detalles del Chofer</h5>
+            <h5>Detalles del Chofer Seleccionado</h5>
             <asp:Button ID="btnDetalleChofer" runat="server" Text="Detalle Chofer" />
         </div>
 

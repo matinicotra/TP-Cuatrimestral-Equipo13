@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="adminChoferes.aspx" />
-    <Content Include="adminEmpresas.aspx" />
+    <Content Include="adminCliente.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -86,7 +86,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="detalleChofer.aspx" />
-    <Content Include="detalleEmpresa.aspx" />
+    <Content Include="detalleCliente.aspx" />
     <Content Include="detalleViaje.aspx" />
     <Content Include="Global.asax" />
     <Content Include="homeAdmin.aspx" />
@@ -108,12 +108,12 @@
     <Compile Include="adminChoferes.aspx.designer.cs">
       <DependentUpon>adminChoferes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="adminEmpresas.aspx.cs">
-      <DependentUpon>adminEmpresas.aspx</DependentUpon>
+    <Compile Include="adminCliente.aspx.cs">
+      <DependentUpon>adminCliente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="adminEmpresas.aspx.designer.cs">
-      <DependentUpon>adminEmpresas.aspx</DependentUpon>
+    <Compile Include="adminCliente.aspx.designer.cs">
+      <DependentUpon>adminCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="detalleChofer.aspx.cs">
       <DependentUpon>detalleChofer.aspx</DependentUpon>
@@ -122,12 +122,12 @@
     <Compile Include="detalleChofer.aspx.designer.cs">
       <DependentUpon>detalleChofer.aspx</DependentUpon>
     </Compile>
-    <Compile Include="detalleEmpresa.aspx.cs">
-      <DependentUpon>detalleEmpresa.aspx</DependentUpon>
+    <Compile Include="detalleCliente.aspx.cs">
+      <DependentUpon>detalleCliente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="detalleEmpresa.aspx.designer.cs">
-      <DependentUpon>detalleEmpresa.aspx</DependentUpon>
+    <Compile Include="detalleCliente.aspx.designer.cs">
+      <DependentUpon>detalleCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="detalleViaje.aspx.cs">
       <DependentUpon>detalleViaje.aspx</DependentUpon>

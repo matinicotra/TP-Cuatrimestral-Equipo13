@@ -4,7 +4,8 @@
 
 <html>
 <head runat="server">
-    <title></title>
+    <title>Agencia de transporte</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -25,5 +26,8 @@
         <%--HTML DEL FOOTER--%>
     </footer>
 
+    <script>
+        <asp:ScriptReference Path="/Scripts/bootstrap.min.js"/>
+    </script>
 </body>
 </html>

@@ -74,9 +74,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MasterPageAgencia.Master.cs">
+      <DependentUpon>MasterPageAgencia.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPageAgencia.Master.designer.cs">
+      <DependentUpon>MasterPageAgencia.Master</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MasterPageAgencia.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

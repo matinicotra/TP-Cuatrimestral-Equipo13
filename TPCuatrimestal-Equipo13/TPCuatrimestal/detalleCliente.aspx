@@ -30,7 +30,7 @@
         <div>
             <h5>ABM Empresa</h5>
             <asp:Button ID="btnBajaCliente" runat="server" Text="Eliminar Cliente" />
-            <asp:Button ID="btnModificarViaje" runat="server" Text="Modificar" />
+            <asp:Button ID="btnModificarViaje" runat="server" Text="Modificar" OnClick="btnModificarViaje_Click" />
         </div>
 
         <div>

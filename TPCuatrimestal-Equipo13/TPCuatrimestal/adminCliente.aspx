@@ -23,12 +23,12 @@
             <h5>ABM Clientes</h5>
             <asp:Button ID="btnAltaCliente" runat="server" Text="Alta" OnClick="btnAltaCliente_Click" />
             <asp:Button ID="btnBajaCliente" runat="server" Text="Baja" />
-            <asp:Button ID="btnModificarCliente" runat="server" Text="Modificar" />
+            <asp:Button ID="btnModificarCliente" runat="server" Text="Modificar" onClick="btnModificarCliente_Click"/>
         </div>
 
         <div>
             <h5>Detalles del Cliente Seleccionado</h5> <!-- TAMBIEN ACCEDER CON DOBLE CLICK SOBRE DATA GRID-->
-            <asp:Button ID="btnDetalleCliente" runat="server" Text="Detalle Cliente" /> 
+            <asp:Button ID="btnDetalleCliente" runat="server" Text="Detalle Cliente" OnClick="btnDetalleCliente_Click" /> 
         </div>
 
     </div>

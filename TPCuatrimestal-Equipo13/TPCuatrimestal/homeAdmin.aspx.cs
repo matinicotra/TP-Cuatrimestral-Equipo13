@@ -13,5 +13,35 @@ namespace TPCuatrimestal
         {
 
         }
+
+        protected void btnAltaViaje_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("altaModificacionViaje.aspx", false);
+        }
+
+        protected void btnBajaViaje_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnDetalleViaje_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("detalleViaje.aspx", false);
+        }
+
+        protected void btnModificarViaje_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("altaModificacionViaje.aspx", false);
+        }
+
+        protected void btnEmpresa_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("adminCliente.aspx", false);
+        }
+
+        protected void btnChoferes_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("adminChoferes.aspx", false);
+        }
     }
 }

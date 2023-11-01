@@ -7,17 +7,16 @@ using System.Web.UI.WebControls;
 
 namespace TPCuatrimestal
 {
-    public partial class detalleEmpresa : System.Web.UI.Page
+    public partial class altaModificacionViaje : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void btnModificarViaje_Click(object sender, EventArgs e)
+        protected void btnCanelar_Click(object sender, EventArgs e)
         {
-            //FALTA LA LOGICA, SOLO NAVEGAVILIDAD
-            Response.Redirect("detalleCliente.aspx", false);
+            Response.Redirect("homeAdmin.aspx", false);
         }
     }
 }

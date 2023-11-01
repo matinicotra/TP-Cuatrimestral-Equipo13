@@ -20,5 +20,17 @@ namespace TPCuatrimestal
             //SI ES MODIFICACIÓN, CON PARAMETRO POR URL O DE ALGÚNA OTRA MANERA
             Response.Redirect("altaModificacionCliente.aspx", false);
         }
+
+        protected void btnModificarCliente_Click(object sender, EventArgs e)
+        {
+            //FALTA LA LOGICA, SOLO NAVEGAVILIDAD
+            Response.Redirect("altaModificacionCliente.aspx", false);
+        }
+
+        protected void btnDetalleCliente_Click(object sender, EventArgs e)
+        {
+            //FALTA LA LOGICA, SOLO NAVEGAVILIDAD
+            Response.Redirect("altaModificacionViaje.aspx", false);
+        }
     }
 }

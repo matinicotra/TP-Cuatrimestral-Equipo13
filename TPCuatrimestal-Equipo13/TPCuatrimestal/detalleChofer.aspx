@@ -21,15 +21,15 @@
             <asp:ListBox ID="listaViajesPorChofer" runat="server"></asp:ListBox>
         </div>
 
-        <div>
+        <!--<div>
             <h5>Asignar viaje al Chofer</h5>
         </div>
         <div>
             <asp:Button ID="btnAsignarViaje" runat="server" Text="AsignarViaje" />
-        </div>
+        </div>-->
 
         <div>
-            <h5>ABM Viajes</h5>
+            <h5>Gestionar Viajes</h5>
             <asp:Button ID="btnAltaViaje" runat="server" Text="Alta" />
             <asp:Button ID="btnBajaViaje" runat="server" Text="Baja" />
             <asp:Button ID="btnModificarViaje" runat="server" Text="Modificar" />
@@ -37,7 +37,7 @@
 
         <div>
             <h5>Detalles del viaje</h5>
-            <asp:Button ID="btnDetalleViaje" runat="server" Text="Detalles viaje" />
+            <asp:Button ID="btnDetalleViaje" runat="server" Text="Detalles viaje" OnClick="btnDetalleViaje_Click" />
         </div>
 
         <div>

@@ -13,5 +13,10 @@ namespace TPCuatrimestal
         {
 
         }
+
+        protected void btnDetalleViaje_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("detalleViaje.aspx", false);
+        }
     }
 }

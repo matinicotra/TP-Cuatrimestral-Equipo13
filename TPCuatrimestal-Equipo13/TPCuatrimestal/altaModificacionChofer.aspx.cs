@@ -13,5 +13,10 @@ namespace TPCuatrimestal
         {
 
         }
+
+        protected void btnCanelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("detalleChofer.aspx", false);
+        }
     }
 }

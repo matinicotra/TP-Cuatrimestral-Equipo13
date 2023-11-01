@@ -24,13 +24,13 @@ namespace TPCuatrimestal
         protected global::System.Web.UI.WebControls.ListBox ListBox1;
 
         /// <summary>
-        /// Control Button1.
+        /// Control btnDetalleViaje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnDetalleViaje;
 
         /// <summary>
         /// Control txtFiltrar.
@@ -67,5 +67,32 @@ namespace TPCuatrimestal
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Calendar calOtrosDias;
+
+        /// <summary>
+        /// Control btnResumenAnioChofer.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnResumenAnioChofer;
+
+        /// <summary>
+        /// Control btnResumenMesChofer.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnResumenMesChofer;
+
+        /// <summary>
+        /// Control btnResumenTotalChofer.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnResumenTotalChofer;
     }
 }

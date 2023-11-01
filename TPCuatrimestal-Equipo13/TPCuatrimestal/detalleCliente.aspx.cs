@@ -17,7 +17,12 @@ namespace TPCuatrimestal
         protected void btnModificarViaje_Click(object sender, EventArgs e)
         {
             //FALTA LA LOGICA, SOLO NAVEGAVILIDAD
-            Response.Redirect("detalleCliente.aspx", false);
+            Response.Redirect("altaModificacionCliente.aspx", false);
+        }
+
+        protected void btnDetalleViaje_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("detalleViaje.aspx", false);
         }
     }
 }

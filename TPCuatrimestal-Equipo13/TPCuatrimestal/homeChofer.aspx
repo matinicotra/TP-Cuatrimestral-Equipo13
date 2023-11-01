@@ -12,7 +12,7 @@
 
         <div>
             <h5>Detalles del viaje</h5>
-            <asp:Button ID="Button1" runat="server" Text="Detalle viaje" />
+            <asp:Button ID="btnDetalleViaje" runat="server" Text="Detalle viaje" OnClick="btnDetalleViaje_Click" />
         </div>
 
         <div>
@@ -33,6 +33,11 @@
             <h5>Ver viajes por día</h5>
             <asp:Calendar ID="calOtrosDias" runat="server"></asp:Calendar>
         </div>
-
+        <div>
+            <h5>Resumenes del Chofer</h5>
+            <asp:Button ID="btnResumenAnioChofer" runat="server" Text="Por Anio" />
+            <asp:Button ID="btnResumenMesChofer" runat="server" Text="Por Mes" />
+            <asp:Button ID="btnResumenTotalChofer" runat="server" Text="Total" />
+        </div>
     </div>
 </asp:Content>

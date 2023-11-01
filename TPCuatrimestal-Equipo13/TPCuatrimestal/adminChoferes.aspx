@@ -23,12 +23,12 @@
             <h5>ABM Choferes</h5>
             <asp:Button ID="btnAltaChofer" runat="server" Text="Alta" OnClick="btnAltaChofer_Click" />
             <asp:Button ID="btnBajaChofer" runat="server" Text="Baja" />
-            <asp:Button ID="btnModificarChofer" runat="server" Text="Modificar" />
+            <asp:Button ID="btnModificarChofer" runat="server" Text="Modificar" onClick="btnModificarChofer_Click" />
         </div>
 
         <div>
             <h5>Detalles del Chofer Seleccionado</h5>
-            <asp:Button ID="btnDetalleChofer" runat="server" Text="Detalle Chofer" />
+            <asp:Button ID="btnDetalleChofer" runat="server" Text="Detalle Chofer" OnClick="btnDetalleChofer_Click" />
         </div>
 
     </div>

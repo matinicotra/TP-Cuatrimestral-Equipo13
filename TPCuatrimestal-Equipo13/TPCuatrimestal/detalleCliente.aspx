@@ -24,7 +24,7 @@
 
         <div>
             <h5>Detalles del viaje</h5>
-            <asp:Button ID="btnDetalleViaje" runat="server" Text="Detalles viaje" />
+            <asp:Button ID="btnDetalleViaje" runat="server" Text="Detalles viaje" OnClick="btnDetalleViaje_Click" />
         </div>
 
         <div>

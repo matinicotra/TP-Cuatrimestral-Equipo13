@@ -30,7 +30,7 @@ namespace TPCuatrimestal
         protected void btnDetalleCliente_Click(object sender, EventArgs e)
         {
             //FALTA LA LOGICA, SOLO NAVEGAVILIDAD
-            Response.Redirect("altaModificacionViaje.aspx", false);
+            Response.Redirect("detalleCliente.aspx", false);
         }
     }
 }

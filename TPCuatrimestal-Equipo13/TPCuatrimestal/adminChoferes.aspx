@@ -21,7 +21,7 @@
 
         <div>
             <h5>ABM Choferes</h5>
-            <asp:Button ID="btnAltaChofer" runat="server" Text="Alta" />
+            <asp:Button ID="btnAltaChofer" runat="server" Text="Alta" OnClick="btnAltaChofer_Click" />
             <asp:Button ID="btnBajaChofer" runat="server" Text="Baja" />
             <asp:Button ID="btnModificarChofer" runat="server" Text="Modificar" />
         </div>

@@ -1,18 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageAgencia.Master" AutoEventWireup="true" CodeBehind="detalleCliente.aspx.cs" Inherits="TPCuatrimestal.detalleEmpresa" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <div class="container-lg" style="display:flex; align-items:center; justify-content:center; flex-direction:column;">
+    <div class="container-lg" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
         <div>
             <h1>NOMBRE DEL CLIENTE</h1>
         </div>
 
-       <div>
+        <div>
             <h5>Ordenar y filtrar por distintos criterios</h5>
             <asp:TextBox ID="txtFiltrar" runat="server"></asp:TextBox>
-           <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList> <!-- AGREGAR LOS CRITERIOS DE ORDEN-->
+            <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
+            <!-- AGREGAR LOS CRITERIOS DE ORDEN-->
             <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" />
         </div>
 

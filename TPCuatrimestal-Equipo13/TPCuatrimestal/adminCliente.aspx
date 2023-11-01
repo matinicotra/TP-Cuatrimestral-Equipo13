@@ -21,7 +21,7 @@
 
         <div>
             <h5>ABM Clientes</h5>
-            <asp:Button ID="btnAltaCliente" runat="server" Text="Alta" />
+            <asp:Button ID="btnAltaCliente" runat="server" Text="Alta" OnClick="btnAltaCliente_Click" />
             <asp:Button ID="btnBajaCliente" runat="server" Text="Baja" />
             <asp:Button ID="btnModificarCliente" runat="server" Text="Modificar" />
         </div>

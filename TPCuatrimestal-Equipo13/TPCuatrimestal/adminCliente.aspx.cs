@@ -13,5 +13,12 @@ namespace TPCuatrimestal
         {
 
         }
+
+        protected void btnAltaCliente_Click(object sender, EventArgs e)
+        {
+            //SI ES ALTA, SOLO REDIRECT
+            //SI ES MODIFICACIÓN, CON PARAMETRO POR URL O DE ALGÚNA OTRA MANERA
+            Response.Redirect("altaModificacionCliente.aspx", false);
+        }
     }
 }

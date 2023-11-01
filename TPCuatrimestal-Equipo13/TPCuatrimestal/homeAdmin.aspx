@@ -11,14 +11,12 @@
             <asp:ListBox ID="lbViajesDelDia" runat="server"></asp:ListBox>
         </div>
 
-
         <div class="btn-group" role="group">
             <asp:Button ID="btnAltaViaje" runat="server" Text="Alta viaje" CssClass="btn btn-success"/> <!-- DARLE MUCHAS MAS IMPORTANCIA A ESTE BOTON-->
             <asp:Button ID="btnBajaViaje" runat="server" Text="Baja viaje" CssClass="btn btn-danger"/>
             <asp:Button ID="btnModificarViaje" runat="server" Text="Modificar viaje" CssClass="btn btn-warning"/>
             <asp:Button ID="btnDetalleViaje" runat="server" Text="Detalle viaje" CssClass="btn btn-info"/>
         </div>
-
 
         <div>
             <asp:TextBox ID="txtFiltrar" runat="server"></asp:TextBox>

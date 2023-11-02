@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageAgencia.Master" AutoEventWireup="true" CodeBehind="altaModificacionViaje.aspx.cs" Inherits="TPCuatrimestal.altaModificacionViaje" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-             <h1 class="text-lg-center" style="color: darkred">VIAJE</h1>
+        <h1 class="text-lg-center" style="color: darkred">VIAJE</h1>
         <div>
             <h5 class="text-lg-center" style="color: orangered">DATOS CLIENTE</h5>
             <table class="table">
@@ -12,13 +12,15 @@
                     <tr>
                         <th class="text-xl-center">
                             <asp:Label CssClass="col-2" ID="lblSinCliente" runat="server" Font-Bold="false">OMITIR CLIENTE</asp:Label>
-                            <asp:CheckBox ID="cbxSinCliente" runat="server" /> <!-- SI ESTÁ TRUE DESHABILITAR TODA LA SECCION CLIENTE O DEJAR SOLO NOMBRE -->
+                            <asp:CheckBox ID="cbxSinCliente" runat="server" />
+                            <!-- SI ESTÁ TRUE DESHABILITAR TODA LA SECCION CLIENTE O DEJAR SOLO NOMBRE -->
                         </th>
                     </tr>
                     <tr>
                         <th class="text-xl-center">
                             <asp:Label CssClass="col-2" ID="lblEmpresa" runat="server" Font-Bold="false">¿ES EMPRESA?</asp:Label>
-                            <asp:CheckBox ID="cbxEmpresa" runat="server" /> <!-- SI ESTÁ TRUE DESHABILITAR NOMBRE DE EMPRESA -->
+                            <asp:CheckBox ID="cbxEmpresa" runat="server" />
+                            <!-- SI ESTÁ TRUE DESHABILITAR NOMBRE DE EMPRESA -->
                         </th>
                     </tr>
                     <tr>
@@ -42,12 +44,12 @@
                     <tr>
                         <th class="text-xl-center">
                             <asp:Label CssClass="col-2" ID="lblFormaDePago" runat="server" Font-Bold="false">FORMA DE PAGO</asp:Label>
-                            <asp:RadioButtonList ID="RadioButtonList1" runat="server">
-                                  <asp:ListItem Text="Efectivo" Value="1" />
-                                  <asp:ListItem Text="Debito" Value="2" />
-                                  <asp:ListItem Text="Credito" Value="3" />
-                                  <asp:ListItem Text="Mercado Pago" Value="4" />
-                                  <asp:ListItem Text="No Especifica" Value="5" />
+                            <asp:RadioButtonList CssClass="table" ID="RadioButtonList1" runat="server">
+                                <asp:ListItem Text="Efectivo" Value="1" />
+                                <asp:ListItem Text="Debito" Value="2" />
+                                <asp:ListItem Text="Credito" Value="3" />
+                                <asp:ListItem Text="Mercado Pago" Value="4" />
+                                <asp:ListItem Text="No Especifica" Value="5" />
                             </asp:RadioButtonList>
                         </th>
                     </tr>
@@ -134,14 +136,15 @@
                     <tr>
                         <th class="text-xl-center">
                             <asp:Label CssClass="col-2" ID="Label1" runat="server" Font-Bold="false">ASIGNAR DESPUES</asp:Label>
-                            <asp:CheckBox ID="cbxAsignarDespues" runat="server" Checked="true" /> <!-- SI ESTÁ TRUE DESHABILITAR TODA LA SECCION CHOFER -->
+                            <asp:CheckBox ID="cbxAsignarDespues" runat="server" Checked="true" />
+                            <!-- SI ESTÁ TRUE DESHABILITAR TODA LA SECCION CHOFER -->
                         </th>
-                    <tr>
-                        <th class="text-xl-center">
-                            <asp:Label CssClass="col-2" ID="lblNombreChofer" runat="server" Font-Bold="false">NOMBRE</asp:Label>
-                            <asp:TextBox CssClass="col-2" ID="txtNombreChofer" runat="server"></asp:TextBox>
-                        </th>
-                    </tr>
+                        <tr>
+                            <th class="text-xl-center">
+                                <asp:Label CssClass="col-2" ID="lblNombreChofer" runat="server" Font-Bold="false">NOMBRE</asp:Label>
+                                <asp:TextBox CssClass="col-2" ID="txtNombreChofer" runat="server"></asp:TextBox>
+                            </th>
+                        </tr>
                     <tr>
                         <th class="text-xl-center">
                             <asp:Label CssClass="col-2" ID="lblModeloAuto" runat="server" Font-Bold="false">MODELO DEL AUTO</asp:Label>
@@ -168,11 +171,11 @@
 
         <div class="text-center">
             <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" />
-            <asp:Button ID="btnCanelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" onClick="btnCanelar_Click"/>
+            <asp:Button ID="btnCanelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCanelar_Click" />
         </div>
         <hr />
 
-</div>
+    </div>
 
 
 </asp:Content>

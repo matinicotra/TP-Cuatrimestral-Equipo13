@@ -11,7 +11,7 @@
             <asp:ListBox ID="lbViajesDelDia" runat="server"></asp:ListBox>
         </div>
 
-        <div class="btn-group" role="group">
+        <div class="btn-group nav-underline" style="font-family:cursive;" role="group">
             <asp:Button ID="btnAltaViaje" runat="server" Text="Alta viaje" CssClass="btn btn-success" OnClick="btnAltaViaje_Click"/>
             <asp:Button ID="btnModificarViaje" runat="server" Text="Modificar viaje" CssClass="btn btn-warning" OnClick="btnModificarViaje_Click"/>
             <asp:Button ID="btnDetalleViaje" runat="server" Text="Detalle viaje" CssClass="btn btn-info" OnClick="btnDetalleViaje_Click"/>
@@ -34,11 +34,12 @@
             <asp:Button ID="btnAsignarViaje" runat="server" Text="Aceptar" CssClass="btn btn-success"/>
         </div>-->
 
-        <div class="btn-group" role="group">
+        <div class="btn-group nav-underline" style="font-family:cursive;" role="group">
             <asp:Button ID="btnEmpresa" runat="server" Text="Empresa" CssClass="btn btn-primary" OnClick="btnEmpresa_Click"/>
             <asp:Button ID="btnClientes" runat="server" Text="Clientes" CssClass="btn btn-primary" onClick="btnEmpresa_Click"/>
             <asp:Button ID="btnChoferes" runat="server" Text="Choferes" CssClass="btn btn-primary" OnClick="btnChoferes_Click"/>
         </div>
+        <hr />
     </div>
 
 </asp:Content>

@@ -45,11 +45,12 @@
                         <th class="text-xl-center">
                             <asp:Label CssClass="col-2" ID="lblFormaDePago" runat="server" Font-Bold="false">FORMA DE PAGO</asp:Label>
                             <asp:RadioButtonList CssClass="table" ID="RadioButtonList1" runat="server">
-                                <asp:ListItem Text="Efectivo" Value="1" />
-                                <asp:ListItem Text="Debito" Value="2" />
-                                <asp:ListItem Text="Credito" Value="3" />
-                                <asp:ListItem Text="Mercado Pago" Value="4" />
-                                <asp:ListItem Text="No Especifica" Value="5" />
+                                <asp:ListItem Text="No Especifica" Value="1" />
+                                <asp:ListItem Text="Efectivo" Value="2" Selected="True"/>
+                                <asp:ListItem Text="Debito" Value="3" />
+                                <asp:ListItem Text="Credito" Value="4" />
+                                <asp:ListItem Text="Mercado Pago" Value="5" />
+                                <asp:ListItem Text="Cuenta Corriente" Value="6" />
                             </asp:RadioButtonList>
                         </th>
                     </tr>

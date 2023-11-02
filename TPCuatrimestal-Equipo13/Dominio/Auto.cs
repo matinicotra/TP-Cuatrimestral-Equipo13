@@ -11,10 +11,8 @@ namespace Dominio
         public Auto() 
         {
             Tipo = new TipoVehiculo();
-            Asignado = new Chofer();
         }
         public int IDVehiculo { get; set; }
         public TipoVehiculo Tipo { get; set; }
-        public Chofer Asignado { get; set; }
     }
 }

@@ -4,14 +4,25 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Dominio;
+using Negocio;
 
 namespace TPCuatrimestal
 {
     public partial class homeAdmin : System.Web.UI.Page
     {
+        public List<Vehiculo> ListarVehiculos { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
+            ListarVehiculos = vehiculoNegocio.ObtenerDatos();
 
+            if (!IsPostBack)
+            {
+                repVehiculos.DataSource = ListarVehiculos;
+                repVehiculos.DataBind();
+            }
         }
 
         protected void btnAltaViaje_Click(object sender, EventArgs e)
@@ -43,5 +54,6 @@ namespace TPCuatrimestal
         {
             Response.Redirect("adminChoferes.aspx", false);
         }
+
     }
 }

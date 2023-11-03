@@ -35,6 +35,37 @@
         </div>-->
 
         <div>
+            <h4>VEHICULOS</h4>
+            <table class="table position-relative">
+                <thead>
+                    <tr>
+                        <th scope="col" class="col-1">ID</th>
+                        <th scope="col" class="col-1">MODELO</th>
+                        <th scope="col" class="col-1">PATENTE</th>
+                        <th scope="col" class="col-1">TIPO</th>
+                        <th scope="col" class="col-1">PLAZAS</th>
+                        <th scope="col" class="col-1">ESTADO</th>
+                    </tr>
+                </thead>
+
+
+                <asp:Repeater ID="repVehiculos" runat="server">
+                    <ItemTemplate>
+                        <tbody>
+                            <tr>
+                                <td><%#Eval("IDVehiculo")%></td>
+                                <td><%#Eval("Modelo")%></td>
+                                <td><%#Eval("Patente")%></td>
+                                <td><%#Eval("Tipo.NombreTipo")%></td>
+                                <td><%#Eval("Tipo.CantAsientos")%></td>
+                                <td><%#Eval("Estado")%></td>
+                            </tr>
+                        </tbody>
+                    </ItemTemplate>
+                </asp:Repeater>
+
+            </table>
+
 
 
         </div>

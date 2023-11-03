@@ -33,5 +33,10 @@ namespace TPCuatrimestal
         {
             Response.Redirect("altaModificacionVehiculo.aspx", false);
         }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("altaModificacionVehiculo.aspx", false);
+        }
     }
 }

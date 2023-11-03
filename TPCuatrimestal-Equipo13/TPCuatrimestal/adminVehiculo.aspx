@@ -46,7 +46,7 @@
                                 <td><%#Eval("Estado")%></td>
                                 <td>                     
                                     <asp:ImageButton ID="btnEliminar" ImageUrl="https://e7.pngegg.com/pngimages/623/319/png-clipart-computer-icons-graphics-icon-design-illustration-delete-icon-logo-area.png" runat="server" class="btn-close border display-6 shadow-sm"/>   
-                                    <asp:Button ID="btnModificar" runat="server" Text="Modificar" />
+                                    <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" />
                                 </td>
                             </tr>
                         </tbody>

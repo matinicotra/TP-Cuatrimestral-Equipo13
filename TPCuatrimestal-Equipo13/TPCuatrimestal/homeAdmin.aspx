@@ -34,6 +34,11 @@
             <asp:Button ID="btnAsignarViaje" runat="server" Text="Aceptar" CssClass="btn btn-success"/>
         </div>-->
 
+        <div>
+
+
+        </div>
+
         <div class="btn-group nav-underline" style="font-family:cursive;" role="group">
             <asp:Button ID="btnEmpresa" runat="server" Text="Empresa" CssClass="btn btn-primary" OnClick="btnEmpresa_Click"/>
             <asp:Button ID="btnClientes" runat="server" Text="Clientes" CssClass="btn btn-primary" onClick="btnEmpresa_Click"/>

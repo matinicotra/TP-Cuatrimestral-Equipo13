@@ -28,7 +28,7 @@ namespace TPCuatrimestal
 
         protected void btnModificarChofer_Click(object sender, EventArgs e)
         {
-            Response.Redirect("detalleChofer.aspx", false);
+            Response.Redirect("altaModificacionChofer.aspx", false);
         }
     }
 }

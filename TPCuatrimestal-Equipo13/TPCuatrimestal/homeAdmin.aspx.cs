@@ -57,7 +57,12 @@ namespace TPCuatrimestal
 
         protected void btnVehiculo_Click(object sender, EventArgs e)
         {
-            Response.Redirect("adminVehiculos.aspx", false);
+            Response.Redirect("adminVehiculo.aspx", false);
+        }
+
+        protected void btnAsignar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("altaModificacionViaje.aspx", false);
         }
     }
 }

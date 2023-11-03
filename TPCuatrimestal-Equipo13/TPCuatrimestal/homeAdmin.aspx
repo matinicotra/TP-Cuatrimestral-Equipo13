@@ -59,7 +59,7 @@
                                 <td><%#Eval("Tipo.CantAsientos")%></td>
                                 <td><%#Eval("Estado")%></td>
                                 <td>
-                                    <asp:Button ID="btnAsignar" runat="server" Text="Asignar viaje" />
+                                    <asp:Button ID="btnAsignar" runat="server" Text="Asignar viaje" OnClick="btnAsignar_Click" />
                                 </td>
                             </tr>
                         </tbody>

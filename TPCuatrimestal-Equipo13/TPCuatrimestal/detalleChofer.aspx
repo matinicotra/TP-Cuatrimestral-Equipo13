@@ -29,14 +29,14 @@
         </div>-->
 
         <div>
-            <h5>Gestionar Viajes</h5>
+            <h5>Gestionar Viaje Seleccionado</h5>
             <asp:Button ID="btnAltaViaje" runat="server" Text="Alta" />
             <asp:Button ID="btnBajaViaje" runat="server" Text="Baja" />
             <asp:Button ID="btnModificarViaje" runat="server" Text="Modificar" />
         </div>
 
         <div>
-            <h5>Detalles del viaje</h5>
+            <h5>Detalles del viaje seleccionado</h5>
             <asp:Button ID="btnDetalleViaje" runat="server" Text="Detalles viaje" OnClick="btnDetalleViaje_Click" />
         </div>
 

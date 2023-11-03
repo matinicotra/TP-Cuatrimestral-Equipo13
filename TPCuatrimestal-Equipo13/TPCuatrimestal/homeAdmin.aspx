@@ -48,7 +48,6 @@
                     </tr>
                 </thead>
 
-
                 <asp:Repeater ID="repVehiculos" runat="server">
                     <ItemTemplate>
                         <tbody>
@@ -59,19 +58,17 @@
                                 <td><%#Eval("Tipo.NombreTipo")%></td>
                                 <td><%#Eval("Tipo.CantAsientos")%></td>
                                 <td><%#Eval("Estado")%></td>
+                                <td>
+                                    <asp:Button ID="btnAsignar" runat="server" Text="Asignar al viaje" />
+                                </td>
                             </tr>
                         </tbody>
                     </ItemTemplate>
                 </asp:Repeater>
-
             </table>
-
-
-
         </div>
 
         <div class="btn-group nav-underline" style="font-family:cursive;" role="group">
-            <asp:Button ID="btnEmpresa" runat="server" Text="Empresa" CssClass="btn btn-primary" OnClick="btnEmpresa_Click"/>
             <asp:Button ID="btnClientes" runat="server" Text="Clientes" CssClass="btn btn-primary" onClick="btnEmpresa_Click"/>
             <asp:Button ID="btnChoferes" runat="server" Text="Choferes" CssClass="btn btn-primary" OnClick="btnChoferes_Click"/>
         </div>

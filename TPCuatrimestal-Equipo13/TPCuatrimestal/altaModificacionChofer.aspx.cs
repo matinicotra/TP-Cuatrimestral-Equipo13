@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +13,18 @@ namespace TPCuatrimestal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            VehiculoNegocio aux = new VehiculoNegocio();
+            List<Vehiculo> ListVehi = new List<Vehiculo>();
 
+            ListVehi = aux.ObtenerDatos();
+
+            foreach (Vehiculo X in ListVehi)
+            {
+                if (X.Estado)
+                {
+                    ddlAutoAsignado.Items.Add(X.IDVehiculo.ToString() + " - " + "(" + X.Patente + ")");
+                }
+            }
         }
 
         protected void btnCanelar_Click(object sender, EventArgs e)

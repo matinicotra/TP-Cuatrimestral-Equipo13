@@ -5,22 +5,22 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="container-lg" style="display:flex; align-items:center; justify-content:center; flex-direction:column; grid-row-gap:30px; margin-top:50px;">
-        <div style="display:flex; flex-direction:row;">
+    <div class="container-lg" style="display: flex; align-items: center; justify-content: center; flex-direction: column; grid-row-gap: 30px; margin-top: 50px;">
+        <div style="display: flex; flex-direction: row;">
             <h5>Viajes del dia</h5>
             <asp:ListBox ID="lbViajesDelDia" runat="server"></asp:ListBox>
         </div>
 
-        <div class="btn-group nav-underline" style="font-family:cursive;" role="group">
-            <asp:Button ID="btnAltaViaje" runat="server" Text="Alta viaje" CssClass="btn btn-success" OnClick="btnAltaViaje_Click"/>
-            <asp:Button ID="btnModificarViaje" runat="server" Text="Modificar viaje" CssClass="btn btn-warning" OnClick="btnModificarViaje_Click"/>
-            <asp:Button ID="btnDetalleViaje" runat="server" Text="Detalle viaje" CssClass="btn btn-info" OnClick="btnDetalleViaje_Click"/>
-            <asp:Button ID="btnBajaViaje" runat="server" Text="Baja viaje" CssClass="btn btn-danger" OnClick="btnBajaViaje_Click"/>
+        <div class="btn-group nav-underline" style="font-family: cursive;" role="group">
+            <asp:Button ID="btnAltaViaje" runat="server" Text="Alta viaje" CssClass="btn btn-success" OnClick="btnAltaViaje_Click" />
+            <asp:Button ID="btnModificarViaje" runat="server" Text="Modificar viaje" CssClass="btn btn-warning" OnClick="btnModificarViaje_Click" />
+            <asp:Button ID="btnDetalleViaje" runat="server" Text="Detalle viaje" CssClass="btn btn-info" OnClick="btnDetalleViaje_Click" />
+            <asp:Button ID="btnBajaViaje" runat="server" Text="Baja viaje" CssClass="btn btn-danger" OnClick="btnBajaViaje_Click" />
         </div>
 
         <div>
             <asp:TextBox ID="txtFiltrar" runat="server"></asp:TextBox>
-            <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" CssClass="btn btn-secondary"/>
+            <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" CssClass="btn btn-secondary" />
         </div>
 
         <div>
@@ -59,7 +59,7 @@
                                 <td><%#Eval("Tipo.CantAsientos")%></td>
                                 <td><%#Eval("Estado")%></td>
                                 <td>
-                                    <asp:Button ID="btnAsignar" runat="server" Text="Asignar al viaje" />
+                                    <asp:Button ID="btnAsignar" runat="server" Text="Asignar viaje" />
                                 </td>
                             </tr>
                         </tbody>
@@ -68,9 +68,9 @@
             </table>
         </div>
 
-        <div class="btn-group nav-underline" style="font-family:cursive;" role="group">
-            <asp:Button ID="btnClientes" runat="server" Text="Clientes" CssClass="btn btn-primary" onClick="btnEmpresa_Click"/>
-            <asp:Button ID="btnChoferes" runat="server" Text="Choferes" CssClass="btn btn-primary" OnClick="btnChoferes_Click"/>
+        <div class="btn-group nav-underline" style="font-family: cursive;" role="group">
+            <asp:Button ID="btnClientes" runat="server" Text="Clientes" CssClass="btn btn-success" OnClick="btnEmpresa_Click" />
+            <asp:Button ID="btnChoferes" runat="server" Text="Choferes" CssClass="btn btn-info" OnClick="btnChoferes_Click" />
         </div>
         <hr />
     </div>

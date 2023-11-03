@@ -46,7 +46,7 @@
                             <asp:Label CssClass="col-2" ID="lblFormaDePago" runat="server" Font-Bold="false">FORMA DE PAGO</asp:Label>
                             <asp:RadioButtonList CssClass="table" ID="RadioButtonList1" runat="server">
                                 <asp:ListItem Text="No Especifica" Value="1" />
-                                <asp:ListItem Text="Efectivo" Value="2" Selected="True"/>
+                                <asp:ListItem Text="Efectivo" Value="2" Selected="True" />
                                 <asp:ListItem Text="Debito" Value="3" />
                                 <asp:ListItem Text="Credito" Value="4" />
                                 <asp:ListItem Text="Mercado Pago" Value="5" />
@@ -146,24 +146,6 @@
                                 <asp:TextBox CssClass="col-2" ID="txtNombreChofer" runat="server"></asp:TextBox>
                             </th>
                         </tr>
-                    <tr>
-                        <th class="text-xl-center">
-                            <asp:Label CssClass="col-2" ID="lblModeloAuto" runat="server" Font-Bold="false">MODELO DEL AUTO</asp:Label>
-                            <asp:TextBox CssClass="col-2" ID="txtModeloAuto" runat="server"></asp:TextBox>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th class="text-xl-center">
-                            <asp:Label CssClass="col-2" ID="lblTipoAuto" runat="server" Font-Bold="false">TIPO DE AUTO</asp:Label>
-                            <asp:TextBox CssClass="col-2" ID="txtTipoAuto" runat="server"></asp:TextBox>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th class="text-xl-center">
-                            <asp:Label CssClass="col-2" ID="lblTelefonoChofer" runat="server" Font-Bold="false">TELEFONO</asp:Label>
-                            <asp:TextBox CssClass="col-2" ID="txtTelefonoChofer" runat="server"></asp:TextBox>
-                        </th>
-                    </tr>
                 </tbody>
             </table>
 

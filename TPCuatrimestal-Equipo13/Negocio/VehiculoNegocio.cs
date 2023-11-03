@@ -23,18 +23,13 @@ namespace Negocio
                 while (datosVehiculo.Lector.Read())
                 {
                     Vehiculo auxVehiculo = new Vehiculo();
-                    TipoVehiculo auxTipo = new TipoVehiculo();
 
                     auxVehiculo.IDVehiculo = (int)datosVehiculo.Lector["IDVEHICULO"];
                     auxVehiculo.Modelo = (int)datosVehiculo.Lector["MODELO"];
                     auxVehiculo.Patente = (string)datosVehiculo.Lector["PATENTE"];
                     auxVehiculo.Estado = (bool)datosVehiculo.Lector["ESTADO"];
-
-                    auxTipo.NombreTipo = (string)datosVehiculo.Lector["TIPO"];
-                    auxTipo.CantAsientos = (int)datosVehiculo.Lector["CANT_ASIENTOS"];
-
-                    auxVehiculo.Tipo.NombreTipo = auxTipo.NombreTipo;
-                    auxVehiculo.Tipo.CantAsientos = auxTipo.CantAsientos;
+                    auxVehiculo.Tipo.NombreTipo = (string)datosVehiculo.Lector["TIPO"];
+                    auxVehiculo.Tipo.CantAsientos = (int)datosVehiculo.Lector["CANT_ASIENTOS"];
 
                     vehiculos.Add(auxVehiculo);
                 }
@@ -52,5 +47,4 @@ namespace Negocio
 
         }
     }
-
 }

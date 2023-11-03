@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Auto
+    public class Vehiculo
     {
-        public Auto() 
+        public Vehiculo() 
         {
             Tipo = new TipoVehiculo();
         }
         public int IDVehiculo { get; set; }
         public TipoVehiculo Tipo { get; set; }
+        public int Modelo { get; set; }
     }
 }

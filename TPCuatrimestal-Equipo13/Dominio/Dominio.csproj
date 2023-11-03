@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administrador.cs" />
-    <Compile Include="Auto.cs" />
+    <Compile Include="Vehiculo.cs" />
     <Compile Include="Chofer.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Domicilio.cs" />

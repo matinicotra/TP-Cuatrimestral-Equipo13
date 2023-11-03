@@ -10,6 +10,5 @@ namespace Dominio
     {
         public string Tipo { get; set; }
         public int CantAsientos { get; set; }
-        public int Modelo { get; set; }
     }
 }

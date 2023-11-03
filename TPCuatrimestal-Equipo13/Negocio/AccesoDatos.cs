@@ -18,7 +18,7 @@ namespace Negocio
             conexion = new SqlConnection();
             comando = new SqlCommand();
             comando.CommandType = System.Data.CommandType.Text;
-            conexion.ConnectionString = "server= .\\SQLEXPRESS; database=XXXXXXXXXXXXX; integrated security=true";  // FALTA NOMBRE BD 
+            conexion.ConnectionString = "server= .\\SQLEXPRESS; database=BBDD_Equipo13; integrated security=true";  // FALTA NOMBRE BD 
         }
 
         public SqlDataReader Lector { get { return lector; } }

@@ -6,6 +6,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="container-lg" style="display: flex; align-items: center; justify-content: center; flex-direction: column; grid-row-gap: 30px; margin-top: 50px;">
+        <div>
+            <asp:TextBox ID="txtFiltrar" runat="server"></asp:TextBox>
+            <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" CssClass="btn btn-secondary" />
+        </div>
         <div style="display: flex; flex-direction: row;">
             <h5>Viajes del dia</h5>
             <asp:ListBox ID="lbViajesDelDia" runat="server"></asp:ListBox>
@@ -18,10 +22,6 @@
             <asp:Button ID="btnBajaViaje" runat="server" Text="Baja viaje" CssClass="btn btn-danger" OnClick="btnBajaViaje_Click" />
         </div>
 
-        <div>
-            <asp:TextBox ID="txtFiltrar" runat="server"></asp:TextBox>
-            <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" CssClass="btn btn-secondary" />
-        </div>
 
         <div>
             <h5>Opciones de ver otros dias</h5>
@@ -71,6 +71,7 @@
         <div class="btn-group nav-underline" style="font-family: cursive;" role="group">
             <asp:Button ID="btnClientes" runat="server" Text="Clientes" CssClass="btn btn-success" OnClick="btnEmpresa_Click" />
             <asp:Button ID="btnChoferes" runat="server" Text="Choferes" CssClass="btn btn-info" OnClick="btnChoferes_Click" />
+            <asp:Button ID="btnVehiculo" runat="server" Text="Vehiculos" CssClass="btn btn-warning" OnClick="btnVehiculo_Click" />
         </div>
         <hr />
     </div>

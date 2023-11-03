@@ -66,8 +66,10 @@
   <ItemGroup>
     <Content Include="adminChoferes.aspx" />
     <Content Include="adminCliente.aspx" />
+    <Content Include="adminVehiculo.aspx" />
     <Content Include="altaModificacionChofer.aspx" />
     <Content Include="altaModificacionCliente.aspx" />
+    <Content Include="altaModificacionVehiculo.aspx" />
     <Content Include="altaModificacionViaje.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -115,6 +117,13 @@
     <Compile Include="adminCliente.aspx.designer.cs">
       <DependentUpon>adminCliente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="adminVehiculo.aspx.cs">
+      <DependentUpon>adminVehiculo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminVehiculo.aspx.designer.cs">
+      <DependentUpon>adminVehiculo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="altaModificacionChofer.aspx.cs">
       <DependentUpon>altaModificacionChofer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -128,6 +137,13 @@
     </Compile>
     <Compile Include="altaModificacionCliente.aspx.designer.cs">
       <DependentUpon>altaModificacionCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="altaModificacionVehiculo.aspx.cs">
+      <DependentUpon>altaModificacionVehiculo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="altaModificacionVehiculo.aspx.designer.cs">
+      <DependentUpon>altaModificacionVehiculo.aspx</DependentUpon>
     </Compile>
     <Compile Include="altaModificacionViaje.aspx.cs">
       <DependentUpon>altaModificacionViaje.aspx</DependentUpon>

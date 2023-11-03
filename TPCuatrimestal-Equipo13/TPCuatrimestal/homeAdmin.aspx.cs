@@ -55,5 +55,9 @@ namespace TPCuatrimestal
             Response.Redirect("adminChoferes.aspx", false);
         }
 
+        protected void btnVehiculo_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("adminVehiculos.aspx", false);
+        }
     }
 }

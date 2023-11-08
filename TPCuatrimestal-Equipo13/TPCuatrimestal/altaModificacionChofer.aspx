@@ -4,110 +4,82 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div>
-        <h5 class="text-lg-center" style="color: orangered">DATOS PERSONALES</h5>
-        <table class="table">
-            <tbody>
-                <tr>
-                    <th class="text-xl-center">
-                        <asp:Label CssClass="col-2" ID="lblNombre" runat="server" Font-Bold="false">NOMBRE</asp:Label>
-                        <asp:TextBox CssClass="col-2" ID="txtNombre" runat="server"></asp:TextBox>
-                    </th>
-                </tr>
-                <tr>
-                    <th class="text-xl-center">
-                        <asp:Label CssClass="col-2" ID="lblApellido" runat="server" Font-Bold="false">APELLIDO</asp:Label>
-                        <asp:TextBox CssClass="col-2" ID="txtApellido" runat="server"></asp:TextBox>
-                    </th>
-                </tr>
-                <tr>
-                    <th class="text-xl-center">
-                        <asp:Label CssClass="col-2" ID="lblDNI" runat="server" Font-Bold="false">DOCUMENTO</asp:Label>
-                        <asp:TextBox CssClass="col-2" ID="txtDNI" runat="server"></asp:TextBox>
-                    </th>
-                </tr>
-                <tr>
-                    <th class="text-xl-center">
-                        <asp:Label CssClass="col-2" ID="lblNacionalidad" runat="server" Font-Bold="false">NACIONALIDAD</asp:Label>
-                        <asp:TextBox CssClass="col-2" ID="txtNacionalidad" runat="server"></asp:TextBox>
-                    </th>
-                </tr>
-                <tr>
-                    <th class="text-xl-center">
-                        <asp:Label CssClass="col-2" ID="lblFechaNacimiento" runat="server" Font-Bold="false">FECHA DE NACIMIENTO</asp:Label>
-                        <asp:TextBox CssClass="col-2" ID="txtFechaNacimiento" runat="server" TextMode="Date"></asp:TextBox>
-                    </th>
-                </tr>
+    <div class="container-lg" style="display: flex; align-items: center; justify-content: center; flex-direction: column; grid-row-gap: 10px; margin: 50px 50px;">
 
-            </tbody>
-        </table>
+        <div style="max-width: 900px;">
+
+            <h5 class="text-lg-center">DATOS PERSONALES</h5>
+
+            <div class="input-group mb-3">
+                <asp:Label CssClass="input-group-text" ID="lblNombre" runat="server" Font-Bold="false">NOMBRE</asp:Label>
+                <asp:TextBox CssClass="form-control" ID="txtNombre" runat="server"></asp:TextBox>
+            </div>
+
+            <div class="input-group mb-3">
+                <asp:Label CssClass="input-group-text" ID="lblApellido" runat="server" Font-Bold="false">APELLIDO</asp:Label>
+                <asp:TextBox CssClass="form-control" ID="txtApellido" runat="server"></asp:TextBox>
+            </div>
+
+            <div class="input-group mb-3">
+                <asp:Label CssClass="input-group-text" ID="lblDNI" runat="server" Font-Bold="false">DOCUMENTO</asp:Label>
+                <asp:TextBox CssClass="form-control" ID="txtDNI" runat="server"></asp:TextBox>
+            </div>
+
+            <div class="input-group mb-3">
+                <asp:Label CssClass="input-group-text" ID="lblNacionalidad" runat="server" Font-Bold="false">NACIONALIDAD</asp:Label>
+                <asp:TextBox CssClass="form-control" ID="txtNacionalidad" runat="server"></asp:TextBox>
+            </div>
+
+            <div class="input-group mb-3">
+                <asp:Label CssClass="input-group-text" ID="lblFechaNacimiento" runat="server" Font-Bold="false">FECHA DE NACIMIENTO</asp:Label>
+                <asp:TextBox CssClass="form-control" ID="txtFechaNacimiento" runat="server" TextMode="Date"></asp:TextBox>
+            </div>
+
+            <h5 class="text-lg-center">DATOS DE DOMICILIO</h5>
+
+            <div class="input-group mb-3">
+                <asp:Label CssClass="input-group-text" ID="lblCalle" runat="server" Font-Bold="false">NOMBRE DE CALLE</asp:Label>
+                <asp:TextBox CssClass="form-control" ID="txtCalle" runat="server"></asp:TextBox>
+            </div>
+
+            <div class="input-group mb-3">
+                <asp:Label CssClass="input-group-text" ID="lblAltura" runat="server" Font-Bold="false">ALTURA DE CALLE</asp:Label>
+                <asp:TextBox CssClass="form-control" ID="txtAltura" runat="server"></asp:TextBox>
+            </div>
+
+            <div class="input-group mb-3">
+                <asp:Label CssClass="input-group-text" ID="lblCodPostal" runat="server" Font-Bold="false">CODIGO POSTAL</asp:Label>
+                <asp:TextBox CssClass="form-control" ID="txtCodPostal" runat="server"></asp:TextBox>
+            </div>
+
+            <div class="input-group mb-3">
+                <asp:Label CssClass="input-group-text" ID="lblLocalidad" runat="server" Font-Bold="false">LOCALIDAD</asp:Label>
+                <asp:TextBox CssClass="form-control" ID="txtLocalidad" runat="server"></asp:TextBox>
+            </div>
+
+            <div class="input-group mb-3">
+                <asp:Label CssClass="input-group-text" ID="lblProvincia" runat="server" Font-Bold="false">PROVINCIA</asp:Label>
+                <asp:TextBox CssClass="form-control" ID="txtProvincia" runat="server"></asp:TextBox>
+            </div>
+
+            <h5 class="text-lg-center">DATOS ASIGNADOS</h5>
+
+            <div class="input-group mb-3">
+                <asp:Label CssClass="input-group-text" ID="lblZona" runat="server" Font-Bold="false">ZONA</asp:Label>
+                <asp:DropDownList CssClass="form-control" ID="ddlZona" runat="server"></asp:DropDownList>
+            </div>
+
+            <div class="input-group mb-3">
+                <asp:Label CssClass="input-group-text" ID="lblAutoAsignado" runat="server" Font-Bold="false">AUTO</asp:Label>
+                <asp:DropDownList CssClass="form-control" ID="ddlAutoAsignado" runat="server"></asp:DropDownList>
+            </div>
+
+            <div class="text-center">
+                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" />
+                <asp:Button ID="btnCanelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCanelar_Click" />
+            </div>
+
+        </div>
     </div>
-    <div>
-        <h5 class="text-lg-center" style="color: orangered">DATOS DE DOMICILIO</h5>
-        <table class="table">
-            <tbody>
-                <tr>
-                    <th class="text-xl-center">
-                        <asp:Label CssClass="col-2" ID="lblCalle" runat="server" Font-Bold="false">NOMBRE DE CALLE</asp:Label>
-                        <asp:TextBox CssClass="col-2" ID="txtCalle" runat="server"></asp:TextBox>
-                    </th>
-                </tr>
-                <tr>
-                    <th class="text-xl-center">
-                        <asp:Label CssClass="col-2" ID="lblAltura" runat="server" Font-Bold="false">ALTURA DE CALLE</asp:Label>
-                        <asp:TextBox CssClass="col-2" ID="txtAltura" runat="server"></asp:TextBox>
-                    </th>
-                </tr>
-                <tr>
-                    <th class="text-xl-center">
-                        <asp:Label CssClass="col-2" ID="lblCodPostal" runat="server" Font-Bold="false">CODIGO POSTAL</asp:Label>
-                        <asp:TextBox CssClass="col-2" ID="txtCodPostal" runat="server"></asp:TextBox>
-                    </th>
-                </tr>
-                <tr>
-                    <th class="text-xl-center">
-                        <asp:Label CssClass="col-2" ID="lblLocalidad" runat="server" Font-Bold="false">LOCALIDAD</asp:Label>
-                        <asp:TextBox CssClass="col-2" ID="txtLocalidad" runat="server"></asp:TextBox>
-                    </th>
-                </tr>
-                <tr>
-                    <th class="text-xl-center">
-                        <asp:Label CssClass="col-2" ID="lblProvincia" runat="server" Font-Bold="false">PROVINCIA</asp:Label>
-                        <asp:TextBox CssClass="col-2" ID="txtProvincia" runat="server"></asp:TextBox>
-                    </th>
-                </tr>
-
-            </tbody>
-        </table>
-
-    </div>
-
-    <div>
-        <h5 class="text-lg-center" style="color: orangered">DATOS ASIGNADOS</h5>
-        <table class="table">
-            <tbody>
-                <tr>
-                    <th class="text-xl-center">
-                        <asp:Label CssClass="col-2" ID="lblZona" runat="server" Font-Bold="false">ZONA</asp:Label>
-                        <asp:DropDownList CssClass="col-2" ID="ddlZona" runat="server"></asp:DropDownList>
-                    </th>
-                </tr>
-                <tr>
-                    <th class="text-xl-center">
-                        <asp:Label CssClass="col-2" ID="lblAutoAsignado" runat="server" Font-Bold="false">AUTO</asp:Label>
-                        <asp:DropDownList CssClass="col-2" ID="ddlAutoAsignado" runat="server"></asp:DropDownList>
-                    </th>
-                </tr>
-            </tbody>
-        </table>
-
-    </div>
-
-
-    <div class="text-center">
-        <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" />
-        <asp:Button ID="btnCanelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" onClick="btnCanelar_Click"/>
-    </div>
-    <hr />
 
 </asp:Content>

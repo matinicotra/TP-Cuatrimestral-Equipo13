@@ -4,7 +4,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container-lg" style="display:flex; align-items:center; justify-content:center; flex-direction:column;">
+    <div class="container-md" style="display:flex; align-items:center; justify-content:center; flex-direction:column;">
         <div>
              <h1>ADMINISTRACION CHOFERES</h1>
         </div>

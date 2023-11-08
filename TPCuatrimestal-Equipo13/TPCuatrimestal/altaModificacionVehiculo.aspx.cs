@@ -34,20 +34,20 @@ namespace TPCuatrimestal
                         ddlTipoVehiculo.Items.Add(X.NombreTipo);
 
                     }
-                }
             
-            if (Request.QueryString["id"] != null)
-            {
-                IDVehiculo = int.Parse(Request.QueryString["id"]); //Capturamos el id de la URL
+                    if (Request.QueryString["id"] != null)
+                    {
+                        IDVehiculo = int.Parse(Request.QueryString["id"]); //Capturamos el id de la URL
 
-                VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
-                listaVehiculos = vehiculoNegocio.ObtenerDatos();
-                vehiculoAux = listaVehiculos.Find(x => x.IDVehiculo == IDVehiculo); //Capturamos el vehiculo a modificar en vehiculoAux
+                        VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
+                        listaVehiculos = vehiculoNegocio.ObtenerDatos();
+                        vehiculoAux = listaVehiculos.Find(x => x.IDVehiculo == IDVehiculo); //Capturamos el vehiculo a modificar en vehiculoAux
 
-                //cargamos los campos con vehiculoAux (QUIZAS SERÍA MAS ORDENADO SEPARAR EN FUNCIONES)
-                txtPatente.Text = vehiculoAux.Patente.ToString();
-                txtModelo.Text = vehiculoAux.Modelo.ToString();
-                ddlTipoVehiculo.SelectedValue = vehiculoAux.Tipo.NombreTipo.ToString();
+                        //cargamos los campos con vehiculoAux
+                        txtPatente.Text = vehiculoAux.Patente.ToString();
+                        txtModelo.Text = vehiculoAux.Modelo.ToString();
+                        ddlTipoVehiculo.SelectedValue = vehiculoAux.Tipo.NombreTipo.ToString();
+                    }
             }
         }
 
@@ -69,11 +69,11 @@ namespace TPCuatrimestal
             vehiculoAux.Tipo = tvAux;
 
             VehiculoNegocio vehiculoNegocioAux = new VehiculoNegocio();
-            
-            //dividimos si es modificar o cargar uno nuevo
-            if (Request.QueryString["id"] != null) //si es modificar...
-            {
-                    vehiculoAux.ToString();
+
+                //dividimos si es modificar o cargar uno nuevo
+                if (Request.QueryString["id"] != null) //si es modificar...
+                {
+                vehiculoAux.IDVehiculo = int.Parse(Request.QueryString["id"]);
                 vehiculoNegocioAux.ModificarVehiculo(vehiculoAux);
             }
             else //si es agregar uno nuevo...

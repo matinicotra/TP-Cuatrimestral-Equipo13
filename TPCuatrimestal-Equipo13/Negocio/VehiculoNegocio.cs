@@ -17,7 +17,7 @@ namespace Negocio
 
             try
             {
-                datosVehiculo.SetearConsulta("SELECT V.IDVEHICULO, YEAR(V.MODELO) MODELO, V.PATENTE, V.ESTADO, TV.TIPO, TV.CANT_ASIENTOS FROM VEHICULOS V INNER JOIN TIPOS_VEHICULOS TV ON TV.IDTIPO = V.IDTIPO");
+                datosVehiculo.SetearConsulta("SELECT V.IDVEHICULO, V.MODELO, V.PATENTE, V.ESTADO, TV.TIPO, TV.CANT_ASIENTOS FROM VEHICULOS V INNER JOIN TIPOS_VEHICULOS TV ON TV.IDTIPO = V.IDTIPO");
                 datosVehiculo.EjecutarConsulta();
 
                 while (datosVehiculo.Lector.Read())

@@ -13,17 +13,16 @@ namespace TPCuatrimestal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            VehiculoNegocio aux = new VehiculoNegocio();
-            List<Vehiculo> ListVehi = new List<Vehiculo>();
+            TipoVehiculoNegocio aux = new TipoVehiculoNegocio();
+            List<TipoVehiculo> ListTipoVehi = new List<TipoVehiculo>();
 
-            ListVehi = aux.ObtenerDatos();
+            ListTipoVehi = aux.ObtenerDatos();
 
-            foreach (Vehiculo X in ListVehi)
+            foreach (TipoVehiculo X in ListTipoVehi)
             {
-                if (X.Estado)
-                {
-                    ddlTipoVehiculo.Items.Add(X.Tipo.NombreTipo);
-                }
+              
+                    ddlTipoVehiculo.Items.Add(X.NombreTipo);
+                
             }
         }
 

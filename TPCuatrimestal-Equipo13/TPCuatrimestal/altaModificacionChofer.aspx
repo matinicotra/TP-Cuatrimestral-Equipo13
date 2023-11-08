@@ -2,11 +2,12 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="container-lg" style="display: flex; align-items: center; justify-content: center; flex-direction: column; grid-row-gap: 10px; margin: 50px 50px;">
 
-        <div style="max-width: 900px;">
+        <div>
 
             <h5 class="text-lg-center">DATOS PERSONALES</h5>
 
@@ -38,12 +39,12 @@
             <h5 class="text-lg-center">DATOS DE DOMICILIO</h5>
 
             <div class="input-group mb-3">
-                <asp:Label CssClass="input-group-text" ID="lblCalle" runat="server" Font-Bold="false">NOMBRE DE CALLE</asp:Label>
+                <asp:Label CssClass="input-group-text" ID="lblCalle" runat="server" Font-Bold="false">CALLE</asp:Label>
                 <asp:TextBox CssClass="form-control" ID="txtCalle" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-3">
-                <asp:Label CssClass="input-group-text" ID="lblAltura" runat="server" Font-Bold="false">ALTURA DE CALLE</asp:Label>
+                <asp:Label CssClass="input-group-text" ID="lblAltura" runat="server" Font-Bold="false">ALTURA</asp:Label>
                 <asp:TextBox CssClass="form-control" ID="txtAltura" runat="server"></asp:TextBox>
             </div>
 

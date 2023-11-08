@@ -46,5 +46,48 @@ namespace Negocio
             }
 
         }
+
+        public void AgregarVehiculo(Vehiculo aux)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("INSERT INTO VEHICULOS (IDTIPO,MODELO,PATENTE,ESTADO) values (@IdTipoVehiculo, @Modelo, @Patente, 1)");
+                datos.SetearParametro("@IdTipoVehiculo", aux.Tipo.IDTipo);
+                datos.SetearParametro("@Modelo", aux.Modelo);
+                datos.SetearParametro("@Patente", aux.Patente);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void ModificarVehiculo(Vehiculo aux)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("UPDATE VEHICULOS SET IDTIPO = @IdTipoVehiculo, MODELO = @Modelo, PATENTE = @Patente, ESTADO = 1 WHERE IDVEHICULO = @IdVehiculo");
+                datos.SetearParametro("@IdTipoVehiculo", aux.Tipo.IDTipo);
+                datos.SetearParametro("@Modelo", aux.Modelo);
+                datos.SetearParametro("@Patente", aux.Patente);
+                datos.SetearParametro("@IdVehiculo", aux.IDVehiculo);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
     }
 }

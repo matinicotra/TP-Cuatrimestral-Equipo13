@@ -11,18 +11,43 @@ namespace TPCuatrimestal
 {
     public partial class altaModificacionVehiculo : System.Web.UI.Page
     {
+        public List<TipoVehiculo> ListTipoVehi { get; set; }
+
+        public int IDVehiculo {  get; set; }
+
+        public List<Vehiculo> listaVehiculos { get; set; }
+
+        public Vehiculo vehiculoAux = new Vehiculo();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            TipoVehiculoNegocio aux = new TipoVehiculoNegocio();
-            List<TipoVehiculo> ListTipoVehi = new List<TipoVehiculo>();
+            
+                TipoVehiculoNegocio aux = new TipoVehiculoNegocio();
+                ListTipoVehi = new List<TipoVehiculo>();
 
-            ListTipoVehi = aux.ObtenerDatos();
+                ListTipoVehi = aux.ObtenerDatos();
+                if (!IsPostBack)
+                {
+                    foreach (TipoVehiculo X in ListTipoVehi)
+                    {
 
-            foreach (TipoVehiculo X in ListTipoVehi)
+                        ddlTipoVehiculo.Items.Add(X.NombreTipo);
+
+                    }
+                }
+            
+            if (Request.QueryString["id"] != null)
             {
-              
-                    ddlTipoVehiculo.Items.Add(X.NombreTipo);
-                
+                IDVehiculo = int.Parse(Request.QueryString["id"]); //Capturamos el id de la URL
+
+                VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
+                listaVehiculos = vehiculoNegocio.ObtenerDatos();
+                vehiculoAux = listaVehiculos.Find(x => x.IDVehiculo == IDVehiculo); //Capturamos el vehiculo a modificar en vehiculoAux
+
+                //cargamos los campos con vehiculoAux (QUIZAS SERÍA MAS ORDENADO SEPARAR EN FUNCIONES)
+                txtPatente.Text = vehiculoAux.Patente.ToString();
+                txtModelo.Text = vehiculoAux.Modelo.ToString();
+                ddlTipoVehiculo.SelectedValue = vehiculoAux.Tipo.NombreTipo.ToString();
             }
         }
 
@@ -31,5 +56,37 @@ namespace TPCuatrimestal
             Response.Redirect("adminVehiculo.aspx", false);
         }
 
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //capturamos en vehiculoAux los datos de los campos
+            vehiculoAux.Patente = txtPatente.Text;
+            vehiculoAux.Modelo = int.Parse(txtModelo.Text);
+            string tipoSeleccionado = ddlTipoVehiculo.SelectedValue;
+            TipoVehiculo tvAux = new TipoVehiculo();
+            tvAux = ListTipoVehi.Find(x => x.NombreTipo == tipoSeleccionado);
+            vehiculoAux.Tipo = tvAux;
+
+            VehiculoNegocio vehiculoNegocioAux = new VehiculoNegocio();
+            
+            //dividimos si es modificar o cargar uno nuevo
+            if (Request.QueryString["id"] != null) //si es modificar...
+            {
+                    vehiculoAux.ToString();
+                vehiculoNegocioAux.ModificarVehiculo(vehiculoAux);
+            }
+            else //si es agregar uno nuevo...
+            {
+                vehiculoNegocioAux.AgregarVehiculo(vehiculoAux);
+            }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            Response.Redirect("adminVehiculo.aspx", false);
+        }
     }
 }

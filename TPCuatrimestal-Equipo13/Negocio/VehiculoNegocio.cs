@@ -24,12 +24,12 @@ namespace Negocio
                 {
                     Vehiculo auxVehiculo = new Vehiculo();
 
-                    auxVehiculo.IDVehiculo = (int)datosVehiculo.Lector["IDVEHICULO"];
-                    auxVehiculo.Modelo = (int)datosVehiculo.Lector["MODELO"];
-                    auxVehiculo.Patente = (string)datosVehiculo.Lector["PATENTE"];
-                    auxVehiculo.Estado = (bool)datosVehiculo.Lector["ESTADO"];
-                    auxVehiculo.Tipo.NombreTipo = (string)datosVehiculo.Lector["TIPO"];
-                    auxVehiculo.Tipo.CantAsientos = (int)datosVehiculo.Lector["CANT_ASIENTOS"];
+                    auxVehiculo.IDVehiculo = datosVehiculo.Lector["IDVEHICULO"] is DBNull? -1 : (int)datosVehiculo.Lector["IDVEHICULO"];
+                    auxVehiculo.Modelo = datosVehiculo.Lector["MODELO"] is DBNull ? 1900 : (int)datosVehiculo.Lector["MODELO"];
+                    auxVehiculo.Patente = datosVehiculo.Lector["PATENTE"] is DBNull? " " : (string)datosVehiculo.Lector["PATENTE"];
+                    auxVehiculo.Estado = datosVehiculo.Lector["ESTADO"] is DBNull? false : (bool)datosVehiculo.Lector["ESTADO"];
+                    auxVehiculo.Tipo.NombreTipo = datosVehiculo.Lector["TIPO"] is DBNull? " " : (string)datosVehiculo.Lector["TIPO"];
+                    auxVehiculo.Tipo.CantAsientos = datosVehiculo.Lector["CANT_ASIENTOS"] is DBNull? 0 : (int)datosVehiculo.Lector["CANT_ASIENTOS"];
 
                     vehiculos.Add(auxVehiculo);
                 }

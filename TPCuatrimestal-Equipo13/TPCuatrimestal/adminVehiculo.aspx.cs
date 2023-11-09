@@ -34,9 +34,9 @@ namespace TPCuatrimestal
             Response.Redirect("altaModificacionVehiculo.aspx", false);
         }
 
-        protected void btnModificar_Click(object sender, EventArgs e)
+        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
-            string valorID = ((Button)sender).CommandArgument;
+            string valorID = ((ImageButton)sender).CommandArgument;
             Response.Redirect("altaModificacionVehiculo.aspx?id=" + valorID, false);
         }
     }

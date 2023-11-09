@@ -15,7 +15,7 @@ namespace Dominio
         public int IdPersona { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
-        public long DNI { get; set; }
+        public string DNI { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public Domicilio Direccion { get; set; }
         public string Nacionalidad { get; set; }

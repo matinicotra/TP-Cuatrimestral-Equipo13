@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +11,24 @@ namespace TPCuatrimestal
 {
     public partial class choferes : System.Web.UI.Page
     {
+        public List<Chofer> listarChoferes = new List<Chofer>();
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            if (!IsPostBack)
+            {
+            ChoferNegocio choferNegocio = new ChoferNegocio();
+            listarChoferes = choferNegocio.ObtenerDatos();
+
+                foreach(Chofer chofer in listarChoferes)
+                {
+                    ListItem item = new ListItem();
+                    // Asigna el valor y el texto del ListItem con las propiedades de Chofer
+                    item.Value = chofer.IDChofer.ToString(); // Asigna el valor deseado
+                    item.Text = $"{chofer.Nombres} - {chofer.Zona}"; // Personaliza el texto según tus necesidades
+                    listaChoferes.Items.Add(item);
+                }
+            }
         }
 
         protected void btnAltaChofer_Click(object sender, EventArgs e)

@@ -12,8 +12,9 @@ namespace Dominio
         {
             Direccion = new Domicilio();
         }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
+        public int IdPersona { get; set; }
+        public string Nombres { get; set; }
+        public string Apellidos { get; set; }
         public long DNI { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public Domicilio Direccion { get; set; }

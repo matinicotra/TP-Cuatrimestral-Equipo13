@@ -13,7 +13,7 @@ namespace Dominio
             AutoAsignado = new Vehiculo();
         }
         public int IDChofer { get; set; }
-        public int Zona { get; set; }
+        public string Zona { get; set; }
         public Vehiculo AutoAsignado { get; set; }
     }
 }

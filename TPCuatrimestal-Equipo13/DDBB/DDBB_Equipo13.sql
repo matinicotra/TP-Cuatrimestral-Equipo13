@@ -73,6 +73,9 @@ DROP column MODELO
 ALTER TABLE VEHICULOS
 ADD MODELO INT NOT NULL DEFAULT(2022)
 
+--AGREGACION 9/11
+begin TRANSACTION
+
 CREATE TABLE DOMICILIO(
     IDDOMICILIO BIGINT PRIMARY KEY IDENTITY(1,1),
     DIRECCION VARCHAR(100) NOT NULL,
@@ -80,15 +83,71 @@ CREATE TABLE DOMICILIO(
     PROVINCIA VARCHAR(25) NOT NULL,
     DESCRIPCION VARCHAR(200) NULL,
 )
-GO
+
 CREATE TABLE PERSONA (
     IDPERSONA INT PRIMARY KEY IDENTITY(1,1),
     NOMBRES VARCHAR(50) NOT NULL,
     APELLIDOS VARCHAR(50) NOT NULL,
     DNI VARCHAR(10) NULL,
     FECHANACIMIENTO DATE NULL,
-    DOMICILIO BIGINT FOREIGN KEY REFERENCES DOMICILIO(IDDOMICILIO),
-    NACIONALIDAD VARCHAR(40)
+    DOMICILIO BIGINT FOREIGN KEY REFERENCES DOMICILIO(IDDOMICILIO) NULL,
+    NACIONALIDAD VARCHAR(40) NULL
 ) 
+
+CREATE TABLE CHOFER (
+    IDCHOFER INT PRIMARY KEY IDENTITY (1,1),
+    IDPERSONA INT FOREIGN KEY REFERENCES PERSONA (IDPERSONA) NOT NULL,
+    ZONA VARCHAR(20) NOT NULL,
+    IDVEHICULO INT FOREIGN KEY REFERENCES VEHICULOS (IDVEHICULO) NULL
+)
+
+-- Insertar 10 registros en la tabla DOMICILIO
+INSERT INTO DOMICILIO (DIRECCION, LOCALIDAD, PROVINCIA, DESCRIPCION)
+VALUES 
+('Calle 1', 'Localidad 1', 'Provincia 1', 'Descripción 1'),
+('Calle 2', 'Localidad 2', 'Provincia 2', 'Descripción 2'),
+('Calle 3', 'Localidad 3', 'Provincia 3', 'Descripción 3'),
+('Calle 4', 'Localidad 4', 'Provincia 4', 'Descripción 4'),
+('Calle 5', 'Localidad 5', 'Provincia 5', 'Descripción 5'),
+('Calle 6', 'Localidad 6', 'Provincia 6', 'Descripción 6'),
+('Calle 7', 'Localidad 7', 'Provincia 7', 'Descripción 7'),
+('Calle 8', 'Localidad 8', 'Provincia 8', 'Descripción 8'),
+('Calle 9', 'Localidad 9', 'Provincia 9', 'Descripción 9'),
+('Calle 10', 'Localidad 10', 'Provincia 10', 'Descripción 10');
+
+-- Insertar 8 registros en la tabla PERSONA con referencias a DOMICILIO
+INSERT INTO PERSONA (NOMBRES, APELLIDOS, DNI, FECHANACIMIENTO, DOMICILIO, NACIONALIDAD)
+VALUES 
+('Nombre 1', 'Apellido 1', '12345678', '1990-01-01', 1, 'Argentino'),
+('Nombre 2', 'Apellido 2', '23456789', '1991-02-02', 2, 'Argentino'),
+('Nombre 3', 'Apellido 3', '34567890', '1992-03-03', 3, 'Argentino'),
+('Nombre 4', 'Apellido 4', '45678901', '1993-04-04', 4, 'Argentino'),
+('Nombre 5', 'Apellido 5', '56789012', '1994-05-05', 5, 'Uruguayo'),
+('Nombre 6', 'Apellido 6', '67890123', '1995-06-06', 6, 'Uruguayo'),
+('Nombre 7', 'Apellido 7', '78901234', '1996-07-07', 7, 'Uruguayo'),
+('Nombre 8', 'Apellido 8', '89012345', '1997-08-08', 8, 'Chileno');
+
+-- Insertar 5 registros en la tabla CHOFER con referencias a PERSONA
+INSERT INTO CHOFER (IDPERSONA, ZONA, IDVEHICULO)
+VALUES 
+(1, 'Zona Sur', 1),
+(2, 'Zona Norte', 2),
+(3, 'Zona Oeste', 3),
+(4, 'Zona CABA', 4)
+COMMIT TRANSACTION
+
+-- hasta aca 9/11
+
+
+select * from CHOFER
+
+
+SELECT IDPERSONA, NOMBRES, APELLIDOS, DNI, FECHANACIMIENTO, DOMICILIO, NACIONALIDAD FROM PERSONA WHERE IDPERSONA = @IDPERSONA
+
+SELECT IDDOMICILIO, DIRECCION, LOCALIDAD, PROVINCIA, DESCRIPCION FROM DOMICILIO WHERE IDDOMICILIO = @IDDOMICILIO
+
+SELECT IDCHOFER,IDPERSONA,ZONA,IDVEHICULO FROM CHOFER
+
+
 
 --DROP DATABASE BBDD_Equipo13

@@ -5,9 +5,9 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="container-lg" style="display: flex; align-items: center; justify-content: center; flex-direction: column; grid-row-gap: 10px; margin: 50px 50px;">
+    <div class="container-lg" style="display: flex; align-items: center; justify-content: center; flex-direction: column; grid-row-gap: 10px; margin: 40px 40px;">
 
-        <div>
+        <div style="margin-bottom: 30px;">
 
             <h5 class="text-lg-center">DATOS PERSONALES</h5>
 

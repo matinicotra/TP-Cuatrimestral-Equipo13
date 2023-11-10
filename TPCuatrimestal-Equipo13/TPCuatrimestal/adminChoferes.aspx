@@ -4,31 +4,36 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container-md" style="display:flex; align-items:center; justify-content:center; flex-direction:column;">
-        <div>
-             <h1>ADMINISTRACION CHOFERES</h1>
-        </div>
-        <div>
-            <h5>Filtrado por distintos criterios</h5>
-            <asp:TextBox ID="txtFiltrar" runat="server"></asp:TextBox>
-            <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" />
-        </div>
+    <div class="container-md" style="display:flex; align-items:center; justify-content:center; flex-direction:column; max-width: 900px">
+
+        <div style="display:flex; align-items:center; margin: 20px; flex-direction: column; gap: 20px;">
+
+            <div>
+                 <h1>ADMINISTRACION CHOFERES</h1>
+            </div>
+            <div class="input-group mb-3" style="display:flex; align-items:center; flex-direction: row;">
+                <h5 style="margin-right: 10px;">Filtrado por distintos criterios</h5>
+                <asp:TextBox CssClass="form-control" ID="txtFiltrar" runat="server"></asp:TextBox>
+                <asp:Button cssclass="btn btn-primary" ID="btnFiltrar" runat="server" Text="Buscar" />
+            </div>
       
-        <div>
-            <h5>Listado de Choferes</h5> 
-            <asp:ListBox ID="listaChoferes" runat="server"></asp:ListBox> <!-- DEBERIA SER UN DATA GRID VIEW ? -->
-        </div>
+            <div>
+                <h5>Listado de Choferes</h5> 
+                <asp:ListBox ID="listaChoferes" runat="server"></asp:ListBox> <!-- DEBERIA SER UN DATA GRID VIEW ? -->
+            </div>
 
-        <div>
-            <h5>ABM Choferes</h5>
-            <asp:Button ID="btnAltaChofer" runat="server" Text="Alta" OnClick="btnAltaChofer_Click" />
-            <asp:Button ID="btnBajaChofer" runat="server" Text="Baja" />
-            <asp:Button ID="btnModificarChofer" runat="server" Text="Modificar" onClick="btnModificarChofer_Click" />
-        </div>
+            <div>
+                <h5>ABM Choferes</h5>
+                <asp:Button ID="btnAltaChofer" runat="server" CssClass="btn btn-primary" Text="Alta" OnClick="btnAltaChofer_Click" />
+                <asp:Button ID="btnBajaChofer" runat="server" cssClass="btn btn-danger" Text="Baja" />
+                <asp:Button ID="btnModificarChofer" runat="server" CssClass="btn btn-warning" Text="Modificar" onClick="btnModificarChofer_Click" />
+            </div>
 
-        <div>
-            <h5>Detalles del Chofer Seleccionado</h5>
-            <asp:Button ID="btnDetalleChofer" runat="server" Text="Detalle Chofer" OnClick="btnDetalleChofer_Click" />
+            <div>
+                <h5>Detalles del Chofer Seleccionado</h5>
+                <asp:Button ID="btnDetalleChofer" runat="server" Text="Detalle Chofer" OnClick="btnDetalleChofer_Click" />
+            </div>
+
         </div>
 
     </div>

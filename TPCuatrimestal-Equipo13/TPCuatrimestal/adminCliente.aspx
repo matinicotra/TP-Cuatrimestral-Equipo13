@@ -4,31 +4,31 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container-lg" style="display:flex; align-items:center; justify-content:center; flex-direction:column;">
-        <div>
-            <h4>ADMINISTRACION CLIENTES</h4>
-        </div>
-        <div>
-            <h5>Filtrado por distintos criterios</h5>
-            <asp:TextBox ID="txtFiltrar" runat="server"></asp:TextBox>
-            <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" />
-        </div>
+    <div class="container-md" style="display:flex; align-items:center; justify-content:center; flex-direction:column; max-width: 900px"">
+        <div style="display: flex; align-items: center; margin: 20px; flex-direction: column; gap: 20px;">
+
+            <div>
+                <h4>ADMINISTRACION CLIENTES</h4>
+            </div>
+
+            <div class="input-group mb-3" style="display:flex; align-items:center; flex-direction: row;">
+                <asp:TextBox CssClass="form-control" ID="txtFiltrar" runat="server">Filtrar por criterio</asp:TextBox>
+                <asp:Button cssclass="btn btn-primary" ID="btnFiltrar" runat="server" Text="Buscar" />
+            </div>
       
-        <div>
-            <h5>Listado de Clientes</h5> 
-            <asp:ListBox ID="listaClientes" runat="server"></asp:ListBox> <!-- DEBERIA SER UN DATA GRID VIEW ? -->
-        </div>
+            <div>
+                <h5>Listado de Clientes</h5> 
+                <asp:ListBox ID="listaClientes" runat="server"></asp:ListBox> <!-- DEBERIA SER UN DATA GRID VIEW ? -->
+            </div>
 
-        <div>
-            <h5>ABM Clientes</h5>
-            <asp:Button ID="btnAltaCliente" runat="server" Text="Alta" OnClick="btnAltaCliente_Click" />
-            <asp:Button ID="btnBajaCliente" runat="server" Text="Baja" />
-            <asp:Button ID="btnModificarCliente" runat="server" Text="Modificar" onClick="btnModificarCliente_Click"/>
-        </div>
+            <div>
+                <h5>ABM Clientes</h5>
+                <asp:Button ID="btnAltaCliente" runat="server" CssClass="btn btn-primary"  Text="Alta" OnClick="btnAltaCliente_Click" />
+                <asp:Button ID="btnBajaCliente" runat="server" cssClass="btn btn-danger" Text="Baja" />
+                <asp:Button ID="btnModificarCliente" runat="server" CssClass="btn btn-warning" Text="Modificar" onClick="btnModificarCliente_Click"/>
+                <asp:Button ID="btnDetalleCliente" runat="server" CssClass="btn btn-info" Text="Detalle Cliente" OnClick="btnDetalleCliente_Click" /> 
+            </div>
 
-        <div>
-            <h5>Detalles del Cliente Seleccionado</h5> <!-- TAMBIEN ACCEDER CON DOBLE CLICK SOBRE DATA GRID-->
-            <asp:Button ID="btnDetalleCliente" runat="server" Text="Detalle Cliente" OnClick="btnDetalleCliente_Click" /> 
         </div>
 
     </div>

@@ -5,15 +5,14 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-md" style="display:flex; align-items:center; justify-content:center; flex-direction:column; max-width: 900px">
-
         <div style="display:flex; align-items:center; margin: 20px; flex-direction: column; gap: 20px;">
 
             <div>
                  <h4>ADMINISTRACION CHOFERES</h4>
             </div>
+
             <div class="input-group mb-3" style="display:flex; align-items:center; flex-direction: row;">
-                <h5 style="margin-right: 10px;">Filtrado por distintos criterios</h5>
-                <asp:TextBox CssClass="form-control" ID="txtFiltrar" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" ID="txtFiltrar" runat="server">Filtrar por criterio</asp:TextBox>
                 <asp:Button cssclass="btn btn-primary" ID="btnFiltrar" runat="server" Text="Buscar" />
             </div>
       
@@ -27,13 +26,8 @@
                 <asp:Button ID="btnAltaChofer" runat="server" CssClass="btn btn-primary" Text="Alta" OnClick="btnAltaChofer_Click" />
                 <asp:Button ID="btnBajaChofer" runat="server" cssClass="btn btn-danger" Text="Baja" />
                 <asp:Button ID="btnModificarChofer" runat="server" CssClass="btn btn-warning" Text="Modificar" onClick="btnModificarChofer_Click" />
+                <asp:Button ID="btnDetalleChofer" CssClass="btn btn-info" runat="server" Text="Detalle Chofer" OnClick="btnDetalleChofer_Click" />
             </div>
-
-            <div>
-                <h5>Detalles del Chofer Seleccionado</h5>
-                <asp:Button ID="btnDetalleChofer" CssClass="btn btn-primary" runat="server" Text="Detalle Chofer" OnClick="btnDetalleChofer_Click" />
-            </div>
-
         </div>
 
     </div>

@@ -62,6 +62,7 @@ namespace TPCuatrimestal
         {
             int id = Convert.ToInt32(listaChoferes.SelectedValue);
             ChoferNegocio negocio = new ChoferNegocio();
+
             negocio.BajaChofer(id);
         }
     }

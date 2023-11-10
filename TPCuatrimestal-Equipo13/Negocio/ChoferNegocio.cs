@@ -172,5 +172,24 @@ namespace Negocio
                 datosChofer.CerrarConexion();
             }
         }
+
+        public void BajaChofer(int idChofer)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("DELETE FROM CHOFER WHERE IDCHOFER = @IDCHOFER");
+                datos.SetearParametro("@IDCHOFER", idChofer);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
     }
 }

@@ -60,7 +60,9 @@ namespace TPCuatrimestal
 
         protected void btnBajaChofer_Click(object sender, EventArgs e)
         {
-
+            int id = Convert.ToInt32(listaChoferes.SelectedValue);
+            ChoferNegocio negocio = new ChoferNegocio();
+            negocio.BajaChofer(id);
         }
     }
 }

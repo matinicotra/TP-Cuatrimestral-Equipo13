@@ -4,16 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-        <style>
-            #div1 {
-                overflow: scroll;
-            }
 
-                #div1 table {
-                    width: 650px;
-                    background-color: lightgray;
-                }
-        </style>
         <div style="margin: 10px 15px;">
             <h4>VEHICULOS</h4>
             <div>
@@ -21,8 +12,9 @@
                 <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" CssClass="btn btn-secondary" />
             </div>
         </div>
+
         <div id="div1">
-            <table class="table " border="1">
+            <table class="table position-relative" border="1" style="overflow: scroll; background-color: lightgray; width: 400px;">
                 <thead>
                     <tr>
                         <th scope="col" class="col-1">NUMERO</th>
@@ -34,6 +26,7 @@
                         <th scope="col" class="col-3">ACCIONES</th>
                     </tr>
                 </thead>
+
                 <asp:Repeater ID="repVehiculos" runat="server">
                     <ItemTemplate>
                         <tbody>

@@ -43,7 +43,7 @@
         </div>
     </form>
 
-    <footer class="card text-center mb-3" style="padding-top:20px">
+    <footer style="position: fixed; left: 0; bottom: 0; width: 100%; padding-top: 15px; background-color: azure; color: darkslategrey; text-align: center">
         <p>&copy; <%: DateTime.Now.Year %> - Todos los derechos reservados. Equipo 13</p>
     </footer>
 

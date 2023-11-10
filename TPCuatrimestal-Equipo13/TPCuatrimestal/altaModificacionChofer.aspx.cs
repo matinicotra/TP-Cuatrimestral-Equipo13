@@ -33,7 +33,7 @@ namespace TPCuatrimestal
 
             foreach (Zona X in ListZona)
             {
-                ddlZona.Items.Add(X.IDZona + " - " + X.NombreZona);
+                ddlZona.Items.Add(X.IDZona.ToString() + " - " + X.NombreZona);
             }
 
             if (Request.QueryString["id"] != null)
@@ -55,7 +55,7 @@ namespace TPCuatrimestal
 
         protected void btnCanelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("detalleChofer.aspx", false);
+            Response.Redirect("adminChoferes.aspx", false);
         }
     }
 }

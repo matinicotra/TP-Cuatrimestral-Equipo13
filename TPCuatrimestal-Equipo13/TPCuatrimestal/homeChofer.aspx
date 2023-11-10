@@ -4,40 +4,34 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container-lg" style="display:flex; align-items:center; justify-content:center; flex-direction:column;">
+
+    <div class="container-lg" style="display:flex; align-items:center; justify-content:center; flex-direction:column; gap: 20px; margin: 40px 40px;">
+
         <div>
-            <h5>Listado de viajes del dia</h5>
+            <h4>Listado de viajes del dia</h4>
             <asp:ListBox ID="ListBox1" runat="server"></asp:ListBox>
         </div>
 
         <div>
-            <h5>Detalles del viaje</h5>
-            <asp:Button ID="btnDetalleViaje" runat="server" Text="Detalle viaje" OnClick="btnDetalleViaje_Click" />
+            <asp:Button CssClass="btn btn-info" ID="btnDetalleViaje" runat="server" Text="Detalle viaje" OnClick="btnDetalleViaje_Click" />
+            <asp:Button CssClass="btn btn-info" ID="btnCopiarDatosViajeSeleccionado" runat="server" Text="Copiar datos del viaje" />
         </div>
 
-        <div>
-            <h5>Filtrado por distintos criterios</h5>
-            <asp:TextBox ID="txtFiltrar" runat="server"></asp:TextBox>
-            <asp:Button ID="btnFiltrar" runat="server" Text="Button" />
-        </div>
-
-        <div>
-            <h5>Copiar datos del viaje</h5>
-        </div>
-
-        <div>
-            <asp:Button ID="btnCopiarDatosViajeSeleccionado" runat="server" Text="Copiar" />
+        <div style="display: flex; flex-direction: row; width: 400px;">
+            <asp:TextBox CssClass="form-control" ID="txtFiltrar" runat="server">Filtrar</asp:TextBox>
+            <asp:Button CssClass="btn btn-info" ID="btnFiltrar" runat="server" Text="Buscar" />
         </div>
 
         <div>
             <h5>Ver viajes por día</h5>
             <asp:Calendar ID="calOtrosDias" runat="server"></asp:Calendar>
         </div>
+
         <div>
             <h5>Resumenes del Chofer</h5>
-            <asp:Button ID="btnResumenAnioChofer" runat="server" Text="Por Anio" />
-            <asp:Button ID="btnResumenMesChofer" runat="server" Text="Por Mes" />
-            <asp:Button ID="btnResumenTotalChofer" runat="server" Text="Total" />
+            <asp:Button CssClass="btn btn-info" ID="btnResumenAnioChofer" runat="server" Text="Por Anio" />
+            <asp:Button CssClass="btn btn-info" ID="btnResumenMesChofer" runat="server" Text="Por Mes" />
+            <asp:Button CssClass="btn btn-info" ID="btnResumenTotalChofer" runat="server" Text="Total" />
         </div>
     </div>
 </asp:Content>

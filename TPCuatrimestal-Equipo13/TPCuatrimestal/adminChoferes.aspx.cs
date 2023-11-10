@@ -20,9 +20,18 @@ namespace TPCuatrimestal
 
             if (!IsPostBack)
             {
-                ChoferNegocio choferNegocio = new ChoferNegocio();
-                listarChoferes = choferNegocio.ObtenerDatos();
+                cargarChoferes();
+            }
+        }
 
+        private void cargarChoferes()
+        {
+            ChoferNegocio choferNegocio = new ChoferNegocio();
+            listarChoferes = null;
+            listaChoferes.Items.Clear();
+            listarChoferes = choferNegocio.ObtenerDatos();
+            try
+            {
                 foreach (Chofer chofer in listarChoferes)
                 {
                     ListItem item = new ListItem();
@@ -32,6 +41,11 @@ namespace TPCuatrimestal
                     item.Attributes["class"] = "list-group-item";
                     listaChoferes.Items.Add(item);
                 }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
 
@@ -64,6 +78,7 @@ namespace TPCuatrimestal
             ChoferNegocio negocio = new ChoferNegocio();
 
             negocio.BajaChofer(id);
+            cargarChoferes();
         }
     }
 }

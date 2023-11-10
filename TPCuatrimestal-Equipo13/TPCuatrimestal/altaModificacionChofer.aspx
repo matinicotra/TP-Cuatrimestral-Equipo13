@@ -33,24 +33,14 @@
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblFechaNacimiento" runat="server" Font-Bold="false">FECHA DE NACIMIENTO</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtFechaNacimiento" runat="server" TextMode="Date"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" ID="txtFechaNacimiento" runat="server" TextMode="DateTime"></asp:TextBox>
             </div>
 
             <h5 class="text-lg-center">DATOS DE DOMICILIO</h5>
 
             <div class="input-group mb-3">
-                <asp:Label CssClass="input-group-text" ID="lblCalle" runat="server" Font-Bold="false">CALLE</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtCalle" runat="server"></asp:TextBox>
-            </div>
-
-            <div class="input-group mb-3">
-                <asp:Label CssClass="input-group-text" ID="lblAltura" runat="server" Font-Bold="false">ALTURA</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtAltura" runat="server"></asp:TextBox>
-            </div>
-
-            <div class="input-group mb-3">
-                <asp:Label CssClass="input-group-text" ID="lblCodPostal" runat="server" Font-Bold="false">CODIGO POSTAL</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtCodPostal" runat="server"></asp:TextBox>
+                <asp:Label CssClass="input-group-text" ID="lblCalleyAltura" runat="server" Font-Bold="false">CALLE Y ALTURA</asp:Label>
+                <asp:TextBox CssClass="form-control" ID="txtCalleyAltura" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-3">

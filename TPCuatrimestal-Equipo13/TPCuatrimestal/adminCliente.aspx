@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-lg" style="display:flex; align-items:center; justify-content:center; flex-direction:column;">
         <div>
-            <h1>ADMINISTRACION CLIENTES</h1>
+            <h4>ADMINISTRACION CLIENTES</h4>
         </div>
         <div>
             <h5>Filtrado por distintos criterios</h5>

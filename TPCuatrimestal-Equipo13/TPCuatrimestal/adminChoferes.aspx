@@ -9,7 +9,7 @@
         <div style="display:flex; align-items:center; margin: 20px; flex-direction: column; gap: 20px;">
 
             <div>
-                 <h1>ADMINISTRACION CHOFERES</h1>
+                 <h4>ADMINISTRACION CHOFERES</h4>
             </div>
             <div class="input-group mb-3" style="display:flex; align-items:center; flex-direction: row;">
                 <h5 style="margin-right: 10px;">Filtrado por distintos criterios</h5>
@@ -31,7 +31,7 @@
 
             <div>
                 <h5>Detalles del Chofer Seleccionado</h5>
-                <asp:Button ID="btnDetalleChofer" runat="server" Text="Detalle Chofer" OnClick="btnDetalleChofer_Click" />
+                <asp:Button ID="btnDetalleChofer" CssClass="btn btn-primary" runat="server" Text="Detalle Chofer" OnClick="btnDetalleChofer_Click" />
             </div>
 
         </div>

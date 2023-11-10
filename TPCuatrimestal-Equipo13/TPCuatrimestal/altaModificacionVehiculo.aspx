@@ -8,7 +8,7 @@
     <div class="container-lg" style="display: flex; align-items: center; justify-content: center; flex-direction: column; grid-row-gap: 10px; margin: 50px 50px;">
 
         <div >
-            <h5 class="text-lg-center">DATOS VEHICULO</h5>
+            <h4 class="text-lg-center">DATOS VEHICULO</h4>
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblTipoVehiculo" runat="server" Font-Bold="false">TIPO VEHICULO</asp:Label>

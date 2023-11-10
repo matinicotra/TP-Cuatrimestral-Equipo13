@@ -25,7 +25,7 @@ namespace TPCuatrimestal
                     ListItem item = new ListItem();
                     // Asigna el valor y el texto del ListItem con las propiedades de Chofer
                     item.Value = chofer.IDChofer.ToString(); // Asigna el valor deseado
-                    item.Text = $"{chofer.Nombres} - {chofer.Apellidos}- {chofer.AutoAsignado.Patente} - {chofer.Zona}";
+                    item.Text = $"{chofer.Nombres} - {chofer.Apellidos}- {chofer.AutoAsignado.Patente} - {chofer.ZonaAsignada.NombreZona}";
                     item.Attributes["class"] = "list-group-item";
                     listaChoferes.Items.Add(item);
                 }

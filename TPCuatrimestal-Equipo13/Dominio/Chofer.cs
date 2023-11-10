@@ -11,9 +11,10 @@ namespace Dominio
         public Chofer() 
         {
             AutoAsignado = new Vehiculo();
+            ZonaAsignada = new Zona();
         }
         public int IDChofer { get; set; }
-        public string Zona { get; set; }
+        public Zona ZonaAsignada { get; set; }
         public Vehiculo AutoAsignado { get; set; }
     }
 }

@@ -21,20 +21,24 @@ namespace Negocio
                 datosPersona.SetearConsulta("SELECT IDPERSONA, NOMBRES, APELLIDOS, DNI, FECHANACIMIENTO, DOMICILIO, NACIONALIDAD FROM PERSONA WHERE IDPERSONA = @IDPERSONA");
                 datosPersona.SetearParametro("@IDPERSONA", IdPersona);
                 datosPersona.EjecutarConsulta();
+
                 if (datosPersona.Lector.Read()) //si hay registro lo lee y setea
                 {
                     personaAux.IdPersona = IdPersona;
                     personaAux.Nombres = (string)datosPersona.Lector["NOMBRES"];
                     personaAux.Apellidos = (string)datosPersona.Lector["APELLIDOS"];
                     personaAux.DNI = datosPersona.Lector["DNI"] is DBNull ? "S/D" : (string)datosPersona.Lector["DNI"];
-                    personaAux.Nacionalidad =datosPersona.Lector["NACIONALIDAD"] is DBNull ? "S/N" : (string)datosPersona.Lector["NACIONALIDAD"];
+                    personaAux.Nacionalidad = datosPersona.Lector["NACIONALIDAD"] is DBNull ? "S/N" : (string)datosPersona.Lector["NACIONALIDAD"];
                     personaAux.FechaNacimiento = (DateTime)datosPersona.Lector["FECHANACIMIENTO"];
-                            //lectura domicilio
+                    
+                    //lectura domicilio
                     Domicilio domicilioAux = new Domicilio();
                     DomicilioNegocio dnAux = new DomicilioNegocio();
+
                     long idDomicilio = (long)datosPersona.Lector["DOMICILIO"];
                     domicilioAux = dnAux.ObtenerDomicilio(idDomicilio);
-                    if(domicilioAux.IdDomicilio != -1) //si no devuelve -1 tiene domicilio
+
+                    if (domicilioAux.IdDomicilio != -1) //si no devuelve -1 tiene domicilio
                     {
                         personaAux.Direccion = domicilioAux;
                     }
@@ -48,6 +52,7 @@ namespace Negocio
                 else //si no hay registros que leer setea -1 al IdPersona
                 {
                     personaAux.IdPersona = -1;
+
                     return personaAux;
                 }
             }
@@ -62,6 +67,40 @@ namespace Negocio
             }
         }
 
+        //OBTIENE TODAS LAS ZONAS
+        public List<Zona> ObtenerZonas()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Zona> listAux = new List<Zona>();
+
+            try
+            {
+                datos.SetearConsulta("SELECT IDZONA, NOMBREZONA FROM ZONAS");
+                datos.EjecutarConsulta();
+
+                while (datos.Lector.Read())
+                {
+                    Zona aux = new Zona();
+
+                    aux.IDZona = datos.Lector["IDZONA"] is DBNull ? -1 : (int)datos.Lector["IDZONA"];
+                    aux.NombreZona = datos.Lector["NOMBREZONA"] is DBNull ? "S/Z" : (string)datos.Lector["NOMBREZONA"];
+
+                    listAux.Add(aux);
+                }
+
+                return listAux;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public List<Chofer> ObtenerDatos(int idChofer = -1)
         {
             AccesoDatos datosChofer = new AccesoDatos();
@@ -69,13 +108,13 @@ namespace Negocio
 
             try
             {
-                if(idChofer == -1)
+                if (idChofer == -1)
                 {
-                     datosChofer.SetearConsulta("SELECT IDCHOFER,IDPERSONA,ZONA,IDVEHICULO FROM CHOFER");
+                    datosChofer.SetearConsulta("SELECT C.IDCHOFER, C.IDPERSONA, Z.NOMBREZONA, C.IDVEHICULO FROM CHOFER AS C INNER JOIN ZONAS AS Z ON C.IDZONA = Z.IDZONA");
                 }
                 else
                 {
-                    datosChofer.SetearConsulta("SELECT IDCHOFER,IDPERSONA,ZONA,IDVEHICULO FROM CHOFER WHERE IDCHOFER = @IDCHOFER");
+                    datosChofer.SetearConsulta("SELECT C.IDCHOFER, C.IDPERSONA, Z.NOMBREZONA, C.IDVEHICULO FROM CHOFER AS C INNER JOIN ZONAS AS Z ON C.IDZONA = Z.IDZONA WHERE C.IDCHOFER = @IDCHOFER");
                     datosChofer.SetearParametro("@IDCHOFER", idChofer);
                 }
                 datosChofer.EjecutarConsulta();
@@ -90,28 +129,31 @@ namespace Negocio
                     {
                         return listaChoferes; //retorna la lista al no encontrar una persona
                     }
+
                     personaAux = cnAux.ObtenerPersona((int)datosChofer.Lector["IDPERSONA"]); //asigna la persona a personaAux
 
-                        //Asigna al choferAux los datos de la persona
+                    //Asigna al choferAux los datos de la persona
                     choferAux.Nombres = personaAux.Nombres;
                     choferAux.Apellidos = personaAux.Apellidos;
                     choferAux.DNI = personaAux.DNI;
                     choferAux.FechaNacimiento = personaAux.FechaNacimiento;
                     choferAux.Direccion = personaAux.Direccion;
                     choferAux.Nacionalidad = personaAux.Nacionalidad;
-                    
-                        //asigna el resto de datos al chofer
-                    choferAux.IDChofer = (int)datosChofer.Lector["IDCHOFER"];
-                    choferAux.Zona = (string)datosChofer.Lector["ZONA"];
 
-                        //lee el id vehiculo asignado
+                    //asigna el resto de datos al chofer
+                    choferAux.IDChofer = (int)datosChofer.Lector["IDCHOFER"];
+                    choferAux.ZonaAsignada.NombreZona = datosChofer.Lector["NOMBREZONA"] is DBNull? "S/Z" : (string)datosChofer.Lector["NOMBREZONA"];
+
+                    //lee el id vehiculo asignado
                     if (datosChofer.Lector["IDVEHICULO"] != null)
                     {
                         int IDVehiculo = (int)datosChofer.Lector["IDVEHICULO"];//guarda el id del vehiculo
                         Vehiculo vehiculoAux = new Vehiculo();
                         VehiculoNegocio vnAux = new VehiculoNegocio();
                         List<Vehiculo> listaVehiculos = new List<Vehiculo>();
+
                         listaVehiculos = vnAux.ObtenerDatos(); //carga la lista de todos los vehiculo de la BBDD
+
                         vehiculoAux = listaVehiculos.Find(x => x.IDVehiculo == IDVehiculo); //busca por el ID y asigna el vehiculo a vehiculoAux 
                         choferAux.AutoAsignado = vehiculoAux; //setea el auto del chofer
                     }
@@ -129,7 +171,6 @@ namespace Negocio
             {
                 datosChofer.CerrarConexion();
             }
-
-        }        
+        }
     }
 }

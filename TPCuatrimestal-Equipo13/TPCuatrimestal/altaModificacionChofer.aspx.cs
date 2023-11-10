@@ -26,22 +26,31 @@ namespace TPCuatrimestal
                 }
             }
 
+            ChoferNegocio cnAux = new ChoferNegocio();
+            List<Zona> ListZona = new List<Zona>();
+
+            ListZona = cnAux.ObtenerZonas();
+
+            foreach (Zona X in ListZona)
+            {
+                ddlZona.Items.Add(X.IDZona + " - " + X.NombreZona);
+            }
+
             if (Request.QueryString["id"] != null)
             {
                 string idChofer = Request.QueryString["id"];
-                ChoferNegocio cnAux = new ChoferNegocio();
+                cnAux = new ChoferNegocio();
                 Chofer choferAux = cnAux.ObtenerDatos(int.Parse(idChofer))[0];
 
                 txtNombre.Text = choferAux.Nombres;
                 txtApellido.Text = choferAux.Apellidos;
                 txtDNI.Text = choferAux.DNI.ToString();
                 txtNacionalidad.Text = choferAux.Nacionalidad;
-                txtFechaNacimiento.Text = choferAux.FechaNacimiento.ToString("dd/MM/yyyy");
+                txtFechaNacimiento.Text = choferAux.FechaNacimiento.ToShortDateString();
                 txtCalleyAltura.Text = choferAux.Direccion.Direccion;
                 txtLocalidad.Text = choferAux.Direccion.Localidad;
                 txtProvincia.Text = choferAux.Direccion.Provincia;
             }
-
         }
 
         protected void btnCanelar_Click(object sender, EventArgs e)

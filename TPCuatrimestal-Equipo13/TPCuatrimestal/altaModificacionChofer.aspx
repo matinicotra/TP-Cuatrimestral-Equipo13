@@ -33,7 +33,7 @@
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblFechaNacimiento" runat="server" Font-Bold="false">FECHA DE NACIMIENTO</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtFechaNacimiento" runat="server" TextMode="DateTime"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" ID="txtFechaNacimiento" runat="server" TextMode="Date"></asp:TextBox>
             </div>
 
             <h5 class="text-lg-center">DATOS DE DOMICILIO</h5>

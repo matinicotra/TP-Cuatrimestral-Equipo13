@@ -50,7 +50,7 @@
                 </asp:RadioButtonList>
             </div>
 
-            <h5 class="text-lg-center">DOMICILIO ORIGEN</h5>
+            <h5 class="text-lg-cent>DOMICILIO ORIGEN</h5>
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblCalleOrigen" runat="server" Font-Bold="false">CALLE</asp:Label>

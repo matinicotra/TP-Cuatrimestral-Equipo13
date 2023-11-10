@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Negocio;
+using Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +13,13 @@ namespace TPCuatrimestal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Request.QueryString["id"] != null)
+            {
+                ChoferNegocio cnAux = new ChoferNegocio();
+                string idChofer = Request.QueryString["id"];
+                Chofer choferAux = cnAux.ObtenerDatos(int.Parse(idChofer))[0];
+                lblTituloChofer.Text = choferAux.Nombres + " " + choferAux.Apellidos;
+            }
         }
 
         protected void btnDetalleViaje_Click(object sender, EventArgs e)

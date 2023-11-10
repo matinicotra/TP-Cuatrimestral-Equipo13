@@ -62,14 +62,22 @@ namespace Negocio
             }
         }
 
-        public List<Chofer> ObtenerDatos()
+        public List<Chofer> ObtenerDatos(int idChofer = -1)
         {
             AccesoDatos datosChofer = new AccesoDatos();
             List<Chofer> listaChoferes = new List<Chofer>();
 
             try
             {
-                datosChofer.SetearConsulta("SELECT IDCHOFER,IDPERSONA,ZONA,IDVEHICULO FROM CHOFER");
+                if(idChofer == -1)
+                {
+                     datosChofer.SetearConsulta("SELECT IDCHOFER,IDPERSONA,ZONA,IDVEHICULO FROM CHOFER");
+                }
+                else
+                {
+                    datosChofer.SetearConsulta("SELECT IDCHOFER,IDPERSONA,ZONA,IDVEHICULO FROM CHOFER WHERE IDCHOFER = @IDCHOFER");
+                    datosChofer.SetearParametro("@IDCHOFER", idChofer);
+                }
                 datosChofer.EjecutarConsulta();
 
                 while (datosChofer.Lector.Read())
@@ -122,6 +130,6 @@ namespace Negocio
                 datosChofer.CerrarConexion();
             }
 
-        }
+        }        
     }
 }

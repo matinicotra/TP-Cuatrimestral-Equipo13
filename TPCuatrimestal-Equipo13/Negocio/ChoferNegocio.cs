@@ -199,7 +199,7 @@ namespace Negocio
 
             try
             {
-                if (AoM)
+                if (!AoM)
                 {
                     datos.SetearConsulta("UPDATE DOMICILIO SET DIRECCION = @DIRECCION, LOCALIDAD = @LOCALIDAD, PROVINCIA = @PROVINCIA, DESCRIPCION = @DESCRIPCION WHERE IDDOMICILIO = @IDDOMICILIO");
                     datos.SetearParametro("@DIRECCION", choferAux.Direccion.Direccion);
@@ -214,7 +214,7 @@ namespace Negocio
                     datos.SetearParametro("@APELLIDOS", choferAux.Apellidos);
                     datos.SetearParametro("@DNI", choferAux.DNI);
                     datos.SetearParametro("@FECHANACIMIENTO", choferAux.FechaNacimiento);
-                    datos.SetearParametro("@IDDOMICILIO", choferAux.Nacionalidad);
+                    datos.SetearParametro("@DOMICILIO", choferAux.Direccion.IDDomicilio);
                     datos.SetearParametro("@NACIONALIDAD", choferAux.Nacionalidad);
                     datos.SetearParametro("@IDPERSONA", choferAux.IDPersona);
                     datos.EjecutarAccion();

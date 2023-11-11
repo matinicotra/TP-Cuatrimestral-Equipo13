@@ -11,6 +11,7 @@ namespace TPCuatrimestal
 {
     public partial class altaModificacionChofer : System.Web.UI.Page
     {
+        private Chofer choferAux;
         protected void Page_Load(object sender, EventArgs e)
         {
             VehiculoNegocio aux = new VehiculoNegocio();
@@ -38,9 +39,12 @@ namespace TPCuatrimestal
 
             if (Request.QueryString["id"] != null)
             {
-                string idChofer = Request.QueryString["id"];
                 cnAux = new ChoferNegocio();
-                Chofer choferAux = cnAux.ObtenerDatos(int.Parse(idChofer))[0];
+                choferAux = new Chofer();
+
+                string idChofer = Request.QueryString["id"];
+
+                choferAux = cnAux.ObtenerDatos(int.Parse(idChofer))[0];
 
                 txtNombre.Text = choferAux.Nombres;
                 txtApellido.Text = choferAux.Apellidos;
@@ -56,6 +60,20 @@ namespace TPCuatrimestal
         protected void btnCanelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("adminChoferes.aspx", false);
+        }
+
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+            ChoferNegocio aux = new ChoferNegocio();
+
+            if(choferAux == null)
+            {
+                aux.AltaModificacionChofer(choferAux, true);
+            }
+            else
+            {
+                aux.AltaModificacionChofer(choferAux, false);
+            }
         }
     }
 }

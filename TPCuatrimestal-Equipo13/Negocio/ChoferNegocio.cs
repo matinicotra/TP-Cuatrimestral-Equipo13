@@ -16,6 +16,7 @@ namespace Negocio
         {
             AccesoDatos datosPersona = new AccesoDatos();
             Persona personaAux = new Persona();
+
             try
             {
                 datosPersona.SetearConsulta("SELECT IDPERSONA, NOMBRES, APELLIDOS, DNI, FECHANACIMIENTO, DOMICILIO, NACIONALIDAD FROM PERSONA WHERE IDPERSONA = @IDPERSONA");
@@ -24,13 +25,13 @@ namespace Negocio
 
                 if (datosPersona.Lector.Read()) //si hay registro lo lee y setea
                 {
-                    personaAux.IdPersona = IdPersona;
+                    personaAux.IDPersona = IdPersona;
                     personaAux.Nombres = (string)datosPersona.Lector["NOMBRES"];
                     personaAux.Apellidos = (string)datosPersona.Lector["APELLIDOS"];
                     personaAux.DNI = datosPersona.Lector["DNI"] is DBNull ? "S/D" : (string)datosPersona.Lector["DNI"];
                     personaAux.Nacionalidad = datosPersona.Lector["NACIONALIDAD"] is DBNull ? "S/N" : (string)datosPersona.Lector["NACIONALIDAD"];
                     personaAux.FechaNacimiento = (DateTime)datosPersona.Lector["FECHANACIMIENTO"];
-                    
+
                     //lectura domicilio
                     Domicilio domicilioAux = new Domicilio();
                     DomicilioNegocio dnAux = new DomicilioNegocio();
@@ -38,7 +39,7 @@ namespace Negocio
                     long idDomicilio = (long)datosPersona.Lector["DOMICILIO"];
                     domicilioAux = dnAux.ObtenerDomicilio(idDomicilio);
 
-                    if (domicilioAux.IdDomicilio != -1) //si no devuelve -1 tiene domicilio
+                    if (domicilioAux.IDDomicilio != -1) //si no devuelve -1 tiene domicilio
                     {
                         personaAux.Direccion = domicilioAux;
                     }
@@ -51,7 +52,7 @@ namespace Negocio
                 }
                 else //si no hay registros que leer setea -1 al IdPersona
                 {
-                    personaAux.IdPersona = -1;
+                    personaAux.IDPersona = -1;
 
                     return personaAux;
                 }
@@ -142,7 +143,7 @@ namespace Negocio
 
                     //asigna el resto de datos al chofer
                     choferAux.IDChofer = (int)datosChofer.Lector["IDCHOFER"];
-                    choferAux.ZonaAsignada.NombreZona = datosChofer.Lector["NOMBREZONA"] is DBNull? "S/Z" : (string)datosChofer.Lector["NOMBREZONA"];
+                    choferAux.ZonaAsignada.NombreZona = datosChofer.Lector["NOMBREZONA"] is DBNull ? "S/Z" : (string)datosChofer.Lector["NOMBREZONA"];
 
                     //lee el id vehiculo asignado
                     if (datosChofer.Lector["IDVEHICULO"] != null)
@@ -180,6 +181,74 @@ namespace Negocio
             {
                 datos.SetearConsulta("DELETE FROM CHOFER WHERE IDCHOFER = @IDCHOFER");
                 datos.SetearParametro("@IDCHOFER", idChofer);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void AltaModificacionChofer(Chofer choferAux, bool AoM)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                if (AoM)
+                {
+                    datos.SetearConsulta("UPDATE DOMICILIO SET DIRECCION = @DIRECCION, LOCALIDAD = @LOCALIDAD, PROVINCIA = @PROVINCIA, DESCRIPCION = @DESCRIPCION WHERE IDDOMICILIO = @IDDOMICILIO");
+                    datos.SetearParametro("@DIRECCION", choferAux.Direccion.Direccion);
+                    datos.SetearParametro("@LOCALIDAD", choferAux.Direccion.Localidad);
+                    datos.SetearParametro("@PROVINCIA", choferAux.Direccion.Provincia);
+                    datos.SetearParametro("@DESCRIPCION", choferAux.Direccion.Descripcion);
+                    datos.SetearParametro("@IDDOMICILIO", choferAux.Direccion.IDDomicilio);
+                    datos.EjecutarAccion();
+                    datos.CerrarConexion();
+                    datos.SetearConsulta("UPDATE PERSONA SET NOMBRES = @NOMBRES, APELLIDOS = @APELLIDOS, DNI = @DNI, FECHANACIMIENTO = @FECHANACIMIENTO, DOMICILIO = @DOMICILIO, NACIONALIDAD = @NACIONALIDAD WHERE IDPERSONA = @IDPERSONA");
+                    datos.SetearParametro("@NOMBRES", choferAux.Nombres);
+                    datos.SetearParametro("@APELLIDOS", choferAux.Apellidos);
+                    datos.SetearParametro("@DNI", choferAux.DNI);
+                    datos.SetearParametro("@FECHANACIMIENTO", choferAux.FechaNacimiento);
+                    datos.SetearParametro("@IDDOMICILIO", choferAux.Nacionalidad);
+                    datos.SetearParametro("@NACIONALIDAD", choferAux.Nacionalidad);
+                    datos.SetearParametro("@IDPERSONA", choferAux.IDPersona);
+                    datos.EjecutarAccion();
+                    datos.CerrarConexion();
+                    datos.SetearConsulta("UPDATE CHOFER SET IDZONA = @IDZONA, IDVEHICULO = @IDVEHICULO WHERE IDCHOFER = @IDCHOFER");
+                    datos.SetearParametro("@IDZONA", choferAux.ZonaAsignada.IDZona);
+                    datos.SetearParametro("@IDVEHICULO", choferAux.AutoAsignado.IDVehiculo);
+                    datos.SetearParametro("@IDCHOFER", choferAux.IDChofer);
+
+                }
+                else
+                {
+                    datos.SetearConsulta("INSERT INTO DOMICILIO (DIRECCION, LOCALIDAD, PROVINCIA, DESCRIPCION) VALUES (@DIRECCION, @LOCALIDAD, @PROVINCIA, @DESCRIPCION)");
+                    datos.SetearParametro("@DIRECCION", choferAux.Direccion.Direccion);
+                    datos.SetearParametro("@LOCALIDAD", choferAux.Direccion.Localidad);
+                    datos.SetearParametro("@PROVINCIA", choferAux.Direccion.Provincia);
+                    datos.SetearParametro("@DESCRIPCION", choferAux.Direccion.Descripcion);
+                    datos.EjecutarAccion();
+                    datos.CerrarConexion();
+                    datos.SetearConsulta("INSERT INTO PERSONA (NOMBRES, APELLIDOS, DNI, FECHANACIMIENTO, DOMICILIO, NACIONALIDAD) VALUES (@NOMBRES, @APELLIDOS, @DNI, @FECHANACIMIENTO, @IDDOMICILIO, @NACIONALIDAD)");
+                    datos.SetearParametro("@NOMBRES", choferAux.Nombres);
+                    datos.SetearParametro("@APELLIDOS", choferAux.Apellidos);
+                    datos.SetearParametro("@DNI", choferAux.DNI);
+                    datos.SetearParametro("@FECHANACIMIENTO", choferAux.FechaNacimiento);
+                    datos.SetearParametro("@IDDOMICILIO", choferAux.Direccion.IDDomicilio);
+                    datos.SetearParametro("@NACIONALIDAD", choferAux.Nacionalidad);
+                    datos.EjecutarAccion();
+                    datos.CerrarConexion();
+                    datos.SetearConsulta("INSERT INTO CHOFER (IDPERSONA, IDZONA, IDVEHICULO) VALUES (@IDPERSONA, @IDZONA, @IDVEHICULO)");
+                    datos.SetearParametro("@IDPERSONA", choferAux.IDPersona);
+                    datos.SetearParametro("@IDZONA", choferAux.ZonaAsignada.IDZona);
+                    datos.SetearParametro("@IDVEHICULO", choferAux.AutoAsignado.IDVehiculo);
+                }
+
                 datos.EjecutarAccion();
             }
             catch (Exception ex)

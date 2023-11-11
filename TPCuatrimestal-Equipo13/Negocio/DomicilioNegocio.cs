@@ -9,29 +9,30 @@ namespace Negocio
 {
     public class DomicilioNegocio
     {
-        public List<Domicilio> domicilioLista { get; set; }
-
-        public Domicilio ObtenerDomicilio (long IdDomicilio)
+        public Domicilio ObtenerDomicilio(long IdDomicilio)
         {
-            Domicilio domicilioAux = new Domicilio ();
+            Domicilio domicilioAux = new Domicilio();
             AccesoDatos datosDomicilio = new AccesoDatos();
             try
             {
-                datosDomicilio.SetearConsulta("SELECT IDDOMICILIO, DIRECCION, LOCALIDAD, PROVINCIA, DESCRIPCION FROM DOMICILIO WHERE IDDOMICILIO = @IDDOMICILIO\r\n");
+                datosDomicilio.SetearConsulta("SELECT IDDOMICILIO, DIRECCION, LOCALIDAD, PROVINCIA, DESCRIPCION FROM DOMICILIO WHERE IDDOMICILIO = @IDDOMICILIO");
                 datosDomicilio.SetearParametro("@IDDOMICILIO", IdDomicilio);
                 datosDomicilio.EjecutarConsulta();
+
                 if (datosDomicilio.Lector.Read()) //si hay registro lo lee y setea
                 {
-                    domicilioAux.IdDomicilio = IdDomicilio;
+                    domicilioAux.IDDomicilio = IdDomicilio;
                     domicilioAux.Direccion = (string)datosDomicilio.Lector["DIRECCION"];
                     domicilioAux.Localidad = (string)datosDomicilio.Lector["LOCALIDAD"];
                     domicilioAux.Provincia = (string)datosDomicilio.Lector["PROVINCIA"];
                     domicilioAux.Descripcion = datosDomicilio.Lector["DESCRIPCION"] is DBNull ? "S/D" : (string)datosDomicilio.Lector["DESCRIPCION"];
+
                     return domicilioAux;
                 }
                 else //si no hay registros que leer setea -1 al IdPersona
                 {
-                    domicilioAux.IdDomicilio = -1;
+                    domicilioAux.IDDomicilio = -1;
+
                     return domicilioAux;
                 }
             }

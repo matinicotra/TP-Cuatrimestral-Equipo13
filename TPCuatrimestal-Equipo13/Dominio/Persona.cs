@@ -12,7 +12,7 @@ namespace Dominio
         {
             Direccion = new Domicilio();
         }
-        public int IdPersona { get; set; }
+        public int IDPersona { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public string DNI { get; set; }

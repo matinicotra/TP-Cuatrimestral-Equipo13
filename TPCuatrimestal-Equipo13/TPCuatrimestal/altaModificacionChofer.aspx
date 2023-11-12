@@ -28,7 +28,7 @@
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblNacionalidad" runat="server" Font-Bold="false">NACIONALIDAD</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtNacionalidad" runat="server"></asp:TextBox>
+                <asp:DropDownList CssClass="form-control" ID="ddlNacionalidad" runat="server"></asp:DropDownList>
             </div>
 
             <div class="input-group mb-3">

@@ -12,7 +12,7 @@ namespace TPCuatrimestal
     public partial class altaModificacionChofer : System.Web.UI.Page
     {
         private Chofer choferAux;
-        protected void Page_Load(object sender, EventArgs e)
+        private void CargarDesplegables()
         {
             VehiculoNegocio aux = new VehiculoNegocio();
             List<Vehiculo> ListVehi = new List<Vehiculo>();
@@ -37,6 +37,24 @@ namespace TPCuatrimestal
                 ddlZona.Items.Add(X.IDZona.ToString() + " - " + X.NombreZona);
             }
 
+            ddlNacionalidad.Items.Add("Argentino");
+            ddlNacionalidad.Items.Add("Brasilero");
+            ddlNacionalidad.Items.Add("Paraguayo");
+            ddlNacionalidad.Items.Add("Uruguayo");
+            ddlNacionalidad.Items.Add("Boliviano");
+            ddlNacionalidad.Items.Add("Peruano");
+            ddlNacionalidad.Items.Add("Chileno");
+            ddlNacionalidad.Items.Add("Colombiano");
+            ddlNacionalidad.Items.Add("Venezolano");
+            ddlNacionalidad.Items.Add("Ecuatoriano");
+            ddlNacionalidad.Items.Add("Otra");
+        }
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            CargarDesplegables();
+
+            ChoferNegocio cnAux;
+
             if (Request.QueryString["id"] != null && !IsPostBack)
             {
                 cnAux = new ChoferNegocio();
@@ -50,7 +68,7 @@ namespace TPCuatrimestal
                 txtNombre.Text = choferAux.Nombres;
                 txtApellido.Text = choferAux.Apellidos;
                 txtDNI.Text = choferAux.DNI.ToString();
-                txtNacionalidad.Text = choferAux.Nacionalidad;
+                ddlNacionalidad.SelectedValue = choferAux.Nacionalidad;
                 txtFechaNacimiento.Text = choferAux.FechaNacimiento.ToShortDateString();
                 txtCalleyAltura.Text = choferAux.Direccion.Direccion;
                 txtLocalidad.Text = choferAux.Direccion.Localidad;
@@ -94,7 +112,7 @@ namespace TPCuatrimestal
             choferAux.Nombres = txtNombre.Text;
             choferAux.Apellidos = txtApellido.Text;
             choferAux.DNI = txtDNI.Text;
-            choferAux.Nacionalidad = txtNacionalidad.Text;
+            choferAux.Nacionalidad = ddlNacionalidad.SelectedValue;
             choferAux.FechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
 
             //seteo domicilio

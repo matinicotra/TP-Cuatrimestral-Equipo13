@@ -74,13 +74,19 @@ namespace TPCuatrimestal
                 txtLocalidad.Text = choferAux.Direccion.Localidad;
                 txtProvincia.Text = choferAux.Direccion.Provincia;
                 txtDescripcion.Text = choferAux.Direccion.Descripcion;
-                ddlAutoAsignado.SelectedIndex = choferAux.AutoAsignado.IDVehiculo;
 
-                string valorAPreseleccionar = choferAux.ZonaAsignada.IDZona.ToString() + " - " + choferAux.ZonaAsignada.NombreZona;
-                ListItem itemSeleccionado = ddlZona.Items.FindByValue(valorAPreseleccionar);
-                if (itemSeleccionado != null)
+                string autoString = choferAux.AutoAsignado.IDVehiculo.ToString() + " - " + "(" + choferAux.AutoAsignado.Patente + ")";
+                ListItem autoPreseleccionado = ddlAutoAsignado.Items.FindByValue(autoString);
+                if( autoPreseleccionado != null)
                 {
-                    ddlZona.SelectedIndex = ddlZona.Items.IndexOf(itemSeleccionado);
+                    ddlAutoAsignado.SelectedIndex = ddlAutoAsignado.Items.IndexOf(autoPreseleccionado);
+                }
+
+                string zonaString = choferAux.ZonaAsignada.IDZona.ToString() + " - " + choferAux.ZonaAsignada.NombreZona;
+                ListItem zonaPreseleccionada = ddlZona.Items.FindByValue(zonaString);
+                if (zonaPreseleccionada != null)
+                {
+                    ddlZona.SelectedIndex = ddlZona.Items.IndexOf(zonaPreseleccionada);
                 }
                 
             }

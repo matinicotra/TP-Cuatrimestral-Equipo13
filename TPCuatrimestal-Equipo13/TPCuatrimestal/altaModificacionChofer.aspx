@@ -53,6 +53,11 @@
                 <asp:TextBox CssClass="form-control" ID="txtProvincia" runat="server"></asp:TextBox>
             </div>
 
+            <div class="input-group mb-3">
+                <asp:Label CssClass="input-group-text" ID="lblDescripcion" runat="server" Font-Bold="false">DESCRIPCION</asp:Label>
+                <asp:TextBox CssClass="form-control" ID="txtDescripcion" runat="server" TextMode="MultiLine" Rows="2"></asp:TextBox>
+            </div>
+
             <h5 class="text-lg-center">DATOS ASIGNADOS</h5>
 
             <div class="input-group mb-3">

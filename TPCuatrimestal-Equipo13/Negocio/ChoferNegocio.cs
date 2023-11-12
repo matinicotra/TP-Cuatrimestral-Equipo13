@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -193,13 +194,13 @@ namespace Negocio
             }
         }
 
-        public void AltaModificacionChofer(Chofer choferAux, bool AoM)
+        public void AltaModificacionChofer(Chofer choferAux, bool esAlta)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                if (!AoM)
+                if (!esAlta)
                 {
                     datos.SetearConsulta("UPDATE DOMICILIO SET DIRECCION = @DIRECCION, LOCALIDAD = @LOCALIDAD, PROVINCIA = @PROVINCIA, DESCRIPCION = @DESCRIPCION WHERE IDDOMICILIO = @IDDOMICILIO");
                     datos.SetearParametro("@DIRECCION", choferAux.Direccion.Direccion);
@@ -234,17 +235,22 @@ namespace Negocio
                     datos.SetearParametro("@DESCRIPCION", choferAux.Direccion.Descripcion);
                     datos.EjecutarAccion();
                     datos.CerrarConexion();
+                    long idDomicilio = ultimoIdDomicilio();//obtiene el ultimo id de domicilio
                     datos.SetearConsulta("INSERT INTO PERSONA (NOMBRES, APELLIDOS, DNI, FECHANACIMIENTO, DOMICILIO, NACIONALIDAD) VALUES (@NOMBRES, @APELLIDOS, @DNI, @FECHANACIMIENTO, @IDDOMICILIO, @NACIONALIDAD)");
                     datos.SetearParametro("@NOMBRES", choferAux.Nombres);
                     datos.SetearParametro("@APELLIDOS", choferAux.Apellidos);
                     datos.SetearParametro("@DNI", choferAux.DNI);
                     datos.SetearParametro("@FECHANACIMIENTO", choferAux.FechaNacimiento);
-                    datos.SetearParametro("@IDDOMICILIO", choferAux.Direccion.IDDomicilio);
+             
+                    datos.SetearParametro("@IDDOMICILIO", idDomicilio);//setea el idDomicilio recien insertado
+
                     datos.SetearParametro("@NACIONALIDAD", choferAux.Nacionalidad);
                     datos.EjecutarAccion();
                     datos.CerrarConexion();
+
+                    int idPersona = ultimoIdPersona();//obtiene el ultimo id de persona
                     datos.SetearConsulta("INSERT INTO CHOFER (IDPERSONA, IDZONA, IDVEHICULO) VALUES (@IDPERSONA, @IDZONA, @IDVEHICULO)");
-                    datos.SetearParametro("@IDPERSONA", choferAux.IDPersona);
+                    datos.SetearParametro("@IDPERSONA", idPersona);//setea el  idPersona recien insertado
                     datos.SetearParametro("@IDZONA", choferAux.ZonaAsignada.IDZona);
                     datos.SetearParametro("@IDVEHICULO", choferAux.AutoAsignado.IDVehiculo);
                 }
@@ -260,5 +266,60 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+
+        public long ultimoIdDomicilio()
+        {
+            long idDomicilio = 0;
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("SELECT TOP 1 * FROM DOMICILIO ORDER BY IDDOMICILIO DESC");
+                datos.EjecutarConsulta();
+                if (datos.Lector.Read())
+                {
+                idDomicilio = (long)datos.Lector["IDDOMICILIO"];
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+
+            return idDomicilio;
+
+        }
+
+        public int ultimoIdPersona()
+        {
+            int idPersona = 0;
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("SELECT TOP 1 IDPERSONA FROM PERSONA ORDER BY IDPERSONA DESC");
+                datos.EjecutarConsulta();
+                if (datos.Lector.Read())
+                {
+                idPersona = (int)datos.Lector["IDPERSONA"];
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+
+            return idPersona;
+
+        }
     }
+    
 }

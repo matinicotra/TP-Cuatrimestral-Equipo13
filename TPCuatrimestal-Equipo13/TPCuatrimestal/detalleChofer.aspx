@@ -10,6 +10,12 @@
         <div>
             <asp:Label ID="lblTituloChofer" runat="server" Text=""></asp:Label>
         </div>
+        <div>
+            <asp:Label ID="lblZona" runat="server" Text=""></asp:Label>
+        </div>
+        <div>
+            <asp:Label ID="lblAutoAsignado" runat="server" Text=""></asp:Label>
+        </div>
 
         <div>
             <h5>Ordenar y filtrar por distintos criterios</h5>

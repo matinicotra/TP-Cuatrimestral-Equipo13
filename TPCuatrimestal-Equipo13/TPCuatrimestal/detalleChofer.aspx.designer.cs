@@ -24,6 +24,24 @@ namespace TPCuatrimestal
         protected global::System.Web.UI.WebControls.Label lblTituloChofer;
 
         /// <summary>
+        /// Control lblZona.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblZona;
+
+        /// <summary>
+        /// Control lblAutoAsignado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAutoAsignado;
+
+        /// <summary>
         /// Control txtFiltrar.
         /// </summary>
         /// <remarks>

@@ -19,6 +19,8 @@ namespace TPCuatrimestal
                 string idChofer = Request.QueryString["id"];
                 Chofer choferAux = cnAux.ObtenerDatos(int.Parse(idChofer))[0];
                 lblTituloChofer.Text = choferAux.Nombres + " " + choferAux.Apellidos;
+                lblAutoAsignado.Text = choferAux.AutoAsignado.Patente;
+                lblZona.Text = choferAux.ZonaAsignada.NombreZona;
             }
         }
 

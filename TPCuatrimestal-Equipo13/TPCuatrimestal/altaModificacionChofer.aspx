@@ -62,7 +62,7 @@
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblZona" runat="server" Font-Bold="false">ZONA</asp:Label>
-                <asp:DropDownList CssClass="form-control" ID="ddlZona" runat="server"></asp:DropDownList>
+                <asp:DropDownList CssClass="form-control" ID="ddlZona" runat="server" ></asp:DropDownList>
             </div>
 
             <div class="input-group mb-3">

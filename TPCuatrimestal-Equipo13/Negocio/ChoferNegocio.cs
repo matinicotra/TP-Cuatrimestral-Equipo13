@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace Negocio
                     personaAux.DNI = datosPersona.Lector["DNI"] is DBNull ? "S/D" : (string)datosPersona.Lector["DNI"];
                     personaAux.Nacionalidad = datosPersona.Lector["NACIONALIDAD"] is DBNull ? "S/N" : (string)datosPersona.Lector["NACIONALIDAD"];
                     personaAux.FechaNacimiento = (DateTime)datosPersona.Lector["FECHANACIMIENTO"];
-                    
+
 
                     //lectura domicilio
                     Domicilio domicilioAux = new Domicilio();
@@ -71,23 +72,38 @@ namespace Negocio
         }
 
         //OBTIENE TODAS LAS ZONAS
-        public List<Zona> ObtenerZonas()
+        public List<Zona> ObtenerZonas(int idZona = -1)
         {
             AccesoDatos datos = new AccesoDatos();
             List<Zona> listAux = new List<Zona>();
 
             try
             {
-                datos.SetearConsulta("SELECT IDZONA, NOMBREZONA FROM ZONAS");
-                datos.EjecutarConsulta();
-
-                while (datos.Lector.Read())
+                if (idZona == -1)
                 {
-                    Zona aux = new Zona();
+                    datos.SetearConsulta("SELECT IDZONA, NOMBREZONA FROM ZONAS");
+                    datos.EjecutarConsulta();
 
+                    while (datos.Lector.Read())
+                    {
+                        Zona aux = new Zona();
+
+                        aux.IDZona = datos.Lector["IDZONA"] is DBNull ? -1 : (int)datos.Lector["IDZONA"];
+                        aux.NombreZona = datos.Lector["NOMBREZONA"] is DBNull ? "S/Z" : (string)datos.Lector["NOMBREZONA"];
+
+                        listAux.Add(aux);
+                    }
+                    
+                }
+                else
+                {
+                    datos.SetearConsulta("SELECT IDZONA, NOMBREZONA FROM ZONAS WHERE IDZONA = @IDZONA");
+                    datos.SetearParametro("@IDZONA", idZona);
+                    datos.EjecutarConsulta();
+                    datos.Lector.Read();
+                    Zona aux = new Zona();
                     aux.IDZona = datos.Lector["IDZONA"] is DBNull ? -1 : (int)datos.Lector["IDZONA"];
                     aux.NombreZona = datos.Lector["NOMBREZONA"] is DBNull ? "S/Z" : (string)datos.Lector["NOMBREZONA"];
-
                     listAux.Add(aux);
                 }
 
@@ -128,6 +144,7 @@ namespace Negocio
                     Persona personaAux = new Persona();
                     ChoferNegocio cnAux = new ChoferNegocio();
 
+
                     if ((int)datosChofer.Lector["IDPERSONA"] == -1) //si no encuentra al id persona devuelve -1
                     {
                         return listaChoferes; //retorna la lista al no encontrar una persona
@@ -144,11 +161,14 @@ namespace Negocio
                     choferAux.Nacionalidad = personaAux.Nacionalidad;
                     choferAux.IDPersona = personaAux.IDPersona;
 
-                    //asigna el resto de datos al chofer
+                    //asigna el id Chofer
                     choferAux.IDChofer = (int)datosChofer.Lector["IDCHOFER"];
-                    choferAux.ZonaAsignada.IDZona = datosChofer.Lector["IDZONA"] is DBNull ? 0 : (int)datosChofer.Lector["IDZONA"];
 
-                   
+                    //lee la zona y la asigna
+                    choferAux.ZonaAsignada = cnAux.ObtenerZonas(datosChofer.Lector["IDZONA"] is DBNull ? 0 : (int)datosChofer.Lector["IDZONA"])[0];
+                    //choferAux.ZonaAsignada.IDZona = datosChofer.Lector["IDZONA"] is DBNull ? 0 : (int)datosChofer.Lector["IDZONA"];
+
+
 
                     //lee el id vehiculo asignado
                     if (datosChofer.Lector["IDVEHICULO"] != null)
@@ -245,7 +265,7 @@ namespace Negocio
                     datos.SetearParametro("@APELLIDOS", choferAux.Apellidos);
                     datos.SetearParametro("@DNI", choferAux.DNI);
                     datos.SetearParametro("@FECHANACIMIENTO", choferAux.FechaNacimiento);
-             
+
                     datos.SetearParametro("@IDDOMICILIO", idDomicilio);//setea el idDomicilio recien insertado
 
                     datos.SetearParametro("@NACIONALIDAD", choferAux.Nacionalidad);
@@ -281,7 +301,7 @@ namespace Negocio
                 datos.EjecutarConsulta();
                 if (datos.Lector.Read())
                 {
-                idDomicilio = (long)datos.Lector["IDDOMICILIO"];
+                    idDomicilio = (long)datos.Lector["IDDOMICILIO"];
                 }
             }
             catch (Exception)
@@ -308,7 +328,7 @@ namespace Negocio
                 datos.EjecutarConsulta();
                 if (datos.Lector.Read())
                 {
-                idPersona = (int)datos.Lector["IDPERSONA"];
+                    idPersona = (int)datos.Lector["IDPERSONA"];
                 }
             }
             catch (Exception)
@@ -325,5 +345,5 @@ namespace Negocio
 
         }
     }
-    
+
 }

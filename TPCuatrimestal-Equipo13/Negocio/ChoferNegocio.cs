@@ -32,6 +32,7 @@ namespace Negocio
                     personaAux.DNI = datosPersona.Lector["DNI"] is DBNull ? "S/D" : (string)datosPersona.Lector["DNI"];
                     personaAux.Nacionalidad = datosPersona.Lector["NACIONALIDAD"] is DBNull ? "S/N" : (string)datosPersona.Lector["NACIONALIDAD"];
                     personaAux.FechaNacimiento = (DateTime)datosPersona.Lector["FECHANACIMIENTO"];
+                    
 
                     //lectura domicilio
                     Domicilio domicilioAux = new Domicilio();
@@ -141,6 +142,7 @@ namespace Negocio
                     choferAux.FechaNacimiento = personaAux.FechaNacimiento;
                     choferAux.Direccion = personaAux.Direccion;
                     choferAux.Nacionalidad = personaAux.Nacionalidad;
+                    choferAux.IDPersona = personaAux.IDPersona;
 
                     //asigna el resto de datos al chofer
                     choferAux.IDChofer = (int)datosChofer.Lector["IDCHOFER"];

@@ -11,7 +11,7 @@ namespace TPCuatrimestal
 {
     public partial class altaModificacionChofer : System.Web.UI.Page
     {
-        private Chofer choferAux = new Chofer();
+        private Chofer choferAux;
         protected void Page_Load(object sender, EventArgs e)
         {
             VehiculoNegocio aux = new VehiculoNegocio();
@@ -37,11 +37,13 @@ namespace TPCuatrimestal
                 ddlZona.Items.Add(X.IDZona.ToString() + " - " + X.NombreZona);
             }
 
-            if (Request.QueryString["id"] != null)
+            if (Request.QueryString["id"] != null && !IsPostBack)
             {
                 cnAux = new ChoferNegocio();
 
                 string idChofer = Request.QueryString["id"];
+
+                choferAux = new Chofer();
 
                 choferAux = cnAux.ObtenerDatos(int.Parse(idChofer))[0];
 
@@ -57,6 +59,16 @@ namespace TPCuatrimestal
                 ddlAutoAsignado.SelectedIndex = choferAux.AutoAsignado.IDVehiculo;
                 ddlZona.SelectedIndex = choferAux.ZonaAsignada.IDZona;
             }
+            else if (Request.QueryString["id"] != null)
+            {
+                cnAux = new ChoferNegocio();
+
+                string idChofer = Request.QueryString["id"];
+
+                choferAux = new Chofer();
+
+                choferAux = cnAux.ObtenerDatos(int.Parse(idChofer))[0];
+            }
         }
 
         protected void btnCanelar_Click(object sender, EventArgs e)
@@ -71,39 +83,54 @@ namespace TPCuatrimestal
             Zona zonaAux = new Zona();
             Vehiculo vehiculoAux = new Vehiculo();
             VehiculoNegocio vnAux = new VehiculoNegocio();
+            bool banderaAlta = false;
+            string idChofer = Request.QueryString["id"] == null ? "nulo" : Request.QueryString["id"];
+
+            if (banderaAlta)
+            {
+                choferAux = new Chofer();
+                banderaAlta = true;
+            }
+            else
+            {
+                choferAux = cnAux.ObtenerDatos(int.Parse(idChofer))[0];
+                banderaAlta = false;
+            }
 
             //seteo de chofer
             choferAux.Nombres = txtNombre.Text;
             choferAux.Apellidos = txtApellido.Text;
             choferAux.DNI = txtDNI.Text;
             choferAux.Nacionalidad = txtNacionalidad.Text;
-            choferAux.FechaNacimiento = DateTime.Parse(txtFechaNacimiento.Text);
-            
+            choferAux.FechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
+
             //seteo domicilioAux
             domicilioAux.Direccion = txtCalleyAltura.Text;
             domicilioAux.Localidad = txtLocalidad.Text;
             domicilioAux.Provincia = txtProvincia.Text;
             domicilioAux.Descripcion = txtDescripcion.Text;
+            domicilioAux.IDDomicilio = choferAux.Direccion.IDDomicilio;
             choferAux.Direccion = domicilioAux; //seteo domicilio en choferAux
 
             //seteo zonaAux
             int idZona = -1;
-            idZona = ddlZona.SelectedIndex;
-            zonaAux = cnAux.ObtenerZonas()[idZona];
+            idZona = ddlZona.SelectedIndex >= 1 && ddlZona.SelectedIndex <= 4 ? ddlZona.SelectedIndex : 1;
+            zonaAux = cnAux.ObtenerZonas()[idZona - 1];
             choferAux.ZonaAsignada = zonaAux;
 
             //seteo vehiculo
             int idVehiculo = -1;
-            idVehiculo = ddlAutoAsignado.SelectedIndex;
-            vehiculoAux = vnAux.ObtenerDatos()[idVehiculo];
+            idVehiculo = ddlAutoAsignado.SelectedIndex >= 1 && ddlAutoAsignado.SelectedIndex <= 19 ? ddlAutoAsignado.SelectedIndex : 1;
+            vehiculoAux = vnAux.ObtenerDatos()[idVehiculo - 1];
             choferAux.AutoAsignado = vehiculoAux;
 
-            if (choferAux.IDChofer == -1)
+            if (banderaAlta)
             {
                 cnAux.AltaModificacionChofer(choferAux, true);
             }
             else
             {
+
                 cnAux.AltaModificacionChofer(choferAux, false);
             }
             Response.Redirect("adminChoferes.aspx", false);

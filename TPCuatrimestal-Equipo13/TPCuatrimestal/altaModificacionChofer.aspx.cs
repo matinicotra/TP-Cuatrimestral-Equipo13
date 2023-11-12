@@ -53,6 +53,9 @@ namespace TPCuatrimestal
                 txtCalleyAltura.Text = choferAux.Direccion.Direccion;
                 txtLocalidad.Text = choferAux.Direccion.Localidad;
                 txtProvincia.Text = choferAux.Direccion.Provincia;
+                txtDescripcion.Text = choferAux.Direccion.Descripcion;
+                ddlAutoAsignado.SelectedIndex = choferAux.AutoAsignado.IDVehiculo;
+                ddlZona.SelectedIndex = choferAux.ZonaAsignada.IDZona;
             }
         }
 

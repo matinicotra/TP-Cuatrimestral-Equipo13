@@ -112,11 +112,11 @@ namespace Negocio
             {
                 if (idChofer == -1)
                 {
-                    datosChofer.SetearConsulta("SELECT C.IDCHOFER, C.IDPERSONA, Z.NOMBREZONA, C.IDVEHICULO FROM CHOFER AS C INNER JOIN ZONAS AS Z ON C.IDZONA = Z.IDZONA");
+                    datosChofer.SetearConsulta("SELECT C.IDCHOFER, C.IDPERSONA, Z.NOMBREZONA, Z.IDZONA, C.IDVEHICULO FROM CHOFER AS C INNER JOIN ZONAS AS Z ON C.IDZONA = Z.IDZONA");
                 }
                 else
                 {
-                    datosChofer.SetearConsulta("SELECT C.IDCHOFER, C.IDPERSONA, Z.NOMBREZONA, C.IDVEHICULO FROM CHOFER AS C INNER JOIN ZONAS AS Z ON C.IDZONA = Z.IDZONA WHERE C.IDCHOFER = @IDCHOFER");
+                    datosChofer.SetearConsulta("SELECT C.IDCHOFER, C.IDPERSONA, Z.NOMBREZONA, Z.IDZONA, C.IDVEHICULO FROM CHOFER AS C INNER JOIN ZONAS AS Z ON C.IDZONA = Z.IDZONA WHERE C.IDCHOFER = @IDCHOFER");
                     datosChofer.SetearParametro("@IDCHOFER", idChofer);
                 }
                 datosChofer.EjecutarConsulta();
@@ -144,7 +144,9 @@ namespace Negocio
 
                     //asigna el resto de datos al chofer
                     choferAux.IDChofer = (int)datosChofer.Lector["IDCHOFER"];
-                    choferAux.ZonaAsignada.NombreZona = datosChofer.Lector["NOMBREZONA"] is DBNull ? "S/Z" : (string)datosChofer.Lector["NOMBREZONA"];
+                    choferAux.ZonaAsignada.IDZona = datosChofer.Lector["IDZONA"] is DBNull ? 0 : (int)datosChofer.Lector["IDZONA"];
+
+                   
 
                     //lee el id vehiculo asignado
                     if (datosChofer.Lector["IDVEHICULO"] != null)

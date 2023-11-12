@@ -79,22 +79,15 @@ namespace TPCuatrimestal
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             ChoferNegocio cnAux = new ChoferNegocio();
-            Domicilio domicilioAux = new Domicilio();
             Zona zonaAux = new Zona();
             Vehiculo vehiculoAux = new Vehiculo();
             VehiculoNegocio vnAux = new VehiculoNegocio();
             bool banderaAlta = false;
-            string idChofer = Request.QueryString["id"] == null ? "nulo" : Request.QueryString["id"];
 
-            if (banderaAlta)
+            if (Request.QueryString["id"] == null)
             {
                 choferAux = new Chofer();
                 banderaAlta = true;
-            }
-            else
-            {
-                choferAux = cnAux.ObtenerDatos(int.Parse(idChofer))[0];
-                banderaAlta = false;
             }
 
             //seteo de chofer
@@ -104,23 +97,21 @@ namespace TPCuatrimestal
             choferAux.Nacionalidad = txtNacionalidad.Text;
             choferAux.FechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
 
-            //seteo domicilioAux
-            domicilioAux.Direccion = txtCalleyAltura.Text;
-            domicilioAux.Localidad = txtLocalidad.Text;
-            domicilioAux.Provincia = txtProvincia.Text;
-            domicilioAux.Descripcion = txtDescripcion.Text;
-            domicilioAux.IDDomicilio = choferAux.Direccion.IDDomicilio;
-            choferAux.Direccion = domicilioAux; //seteo domicilio en choferAux
+            //seteo domicilio
+            choferAux.Direccion.Direccion = txtCalleyAltura.Text;
+            choferAux.Direccion.Localidad = txtLocalidad.Text;
+            choferAux.Direccion.Provincia = txtProvincia.Text;
+            choferAux.Direccion.Descripcion = txtDescripcion.Text;
 
-            //seteo zonaAux
+            //seteo zona
             int idZona = -1;
-            idZona = ddlZona.SelectedIndex >= 1 && ddlZona.SelectedIndex <= 4 ? ddlZona.SelectedIndex : 1;
+            idZona = ddlZona.SelectedIndex >= 1 && ddlZona.SelectedIndex < cnAux.ObtenerZonas().Count() ? ddlZona.SelectedIndex : 1;
             zonaAux = cnAux.ObtenerZonas()[idZona - 1];
             choferAux.ZonaAsignada = zonaAux;
 
             //seteo vehiculo
             int idVehiculo = -1;
-            idVehiculo = ddlAutoAsignado.SelectedIndex >= 1 && ddlAutoAsignado.SelectedIndex <= 19 ? ddlAutoAsignado.SelectedIndex : 1;
+            idVehiculo = ddlAutoAsignado.SelectedIndex >= 1 && ddlAutoAsignado.SelectedIndex < vnAux.ObtenerDatos().Count() ? ddlAutoAsignado.SelectedIndex : 1;
             vehiculoAux = vnAux.ObtenerDatos()[idVehiculo - 1];
             choferAux.AutoAsignado = vehiculoAux;
 
@@ -130,9 +121,9 @@ namespace TPCuatrimestal
             }
             else
             {
-
                 cnAux.AltaModificacionChofer(choferAux, false);
             }
+
             Response.Redirect("adminChoferes.aspx", false);
         }
     }

@@ -6,10 +6,10 @@
     <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
 
         <div style="margin: 10px 15px;">
-            <h4>VEHICULOS</h4>
-            <div>
-                <asp:TextBox ID="txtFiltrar" runat="server"></asp:TextBox>
-                <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" CssClass="btn btn-secondary" />
+            <h4>ADMINISTRAR VEHICULOS</h4>
+            <div class="input-group mb-3" style="display:flex; align-items:center; flex-direction: row;">
+                <asp:TextBox ID="txtFiltrar" runat="server" CssClass="form-control" PlaceHolder="Busqueda..."></asp:TextBox>
+                <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" CssClass="btn btn-primary" />
             </div>
         </div>
 

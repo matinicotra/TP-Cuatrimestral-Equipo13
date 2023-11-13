@@ -12,17 +12,16 @@
             </div>
 
             <div class="input-group mb-3" style="display:flex; align-items:center; flex-direction: row;">
-                <asp:TextBox CssClass="form-control" ID="txtFiltrar" runat="server">Filtrar por criterio</asp:TextBox>
+                <asp:TextBox CssClass="form-control" ID="txtFiltrar" runat="server" PlaceHolder="Busqueda..."></asp:TextBox>
                 <asp:Button cssclass="btn btn-primary" ID="btnFiltrar" runat="server" Text="Buscar" />
             </div>
       
             <div>
                 <h5>Listado de Choferes</h5> 
-                <asp:ListBox CssClass="list-group list-group-flush" ID="listaChoferes" runat="server" OnSelectedIndexChanged="listaChoferes_SelectedIndexChanged" ></asp:ListBox> <!-- DEBERIA SER UN DATA GRID VIEW ? -->
+                <asp:ListBox CssClass="list-group list-group-flush" ID="listaChoferes" runat="server" OnSelectedIndexChanged="listaChoferes_SelectedIndexChanged" ></asp:ListBox>
             </div>
 
             <div>
-                <h5>ABM Choferes</h5>
                 <asp:Button ID="btnAltaChofer" runat="server" CssClass="btn btn-primary" Text="Alta" OnClick="btnAltaChofer_Click" />
                 <asp:Button ID="btnBajaChofer" runat="server" cssClass="btn btn-danger" Text="Baja" OnClick="btnBajaChofer_Click"/>
                 <asp:Button ID="btnModificarChofer" runat="server" CssClass="btn btn-warning" Text="Modificar" onClick="btnModificarChofer_Click" />

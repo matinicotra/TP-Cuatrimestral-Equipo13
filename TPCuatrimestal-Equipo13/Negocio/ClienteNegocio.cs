@@ -68,14 +68,22 @@ namespace Negocio
             }
         }
 
-        public List<Cliente> ObtenerDatos()
+        public List<Cliente> ObtenerDatos(int idCliente = -1)
         {
             AccesoDatos datosCliente = new AccesoDatos();
             List<Cliente> listaClientes = new List<Cliente>();
 
             try
             {
-                datosCliente.SetearConsulta("SELECT IDCLIENTE, IDPERSONA FROM CLIENTE");
+                if(idCliente == -1)
+                {
+                    datosCliente.SetearConsulta("SELECT IDCLIENTE, IDPERSONA, IDZONA FROM CLIENTE");
+                }
+                else
+                {
+                    datosCliente.SetearConsulta("SELECT IDCLIENTE, IDPERSONA, IDZONA FROM CLIENTE WHERE IDCLIENTE = @IDCLIENTE");
+                    datosCliente.SetearParametro("@IDCLIENTE", idCliente);
+                }
                 datosCliente.EjecutarConsulta();
 
                 while (datosCliente.Lector.Read())
@@ -97,6 +105,12 @@ namespace Negocio
                     clienteAux.IDCliente = (int)datosCliente.Lector["IDCLIENTE"];
 
                     personaAux.IDPersona = (int)datosCliente.Lector["IDPERSONA"];
+
+                        //obtiene la zona
+                    ChoferNegocio cnAux = new ChoferNegocio();
+                    Zona zonaAux = cnAux.ObtenerZonas((int)datosCliente.Lector["IDZONA"])[0];
+                    clienteAux.zonaCliente = zonaAux;
+
 
                     listaClientes.Add(clienteAux);
                 }

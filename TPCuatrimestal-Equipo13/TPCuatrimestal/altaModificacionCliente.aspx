@@ -43,16 +43,6 @@
             </div>
 
             <div class="input-group mb-3">
-                <asp:Label CssClass="input-group-text" ID="lblAltura" runat="server" Font-Bold="false">ALTURA</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtAltura" runat="server"></asp:TextBox>
-            </div>
-
-            <div class="input-group mb-3">
-                <asp:Label CssClass="input-group-text" ID="lblCodPostal" runat="server" Font-Bold="false">CODIGO POSTAL</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtCodPostal" runat="server"></asp:TextBox>
-            </div>
-
-            <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblLocalidad" runat="server" Font-Bold="false">LOCALIDAD</asp:Label>
                 <asp:TextBox CssClass="form-control" ID="txtLocalidad" runat="server"></asp:TextBox>
             </div>
@@ -60,6 +50,11 @@
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblProvincia" runat="server" Font-Bold="false">PROVINCIA</asp:Label>
                 <asp:TextBox CssClass="form-control" ID="txtProvincia" runat="server"></asp:TextBox>
+            </div>
+
+            <div class="input-group mb-3">
+                <asp:Label CssClass="input-group-text" ID="lblDescripcion" runat="server" Font-Bold="false">DESCRIPCION</asp:Label>
+                <asp:TextBox CssClass="form-control" ID="txtDescripcion" runat="server" TextMode="MultiLine" Rows="2"></asp:TextBox>
             </div>
 
             <h5 class="text-lg-center">DATOS DE CONTACTO</h5>

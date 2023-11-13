@@ -36,7 +36,6 @@ namespace TPCuatrimestal
                     ListItem item = new ListItem();
                     item.Value = cliente.IDCliente.ToString();
                     item.Text = cliente.Apellidos + " - " + cliente.Nombres;
-                    //item.Text = cliente.Nombres.ToString();
                     item.Attributes["class"] = "list-group-item";
                     listaClientes.Items.Add(item);
                 }

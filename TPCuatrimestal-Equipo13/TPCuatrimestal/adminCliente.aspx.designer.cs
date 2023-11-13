@@ -11,7 +11,7 @@ namespace TPCuatrimestal
 {
 
 
-    public partial class adminEmpresas
+    public partial class adminCliente
     {
 
         /// <summary>

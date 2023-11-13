@@ -7,9 +7,9 @@ using Dominio;
 
 namespace Negocio
 {
-    internal class ClienteNegocio
+    public class ClienteNegocio
     {
-        private List<Persona> listaPersonas = new List<Persona>();
+        private List<Cliente> listaClientes = new List<Cliente>();
 
         public Persona ObtenerPersona(int IdPersona) //no hay PersonaNegocio, esto obtiene la Persona
         {
@@ -68,7 +68,7 @@ namespace Negocio
             }
         }
 
-        public List<Chofer> ObtenerDatos(int IdCliente)
+        public List<Cliente> ObtenerDatos()
         {
             AccesoDatos datosCliente = new AccesoDatos();
             List<Cliente> listaClientes = new List<Cliente>();

@@ -65,3 +65,10 @@ VALUES
 (3, 3, 3),
 (4, 4, 4)
 GO
+
+INSERT INTO CLIENTE (IDPERSONA)
+VALUES
+(5),
+(6),
+(7),
+(8)

@@ -13,6 +13,7 @@ namespace TPCuatrimestal
     {
         private List<Cliente> listarClientes = new List<Cliente>();
 
+        private string Seleccionado;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -34,8 +35,8 @@ namespace TPCuatrimestal
                 {
                     ListItem item = new ListItem();
                     item.Value = cliente.IDCliente.ToString();
-                    item.Value = cliente.Apellidos.ToString();
-                    item.Value = cliente.Nombres.ToString();
+                    item.Text = cliente.Apellidos + " - " + cliente.Nombres;
+                    //item.Text = cliente.Nombres.ToString();
                     item.Attributes["class"] = "list-group-item";
                     listaClientes.Items.Add(item);
                 }
@@ -62,14 +63,19 @@ namespace TPCuatrimestal
 
         protected void btnModificarCliente_Click(object sender, EventArgs e)
         {
-            //FALTA LA LOGICA, SOLO NAVEGAVILIDAD
-            Response.Redirect("altaModificacionCliente.aspx", false);
+            string idSeleccionado = listaClientes.SelectedValue;
+            Response.Redirect("altaModificacionCliente.aspx?id=" + idSeleccionado, false);
         }
 
         protected void btnDetalleCliente_Click(object sender, EventArgs e)
         {
-            //FALTA LA LOGICA, SOLO NAVEGAVILIDAD
-            Response.Redirect("detalleCliente.aspx", false);
+            string idSeleccionado = listaClientes.SelectedValue;
+            Response.Redirect("detalleCliente.aspx?id=" + idSeleccionado, false);
+        }
+
+        protected void listaClientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Seleccionado = listaClientes.SelectedValue;
         }
     }
 }

@@ -94,6 +94,7 @@ namespace Negocio
                     clienteAux.Direccion = personaAux.Direccion;
                     clienteAux.Nacionalidad = personaAux.Nacionalidad;
                     clienteAux.IDPersona = personaAux.IDPersona;
+                    clienteAux.IDCliente = (int)datosCliente.Lector["IDCLIENTE"];
 
                     personaAux.IDPersona = (int)datosCliente.Lector["IDPERSONA"];
 

@@ -18,7 +18,7 @@
   
         <div>
             <h5>Listado de Clientes</h5> 
-            <asp:ListBox CssClass="list-group list-group-flush" ID="listaClientes" runat="server"></asp:ListBox> <!-- DEBERIA SER UN DATA GRID VIEW ? -->
+            <asp:ListBox CssClass="list-group list-group-flush" ID="listaClientes" runat="server" OnSelectedIndexChanged="listaClientes_SelectedIndexChanged" ></asp:ListBox> <!-- DEBERIA SER UN DATA GRID VIEW ? -->
         </div>
 
         <div>

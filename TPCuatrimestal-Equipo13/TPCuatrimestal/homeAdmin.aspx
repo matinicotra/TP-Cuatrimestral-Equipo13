@@ -8,8 +8,8 @@
     <div class="container-lg" style="display: flex; align-items: center; justify-content: center; flex-direction: column; grid-row-gap: 30px; margin-top: 50px;">
 
         <div>
-            <asp:TextBox ID="txtFiltrar" runat="server"></asp:TextBox>
-            <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" CssClass="btn btn-secondary" />
+            <asp:TextBox ID="txtFiltrar" runat="server" PlaceHolder="Busqueda..."></asp:TextBox>
+            <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" CssClass="btn btn-primary" />
         </div>
 
         <div style="display: flex; flex-direction: row;">
@@ -25,20 +25,20 @@
         </div>
 
         <div>
-            <h5>Opciones de ver otros dias</h5>
-            <asp:Calendar ID="calOtrosDias" runat="server"></asp:Calendar>
+            <h5>BUSQUEDA POR DIA</h5>
+            <asp:Calendar ID="calOtrosDias" runat="server" class="table table-secondary table-striped"></asp:Calendar>
+        </div>
+
+        <div class="btn-group" style="font-family: cursive;" role="group">
+            <asp:Button ID="btnClientes" runat="server" Text="Clientes" CssClass="btn btn-primary" OnClick="btnEmpresa_Click" />
+            <asp:Button ID="btnChoferes" runat="server" Text="Choferes" CssClass="btn btn-info" OnClick="btnChoferes_Click" />
+            <asp:Button ID="btnVehiculo" runat="server" Text="Vehiculos" CssClass="btn btn-primary" OnClick="btnVehiculo_Click" />
         </div>
 
         <!--<div>
             <asp:Label ID="lblAsignarChofer" runat="server" Text="COFER: "></asp:Label>
             <asp:TextBox ID="txtAsignarViaje" runat="server"></asp:TextBox>
             <asp:Button ID="btnAsignarViaje" runat="server" Text="Aceptar" CssClass="btn btn-success"/>
-        </div>-->
-
-        <div class="btn-group" style="font-family: cursive;" role="group">
-            <asp:Button ID="btnClientes" runat="server" Text="Clientes" CssClass="btn btn-primary" OnClick="btnEmpresa_Click" />
-            <asp:Button ID="btnChoferes" runat="server" Text="Choferes" CssClass="btn btn-primary" OnClick="btnChoferes_Click" />
-            <asp:Button ID="btnVehiculo" runat="server" Text="Vehiculos" CssClass="btn btn-primary" OnClick="btnVehiculo_Click" />
         </div>
 
         <div>
@@ -73,9 +73,7 @@
                     </ItemTemplate>
                 </asp:Repeater>
             </table>
-        </div>
-
-
+        </div>-->
     </div>
 
 </asp:Content>

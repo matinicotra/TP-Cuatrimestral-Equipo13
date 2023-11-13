@@ -21,6 +21,7 @@ namespace TPCuatrimestal
             if (!IsPostBack)
             {
                 cargarChoferes();
+                listaChoferes.SelectedIndex = 0;
             }
         }
 

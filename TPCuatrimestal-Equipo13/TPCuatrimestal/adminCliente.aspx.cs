@@ -19,6 +19,7 @@ namespace TPCuatrimestal
             if (!IsPostBack)
             {
                 cargarClientes();
+                listaClientes.SelectedIndex = 0;
             }
         }
 

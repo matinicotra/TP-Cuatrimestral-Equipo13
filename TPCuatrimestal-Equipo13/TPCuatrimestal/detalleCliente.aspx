@@ -12,11 +12,11 @@
             <asp:Label ID="lblTelefonoTitulo" runat="server" Text=""></asp:Label>
         </div>
 
-        <div>
-            <asp:TextBox ID="txtFiltrar" runat="server" PlaceHolder="Busqueda..."></asp:TextBox>
-            <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
+        <div class="input-group mb-3" style="display:flex; align-items:center; flex-direction: row;">
+            <asp:TextBox ID="txtFiltrar" runat="server" CssClass="form-control" PlaceHolder="Busqueda..."></asp:TextBox>
+            <asp:DropDownList ID="ddlFiltrar" runat="server" CssClass="form-control"></asp:DropDownList>
             <!-- AGREGAR LOS CRITERIOS DE ORDEN-->
-            <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" />
+            <asp:Button ID="btnFiltrar" runat="server" CssClass="btn btn-primary" Text="Buscar" />
         </div>
 
         <div>
@@ -34,8 +34,8 @@
         </div>
 
         <div>
-            <h5>Opciones de ver otros dias</h5>
-            <asp:Calendar ID="verDiaCliente" runat="server"></asp:Calendar>
+            <h5>BUSQUEDA POR DIA</h5>
+            <asp:Calendar ID="verDiaCliente" runat="server" class="table table-secondary table-striped"></asp:Calendar>
         </div>
 
         <div>

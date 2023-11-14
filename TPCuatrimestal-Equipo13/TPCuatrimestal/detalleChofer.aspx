@@ -17,16 +17,15 @@
             <asp:Label ID="lblAutoAsignado" runat="server" Text=""></asp:Label>
         </div>
 
-        <div>
-            <h5>Ordenar y filtrar por distintos criterios</h5>
-            <asp:TextBox ID="txtFiltrar" runat="server"></asp:TextBox>
-            <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
+        <div class="input-group mb-3" style="display:flex; align-items:center; flex-direction: row;">
+            <asp:TextBox ID="txtFiltrar" runat="server" CssClass="form-control" PlaceHolder="Busqueda..."></asp:TextBox>
+            <asp:DropDownList ID="ddlFiltrar" runat="server" CssClass="form-control"></asp:DropDownList>
             <!-- AGREGAR LOS CRITERIOS DE ORDEN-->
-            <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" />
+            <asp:Button ID="btnFiltrar" runat="server" CssClass="btn btn-primary" Text="Buscar" />
         </div>
 
         <div>
-            <h5 class="text-sm-center">Listado de viajes del Chofer</h5>
+            <h5 class="text-sm-center">VIAJES</h5>
             <asp:ListBox ID="listaViajesPorChofer" runat="server"></asp:ListBox>
         </div>
 
@@ -38,7 +37,6 @@
         </div>-->
 
         <div>
-            <h5 class="text-sm-center">Gestionar Viaje Seleccionado</h5>
             <asp:Button CssClass="btn btn-success" ID="btnAltaViaje" runat="server" Text="Alta" />
             <asp:Button CssClass="btn btn-danger" ID="btnBajaViaje" runat="server" Text="Baja" />
             <asp:Button CssClass="btn btn-warning" ID="btnModificarViaje" runat="server" Text="Modificar" />
@@ -46,8 +44,8 @@
         </div>
 
         <div>
-            <h5>Opciones de ver otros dias</h5>
-            <asp:Calendar ID="verDiaChofer" runat="server"></asp:Calendar>
+            <h5>BUSQUEDA POR DIA</h5>
+            <asp:Calendar ID="verDiaChofer" runat="server" class="table table-secondary table-striped"></asp:Calendar>
         </div>
 
         <div>

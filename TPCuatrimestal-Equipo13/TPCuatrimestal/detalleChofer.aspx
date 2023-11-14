@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="container" style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px; margin: 40px 40px;">
+    <div class="container" style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px; margin: 40px 40px; margin-bottom: 100px">
 
         <div>
             <asp:Label ID="lblTituloChofer" runat="server" Text=""></asp:Label>

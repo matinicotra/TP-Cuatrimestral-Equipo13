@@ -14,7 +14,7 @@
         </div>
 
         <div id="div1">
-            <table class="table position-relative" border="1" style="overflow: scroll; background-color: lightgray; width: 400px;">
+            <table class="table position-relative shadow" border="1" style="overflow: scroll; background-color: lightgray; width: 400px;">
                 <thead>
                     <tr>
                         <th scope="col" class="col-1">NUMERO</th>
@@ -23,7 +23,7 @@
                         <th scope="col" class="col-1">TIPO</th>
                         <th scope="col" class="col-1">PLAZAS</th>
                         <th scope="col" class="col-1">ESTADO</th>
-                        <th scope="col" class="col-3">ACCIONES</th>
+                        <th scope="col" class="col-4">ACCIONES</th>
                     </tr>
                 </thead>
 
@@ -38,8 +38,8 @@
                                 <td><%#Eval("Tipo.CantAsientos")%></td>
                                 <td><%#Eval("Estado")%></td>
                                 <td>
-                                    <asp:ImageButton ID="btnEliminar" ImageUrl="https://e7.pngegg.com/pngimages/623/319/png-clipart-computer-icons-graphics-icon-design-illustration-delete-icon-logo-area.png" runat="server" class="btn-close border display-6 shadow-sm" />
-                                    <asp:ImageButton ID="ImageButton1" ImageUrl="https://img2.freepng.es/20201210/hcb/transparent-edit-icon-interface-icon-5fd2c0863c4dc9.114206481607647366247.jpg" OnClick="ImageButton1_Click" CommandArgument='<%#Eval("IDVehiculo")%>' CommandName="IDVehiculo" runat="server" class="btn-close border display-6 shadow-sm" />
+                                    <asp:ImageButton ID="btnEliminar" ImageUrl="https://e7.pngegg.com/pngimages/623/319/png-clipart-computer-icons-graphics-icon-design-illustration-delete-icon-logo-area.png" runat="server" class="btn btn-close btn-lg border" ToolTip="Eliminar" />
+                                    <asp:ImageButton ID="ImageButton1" ImageUrl="https://img2.freepng.es/20201210/hcb/transparent-edit-icon-interface-icon-5fd2c0863c4dc9.114206481607647366247.jpg" OnClick="ImageButton1_Click" CommandArgument='<%#Eval("IDVehiculo")%>' CommandName="IDVehiculo" runat="server" class="btn btn-close btn-lg border" ToolTip="Modificar" />
                                 </td>
                             </tr>
                         </tbody>

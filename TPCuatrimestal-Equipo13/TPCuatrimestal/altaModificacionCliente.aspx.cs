@@ -24,6 +24,18 @@ namespace TPCuatrimestal
             {
                 ddlZona.Items.Add(X.IDZona.ToString() + " - " + X.NombreZona);
             }
+
+            ddlNacionalidad.Items.Add("Argentino");
+            ddlNacionalidad.Items.Add("Brasilero");
+            ddlNacionalidad.Items.Add("Paraguayo");
+            ddlNacionalidad.Items.Add("Uruguayo");
+            ddlNacionalidad.Items.Add("Boliviano");
+            ddlNacionalidad.Items.Add("Peruano");
+            ddlNacionalidad.Items.Add("Chileno");
+            ddlNacionalidad.Items.Add("Colombiano");
+            ddlNacionalidad.Items.Add("Venezolano");
+            ddlNacionalidad.Items.Add("Ecuatoriano");
+            ddlNacionalidad.Items.Add("Otra");
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,7 +52,7 @@ namespace TPCuatrimestal
                 txtNombre.Text = clienteAux.Nombres;
                 txtApellido.Text = clienteAux.Apellidos;
                 txtDNI.Text = clienteAux.DNI;
-                txtNacionalidad.Text = clienteAux.Nacionalidad;
+                ddlNacionalidad.Text = clienteAux.Nacionalidad;
                 //txtFechaNacimiento.Text = clienteAux.FechaNacimiento.ToString();
                 txtCalle.Text = clienteAux.Direccion.Direccion;
                 txtLocalidad.Text = clienteAux.Direccion.Localidad;
@@ -51,13 +63,12 @@ namespace TPCuatrimestal
 
                 string zonaString = clienteAux.zonaCliente.IDZona.ToString() + " - " + clienteAux.zonaCliente.NombreZona;
                 ListItem zonaPreseleccionada = ddlZona.Items.FindByValue(zonaString);
+
                 if (zonaPreseleccionada != null)
                 {
                     ddlZona.SelectedIndex = ddlZona.Items.IndexOf(zonaPreseleccionada);
                 }
-
             }
-
         }
 
         protected void btnCanelar_Click(object sender, EventArgs e)

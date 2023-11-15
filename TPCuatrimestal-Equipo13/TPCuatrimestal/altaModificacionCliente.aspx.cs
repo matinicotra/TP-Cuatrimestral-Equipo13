@@ -114,9 +114,9 @@ namespace TPCuatrimestal
             clienteAux.Direccion.Descripcion = txtDescripcion.Text;
 
             //seteo zona
-            int idZona = -1;
-            idZona = ddlZona.SelectedIndex >= 1 && ddlZona.SelectedIndex < cnAux.ObtenerZonas().Count() ? ddlZona.SelectedIndex : 1;
-            zonaAux = cnAux.ObtenerZonas()[idZona - 1];
+            int indexZona = -1;
+            indexZona = ddlZona.SelectedIndex >= 0 && ddlZona.SelectedIndex < cnAux.ObtenerZonas().Count() ? ddlZona.SelectedIndex : 1;
+            zonaAux = cnAux.ObtenerZonas()[indexZona];
             clienteAux.zonaCliente = zonaAux;
 
             if (banderaAlta)

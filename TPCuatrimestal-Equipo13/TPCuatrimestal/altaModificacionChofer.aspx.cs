@@ -136,14 +136,14 @@ namespace TPCuatrimestal
 
             //seteo zona
             int idZona = -1;
-            idZona = ddlZona.SelectedIndex >= 1 && ddlZona.SelectedIndex < cnAux.ObtenerZonas().Count() ? ddlZona.SelectedIndex : 1;
-            zonaAux = cnAux.ObtenerZonas()[idZona - 1];
+            idZona = ddlZona.SelectedIndex >= 0 && ddlZona.SelectedIndex < cnAux.ObtenerZonas().Count() ? ddlZona.SelectedIndex : 1;
+            zonaAux = cnAux.ObtenerZonas()[idZona];
             choferAux.ZonaAsignada = zonaAux;
 
             //seteo vehiculo
             int idVehiculo = -1;
-            idVehiculo = ddlAutoAsignado.SelectedIndex >= 1 && ddlAutoAsignado.SelectedIndex < vnAux.ObtenerDatos().Count() ? ddlAutoAsignado.SelectedIndex : 1;
-            vehiculoAux = vnAux.ObtenerDatos()[idVehiculo - 1];
+            idVehiculo = ddlAutoAsignado.SelectedIndex >= 0 && ddlAutoAsignado.SelectedIndex < vnAux.ObtenerDatos().Count() ? ddlAutoAsignado.SelectedIndex : 1;
+            vehiculoAux = vnAux.ObtenerDatos()[idVehiculo];
             choferAux.AutoAsignado = vehiculoAux;
 
             if (banderaAlta)

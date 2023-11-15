@@ -6,7 +6,7 @@
 
     <div class="container" style="display: flex; align-items: center; justify-content: center; flex-direction: column; grid-row-gap: 10px; margin: 50px 50px;">
 
-        <div class="contenedor">
+        <div class="contenedor" style="margin-bottom: 100px;">
 
             <h4 class="text-lg-center">VIAJE</h4>
 
@@ -117,6 +117,8 @@
                 <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" />
                 <asp:Button ID="btnCanelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCanelar_Click" />
             </div>
+
+            <br />
 
         </div>
 

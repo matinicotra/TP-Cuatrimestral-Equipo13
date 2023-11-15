@@ -313,9 +313,7 @@ namespace Negocio
             {
                 datos.CerrarConexion();
             }
-
             return idDomicilio;
-
         }
 
         public int ultimoIdPersona()
@@ -340,9 +338,7 @@ namespace Negocio
             {
                 datos.CerrarConexion();
             }
-
             return idPersona;
-
         }
     }
 

@@ -4,7 +4,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <div class="container-lg" style="display: flex; align-items: center; justify-content: center; flex-direction: column; grid-row-gap: 10px; margin: 50px 50px;">
 
         <div style="margin-bottom: 100px">
@@ -38,8 +37,8 @@
             <h5 class="text-lg-center">DATOS DE DOMICILIO</h5>
 
             <div class="input-group mb-3">
-                <asp:Label CssClass="input-group-text" ID="lblCalle" runat="server" Font-Bold="false">CALLE</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtCalle" runat="server"></asp:TextBox>
+                <asp:Label CssClass="input-group-text" ID="lblCalleyAltura" runat="server" Font-Bold="false">DIRECCION</asp:Label>
+                <asp:TextBox CssClass="form-control" ID="txtCalleyAltura" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-3">
@@ -73,12 +72,10 @@
                 <asp:Label CssClass="input-group-text" ID="lblEmail" runat="server" Font-Bold="false">EMAIL</asp:Label>
                 <asp:TextBox CssClass="form-control" ID="txtEmail" runat="server"></asp:TextBox>
             </div>
-
-            <div class="text-center">
-                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" />
-                <asp:Button ID="btnCanelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCanelar_Click" />
-            </div>
-
+                    <div class="text-center">
+                        <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" OnClick="btnAceptar_Click" />
+                        <asp:Button ID="btnCanelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCanelar_Click" />
+                    </div>
 
         </div>
 

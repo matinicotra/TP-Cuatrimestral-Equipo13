@@ -15,7 +15,7 @@ namespace TPCuatrimestal
 
         private void CargarZonasEnDDL()
         {
-            ChoferNegocio cnAux = new ChoferNegocio();
+            ClienteNegocio cnAux = new ClienteNegocio();
             List<Zona> ListZona = new List<Zona>();
 
             ListZona = cnAux.ObtenerZonas();
@@ -54,7 +54,7 @@ namespace TPCuatrimestal
                 txtDNI.Text = clienteAux.DNI;
                 ddlNacionalidad.Text = clienteAux.Nacionalidad;
                 //txtFechaNacimiento.Text = clienteAux.FechaNacimiento.ToString();
-                txtCalle.Text = clienteAux.Direccion.Direccion;
+                txtCalleyAltura.Text = clienteAux.Direccion.Direccion;
                 txtLocalidad.Text = clienteAux.Direccion.Localidad;
                 txtProvincia.Text = clienteAux.Direccion.Provincia;
                 txtDescripcion.Text = clienteAux.Direccion.Descripcion;
@@ -69,10 +69,65 @@ namespace TPCuatrimestal
                     ddlZona.SelectedIndex = ddlZona.Items.IndexOf(zonaPreseleccionada);
                 }
             }
+            else if (Request.QueryString["id"] != null)
+            {
+                cnAux = new ClienteNegocio();
+
+                string idCliente = Request.QueryString["id"];
+
+                clienteAux = new Cliente();
+
+                clienteAux = cnAux.ObtenerDatos(int.Parse(idCliente))[0];
+            }
         }
 
         protected void btnCanelar_Click(object sender, EventArgs e)
         {
+            Response.Redirect("adminCliente.aspx", false);
+        }
+
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+            ClienteNegocio cnAux = new ClienteNegocio();
+            Zona zonaAux = new Zona(); ;
+            bool banderaAlta = false;
+
+            if (Request.QueryString["id"] == null)
+            {
+                clienteAux = new Cliente();
+                banderaAlta = true;
+            }
+
+            //seteo de cliente
+            clienteAux.Nombres = txtNombre.Text;
+            clienteAux.Apellidos = txtApellido.Text;
+            clienteAux.DNI = txtDNI.Text;
+            clienteAux.Nacionalidad = ddlNacionalidad.SelectedValue;
+            clienteAux.FechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
+            clienteAux.Telefono = txtTelefono.Text;
+            clienteAux.Email = txtEmail.Text;
+
+            //seteo domicilio
+            clienteAux.Direccion.Direccion = txtCalleyAltura.Text;
+            clienteAux.Direccion.Localidad = txtLocalidad.Text;
+            clienteAux.Direccion.Provincia = txtProvincia.Text;
+            clienteAux.Direccion.Descripcion = txtDescripcion.Text;
+
+            //seteo zona
+            int idZona = -1;
+            idZona = ddlZona.SelectedIndex >= 1 && ddlZona.SelectedIndex < cnAux.ObtenerZonas().Count() ? ddlZona.SelectedIndex : 1;
+            zonaAux = cnAux.ObtenerZonas()[idZona - 1];
+            clienteAux.zonaCliente = zonaAux;
+
+            if (banderaAlta)
+            {
+                cnAux.AltaModificacionChofer(clienteAux, true);
+            }
+            else
+            {
+                cnAux.AltaModificacionChofer(clienteAux, false);
+            }
+
             Response.Redirect("adminCliente.aspx", false);
         }
     }

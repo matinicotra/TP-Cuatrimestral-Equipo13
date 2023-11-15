@@ -12,11 +12,15 @@
             <asp:Label ID="lblTelefonoTitulo" runat="server" Text=""></asp:Label>
         </div>
 
-        <div class="input-group mb-3" style="display:flex; align-items:center; flex-direction: row;">
-            <asp:TextBox ID="txtFiltrar" runat="server" CssClass="form-control" PlaceHolder="Busqueda..."></asp:TextBox>
-            <asp:DropDownList ID="ddlFiltrar" runat="server" CssClass="form-control"></asp:DropDownList>
-            <!-- AGREGAR LOS CRITERIOS DE ORDEN-->
-            <asp:Button ID="btnFiltrar" runat="server" CssClass="btn btn-primary" Text="Buscar" />
+        <div class="row justify-content-center">
+            <div class="input-group mb-3" style="display: flex; align-items: center; flex-direction: row;">
+                <asp:TextBox ID="txtFiltrar" runat="server" CssClass="form-control" PlaceHolder="Busqueda..."></asp:TextBox>
+                <asp:DropDownList ID="ddlFiltrar" runat="server" CssClass="custom-select ms-2"></asp:DropDownList>
+                <!-- AGREGAR LOS CRITERIOS DE ORDEN-->
+                <div class="ms-2">
+                    <asp:Button ID="btnFiltrar" runat="server" CssClass="btn btn-primary" Text="Buscar" />
+                </div>
+            </div>
         </div>
 
         <div>

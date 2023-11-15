@@ -4,11 +4,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="container-lg" style="display: flex; align-items: center; justify-content: center; flex-direction: column; grid-row-gap: 10px; margin: 50px 50px;">
+    <div class="container" style="display: flex; align-items: center; justify-content: center; flex-direction: column; grid-row-gap: 10px; margin: 50px 50px;">
 
-        <h4 class="text-lg-center">VIAJE</h4>
+        <div class="contenedor">
 
-        <div>
+            <h4 class="text-lg-center">VIAJE</h4>
+
             <h5 class="text-lg-center">DATOS CLIENTE</h5>
 
             <div class="input-group mb-3">
@@ -50,7 +51,7 @@
                 </asp:RadioButtonList>
             </div>
 
-            <h5 class="text-lg-cent>DOMICILIO ORIGEN</h5>
+            <h5 class="text-lg-cent">DOMICILIO ORIGEN</h5>
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblCalleOrigen" runat="server" Font-Bold="false">CALLE</asp:Label>
@@ -118,5 +119,7 @@
             </div>
 
         </div>
+
+    </div>
 
 </asp:Content>

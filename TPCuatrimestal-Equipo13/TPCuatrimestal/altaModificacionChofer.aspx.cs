@@ -69,7 +69,7 @@ namespace TPCuatrimestal
                 txtApellido.Text = choferAux.Apellidos;
                 txtDNI.Text = choferAux.DNI.ToString();
                 ddlNacionalidad.SelectedValue = choferAux.Nacionalidad;
-                txtFechaNacimiento.Text = choferAux.FechaNacimiento.ToShortDateString();
+                txtFechaNacimiento.Text = choferAux.FechaNacimiento.ToString("yyyy-MM-dd");
                 txtCalleyAltura.Text = choferAux.Direccion.Direccion;
                 txtLocalidad.Text = choferAux.Direccion.Localidad;
                 txtProvincia.Text = choferAux.Direccion.Provincia;

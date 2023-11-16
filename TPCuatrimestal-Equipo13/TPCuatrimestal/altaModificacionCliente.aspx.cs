@@ -53,7 +53,7 @@ namespace TPCuatrimestal
                 txtApellido.Text = clienteAux.Apellidos;
                 txtDNI.Text = clienteAux.DNI;
                 ddlNacionalidad.Text = clienteAux.Nacionalidad;
-                //txtFechaNacimiento.Text = clienteAux.FechaNacimiento.ToString();
+                txtFechaNacimiento.Text = clienteAux.FechaNacimiento.ToString("yyyy-MM-dd");
                 txtCalleyAltura.Text = clienteAux.Direccion.Direccion;
                 txtLocalidad.Text = clienteAux.Direccion.Localidad;
                 txtProvincia.Text = clienteAux.Direccion.Provincia;

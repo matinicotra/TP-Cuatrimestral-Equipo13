@@ -5,11 +5,24 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="container-lg" style="display:flex; align-items:center; justify-content:center; flex-direction:column; gap: 20px; margin: 40px 40px;">
+    <div style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px; margin-top: 40px; margin-bottom: 100px;">
 
         <div>
             <h4>Listado de viajes del dia</h4>
             <asp:ListBox ID="ListBox1" runat="server"></asp:ListBox>
+        </div>
+
+        <div>
+            <iframe id="urlIframe" 
+                runat="server"
+                width="600"
+                height="450"
+                style="border: 0"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+                src="">
+            </iframe>
         </div>
 
         <div>
@@ -33,5 +46,7 @@
             <asp:Button CssClass="btn btn-info" ID="btnResumenMesChofer" runat="server" Text="Por Mes" />
             <asp:Button CssClass="btn btn-info" ID="btnResumenTotalChofer" runat="server" Text="Total" />
         </div>
+
     </div>
+
 </asp:Content>

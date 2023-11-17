@@ -37,7 +37,7 @@
     </nav>
 
     <form id="form1" runat="server">
-        <div class="container" style="max-height:85vh;">
+        <div class="container">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>

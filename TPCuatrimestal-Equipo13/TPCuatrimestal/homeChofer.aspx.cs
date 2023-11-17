@@ -11,7 +11,9 @@ namespace TPCuatrimestal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            // MAPA //
+            string direccionPrueba = "cochabamba+1200,+capital+federal";        // desarrollar una funcion para concatenar la direccion
+            urlIframe.Attributes.Add("src", "https://www.google.com/maps/embed/v1/place?key=AIzaSyDoBiKY57PiZmKkaMIjWRjSMPZO2i-XJJM&q=" + direccionPrueba);
         }
 
         protected void btnDetalleViaje_Click(object sender, EventArgs e)

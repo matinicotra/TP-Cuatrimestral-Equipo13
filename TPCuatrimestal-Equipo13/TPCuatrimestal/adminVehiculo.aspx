@@ -14,7 +14,7 @@
         </div>
 
         <div id="div1">
-            <table class="table position-relative shadow" border="1" style="overflow: scroll; background-color: lightgray; width: 400px;">
+            <table class="table position-relative shadow" border="1" style="overflow: scroll; background-color: lightgray; width: 500px;">
                 <thead>
                     <tr>
                         <th scope="col" class="col-1">NUMERO</th>
@@ -40,6 +40,7 @@
                                 <td>
                                     <asp:ImageButton ID="btnEliminar" ImageUrl="https://e7.pngegg.com/pngimages/623/319/png-clipart-computer-icons-graphics-icon-design-illustration-delete-icon-logo-area.png" runat="server" class="btn btn-close btn-lg border" OnClick="btnEliminar_Click" CommandArgument='<%#Eval("IDVehiculo")%>' CommandName="IDVehiculo" ToolTip="Eliminar" />
                                     <asp:ImageButton ID="ImageButton1" ImageUrl="https://img2.freepng.es/20201210/hcb/transparent-edit-icon-interface-icon-5fd2c0863c4dc9.114206481607647366247.jpg" OnClick="ImageButton1_Click" CommandArgument='<%#Eval("IDVehiculo")%>' CommandName="IDVehiculo" runat="server" class="btn btn-close btn-lg border" ToolTip="Modificar" />
+                                    <asp:Button ID="btnBajaLogica" OnClick="btnBajaLogica_Click" CommandArgument='<%#Eval("IDVehiculo")%>' CommandName="IDVehiculo" runat="server" Text="Baja" CssClass="btn btn-warning" />
                                 </td>
                             </tr>
                         </tbody>

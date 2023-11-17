@@ -56,5 +56,16 @@ namespace TPCuatrimestal
 
             CargarVehiculos();
         }
+
+        protected void btnBajaLogica_Click(object sender, EventArgs e)
+        {
+            VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
+
+            int valorID = int.Parse(((Button)sender).CommandArgument);
+
+            vehiculoNegocio.BajaLogicaVehiculo(valorID);
+
+            CargarVehiculos();
+        }
     }
 }

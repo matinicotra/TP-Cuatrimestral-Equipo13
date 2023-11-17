@@ -25,9 +25,13 @@ namespace TPCuatrimestal
                 listaChoferes.SelectedIndex = 0;
             }
 
-            //cargarChoferes();
-            //dgvChoferes.DataSource = listaChoferes;
-            //dgvChoferes.DataBind();
+            // --- prueba con data grid view --- //
+
+            ChoferNegocio negocio = new ChoferNegocio();
+
+            listarChoferes = negocio.ObtenerDatos();
+            dgvChoferes.DataSource = listarChoferes;
+            dgvChoferes.DataBind();
         }
 
         private void cargarChoferes()
@@ -90,9 +94,13 @@ namespace TPCuatrimestal
             cargarChoferes();
         }
 
+        
+        // -- prueba data grid view -- //
+
         protected void dgvChoferes_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            string aux = dgvChoferes.SelectedRow.Cells[0].Text;         // no me acuerdo si esta linea la que devuelve el id seleccionado o la siguiente..
+            Seleccionado = dgvChoferes.SelectedDataKey.Value.ToString();   // datakey del gridview seleccionado
         }
     }
 }

@@ -2,6 +2,7 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Web;
 using System.Web.Services.Description;
@@ -23,6 +24,10 @@ namespace TPCuatrimestal
                 cargarChoferes();
                 listaChoferes.SelectedIndex = 0;
             }
+
+            //cargarChoferes();
+            //dgvChoferes.DataSource = listaChoferes;
+            //dgvChoferes.DataBind();
         }
 
         private void cargarChoferes()
@@ -83,6 +88,11 @@ namespace TPCuatrimestal
             negocio.BajaChofer(id);
 
             cargarChoferes();
+        }
+
+        protected void dgvChoferes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -21,6 +21,10 @@
                 <asp:ListBox CssClass="list-group list-group-flush" ID="listaChoferes" runat="server" OnSelectedIndexChanged="listaChoferes_SelectedIndexChanged" ></asp:ListBox>
             </div>
 
+            <%--<div>
+                <asp:GridView ID="dgvChoferes" DataKeyNames="id" OnSelectedIndexChanged="dgvChoferes_SelectedIndexChanged" runat="server" AutoGenerateColumns="false" CssClass="table table-primary"></asp:GridView>
+            </div>--%>
+
             <div>
                 <asp:Button ID="btnAltaChofer" runat="server" CssClass="btn btn-primary" Text="Alta" OnClick="btnAltaChofer_Click" />
                 <asp:Button ID="btnBajaChofer" runat="server" cssClass="btn btn-danger" Text="Baja" OnClick="btnBajaChofer_Click"/>

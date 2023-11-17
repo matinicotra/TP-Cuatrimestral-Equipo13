@@ -16,7 +16,9 @@ namespace TPCuatrimestal
         {
             string idCliente = Request.QueryString["id"];
             ClienteNegocio cnAux = new ClienteNegocio();
+
             clienteAux = cnAux.ObtenerDatos(int.Parse(idCliente))[0];
+
             lblNombreTitulo.Text = clienteAux.Nombres;
             lblTelefonoTitulo.Text = clienteAux.Telefono;
             lblEmail.Text = clienteAux.Email;
@@ -27,6 +29,7 @@ namespace TPCuatrimestal
             lblProvincia.Text = clienteAux.Direccion.Provincia;
             lblDescripcion.Text = clienteAux.Direccion.Descripcion;
             lblZona.Text = clienteAux.zonaCliente.NombreZona;
+
         }
 
         protected void btnModificarViaje_Click(object sender, EventArgs e)
@@ -39,5 +42,6 @@ namespace TPCuatrimestal
         {
             Response.Redirect("detalleViaje.aspx", false);
         }
+
     }
 }

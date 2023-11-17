@@ -7,7 +7,7 @@
 
     <div class="container-lg" style="display: flex; align-items: center; justify-content: center; flex-direction: column; grid-row-gap: 10px; margin: 40px 40px;">
 
-        <div style="margin-bottom: 100px">
+        <div class="contenedor" style="margin-bottom: 100px;">
             <h5 class="text-lg-center">DATOS PERSONALES</h5>
 
             <div class="input-group mb-3">

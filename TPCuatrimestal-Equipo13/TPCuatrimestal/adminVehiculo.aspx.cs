@@ -12,15 +12,19 @@ namespace TPCuatrimestal
     public partial class adminVehiculo : System.Web.UI.Page
     {
         public List<Vehiculo> ListarVehiculos { get; set; }
-        protected void Page_Load(object sender, EventArgs e)
+        private void CargarVehiculos()
         {
             VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
             ListarVehiculos = vehiculoNegocio.ObtenerDatos();
 
+            repVehiculos.DataSource = ListarVehiculos;
+            repVehiculos.DataBind();
+        }
+        protected void Page_Load(object sender, EventArgs e)
+        {
             if (!IsPostBack)
             {
-                repVehiculos.DataSource = ListarVehiculos;
-                repVehiculos.DataBind();
+                CargarVehiculos();
             }
         }
 
@@ -37,7 +41,20 @@ namespace TPCuatrimestal
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
             string valorID = ((ImageButton)sender).CommandArgument;
+
             Response.Redirect("altaModificacionVehiculo.aspx?id=" + valorID, false);
+        }
+
+        protected void btnEliminar_Click(object sender, ImageClickEventArgs e)
+        {
+            //SE TIENE QUE CHEQUEAR QUE EL AUTO NO ESTE ASIGNADO A NINGUN CHOFER
+            //O, AL MOMENTO DE DAR DE BAJA, QUITARLE LA ASIGNACION AL CHOFER TAMBIEN
+            VehiculoNegocio vehiAux = new VehiculoNegocio();
+            int valorID = int.Parse(((ImageButton)sender).CommandArgument);
+
+            vehiAux.BajaVehiculo(valorID);
+
+            CargarVehiculos();
         }
     }
 }

@@ -150,6 +150,7 @@ namespace Negocio
         {
             AccesoDatos datos = new AccesoDatos();
             PersonaNegocio perAux = new PersonaNegocio();
+            DomicilioNegocio domiAux = new DomicilioNegocio();
             Chofer choAux = new Chofer();
 
             choAux = ObtenerDatos(idChofer)[0];
@@ -157,6 +158,8 @@ namespace Negocio
             try
             {
                 perAux.BajaPersona(choAux.IDPersona);
+
+                domiAux.BajaDomicilio(choAux.Direccion.IDDomicilio);
 
                 datos.SetearConsulta("DELETE FROM CHOFER WHERE IDCHOFER = @IDCHOFER");
                 datos.SetearParametro("@IDCHOFER", idChofer);

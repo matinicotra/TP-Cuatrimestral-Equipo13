@@ -46,7 +46,7 @@ namespace Negocio
             }
         }
 
-        public void BajaDomicilio(int IdDomicilio)
+        public void BajaDomicilio(long IdDomicilio)
         {
             AccesoDatos datos = new AccesoDatos();
 

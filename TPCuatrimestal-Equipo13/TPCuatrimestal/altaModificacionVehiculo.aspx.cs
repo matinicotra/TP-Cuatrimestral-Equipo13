@@ -13,7 +13,7 @@ namespace TPCuatrimestal
     {
         public List<TipoVehiculo> ListTipoVehi { get; set; }
 
-        public int IDVehiculo {  get; set; }
+        public int IDVehiculo { get; set; }
 
         public List<Vehiculo> listaVehiculos { get; set; }
 
@@ -21,33 +21,34 @@ namespace TPCuatrimestal
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-                TipoVehiculoNegocio aux = new TipoVehiculoNegocio();
-                ListTipoVehi = new List<TipoVehiculo>();
 
-                ListTipoVehi = aux.ObtenerDatos();
-                if (!IsPostBack)
+            TipoVehiculoNegocio aux = new TipoVehiculoNegocio();
+            ListTipoVehi = new List<TipoVehiculo>();
+
+            ListTipoVehi = aux.ObtenerDatos();
+
+            if (!IsPostBack)
+            {
+                foreach (TipoVehiculo X in ListTipoVehi)
                 {
-                    foreach (TipoVehiculo X in ListTipoVehi)
-                    {
+                    ddlTipoVehiculo.Items.Add(X.NombreTipo);
+                }
 
-                        ddlTipoVehiculo.Items.Add(X.NombreTipo);
+                if (Request.QueryString["id"] != null)
+                {
+                    IDVehiculo = int.Parse(Request.QueryString["id"]); //Capturamos el id de la URL
 
-                    }
-            
-                    if (Request.QueryString["id"] != null)
-                    {
-                        IDVehiculo = int.Parse(Request.QueryString["id"]); //Capturamos el id de la URL
+                    VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
 
-                        VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
-                        listaVehiculos = vehiculoNegocio.ObtenerDatos();
-                        vehiculoAux = listaVehiculos.Find(x => x.IDVehiculo == IDVehiculo); //Capturamos el vehiculo a modificar en vehiculoAux
+                    listaVehiculos = vehiculoNegocio.ObtenerDatos();
 
-                        //cargamos los campos con vehiculoAux
-                        txtPatente.Text = vehiculoAux.Patente.ToString();
-                        txtModelo.Text = vehiculoAux.Modelo.ToString();
-                        ddlTipoVehiculo.SelectedValue = vehiculoAux.Tipo.NombreTipo.ToString();
-                    }
+                    vehiculoAux = listaVehiculos.Find(x => x.IDVehiculo == IDVehiculo); //Capturamos el vehiculo a modificar en vehiculoAux
+
+                    //cargamos los campos con vehiculoAux
+                    txtPatente.Text = vehiculoAux.Patente.ToString();
+                    txtModelo.Text = vehiculoAux.Modelo.ToString();
+                    ddlTipoVehiculo.SelectedValue = vehiculoAux.Tipo.NombreTipo.ToString();
+                }
             }
         }
 
@@ -61,31 +62,31 @@ namespace TPCuatrimestal
             try
             {
                 //capturamos en vehiculoAux los datos de los campos
-            vehiculoAux.Patente = txtPatente.Text;
-            vehiculoAux.Modelo = int.Parse(txtModelo.Text);
-            string tipoSeleccionado = ddlTipoVehiculo.SelectedValue;
-            TipoVehiculo tvAux = new TipoVehiculo();
-            tvAux = ListTipoVehi.Find(x => x.NombreTipo == tipoSeleccionado);
-            vehiculoAux.Tipo = tvAux;
+                vehiculoAux.Patente = txtPatente.Text;
+                vehiculoAux.Modelo = int.Parse(txtModelo.Text);
+                string tipoSeleccionado = ddlTipoVehiculo.SelectedValue;
+                TipoVehiculo tvAux = new TipoVehiculo();
+                tvAux = ListTipoVehi.Find(x => x.NombreTipo == tipoSeleccionado);
+                vehiculoAux.Tipo = tvAux;
 
-            VehiculoNegocio vehiculoNegocioAux = new VehiculoNegocio();
+                VehiculoNegocio vehiculoNegocioAux = new VehiculoNegocio();
 
                 //dividimos si es modificar o cargar uno nuevo
                 if (Request.QueryString["id"] != null) //si es modificar...
                 {
-                vehiculoAux.IDVehiculo = int.Parse(Request.QueryString["id"]);
-                vehiculoNegocioAux.ModificarVehiculo(vehiculoAux);
-            }
-            else //si es agregar uno nuevo...
-            {
-                vehiculoNegocioAux.AgregarVehiculo(vehiculoAux);
-            }
+                    vehiculoAux.IDVehiculo = int.Parse(Request.QueryString["id"]);
+                    vehiculoNegocioAux.AltaModificacionVehiculo(vehiculoAux, false);
+                }
+                else //si es agregar uno nuevo...
+                {
+                    vehiculoNegocioAux.AltaModificacionVehiculo(vehiculoAux, true);
+                }
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
+
             Response.Redirect("adminVehiculo.aspx", false);
         }
     }

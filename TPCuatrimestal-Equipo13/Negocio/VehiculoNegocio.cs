@@ -24,12 +24,12 @@ namespace Negocio
                 {
                     Vehiculo auxVehiculo = new Vehiculo();
 
-                    auxVehiculo.IDVehiculo = datosVehiculo.Lector["IDVEHICULO"] is DBNull? -1 : (int)datosVehiculo.Lector["IDVEHICULO"];
+                    auxVehiculo.IDVehiculo = datosVehiculo.Lector["IDVEHICULO"] is DBNull ? -1 : (int)datosVehiculo.Lector["IDVEHICULO"];
                     auxVehiculo.Modelo = datosVehiculo.Lector["MODELO"] is DBNull ? 1900 : (int)datosVehiculo.Lector["MODELO"];
-                    auxVehiculo.Patente = datosVehiculo.Lector["PATENTE"] is DBNull? " " : (string)datosVehiculo.Lector["PATENTE"];
-                    auxVehiculo.Estado = datosVehiculo.Lector["ESTADO"] is DBNull? false : (bool)datosVehiculo.Lector["ESTADO"];
-                    auxVehiculo.Tipo.NombreTipo = datosVehiculo.Lector["TIPO"] is DBNull? " " : (string)datosVehiculo.Lector["TIPO"];
-                    auxVehiculo.Tipo.CantAsientos = datosVehiculo.Lector["CANT_ASIENTOS"] is DBNull? 0 : (int)datosVehiculo.Lector["CANT_ASIENTOS"];
+                    auxVehiculo.Patente = datosVehiculo.Lector["PATENTE"] is DBNull ? " " : (string)datosVehiculo.Lector["PATENTE"];
+                    auxVehiculo.Estado = datosVehiculo.Lector["ESTADO"] is DBNull ? false : (bool)datosVehiculo.Lector["ESTADO"];
+                    auxVehiculo.Tipo.NombreTipo = datosVehiculo.Lector["TIPO"] is DBNull ? " " : (string)datosVehiculo.Lector["TIPO"];
+                    auxVehiculo.Tipo.CantAsientos = datosVehiculo.Lector["CANT_ASIENTOS"] is DBNull ? 0 : (int)datosVehiculo.Lector["CANT_ASIENTOS"];
 
                     vehiculos.Add(auxVehiculo);
                 }
@@ -47,15 +47,28 @@ namespace Negocio
 
         }
 
-        public void AgregarVehiculo(Vehiculo aux)
+        public void AltaModificacionVehiculo(Vehiculo aux, bool esAlta)
         {
             AccesoDatos datos = new AccesoDatos();
+
             try
             {
-                datos.SetearConsulta("INSERT INTO VEHICULOS (IDTIPO,MODELO,PATENTE,ESTADO) values (@IdTipoVehiculo, @Modelo, @Patente, 1)");
-                datos.SetearParametro("@IdTipoVehiculo", aux.Tipo.IDTipo);
-                datos.SetearParametro("@Modelo", aux.Modelo);
-                datos.SetearParametro("@Patente", aux.Patente);
+                if (!esAlta)
+                {
+                    datos.SetearConsulta("INSERT INTO VEHICULOS (IDTIPO,MODELO,PATENTE,ESTADO) values (@IdTipoVehiculo, @Modelo, @Patente, 1)");
+                    datos.SetearParametro("@IdTipoVehiculo", aux.Tipo.IDTipo);
+                    datos.SetearParametro("@Modelo", aux.Modelo);
+                    datos.SetearParametro("@Patente", aux.Patente);
+                }
+                else
+                {
+                    datos.SetearConsulta("UPDATE VEHICULOS SET IDTIPO = @IdTipoVehiculo, MODELO = @Modelo, PATENTE = @Patente, ESTADO = 1 WHERE IDVEHICULO = @IdVehiculo");
+                    datos.SetearParametro("@IdTipoVehiculo", aux.Tipo.IDTipo);
+                    datos.SetearParametro("@Modelo", aux.Modelo);
+                    datos.SetearParametro("@Patente", aux.Patente);
+                    datos.SetearParametro("@IdVehiculo", aux.IDVehiculo);
+                }
+
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
@@ -68,16 +81,14 @@ namespace Negocio
             }
         }
 
-        public void ModificarVehiculo(Vehiculo aux)
+        public void BajaVehiculo(int IDVehiculo)
         {
             AccesoDatos datos = new AccesoDatos();
+
             try
             {
-                datos.SetearConsulta("UPDATE VEHICULOS SET IDTIPO = @IdTipoVehiculo, MODELO = @Modelo, PATENTE = @Patente, ESTADO = 1 WHERE IDVEHICULO = @IdVehiculo");
-                datos.SetearParametro("@IdTipoVehiculo", aux.Tipo.IDTipo);
-                datos.SetearParametro("@Modelo", aux.Modelo);
-                datos.SetearParametro("@Patente", aux.Patente);
-                datos.SetearParametro("@IdVehiculo", aux.IDVehiculo);
+                datos.SetearConsulta("DELETE FROM VEHICULOS WHERE IDVEHICULO = @IDVEHICULO");
+                datos.SetearParametro("@IDVEHICULO", IDVehiculo);
                 datos.EjecutarAccion();
             }
             catch (Exception ex)

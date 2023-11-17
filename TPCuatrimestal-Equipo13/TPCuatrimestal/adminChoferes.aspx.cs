@@ -28,9 +28,12 @@ namespace TPCuatrimestal
         private void cargarChoferes()
         {
             ChoferNegocio choferNegocio = new ChoferNegocio();
+
             listarChoferes = null;
             listaChoferes.Items.Clear();
+
             listarChoferes = choferNegocio.ObtenerDatos();
+
             try
             {
                 foreach (Chofer chofer in listarChoferes)
@@ -45,7 +48,6 @@ namespace TPCuatrimestal
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -79,6 +81,7 @@ namespace TPCuatrimestal
             ChoferNegocio negocio = new ChoferNegocio();
 
             negocio.BajaChofer(id);
+
             cargarChoferes();
         }
     }

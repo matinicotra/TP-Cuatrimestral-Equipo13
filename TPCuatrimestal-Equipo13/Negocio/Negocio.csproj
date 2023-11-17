@@ -45,6 +45,7 @@
     <Compile Include="ChoferNegocio.cs" />
     <Compile Include="ClienteNegocio.cs" />
     <Compile Include="DomicilioNegocio.cs" />
+    <Compile Include="PersonaNegocio.cs" />
     <Compile Include="TipoVehiculoNegocio.cs" />
     <Compile Include="VehiculoNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

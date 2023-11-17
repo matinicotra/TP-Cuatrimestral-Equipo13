@@ -38,7 +38,6 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -46,5 +45,90 @@ namespace Negocio
                 datosDomicilio.CerrarConexion();
             }
         }
+
+        public void BajaDomicilio(int IdDomicilio)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("DELETE FROM DOMICILIO WHERE IDDOMICILIO = @IDDOMICILIO");
+                datos.SetearParametro("@IDPDOMICILIO", IdDomicilio);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void AltaModificacionDomicilio(Domicilio domiAux, bool esAlta)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                if (!esAlta)
+                {
+                    datos.SetearConsulta("UPDATE DOMICILIO SET DIRECCION = @DIRECCION, LOCALIDAD = @LOCALIDAD, PROVINCIA = @PROVINCIA, DESCRIPCION = @DESCRIPCION WHERE IDDOMICILIO = @IDDOMICILIO");
+                    datos.SetearParametro("@DIRECCION", domiAux.Direccion);
+                    datos.SetearParametro("@LOCALIDAD", domiAux.Localidad);
+                    datos.SetearParametro("@PROVINCIA", domiAux.Provincia);
+                    datos.SetearParametro("@DESCRIPCION", domiAux.Descripcion);
+                    datos.SetearParametro("@IDDOMICILIO", domiAux.IDDomicilio);
+                }
+                else
+                {
+                    datos.SetearConsulta("INSERT INTO DOMICILIO (DIRECCION, LOCALIDAD, PROVINCIA, DESCRIPCION) VALUES (@DIRECCION, @LOCALIDAD, @PROVINCIA, @DESCRIPCION)");
+                    datos.SetearParametro("@DIRECCION", domiAux.Direccion);
+                    datos.SetearParametro("@LOCALIDAD", domiAux.Localidad);
+                    datos.SetearParametro("@PROVINCIA", domiAux.Provincia);
+                    datos.SetearParametro("@DESCRIPCION", domiAux.Descripcion);
+                }
+
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+        public long ultimoIdDomicilio()
+        {
+            long idDomicilio = 0;
+
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("SELECT TOP 1 * FROM DOMICILIO ORDER BY IDDOMICILIO DESC");
+                datos.EjecutarConsulta();
+
+                if (datos.Lector.Read())
+                {
+                    idDomicilio = (long)datos.Lector["IDDOMICILIO"];
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+
+            return idDomicilio;
+        }
     }
 }
+
+

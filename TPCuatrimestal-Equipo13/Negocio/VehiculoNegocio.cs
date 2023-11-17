@@ -100,5 +100,25 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+
+        public void BajaLogicaVehiculo(int IDVehiculo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("UPDATE VEHICULOS SET ESTADO = 0 WHERE IDVEHICULO = @IDVEHICULO");
+                datos.SetearParametro("@IDVEHICULO", IDVehiculo);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
     }
 }

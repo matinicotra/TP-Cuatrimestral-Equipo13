@@ -34,8 +34,11 @@ namespace TPCuatrimestal
 
         protected void btnModificarViaje_Click(object sender, EventArgs e)
         {
-            //FALTA LA LOGICA, SOLO NAVEGAVILIDAD
-            Response.Redirect("altaModificacionCliente.aspx", false);
+            string idSeleccionado = clienteAux.IDCliente.ToString();
+
+            Session.Add("RediCliente", 1);
+
+            Response.Redirect("altaModificacionCliente.aspx?id=" + idSeleccionado, false);
         }
 
         protected void btnDetalleViaje_Click(object sender, EventArgs e)

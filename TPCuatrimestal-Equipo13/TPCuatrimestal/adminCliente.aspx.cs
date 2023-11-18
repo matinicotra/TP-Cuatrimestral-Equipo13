@@ -47,8 +47,6 @@ namespace TPCuatrimestal
             }
         }
 
-
-
         protected void btnAltaCliente_Click(object sender, EventArgs e)
         {
             //SI ES ALTA, SOLO REDIRECT
@@ -64,6 +62,9 @@ namespace TPCuatrimestal
         protected void btnModificarCliente_Click(object sender, EventArgs e)
         {
             string idSeleccionado = listaClientes.SelectedValue;
+
+            Session.Add("RediCliente", 2);
+
             Response.Redirect("altaModificacionCliente.aspx?id=" + idSeleccionado, false);
         }
 

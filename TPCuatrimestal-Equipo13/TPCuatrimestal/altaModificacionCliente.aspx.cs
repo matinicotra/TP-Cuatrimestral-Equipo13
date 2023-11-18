@@ -83,7 +83,16 @@ namespace TPCuatrimestal
 
         protected void btnCanelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("adminCliente.aspx", false);
+            int Direccionar = (int)Session["RediCliente"];
+
+            if (Direccionar == 1)
+            {
+                Response.Redirect("detalleCliente.aspx?id=" + clienteAux.IDCliente, false);
+            }
+            else
+            {
+                Response.Redirect("adminCliente.aspx", false);
+            }
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)

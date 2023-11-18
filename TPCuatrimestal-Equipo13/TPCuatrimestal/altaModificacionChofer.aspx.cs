@@ -77,7 +77,7 @@ namespace TPCuatrimestal
 
                 string autoString = choferAux.AutoAsignado.IDVehiculo.ToString() + " - " + "(" + choferAux.AutoAsignado.Patente + ")";
                 ListItem autoPreseleccionado = ddlAutoAsignado.Items.FindByValue(autoString);
-                if( autoPreseleccionado != null)
+                if (autoPreseleccionado != null)
                 {
                     ddlAutoAsignado.SelectedIndex = ddlAutoAsignado.Items.IndexOf(autoPreseleccionado);
                 }
@@ -88,7 +88,7 @@ namespace TPCuatrimestal
                 {
                     ddlZona.SelectedIndex = ddlZona.Items.IndexOf(zonaPreseleccionada);
                 }
-                
+
             }
             else if (Request.QueryString["id"] != null)
             {
@@ -104,7 +104,16 @@ namespace TPCuatrimestal
 
         protected void btnCanelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("adminChoferes.aspx", false);
+            int Redireccionar = (int)Session["RediChofer"];
+
+            if (Redireccionar == 1)
+            {
+                Response.Redirect("detalleChofer.aspx?id=" + choferAux.IDChofer, false);
+            }
+            else
+            {
+                Response.Redirect("adminChoferes.aspx", false);
+            }
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)

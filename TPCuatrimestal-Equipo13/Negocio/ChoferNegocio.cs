@@ -117,7 +117,7 @@ namespace Negocio
                     choferAux.ZonaAsignada = cnAux.ObtenerZonas(datosChofer.Lector["IDZONA"] is DBNull ? 0 : (int)datosChofer.Lector["IDZONA"])[0];
 
                     //lee el id vehiculo asignado
-                    if (datosChofer.Lector["IDVEHICULO"] != null)
+                    if (datosChofer.Lector["IDVEHICULO"] != null && (int)datosChofer.Lector["IDVEHICULO"] != 0)
                     {
                         int IDVehiculo = (int)datosChofer.Lector["IDVEHICULO"];//guarda el id del vehiculo
                         Vehiculo vehiculoAux = new Vehiculo();

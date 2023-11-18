@@ -16,8 +16,10 @@ namespace TPCuatrimestal
             if (Request.QueryString["id"] != null)
             {
                 ChoferNegocio cnAux = new ChoferNegocio();
+
                 string idChofer = Request.QueryString["id"];
                 Chofer choferAux = cnAux.ObtenerDatos(int.Parse(idChofer))[0];
+
                 lblTituloChofer.Text = choferAux.Nombres + " " + choferAux.Apellidos;
                 lblAutoAsignado.Text = choferAux.AutoAsignado.Patente;
                 lblZona.Text = choferAux.ZonaAsignada.NombreZona;
@@ -27,6 +29,15 @@ namespace TPCuatrimestal
         protected void btnDetalleViaje_Click(object sender, EventArgs e)
         {
             Response.Redirect("detalleViaje.aspx", false);
+        }
+
+        protected void btnModificarViaje_Click(object sender, EventArgs e)
+        {
+            string idSeleccionado = Request.QueryString["id"];
+
+            Session.Add("RediChofer", 1);
+
+            Response.Redirect("altaModificacionChofer.aspx?id=" + idSeleccionado, false);
         }
     }
 }

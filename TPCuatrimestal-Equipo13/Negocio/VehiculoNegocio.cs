@@ -87,6 +87,11 @@ namespace Negocio
 
             try
             {
+                datos.SetearConsulta("UPDATE CHOFER SET IDVEHICULO = NULL WHERE IDVEHICULO = @ID");
+                datos.SetearParametro("@ID", IDVehiculo);
+                datos.EjecutarAccion();
+                datos.CerrarConexion();
+
                 datos.SetearConsulta("DELETE FROM VEHICULOS WHERE IDVEHICULO = @IDVEHICULO");
                 datos.SetearParametro("@IDVEHICULO", IDVehiculo);
                 datos.EjecutarAccion();

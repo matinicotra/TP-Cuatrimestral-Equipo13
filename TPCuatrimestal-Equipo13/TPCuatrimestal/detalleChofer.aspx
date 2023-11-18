@@ -43,7 +43,7 @@
         <div>
             <asp:Button CssClass="btn btn-success" ID="btnAltaViaje" runat="server" Text="Alta" />
             <asp:Button CssClass="btn btn-danger" ID="btnBajaViaje" runat="server" Text="Baja" />
-            <asp:Button CssClass="btn btn-warning" ID="btnModificarViaje" runat="server" Text="Modificar" />
+            <asp:Button CssClass="btn btn-warning" ID="btnModificarViaje" runat="server" Text="Modificar" OnClick="btnModificarViaje_Click"/>
             <asp:Button CssClass="btn btn-info" ID="btnDetalleViaje" runat="server" Text="Detalles viaje" OnClick="btnDetalleViaje_Click" />
         </div>
 

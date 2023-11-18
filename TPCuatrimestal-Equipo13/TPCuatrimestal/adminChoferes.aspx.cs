@@ -30,6 +30,7 @@ namespace TPCuatrimestal
             ChoferNegocio negocio = new ChoferNegocio();
 
             listarChoferes = negocio.ObtenerDatos();
+
             dgvChoferes.DataSource = listarChoferes;
             dgvChoferes.DataBind();
         }
@@ -63,19 +64,22 @@ namespace TPCuatrimestal
 
         protected void btnAltaChofer_Click(object sender, EventArgs e)
         {
-            //SI ES ALTA, SOLO REDIRECT
             Response.Redirect("altaModificacionChofer.aspx", false);
         }
 
         protected void btnDetalleChofer_Click(object sender, EventArgs e)
         {
             string idSeleccionado = listaChoferes.SelectedValue;
+
             Response.Redirect("detalleChofer.aspx?id=" + idSeleccionado, false);
         }
 
         protected void btnModificarChofer_Click(object sender, EventArgs e)
         {
             string idSeleccionado = listaChoferes.SelectedValue;
+
+            Session.Add("RediChofer", 2);
+
             Response.Redirect("altaModificacionChofer.aspx?id=" + idSeleccionado, false);
         }
 

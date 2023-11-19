@@ -10,6 +10,8 @@
             <div class="input-group mb-3" style="display: flex; align-items: center; flex-direction: row;">
                 <asp:TextBox ID="txtFiltrar" runat="server" CssClass="form-control" PlaceHolder="Busqueda..."></asp:TextBox>
                 <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" CssClass="btn btn-primary" />
+                <asp:CheckBox CssClass="ms-4" ID="chbMostrarInactivos" runat="server" AutoPostBack="true" OnCheckedChanged="chbMostrarInactivos_CheckedChanged"/>
+                <asp:Label CssClass="ms-1" ID="lblMostrarInactivos" runat="server" Text="Mostrar Inactivos"></asp:Label>
             </div>
         </div>
 

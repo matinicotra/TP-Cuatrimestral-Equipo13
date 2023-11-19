@@ -11,7 +11,7 @@ namespace Negocio
     {
         private List<Vehiculo> vehiculos = new List<Vehiculo>();
 
-        public List<Vehiculo> ObtenerDatos()
+        public List<Vehiculo> ObtenerDatos(bool cargarInactivos = false)
         {
             AccesoDatos datosVehiculo = new AccesoDatos();
 
@@ -31,7 +31,14 @@ namespace Negocio
                     auxVehiculo.Tipo.NombreTipo = datosVehiculo.Lector["TIPO"] is DBNull ? " " : (string)datosVehiculo.Lector["TIPO"];
                     auxVehiculo.Tipo.CantAsientos = datosVehiculo.Lector["CANT_ASIENTOS"] is DBNull ? 0 : (int)datosVehiculo.Lector["CANT_ASIENTOS"];
 
-                    vehiculos.Add(auxVehiculo);
+                    if(!auxVehiculo.Estado && !cargarInactivos)
+                    {
+                    }
+                    else
+                    {
+                        vehiculos.Add(auxVehiculo);
+                    }
+
                 }
 
                 return vehiculos;

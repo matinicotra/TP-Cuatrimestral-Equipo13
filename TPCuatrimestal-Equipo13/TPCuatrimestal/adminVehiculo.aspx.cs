@@ -15,7 +15,7 @@ namespace TPCuatrimestal
         private void CargarVehiculos()
         {
             VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
-            ListarVehiculos = vehiculoNegocio.ObtenerDatos();
+            ListarVehiculos = vehiculoNegocio.ObtenerDatos(chbMostrarInactivos.Checked);
 
             repVehiculos.DataSource = ListarVehiculos;
             repVehiculos.DataBind();
@@ -76,6 +76,11 @@ namespace TPCuatrimestal
 
             vehiculoNegocio.BajaoAltaLogicaVehiculo(valorID, true);
 
+            CargarVehiculos();
+        }
+
+        protected void chbMostrarInactivos_CheckedChanged(object sender, EventArgs e)
+        {
             CargarVehiculos();
         }
     }

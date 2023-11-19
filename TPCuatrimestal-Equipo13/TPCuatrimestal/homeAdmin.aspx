@@ -7,9 +7,9 @@
 
     <div style="display: flex; align-items: center; justify-content: center; flex-direction: column; grid-row-gap: 30px; margin-top: 50px; margin-bottom: 150px;">
 
-        <div>
-            <asp:TextBox ID="txtFiltrar" runat="server" PlaceHolder="Busqueda..."></asp:TextBox>
-            <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" CssClass="btn btn-primary" />
+        <div CssClass="input-group" style="display:flex; ">
+            <asp:TextBox ID="txtFiltrar" runat="server" CssClass="form-control" PlaceHolder="Busqueda..."></asp:TextBox>
+            <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" CssClass="btn btn-primary ms-2" />
         </div>
 
         <div style="display: flex; flex-direction: row;">

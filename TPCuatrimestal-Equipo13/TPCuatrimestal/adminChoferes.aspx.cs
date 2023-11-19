@@ -53,7 +53,7 @@ namespace TPCuatrimestal
                     item.Value = chofer.IDChofer.ToString(); // Asigna el valor deseado
                     string autoAsignado = chofer.AutoAsignado.Patente is null ? "Sin Auto" : chofer.AutoAsignado.Patente + " " + chofer.AutoAsignado.Tipo.ToString();
                     item.Text = $"{chofer.Nombres} {chofer.Apellidos} - {chofer.ZonaAsignada.NombreZona} - {autoAsignado}";
-                    item.Attributes["class"] = "list-group-item";
+                    item.Attributes["class"] = "list-group-item my-1 mx-2";
                     listaChoferes.Items.Add(item);
                 }
             }

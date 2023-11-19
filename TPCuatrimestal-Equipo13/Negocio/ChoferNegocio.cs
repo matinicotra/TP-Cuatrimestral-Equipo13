@@ -117,18 +117,30 @@ namespace Negocio
                     choferAux.ZonaAsignada = cnAux.ObtenerZonas(datosChofer.Lector["IDZONA"] is DBNull ? 0 : (int)datosChofer.Lector["IDZONA"])[0];
 
                     //lee el id vehiculo asignado
-                    if (datosChofer.Lector["IDVEHICULO"] != null && (int)datosChofer.Lector["IDVEHICULO"] != 0)
+                    if (datosChofer.Lector["IDVEHICULO"] != DBNull.Value)
                     {
-                        int IDVehiculo = (int)datosChofer.Lector["IDVEHICULO"];//guarda el id del vehiculo
-                        Vehiculo vehiculoAux = new Vehiculo();
-                        VehiculoNegocio vnAux = new VehiculoNegocio();
-                        List<Vehiculo> listaVehiculos = new List<Vehiculo>();
+                        if ((int)datosChofer.Lector["IDVEHICULO"] > 0)
+                        {
+                            int IDVehiculo = (int)datosChofer.Lector["IDVEHICULO"];//guarda el id del vehiculo
+                            Vehiculo vehiculoAux = new Vehiculo();
+                            VehiculoNegocio vnAux = new VehiculoNegocio();
+                            List<Vehiculo> listaVehiculos = new List<Vehiculo>();
 
-                        listaVehiculos = vnAux.ObtenerDatos(); //carga la lista de todos los vehiculo de la BBDD
+                            listaVehiculos = vnAux.ObtenerDatos(); //carga la lista de todos los vehiculo de la BBDD
 
-                        vehiculoAux = listaVehiculos.Find(x => x.IDVehiculo == IDVehiculo); //busca por el ID y asigna el vehiculo a vehiculoAux 
-                        
-                        choferAux.AutoAsignado = vehiculoAux; //setea el auto del chofer
+                            vehiculoAux = listaVehiculos.Find(x => x.IDVehiculo == IDVehiculo); //busca por el ID y asigna el vehiculo a vehiculoAux 
+
+                            if (vehiculoAux != null)//si el vehiculo está activado setea el auto del chofer
+                            {
+                                choferAux.AutoAsignado = vehiculoAux;
+                            }
+                            else //si está desactivado le saca la asignacion
+                            {
+                                choferAux.AutoAsignado = null;
+                                AsignarDesasignarAuto(choferAux.IDChofer, -1);
+                            }
+
+                        }
                     }
 
                     listaChoferes.Add(choferAux);
@@ -240,6 +252,35 @@ namespace Negocio
             {
                 datos.CerrarConexion();
             }
+        }
+
+        void AsignarDesasignarAuto(int idChofer, int idVehiculo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("UPDATE CHOFER SET IDVEHICULO = @IDVEHICULO WHERE IDCHOFER = @IDCHOFER");
+                datos.SetearParametro("@IDCHOFER", idChofer);
+                if (idVehiculo <= 0)
+                {
+                    datos.SetearParametro("@IDVEHICULO", DBNull.Value);
+                }
+                else
+                {
+                    datos.SetearParametro("@IDVEHICULO", idVehiculo);
+                }
+                datos.EjecutarAccion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+
         }
     }
 }

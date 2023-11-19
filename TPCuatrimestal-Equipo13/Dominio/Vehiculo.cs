@@ -17,5 +17,10 @@ namespace Dominio
         public int Modelo { get; set; }
         public string Patente {  get; set; }
         public bool Estado {  get; set; }
+
+        public override string ToString()
+        {
+            return Tipo.ToString();
+        }
     }
 }

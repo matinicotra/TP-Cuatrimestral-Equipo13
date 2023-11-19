@@ -22,7 +22,7 @@
         </div>
 
         <div>
-            <asp:Button ID="btnAltaCliente" runat="server" CssClass="btn btn-primary"  Text="Alta" OnClick="btnAltaCliente_Click" />
+            <asp:Button ID="btnAltaCliente" runat="server" CssClass="btn btn-success"  Text="Alta" OnClick="btnAltaCliente_Click" />
             <asp:Button ID="btnBajaCliente" runat="server" cssClass="btn btn-danger" Text="Baja" OnClick="btnBajaCliente_Click" />
             <asp:Button ID="btnModificarCliente" runat="server" CssClass="btn btn-warning" Text="Modificar" OnClick="btnModificarCliente_Click"/>
             <asp:Button ID="btnDetalleCliente" runat="server" CssClass="btn btn-info" Text="Detalle Cliente" OnClick="btnDetalleCliente_Click" /> 

@@ -106,13 +106,20 @@ namespace Negocio
             }
         }
 
-        public void BajaLogicaVehiculo(int IDVehiculo)
+        public void BajaoAltaLogicaVehiculo(int IDVehiculo, bool esAltaLogica)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.SetearConsulta("UPDATE VEHICULOS SET ESTADO = 0 WHERE IDVEHICULO = @IDVEHICULO");
+                if (esAltaLogica)
+                {
+                    datos.SetearConsulta("UPDATE VEHICULOS SET ESTADO = 1 WHERE IDVEHICULO = @IDVEHICULO");
+                }
+                else
+                {
+                    datos.SetearConsulta("UPDATE VEHICULOS SET ESTADO = 0 WHERE IDVEHICULO = @IDVEHICULO");
+                }
                 datos.SetearParametro("@IDVEHICULO", IDVehiculo);
                 datos.EjecutarAccion();
             }
@@ -125,5 +132,6 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+
     }
 }

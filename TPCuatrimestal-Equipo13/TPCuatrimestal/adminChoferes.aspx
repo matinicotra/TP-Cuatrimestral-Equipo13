@@ -28,7 +28,7 @@
             </div>
 
             <div>
-                <asp:Button ID="btnAltaChofer" runat="server" CssClass="btn btn-primary" Text="Alta" OnClick="btnAltaChofer_Click" />
+                <asp:Button ID="btnAltaChofer" runat="server" CssClass="btn btn-success" Text="Alta" OnClick="btnAltaChofer_Click" />
                 <asp:Button ID="btnBajaChofer" runat="server" cssClass="btn btn-danger" Text="Baja" OnClick="btnBajaChofer_Click"/>
                 <asp:Button ID="btnModificarChofer" runat="server" CssClass="btn btn-warning" Text="Modificar" onClick="btnModificarChofer_Click" />
                 <asp:Button ID="btnDetalleChofer" CssClass="btn btn-info" runat="server" Text="Detalle Chofer" OnClick="btnDetalleChofer_Click" />

@@ -17,7 +17,7 @@
             <asp:ListBox ID="lbViajesDelDia" runat="server"></asp:ListBox>
         </div>
 
-        <div class="btn-group" role="group">
+        <div role="group">
             <asp:Button ID="btnAltaViaje" runat="server" Text="Alta viaje" CssClass="btn btn-success" OnClick="btnAltaViaje_Click" />
             <asp:Button ID="btnModificarViaje" runat="server" Text="Modificar viaje" CssClass="btn btn-warning" OnClick="btnModificarViaje_Click" />
             <asp:Button ID="btnBajaViaje" runat="server" Text="Baja viaje" CssClass="btn btn-danger" OnClick="btnBajaViaje_Click" />
@@ -29,7 +29,7 @@
             <asp:Calendar ID="calOtrosDias" runat="server" class="table table-secondary table-striped"></asp:Calendar>
         </div>
 
-        <div class="btn-group" style="font-family: cursive;" role="group">
+        <div style="font-family: cursive;" role="group">
             <asp:Button ID="btnClientes" runat="server" Text="Clientes" CssClass="btn btn-primary" OnClick="btnEmpresa_Click" />
             <asp:Button ID="btnChoferes" runat="server" Text="Choferes" CssClass="btn btn-info" OnClick="btnChoferes_Click" />
             <asp:Button ID="btnVehiculo" runat="server" Text="Vehiculos" CssClass="btn btn-primary" OnClick="btnVehiculo_Click" />

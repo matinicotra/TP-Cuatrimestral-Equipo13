@@ -146,5 +146,24 @@ namespace Negocio
             }
         }
         
+        public void BajaFisicaCliente(int idCliente)
+        {
+            AccesoDatos Datos = new AccesoDatos();
+            try
+            {
+                Datos.SetearConsulta("EXEC SP_BAJAFISICACLIENTE @IDCLIENTE");
+                Datos.SetearParametro("@IDCLIENTE", idCliente);
+                Datos.EjecutarAccion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+        }
     }
 }

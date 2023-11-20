@@ -56,7 +56,10 @@ namespace TPCuatrimestal
 
         protected void btnBajaCliente_Click(object sender, EventArgs e)
         {
-
+            int idSeleccionado = int.Parse(listaClientes.SelectedValue);
+            ClienteNegocio cnAux = new ClienteNegocio();
+            cnAux.BajaFisicaCliente(idSeleccionado);
+            cargarClientes();
         }
 
         protected void btnModificarCliente_Click(object sender, EventArgs e)

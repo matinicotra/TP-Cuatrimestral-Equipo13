@@ -51,7 +51,15 @@ namespace TPCuatrimestal
                     ListItem item = new ListItem();
                     // Asigna el valor y el texto del ListItem con las propiedades de Chofer
                     item.Value = chofer.IDChofer.ToString(); // Asigna el valor deseado
-                    string autoAsignado = chofer.AutoAsignado.Patente is null ? "Sin Auto" : chofer.AutoAsignado.Patente + " " + chofer.AutoAsignado.Tipo.ToString();
+                    string autoAsignado;
+                    if (chofer.AutoAsignado == null || chofer.AutoAsignado.Estado == false)
+                    {
+                        autoAsignado = "Sin Auto";
+                    }
+                    else
+                    {
+                        autoAsignado = chofer.AutoAsignado.Patente + " " + chofer.AutoAsignado.Tipo.ToString();
+                    }
                     item.Text = $"{chofer.Nombres} {chofer.Apellidos} - {chofer.ZonaAsignada.NombreZona} - {autoAsignado}";
                     item.Attributes["class"] = "list-group-item my-1 mx-2";
                     listaChoferes.Items.Add(item);
@@ -99,7 +107,7 @@ namespace TPCuatrimestal
             cargarChoferes();
         }
 
-        
+
         // -- prueba data grid view -- //
 
         protected void dgvChoferes_SelectedIndexChanged(object sender, EventArgs e)

@@ -18,7 +18,7 @@ namespace TPCuatrimestal
             List<Vehiculo> ListVehi = new List<Vehiculo>();
 
             ListVehi = aux.ObtenerDatos();
-
+            ddlAutoAsignado.Items.Add("Sin Auto");
             foreach (Vehiculo X in ListVehi)
             {
                 if (X.Estado)
@@ -122,7 +122,7 @@ namespace TPCuatrimestal
         {
             ChoferNegocio cnAux = new ChoferNegocio();
             Zona zonaAux = new Zona();
-            Vehiculo vehiculoAux = new Vehiculo();
+            Vehiculo vehiculoAux = null;
             VehiculoNegocio vnAux = new VehiculoNegocio();
             bool banderaAlta = false;
 
@@ -155,8 +155,11 @@ namespace TPCuatrimestal
 
             //seteo vehiculo
             int idVehiculo = -1;
-            idVehiculo = ddlAutoAsignado.SelectedIndex >= 0 && ddlAutoAsignado.SelectedIndex < vnAux.ObtenerDatos().Count() ? ddlAutoAsignado.SelectedIndex : 1;
-            vehiculoAux = vnAux.ObtenerDatos()[idVehiculo];
+            idVehiculo = ddlAutoAsignado.SelectedIndex >= 0 && ddlAutoAsignado.SelectedIndex < vnAux.ObtenerDatos().Count() + 1 ? ddlAutoAsignado.SelectedIndex : 0;
+            if(idVehiculo > 0)
+            {
+            vehiculoAux = vnAux.ObtenerDatos()[idVehiculo - 1];
+            }
             choferAux.AutoAsignado = vehiculoAux;
 
             if (banderaAlta)

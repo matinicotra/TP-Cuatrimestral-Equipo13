@@ -166,7 +166,14 @@ namespace Negocio
 
                     datos.SetearConsulta("UPDATE CHOFER SET IDZONA = @IDZONA, IDVEHICULO = @IDVEHICULO WHERE IDCHOFER = @IDCHOFER");
                     datos.SetearParametro("@IDZONA", choferAux.ZonaAsignada.IDZona);
-                    datos.SetearParametro("@IDVEHICULO", choferAux.AutoAsignado.IDVehiculo);
+                    if (choferAux.AutoAsignado == null)
+                    {
+                        datos.SetearParametro("@IDVEHICULO", DBNull.Value);
+                    }
+                    else
+                    {
+                        datos.SetearParametro("@IDVEHICULO", choferAux.AutoAsignado.IDVehiculo);
+                    }
                     datos.SetearParametro("@IDCHOFER", choferAux.IDChofer);
                 }
                 else
@@ -193,7 +200,14 @@ namespace Negocio
                     datos.SetearConsulta("INSERT INTO CHOFER (IDPERSONA, IDZONA, IDVEHICULO) VALUES (@IDPERSONA, @IDZONA, @IDVEHICULO)");
                     datos.SetearParametro("@IDPERSONA", idPersona);//setea el  idPersona recien insertado
                     datos.SetearParametro("@IDZONA", choferAux.ZonaAsignada.IDZona);
-                    datos.SetearParametro("@IDVEHICULO", choferAux.AutoAsignado.IDVehiculo);
+                    if (choferAux.AutoAsignado == null)
+                    {
+                        datos.SetearParametro("@IDVEHICULO", DBNull.Value);
+                    }
+                    else
+                    {
+                        datos.SetearParametro("@IDVEHICULO", choferAux.AutoAsignado.IDVehiculo);
+                    }
                 }
 
                 datos.EjecutarAccion();

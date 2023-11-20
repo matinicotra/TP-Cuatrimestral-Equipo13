@@ -59,11 +59,6 @@
             <h5 class="text-lg-center">DATOS DE CONTACTO</h5>
 
             <div class="input-group mb-3">
-                <asp:Label CssClass="input-group-text" ID="lblZona" runat="server" Font-Bold="false">ZONA</asp:Label>
-                <asp:DropDownList CssClass="form-control" ID="ddlZona" runat="server"></asp:DropDownList>
-            </div>
-
-            <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblTelefono" runat="server" Font-Bold="false">TELEFONO</asp:Label>
                 <asp:TextBox CssClass="form-control" ID="txtTelefono" runat="server"></asp:TextBox>
             </div>
@@ -72,10 +67,16 @@
                 <asp:Label CssClass="input-group-text" ID="lblEmail" runat="server" Font-Bold="false">EMAIL</asp:Label>
                 <asp:TextBox CssClass="form-control" ID="txtEmail" runat="server"></asp:TextBox>
             </div>
-                    <div class="text-center">
-                        <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" OnClick="btnAceptar_Click" />
-                        <asp:Button ID="btnCanelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCanelar_Click" />
-                    </div>
+
+            <div class="input-group mb-3">
+                <asp:Label CssClass="input-group-text" ID="lblZona" runat="server" Font-Bold="false">ZONA</asp:Label>
+                <asp:DropDownList CssClass="form-control" ID="ddlZona" runat="server"></asp:DropDownList>
+            </div>
+
+            <div class="text-center">
+                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" OnClick="btnAceptar_Click" />
+                <asp:Button ID="btnCanelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCanelar_Click" />
+            </div>
 
         </div>
 

@@ -46,6 +46,8 @@ namespace Negocio
                     clienteAux.Direccion = personaAux.Direccion;
                     clienteAux.Nacionalidad = personaAux.Nacionalidad;
                     clienteAux.IDPersona = personaAux.IDPersona;
+                    clienteAux.Email = personaAux.Email;
+                    clienteAux.Telefono = personaAux.Telefono;
                     clienteAux.IDCliente = (int)datosCliente.Lector["IDCLIENTE"];
 
                     personaAux.IDPersona = (int)datosCliente.Lector["IDPERSONA"];

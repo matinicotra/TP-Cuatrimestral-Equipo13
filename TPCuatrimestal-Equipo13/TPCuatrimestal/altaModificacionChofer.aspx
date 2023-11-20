@@ -21,6 +21,16 @@
             </div>
 
             <div class="input-group mb-3">
+                <asp:Label CssClass="input-group-text" ID="lblTelefono" runat="server" Font-Bold="false">TELEFONO</asp:Label>
+                <asp:TextBox CssClass="form-control" ID="txtTelefono" runat="server"></asp:TextBox>
+            </div>
+
+            <div class="input-group mb-3">
+                <asp:Label CssClass="input-group-text" ID="lblEmail" runat="server" Font-Bold="false">E-MAIL</asp:Label>
+                <asp:TextBox CssClass="form-control" ID="txtEmail" runat="server"></asp:TextBox>
+            </div>
+
+            <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblDNI" runat="server" Font-Bold="false">DOCUMENTO</asp:Label>
                 <asp:TextBox CssClass="form-control" ID="txtDNI" runat="server"></asp:TextBox>
             </div>
@@ -61,7 +71,7 @@
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblZona" runat="server" Font-Bold="false">ZONA</asp:Label>
-                <asp:DropDownList CssClass="form-control" ID="ddlZona" runat="server" ></asp:DropDownList>
+                <asp:DropDownList CssClass="form-control" ID="ddlZona" runat="server"></asp:DropDownList>
             </div>
 
             <div class="input-group mb-3">

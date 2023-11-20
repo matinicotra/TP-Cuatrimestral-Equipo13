@@ -74,6 +74,8 @@ namespace TPCuatrimestal
                 txtLocalidad.Text = choferAux.Direccion.Localidad;
                 txtProvincia.Text = choferAux.Direccion.Provincia;
                 txtDescripcion.Text = choferAux.Direccion.Descripcion;
+                txtEmail.Text = choferAux.Email;
+                txtTelefono.Text = choferAux.Telefono;
 
                 string autoString = choferAux.AutoAsignado.IDVehiculo.ToString() + " - " + "(" + choferAux.AutoAsignado.Patente + ")";
                 ListItem autoPreseleccionado = ddlAutoAsignado.Items.FindByValue(autoString);
@@ -136,6 +138,8 @@ namespace TPCuatrimestal
             choferAux.DNI = txtDNI.Text;
             choferAux.Nacionalidad = ddlNacionalidad.SelectedValue;
             choferAux.FechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
+            choferAux.Email = txtEmail.Text;
+            choferAux.Telefono = txtTelefono.Text;
 
             //seteo domicilio
             choferAux.Direccion.Direccion = txtCalleyAltura.Text;

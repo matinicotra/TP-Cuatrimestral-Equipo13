@@ -9,6 +9,7 @@ namespace Negocio
 {
     public class PersonaNegocio
     {
+        //----------------METODOS--------------------------
         public Persona ObtenerPersona(int IdPersona)
         {
             AccesoDatos datosPersona = new AccesoDatos();
@@ -16,7 +17,7 @@ namespace Negocio
 
             try
             {
-                datosPersona.SetearConsulta("SELECT IDPERSONA, NOMBRES, APELLIDOS, DNI, FECHANACIMIENTO, DOMICILIO, NACIONALIDAD FROM PERSONA WHERE IDPERSONA = @IDPERSONA");
+                datosPersona.SetearConsulta("SELECT IDPERSONA, NOMBRES, APELLIDOS, DNI, FECHANACIMIENTO, DOMICILIO, NACIONALIDAD, EMAIL, TELEFONO FROM PERSONA WHERE IDPERSONA = @IDPERSONA");
                 datosPersona.SetearParametro("@IDPERSONA", IdPersona);
                 datosPersona.EjecutarConsulta();
 
@@ -28,6 +29,8 @@ namespace Negocio
                     personaAux.DNI = datosPersona.Lector["DNI"] is DBNull ? "S/D" : (string)datosPersona.Lector["DNI"];
                     personaAux.Nacionalidad = datosPersona.Lector["NACIONALIDAD"] is DBNull ? "S/N" : (string)datosPersona.Lector["NACIONALIDAD"];
                     personaAux.FechaNacimiento = (DateTime)datosPersona.Lector["FECHANACIMIENTO"];
+                    personaAux.Email = datosPersona.Lector["EMAIL"] is DBNull ? "S/E" : (string)datosPersona.Lector["EMAIL"];
+                    personaAux.Telefono = (string)datosPersona.Lector["TELEFONO"];
 
 
                     //lectura domicilio
@@ -93,23 +96,27 @@ namespace Negocio
             {
                 if (!esAlta)
                 {
-                    datos.SetearConsulta("UPDATE PERSONA SET NOMBRES = @NOMBRES, APELLIDOS = @APELLIDOS, DNI = @DNI, FECHANACIMIENTO = @FECHANACIMIENTO, DOMICILIO = @DOMICILIO, NACIONALIDAD = @NACIONALIDAD WHERE IDPERSONA = @IDPERSONA");
+                    datos.SetearConsulta("UPDATE PERSONA SET NOMBRES = @NOMBRES, APELLIDOS = @APELLIDOS, DNI = @DNI, FECHANACIMIENTO = @FECHANACIMIENTO, DOMICILIO = @DOMICILIO, NACIONALIDAD = @NACIONALIDAD, TELEFONO = @TELEFONO, EMAIL = @EMAIL WHERE IDPERSONA = @IDPERSONA");
                     datos.SetearParametro("@NOMBRES", perAux.Nombres);
                     datos.SetearParametro("@APELLIDOS", perAux.Apellidos);
                     datos.SetearParametro("@DNI", perAux.DNI);
                     datos.SetearParametro("@FECHANACIMIENTO", perAux.FechaNacimiento);
                     datos.SetearParametro("@DOMICILIO", perAux.Direccion.IDDomicilio);
                     datos.SetearParametro("@NACIONALIDAD", perAux.Nacionalidad);
+                    datos.SetearParametro("@EMAIL", perAux.Email);
+                    datos.SetearParametro("@TELEFONO", perAux.Telefono);
                     datos.SetearParametro("@IDPERSONA", perAux.IDPersona);
 
                 }
                 else
                 {
-                    datos.SetearConsulta("INSERT INTO PERSONA (NOMBRES, APELLIDOS, DNI, FECHANACIMIENTO, DOMICILIO, NACIONALIDAD) VALUES (@NOMBRES, @APELLIDOS, @DNI, @FECHANACIMIENTO, @IDDOMICILIO, @NACIONALIDAD)");
+                    datos.SetearConsulta("INSERT INTO PERSONA (NOMBRES, APELLIDOS, DNI, FECHANACIMIENTO, DOMICILIO, NACIONALIDAD, EMAIL, TELEFONO) VALUES (@NOMBRES, @APELLIDOS, @DNI, @FECHANACIMIENTO, @IDDOMICILIO, @NACIONALIDAD, @EMAIL, @TELEFONO)");
                     datos.SetearParametro("@NOMBRES", perAux.Nombres);
                     datos.SetearParametro("@APELLIDOS", perAux.Apellidos);
                     datos.SetearParametro("@DNI", perAux.DNI);
                     datos.SetearParametro("@FECHANACIMIENTO", perAux.FechaNacimiento);
+                    datos.SetearParametro("@EMAIL", perAux.Email);
+                    datos.SetearParametro("@TELEFONO", perAux.Telefono);
                     datos.SetearParametro("@IDDOMICILIO", perAux.Direccion.IDDomicilio);//setea el idDomicilio recien insertado
                     datos.SetearParametro("@NACIONALIDAD", perAux.Nacionalidad);
                 }

@@ -18,7 +18,8 @@ namespace TPCuatrimestal
             ClienteNegocio cnAux = new ClienteNegocio();
             List<Zona> ListZona = new List<Zona>();
 
-            ListZona = cnAux.ObtenerZonas();
+            //ListZona = cnAux.ObtenerZonas();
+            ListZona = ZonaNegocio.ObtenerZonas();
 
             foreach (Zona X in ListZona)
             {
@@ -124,17 +125,17 @@ namespace TPCuatrimestal
 
             //seteo zona
             int indexZona = -1;
-            indexZona = ddlZona.SelectedIndex >= 0 && ddlZona.SelectedIndex < cnAux.ObtenerZonas().Count() ? ddlZona.SelectedIndex : 1;
-            zonaAux = cnAux.ObtenerZonas()[indexZona];
+            indexZona = ddlZona.SelectedIndex >= 0 && ddlZona.SelectedIndex < ZonaNegocio.ObtenerZonas().Count() ? ddlZona.SelectedIndex : 1;
+            zonaAux = ZonaNegocio.ObtenerZonas()[indexZona];
             clienteAux.zonaCliente = zonaAux;
 
             if (banderaAlta)
             {
-                cnAux.AltaModificacionChofer(clienteAux, true);
+                cnAux.AltaModificacionCliente(clienteAux, true);
             }
             else
             {
-                cnAux.AltaModificacionChofer(clienteAux, false);
+                cnAux.AltaModificacionCliente(clienteAux, false);
             }
 
             Response.Redirect("adminCliente.aspx", false);

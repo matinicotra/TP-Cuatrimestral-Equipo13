@@ -12,7 +12,10 @@ namespace Negocio
         private SqlConnection conexion;
         private SqlCommand comando;
         private SqlDataReader lector;
+       
+        public SqlDataReader Lector { get { return lector; } }
 
+        //----------------CONSTRUCTOR--------------------------
         public AccesoDatos()
         {
             conexion = new SqlConnection();
@@ -21,7 +24,7 @@ namespace Negocio
             conexion.ConnectionString = "server= .\\SQLEXPRESS; database=BBDD_Equipo13; integrated security=true";
         }
 
-        public SqlDataReader Lector { get { return lector; } }
+        //----------------METODOS--------------------------
 
         public void SetearConsulta(string consulta)
         {

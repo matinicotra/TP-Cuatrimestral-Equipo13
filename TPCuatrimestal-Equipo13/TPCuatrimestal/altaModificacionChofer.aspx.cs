@@ -30,7 +30,7 @@ namespace TPCuatrimestal
             ChoferNegocio cnAux = new ChoferNegocio();
             List<Zona> ListZona = new List<Zona>();
 
-            ListZona = cnAux.ObtenerZonas();
+            ListZona = ZonaNegocio.ObtenerZonas();
 
             foreach (Zona X in ListZona)
             {
@@ -145,8 +145,8 @@ namespace TPCuatrimestal
 
             //seteo zona
             int idZona = -1;
-            idZona = ddlZona.SelectedIndex >= 0 && ddlZona.SelectedIndex < cnAux.ObtenerZonas().Count() ? ddlZona.SelectedIndex : 1;
-            zonaAux = cnAux.ObtenerZonas()[idZona];
+            idZona = ddlZona.SelectedIndex >= 0 && ddlZona.SelectedIndex < ZonaNegocio.ObtenerZonas().Count() ? ddlZona.SelectedIndex : 1;
+            zonaAux = ZonaNegocio.ObtenerZonas()[idZona];
             choferAux.ZonaAsignada = zonaAux;
 
             //seteo vehiculo

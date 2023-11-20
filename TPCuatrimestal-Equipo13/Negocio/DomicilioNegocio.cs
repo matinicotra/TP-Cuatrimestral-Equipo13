@@ -9,6 +9,7 @@ namespace Negocio
 {
     public class DomicilioNegocio
     {
+        //----------------METODOS--------------------------
         public Domicilio ObtenerDomicilio(long IdDomicilio)
         {
             Domicilio domicilioAux = new Domicilio();
@@ -101,6 +102,7 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+        
         public long ultimoIdDomicilio()
         {
             long idDomicilio = 0;

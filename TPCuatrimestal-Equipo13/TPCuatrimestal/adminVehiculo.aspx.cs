@@ -52,7 +52,7 @@ namespace TPCuatrimestal
             VehiculoNegocio vehiAux = new VehiculoNegocio();
             int valorID = int.Parse(((ImageButton)sender).CommandArgument);
 
-            vehiAux.BajaVehiculo(valorID);
+            vehiAux.BajaFisicaVehiculo(valorID);
 
             CargarVehiculos();
         }

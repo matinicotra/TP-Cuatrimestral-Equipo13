@@ -10,9 +10,6 @@ namespace Dominio
     {
         public int IDCliente { get; set; }
         public Zona zonaCliente { get; set; }
-        public string Email { get; set; }
-        public string Telefono { get; set; }
-        public bool EsEmpresa { get; set; }
         public bool Estado { get; set; }
     }
 }

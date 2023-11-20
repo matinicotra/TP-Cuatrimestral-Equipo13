@@ -14,59 +14,7 @@ namespace Negocio
     {
         private List<Chofer> listaChoferes = new List<Chofer>();
 
-        //OBTIENE TODAS LAS ZONAS
-        public List<Zona> ObtenerZonas(int idZona = -1)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            List<Zona> listAux = new List<Zona>();
-
-            try
-            {
-                if (idZona == -1)
-                {
-                    datos.SetearConsulta("SELECT IDZONA, NOMBREZONA FROM ZONAS");
-
-                    datos.EjecutarConsulta();
-
-                    while (datos.Lector.Read())
-                    {
-                        Zona aux = new Zona();
-
-                        aux.IDZona = datos.Lector["IDZONA"] is DBNull ? -1 : (int)datos.Lector["IDZONA"];
-                        aux.NombreZona = datos.Lector["NOMBREZONA"] is DBNull ? "S/Z" : (string)datos.Lector["NOMBREZONA"];
-
-                        listAux.Add(aux);
-                    }
-
-                }
-                else
-                {
-                    datos.SetearConsulta("SELECT IDZONA, NOMBREZONA FROM ZONAS WHERE IDZONA = @IDZONA");
-                    datos.SetearParametro("@IDZONA", idZona);
-                    datos.EjecutarConsulta();
-                    datos.Lector.Read();
-
-                    Zona aux = new Zona();
-
-                    aux.IDZona = datos.Lector["IDZONA"] is DBNull ? -1 : (int)datos.Lector["IDZONA"];
-                    aux.NombreZona = datos.Lector["NOMBREZONA"] is DBNull ? "S/Z" : (string)datos.Lector["NOMBREZONA"];
-
-                    listAux.Add(aux);
-                }
-
-                return listAux;
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                datos.CerrarConexion();
-            }
-        }
-
+        //----------------METODOS--------------------------
         public List<Chofer> ObtenerDatos(int idChofer = -1)
         {
             AccesoDatos datosChofer = new AccesoDatos();
@@ -108,13 +56,15 @@ namespace Negocio
                     choferAux.FechaNacimiento = personaAux.FechaNacimiento;
                     choferAux.Direccion = personaAux.Direccion;
                     choferAux.Nacionalidad = personaAux.Nacionalidad;
+                    choferAux.Email = personaAux.Email;
+                    choferAux.Telefono = personaAux.Telefono;
                     choferAux.IDPersona = personaAux.IDPersona;
 
                     //asigna el id Chofer
                     choferAux.IDChofer = (int)datosChofer.Lector["IDCHOFER"];
 
                     //lee la zona y la asigna
-                    choferAux.ZonaAsignada = cnAux.ObtenerZonas(datosChofer.Lector["IDZONA"] is DBNull ? 0 : (int)datosChofer.Lector["IDZONA"])[0];
+                    choferAux.ZonaAsignada = ZonaNegocio.ObtenerZonas(datosChofer.Lector["IDZONA"] is DBNull ? 0 : (int)datosChofer.Lector["IDZONA"])[0];
 
                     //lee el id vehiculo asignado
                     if (datosChofer.Lector["IDVEHICULO"] != DBNull.Value)
@@ -209,6 +159,8 @@ namespace Negocio
                     aux.FechaNacimiento = choferAux.FechaNacimiento;
                     aux.Direccion = choferAux.Direccion;
                     aux.Nacionalidad = choferAux.Nacionalidad;
+                    aux.Email = choferAux.Email;
+                    aux.Telefono = choferAux.Telefono;
 
                     perAux.AltaModificacionPersona(aux, false);
 
@@ -231,6 +183,8 @@ namespace Negocio
                     aux.FechaNacimiento = choferAux.FechaNacimiento;
                     aux.Direccion = choferAux.Direccion;
                     aux.Nacionalidad = choferAux.Nacionalidad;
+                    aux.Email = choferAux.Email;
+                    aux.Telefono = choferAux.Telefono;
 
                     perAux.AltaModificacionPersona(aux, true);
 

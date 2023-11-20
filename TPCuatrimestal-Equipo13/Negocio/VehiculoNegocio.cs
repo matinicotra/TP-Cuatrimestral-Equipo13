@@ -88,7 +88,7 @@ namespace Negocio
             }
         }
 
-        public void BajaVehiculo(int IDVehiculo)
+        public void BajaFisicaVehiculo(int IDVehiculo)
         {
             AccesoDatos datos = new AccesoDatos();
 

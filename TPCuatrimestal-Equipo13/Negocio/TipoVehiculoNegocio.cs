@@ -11,6 +11,7 @@ namespace Negocio
     {
         private List<TipoVehiculo> tipoVehiculo = new List<TipoVehiculo>();
 
+        //----------------METODOS--------------------------
         public List<TipoVehiculo> ObtenerDatos()
         {
             AccesoDatos datosTipoVehiculo = new AccesoDatos();

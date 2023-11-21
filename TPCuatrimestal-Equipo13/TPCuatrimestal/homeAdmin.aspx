@@ -13,14 +13,14 @@
         </div>
 
 
-        <div style="display: flex; flex-direction: row;">
+        <div style="display: flex; flex-direction: column;">
             <h5>Viajes del dia</h5>
             <%--<asp:ListBox ID="lbViajesDelDia" runat="server"></asp:ListBox>--%>
-            <asp:GridView ID="dgvViajes" DataKeyNames="id" OnSelectedIndexChanged="dgvViajes_SelectedIndexChanged" AutoGenerateColumns="false" CssClass="table table-primary" runat="server">
+            <asp:GridView ID="dgvViajes" DataKeyNames="NumViaje" OnSelectedIndexChanged="dgvViajes_SelectedIndexChanged" AutoGenerateColumns="false" CssClass="table table-primary" runat="server">
                 <Columns>
-                    <asp:Boundfield HeaderText="Chofer" DataField="Chofer" />
-                    <asp:Boundfield HeaderText="Cliente" DataField="Cliente" />
-                    <asp:Boundfield HeaderText="DireccionOrigen" DataField="DireccionOrigen" />
+                    <asp:Boundfield HeaderText="Chofer" DataField="IdChofer" />
+                    <asp:Boundfield HeaderText="Cliente" DataField="IdCliente" />
+                    <asp:Boundfield HeaderText="Importe" DataField="Importe" />
                     <asp:Boundfield HeaderText="Pagado" DataField="Pagado" />
 
                     <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Accion" />

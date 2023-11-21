@@ -18,7 +18,7 @@ namespace Negocio
 
             try
             {
-                datosViaje.SetearConsulta("SELECT IDCHOFER, IDCLIENTE, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO FROM VIAJES WHERE IDVIAJE = @IDVIAJE");
+                datosViaje.SetearConsulta("SELECT IDVIAJE, IDCHOFER, IDCLIENTE, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO FROM VIAJES");
                 datosViaje.EjecutarConsulta();
 
                 while (datosViaje.Lector.Read())
@@ -28,7 +28,7 @@ namespace Negocio
                     Domicilio destino2 = new Domicilio();
                     Domicilio destino3 = new Domicilio();
 
-                    aux.NumViaje = (int)datosViaje.Lector["IDVIAJE"];
+                    aux.NumViaje = (long)datosViaje.Lector["IDVIAJE"];
 
                     aux.IDChofer = (int)datosViaje.Lector["IDCHOFER"];
 
@@ -36,27 +36,27 @@ namespace Negocio
 
                     aux.TipoViaje = (string)datosViaje.Lector["TIPOVIAJE"];
 
-                    aux.Importe = (decimal)datosViaje.Lector["IMPORTE"];
+                    //aux.Importe = (decimal)datosViaje.Lector["IMPORTE"];
 
-                    aux.Origen.IDDomicilio = (long)datosViaje.Lector["IDDOMORIGEN"];
+                    //aux.Origen.IDDomicilio = (long)datosViaje.Lector["IDDOMORIGEN"];
 
-                    destino1.IDDomicilio = (long)datosViaje.Lector["IDDOMDESTINO1"];
+                    //destino1.IDDomicilio = (long)datosViaje.Lector["IDDOMDESTINO1"];
 
-                    destino2.IDDomicilio = (long)datosViaje.Lector["IDDOMDESTINO2"];
+                    //destino2.IDDomicilio = (long)datosViaje.Lector["IDDOMDESTINO2"];
 
-                    destino3.IDDomicilio = (long)datosViaje.Lector["IDDOMDESTINO3"];
+                    //destino3.IDDomicilio = (long)datosViaje.Lector["IDDOMDESTINO3"];
 
-                    aux.Estado = (string)datosViaje.Lector["ESTADO"];
+                    //aux.Estado = (string)datosViaje.Lector["ESTADO"];
 
-                    aux.FechaHoraViaje = (DateTime)datosViaje.Lector["FECHAHORAVIAJE"];
+                    //aux.FechaHoraViaje = (DateTime)datosViaje.Lector["FECHAHORAVIAJE"];
 
-                    aux.MedioDePago = (string)datosViaje.Lector["MEDIODEPAGO"];
+                    //aux.MedioDePago = (string)datosViaje.Lector["MEDIODEPAGO"];
 
-                    aux.Pagado = (bool)datosViaje.Lector["PAGADO"];
+                    //aux.Pagado = (bool)datosViaje.Lector["PAGADO"];
 
-                    aux.Destinos.Add(destino1);
-                    aux.Destinos.Add(destino2);
-                    aux.Destinos.Add(destino3);
+                    //aux.Destinos.Add(destino1);
+                    //aux.Destinos.Add(destino2);
+                    //aux.Destinos.Add(destino3);
 
                     viajes.Add(aux);
                 }
@@ -81,7 +81,7 @@ namespace Negocio
             try
             {
                 datos.SetearConsulta("DELETE FROM VIAJES WHERE IDVIAJE = @IDVIAJE");
-                datos.SetearParametro("@IDPERSONA", IdViaje);
+                datos.SetearParametro("@IDVIAJE", IdViaje);
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
@@ -131,7 +131,8 @@ namespace Negocio
 
             try
             {
-                datos.SetearConsulta("UPDATE VIAJES SET IDCHOFER = @IDCHOFER, IDCLIENTE = @IDCLIENTE, TIPOVIAJE = @TIPOVIAJE, IMPORTE = @IMPORTE, IDDOMORIGEN = @IDDOMORIGEN, IDDOMDESTINO1 = @IDDOMDESTINO1, IDDOMDESTINO2 = @IDDOMDESTINO2, IDDOMDESTINO3 = @IDDOMDESTINO3, ESTADO = @ESTADO, FECHAHORAVIAJE = @FECHAHORAVIAJE, PAGADO = @PAGADO, MEDIODEPAGO = @MEDIODEPAGO)");
+                datos.SetearConsulta("UPDATE VIAJES SET IDCHOFER = @IDCHOFER, IDCLIENTE = @IDCLIENTE, TIPOVIAJE = @TIPOVIAJE, IMPORTE = @IMPORTE, IDDOMORIGEN = @IDDOMORIGEN, IDDOMDESTINO1 = @IDDOMDESTINO1, IDDOMDESTINO2 = @IDDOMDESTINO2, IDDOMDESTINO3 = @IDDOMDESTINO3, ESTADO = @ESTADO, FECHAHORAVIAJE = @FECHAHORAVIAJE, PAGADO = @PAGADO, MEDIODEPAGO = @MEDIODEPAGO WHERE IDVIAJE = @IDVIAJE)");
+                datos.SetearParametro("@IDVIAJE", viaje.NumViaje);
                 datos.SetearParametro("@IDCHOFER", viaje.IDChofer);
                 datos.SetearParametro("@IDCLIENTE", viaje.IDCliente);
                 datos.SetearParametro("@TIPOVIAJE", viaje.TipoViaje);

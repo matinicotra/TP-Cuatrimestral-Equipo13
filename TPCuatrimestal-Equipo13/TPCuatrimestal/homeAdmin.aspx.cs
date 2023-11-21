@@ -20,10 +20,16 @@ namespace TPCuatrimestal
             VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
             ListarVehiculos = vehiculoNegocio.ObtenerDatos();
 
+            ViajeNegocio viajeNegocio = new ViajeNegocio();
+            ListarViajes = viajeNegocio.ObtenerDatos();
+
             if (!IsPostBack)
             {
                 repVehiculos.DataSource = ListarVehiculos;
                 repVehiculos.DataBind();
+
+                dgvViajes.DataSource = ListarViajes;
+                dgvViajes.DataBind();
             }
 
 
@@ -73,6 +79,8 @@ namespace TPCuatrimestal
 
         protected void dgvViajes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var numViajeSeleccionado = dgvViajes.SelectedDataKey.Value.ToString();
+
 
         }
     }

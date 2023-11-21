@@ -24,6 +24,9 @@ namespace Negocio
                 while (datosViaje.Lector.Read())
                 {
                     Viaje aux = new Viaje();
+                    Domicilio destino1 = new Domicilio();
+                    Domicilio destino2 = new Domicilio();
+                    Domicilio destino3 = new Domicilio();
 
                     aux.NumViaje = (int)datosViaje.Lector["IDVIAJE"];
 
@@ -37,7 +40,11 @@ namespace Negocio
 
                     aux.Origen.IDDomicilio = (long)datosViaje.Lector["IDDOMORIGEN"];
 
-                    //aux.Destinos= (long)datosViaje.Lector["IDDOMDESTINO1"];
+                    destino1.IDDomicilio = (long)datosViaje.Lector["IDDOMDESTINO1"];
+
+                    destino2.IDDomicilio = (long)datosViaje.Lector["IDDOMDESTINO2"];
+
+                    destino3.IDDomicilio = (long)datosViaje.Lector["IDDOMDESTINO3"];
 
                     aux.Estado = (string)datosViaje.Lector["ESTADO"];
 
@@ -46,6 +53,10 @@ namespace Negocio
                     aux.MedioDePago = (string)datosViaje.Lector["MEDIODEPAGO"];
 
                     aux.Pagado = (bool)datosViaje.Lector["PAGADO"];
+
+                    aux.Destinos.Add(destino1);
+                    aux.Destinos.Add(destino2);
+                    aux.Destinos.Add(destino3);
 
                     viajes.Add(aux);
                 }

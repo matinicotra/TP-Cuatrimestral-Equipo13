@@ -9,6 +9,8 @@ namespace TPCuatrimestal
 {
     public partial class homeChofer : System.Web.UI.Page
     {
+        public string telefono;         // deberia llegar el numero de telefono del cliente por session para el boton de whatsapp
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // MAPA //
@@ -19,6 +21,12 @@ namespace TPCuatrimestal
         protected void btnDetalleViaje_Click(object sender, EventArgs e)
         {
             Response.Redirect("detalleViaje.aspx", false);
+        }
+
+        protected void btnWhatsapp_Click(object sender, EventArgs e)
+        {
+            telefono = "1535947980";        
+            Response.Redirect("https://wa.me/" + telefono + "?text=Tu%20vehiculo%20ha%20llegado!");
         }
     }
 }

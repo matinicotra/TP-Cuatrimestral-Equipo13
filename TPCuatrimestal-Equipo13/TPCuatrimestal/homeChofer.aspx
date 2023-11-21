@@ -13,7 +13,7 @@
         </div>
 
         <div>
-            <iframe id="urlIframe" 
+            <iframe id="urlIframe"
                 runat="server"
                 width="600"
                 height="450"
@@ -23,6 +23,10 @@
                 referrerpolicy="no-referrer-when-downgrade"
                 src="">
             </iframe>
+        </div>
+
+        <div>
+            <asp:Button ID="btnWhatsapp" runat="server" OnClick="btnWhatsapp_Click" CssClass="btn btn-info" Text="Enviar mensaje de WhatsApp" />
         </div>
 
         <div>

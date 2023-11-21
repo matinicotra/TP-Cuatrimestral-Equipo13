@@ -125,6 +125,37 @@ namespace Negocio
             }
         }
 
+        public void ModificacionViaje(Viaje viaje)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("UPDATE VIAJES SET IDCHOFER = @IDCHOFER, IDCLIENTE = @IDCLIENTE, TIPOVIAJE = @TIPOVIAJE, IMPORTE = @IMPORTE, IDDOMORIGEN = @IDDOMORIGEN, IDDOMDESTINO1 = @IDDOMDESTINO1, IDDOMDESTINO2 = @IDDOMDESTINO2, IDDOMDESTINO3 = @IDDOMDESTINO3, ESTADO = @ESTADO, FECHAHORAVIAJE = @FECHAHORAVIAJE, PAGADO = @PAGADO, MEDIODEPAGO = @MEDIODEPAGO)");
+                datos.SetearParametro("@IDCHOFER", viaje.IDChofer);
+                datos.SetearParametro("@IDCLIENTE", viaje.IDCliente);
+                datos.SetearParametro("@TIPOVIAJE", viaje.TipoViaje);
+                datos.SetearParametro("@IDDOMORIGEN", viaje.Origen.IDDomicilio);
+                datos.SetearParametro("@IDDOMDESTINO1", viaje.Destinos[0].IDDomicilio);
+                datos.SetearParametro("@IDDOMDESTINO2", viaje.Destinos[1].IDDomicilio);
+                datos.SetearParametro("@IDDOMDESTINO3", viaje.Destinos[2].IDDomicilio);
+                datos.SetearParametro("@ESTADO", viaje.Estado);
+                datos.SetearParametro("@FECHAHORAVIAJE", viaje.FechaHoraViaje);
+                datos.SetearParametro("@PAGADO", viaje.Pagado);
+                datos.SetearParametro("@MEDIODEPAGO", viaje.MedioDePago);
+
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
 
     }
 }

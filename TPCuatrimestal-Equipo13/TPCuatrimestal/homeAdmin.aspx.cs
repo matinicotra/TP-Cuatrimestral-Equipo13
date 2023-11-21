@@ -15,6 +15,8 @@ namespace TPCuatrimestal
 
         public List<Viaje> ListarViajes { get; set; }
 
+        public string seleccionado;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
@@ -28,6 +30,12 @@ namespace TPCuatrimestal
                 repVehiculos.DataSource = ListarVehiculos;
                 repVehiculos.DataBind();
 
+                // LISTAR VIAJES
+                lbListaViajes.SelectedIndex = 0;
+                lbListaViajes.DataSource = ListarViajes;
+                lbListaViajes.DataBind();
+
+                // OPCION listar viajes CON GRID VIEW //
                 dgvViajes.DataSource = ListarViajes;
                 dgvViajes.DataBind();
             }
@@ -74,11 +82,17 @@ namespace TPCuatrimestal
             Response.Redirect("altaModificacionViaje.aspx", false);
         }
 
+
+        // OPCION CON GRID VIEW....
         protected void dgvViajes_SelectedIndexChanged(object sender, EventArgs e)
         {
             var numViajeSeleccionado = dgvViajes.SelectedDataKey.Value.ToString();
 
+        }
 
+        protected void lbViajesDelDia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            seleccionado = lbListaViajes.SelectedIndex.ToString();
         }
     }
 }

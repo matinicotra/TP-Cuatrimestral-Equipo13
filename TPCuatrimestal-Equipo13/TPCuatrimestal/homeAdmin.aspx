@@ -14,8 +14,7 @@
 
 
         <div style="display: flex; flex-direction: column;">
-            <h5>Viajes del dia</h5>
-            <%--<asp:ListBox ID="lbViajesDelDia" runat="server"></asp:ListBox>--%>
+            <h5>Viajes con grid view</h5>
             <asp:GridView ID="dgvViajes" DataKeyNames="NumViaje" OnSelectedIndexChanged="dgvViajes_SelectedIndexChanged" AutoGenerateColumns="false" CssClass="table table-primary" runat="server">
                 <Columns>
                     <asp:Boundfield HeaderText="Chofer" DataField="IdChofer" />
@@ -24,10 +23,16 @@
                     <asp:Boundfield HeaderText="Pagado" DataField="Pagado" />
 
                     <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Accion" />
-
                 </Columns>
             </asp:GridView>
         </div>
+
+
+        <div>
+            <h5>Viajes del dia</h5>
+            <asp:ListBox ID="lbListaViajes" CssClass="list-group list-group-flush" OnSelectedIndexChanged="lbViajesDelDia_SelectedIndexChanged" runat="server"></asp:ListBox>
+        </div>
+
 
 
         <div role="group">

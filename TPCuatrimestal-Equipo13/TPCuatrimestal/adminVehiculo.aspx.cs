@@ -61,7 +61,7 @@ namespace TPCuatrimestal
         {
             VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
 
-            int valorID = int.Parse(((Button)sender).CommandArgument);
+            int valorID = int.Parse(((ImageButton)sender).CommandArgument);
 
             vehiculoNegocio.BajaoAltaLogicaVehiculo(valorID, false);
 
@@ -72,7 +72,7 @@ namespace TPCuatrimestal
         {
             VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
 
-            int valorID = int.Parse(((Button)sender).CommandArgument);
+            int valorID = int.Parse(((ImageButton)sender).CommandArgument);
 
             vehiculoNegocio.BajaoAltaLogicaVehiculo(valorID, true);
 

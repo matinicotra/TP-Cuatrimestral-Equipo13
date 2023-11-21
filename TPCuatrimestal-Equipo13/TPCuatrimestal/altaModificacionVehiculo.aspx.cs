@@ -65,21 +65,25 @@ namespace TPCuatrimestal
                 vehiculoAux.Patente = txtPatente.Text;
                 vehiculoAux.Modelo = int.Parse(txtModelo.Text);
                 string tipoSeleccionado = ddlTipoVehiculo.SelectedValue;
+
                 TipoVehiculo tvAux = new TipoVehiculo();
+                VehiculoNegocio vehiculoNegocioAux = new VehiculoNegocio();
+
                 tvAux = ListTipoVehi.Find(x => x.NombreTipo == tipoSeleccionado);
+
                 vehiculoAux.Tipo = tvAux;
 
-                VehiculoNegocio vehiculoNegocioAux = new VehiculoNegocio();
 
                 //dividimos si es modificar o cargar uno nuevo
                 if (Request.QueryString["id"] != null) //si es modificar...
                 {
                     vehiculoAux.IDVehiculo = int.Parse(Request.QueryString["id"]);
-                    vehiculoNegocioAux.AltaModificacionVehiculo(vehiculoAux, false);
+
+                    vehiculoNegocioAux.AltaModificacionVehiculo(vehiculoAux, true);
                 }
                 else //si es agregar uno nuevo...
                 {
-                    vehiculoNegocioAux.AltaModificacionVehiculo(vehiculoAux, true);
+                    vehiculoNegocioAux.AltaModificacionVehiculo(vehiculoAux, false);
                 }
             }
             catch (Exception ex)

@@ -40,13 +40,13 @@
                                 <td class="text-md-center"><%#Eval("Tipo.CantAsientos")%></td>
                                 <!--<td><%#Eval("Estado")%></td>-->
                                 <td>
-                                    <asp:ImageButton ID="btnEliminar" ImageUrl="https://e7.pngegg.com/pngimages/623/319/png-clipart-computer-icons-graphics-icon-design-illustration-delete-icon-logo-area.png" runat="server" class="btn btn-close btn-lg border ms-1" OnClick="btnEliminar_Click" CommandArgument='<%#Eval("IDVehiculo")%>' CommandName="IDVehiculo" ToolTip="Eliminar" />
+                                    <asp:ImageButton ID="btnEliminar" ImageUrl="https://e7.pngegg.com/pngimages/729/952/png-clipart-computer-icons-recycling-bin-waste-others-text-recycling.png" runat="server" class="btn btn-close btn-lg border ms-1" OnClick="btnEliminar_Click" CommandArgument='<%#Eval("IDVehiculo")%>' CommandName="IDVehiculo" ToolTip="Eliminar" />
                                     <asp:ImageButton ID="ImageButton1" ImageUrl="https://img2.freepng.es/20201210/hcb/transparent-edit-icon-interface-icon-5fd2c0863c4dc9.114206481607647366247.jpg" OnClick="ImageButton1_Click" CommandArgument='<%#Eval("IDVehiculo")%>' CommandName="IDVehiculo" runat="server" class="btn btn-close btn-lg border ms-1" ToolTip="Modificar" />
 
                                     <!-- EVALUA EL ESTADO DEL VEHICULO Y ASIGNA EL BOTON CORRESPONDIENTE -->
-                                    <asp:Button ID="btnBajaLogica" OnClick="btnBajaLogica_Click" CommandArgument='<%#Eval("IDVehiculo")%>' CommandName="IDVehiculo" runat="server" Text="Desactivar" CssClass="btn btn-warning" visible='<%# Convert.ToBoolean(Eval("Estado")) %>'/>
+                                    <asp:ImageButton ID="btnBajaLogica" ImageUrl="https://us.123rf.com/450wm/igoun/igoun1805/igoun180500088/101280971-icono-de-cruz-en-c%C3%ADrculo-se-puede-utilizar-como-bot%C3%B3n-de-eliminar-bloquear-cerrar-etc-eliminar.jpg" OnClick="btnBajaLogica_Click" CommandArgument='<%#Eval("IDVehiculo")%>' CommandName="IDVehiculo" runat="server" Text="Desactivar" CssClass="btn btn-close btn-lg border ms-1" ToolTip="Desactivar" visible='<%# Convert.ToBoolean(Eval("Estado")) %>'/>
 
-                                     <asp:Button ID="btnAltaLogica" OnClick="btnAltaLogica_Click" CommandArgument='<%#Eval("IDVehiculo")%>' CommandName="IDVehiculo" runat="server" Text="Activar" CssClass="btn btn-success" visible='<%# !Convert.ToBoolean(Eval("Estado")) %>'/>
+                                     <asp:ImageButton ID="btnAltaLogica" ImageUrl="https://c0.klipartz.com/pngpicture/605/284/gratis-png-cheque-verde-ogo-iconos-de-la-marca-de-verificacion-marca-verde-thumbnail.png" OnClick="btnAltaLogica_Click" CommandArgument='<%#Eval("IDVehiculo")%>' CommandName="IDVehiculo" runat="server" Text="Activar" CssClass="btn btn-close btn-lg border ms-1" ToolTip="Activar" visible='<%# !Convert.ToBoolean(Eval("Estado")) %>'/>
 
                                 </td>
                             </tr>

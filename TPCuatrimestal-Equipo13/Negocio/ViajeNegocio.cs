@@ -36,27 +36,27 @@ namespace Negocio
 
                     aux.TipoViaje = (string)datosViaje.Lector["TIPOVIAJE"];
 
-                    //aux.Importe = (decimal)datosViaje.Lector["IMPORTE"];
+                    aux.Importe = (decimal)datosViaje.Lector["IMPORTE"];
 
-                    //aux.Origen.IDDomicilio = (long)datosViaje.Lector["IDDOMORIGEN"];
+                    aux.Origen.IDDomicilio = datosViaje.Lector["IDDOMORIGEN"] is DBNull ? -1 : (long)datosViaje.Lector["IDDOMORIGEN"];
 
-                    //destino1.IDDomicilio = (long)datosViaje.Lector["IDDOMDESTINO1"];
+                    destino1.IDDomicilio = datosViaje.Lector["IDDOMDESTINO1"] is DBNull ? -1 : (long)datosViaje.Lector["IDDOMDESTINO1"];
 
-                    //destino2.IDDomicilio = (long)datosViaje.Lector["IDDOMDESTINO2"];
+                    destino2.IDDomicilio = datosViaje.Lector["IDDOMDESTINO2"] is DBNull ? -1 : (long)datosViaje.Lector["IDDOMDESTINO2"];
 
-                    //destino3.IDDomicilio = (long)datosViaje.Lector["IDDOMDESTINO3"];
+                    destino3.IDDomicilio = datosViaje.Lector["IDDOMDESTINO3"] is DBNull ? -1 : (long)datosViaje.Lector["IDDOMDESTINO3"];
 
-                    //aux.Estado = (string)datosViaje.Lector["ESTADO"];
+                    aux.Estado = (string)datosViaje.Lector["ESTADO"];
 
-                    //aux.FechaHoraViaje = (DateTime)datosViaje.Lector["FECHAHORAVIAJE"];
+                    aux.FechaHoraViaje = (DateTime)datosViaje.Lector["FECHAHORAVIAJE"];
 
-                    //aux.MedioDePago = (string)datosViaje.Lector["MEDIODEPAGO"];
+                    aux.MedioDePago = (string)datosViaje.Lector["MEDIODEPAGO"];
 
-                    //aux.Pagado = (bool)datosViaje.Lector["PAGADO"];
+                    aux.Pagado = (bool)datosViaje.Lector["PAGADO"];
 
-                    //aux.Destinos.Add(destino1);
-                    //aux.Destinos.Add(destino2);
-                    //aux.Destinos.Add(destino3);
+                    aux.Destinos.Add(destino1);
+                    aux.Destinos.Add(destino2);
+                    aux.Destinos.Add(destino3);
 
                     viajes.Add(aux);
                 }

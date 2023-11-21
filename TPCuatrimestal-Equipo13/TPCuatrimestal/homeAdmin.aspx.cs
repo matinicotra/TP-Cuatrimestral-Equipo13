@@ -32,9 +32,6 @@ namespace TPCuatrimestal
                 dgvViajes.DataBind();
             }
 
-
-
-
         }
 
         protected void btnAltaViaje_Click(object sender, EventArgs e)

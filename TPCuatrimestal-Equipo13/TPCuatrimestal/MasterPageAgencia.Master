@@ -11,8 +11,8 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary"">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid" style="background-color: darkgray;">
             <a class="navbar-brand" href="homeAdmin.aspx">Viajes</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -51,7 +51,7 @@
     </form>
 
 
-    <footer style="position: fixed; align-items: center; left: 0; bottom: 0; width: 100%; padding-top: 15px; background-color: azure; color: darkslategrey; text-align: center;">
+    <footer style="position: fixed; align-items: center; left: 0; bottom: 0; width: 100%; padding-top: 15px; background-color: darkgray; color: darkslategrey; text-align: center;">
         <div class="row">
                 <p>&copy; <%: DateTime.Now.Year %> - Todos los derechos reservados. Equipo 13</p>
         </div>

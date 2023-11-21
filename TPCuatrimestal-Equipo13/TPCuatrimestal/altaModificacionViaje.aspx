@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="container" style="display: flex; align-items: center; justify-content: center; flex-direction: column; grid-row-gap: 10px; margin: 50px 50px;">
+    <div class="container" style="background-color: darkseagreen; display: flex; align-items: center; justify-content: center; flex-direction: column; grid-row-gap: 10px; margin: 50px 50px;">
 
         <div class="contenedor" style="margin-bottom: 100px;">
 
@@ -95,7 +95,7 @@
                 <asp:TextBox CssClass="form-control" ID="txtProvinciaDestino1" runat="server"></asp:TextBox>
             </div>
 
-            <div class="input-group mb-3">
+            <div class="mb-3">
                 <asp:Button ID="btnAgregarDestino" runat="server" Text="Agregar Destino" CssClass="btn btn-primary" />
                 <asp:Button ID="btnQuitarDestino" runat="server" Text="Quitar Destino" CssClass="btn btn-secondary" />
             </div>

@@ -12,10 +12,23 @@
             <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" CssClass="btn btn-primary ms-2" />
         </div>
 
+
         <div style="display: flex; flex-direction: row;">
             <h5>Viajes del dia</h5>
-            <asp:ListBox ID="lbViajesDelDia" runat="server"></asp:ListBox>
+            <%--<asp:ListBox ID="lbViajesDelDia" runat="server"></asp:ListBox>--%>
+            <asp:GridView ID="dgvViajes" DataKeyNames="id" OnSelectedIndexChanged="dgvViajes_SelectedIndexChanged" AutoGenerateColumns="false" CssClass="table table-primary" runat="server">
+                <Columns>
+                    <asp:Boundfield HeaderText="Chofer" DataField="Chofer" />
+                    <asp:Boundfield HeaderText="Cliente" DataField="Cliente" />
+                    <asp:Boundfield HeaderText="DireccionOrigen" DataField="DireccionOrigen" />
+                    <asp:Boundfield HeaderText="Pagado" DataField="Pagado" />
+
+                    <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Accion" />
+
+                </Columns>
+            </asp:GridView>
         </div>
+
 
         <div role="group">
             <asp:Button ID="btnAltaViaje" runat="server" Text="Alta viaje" CssClass="btn btn-success" OnClick="btnAltaViaje_Click" />

@@ -13,6 +13,8 @@ namespace TPCuatrimestal
     {
         public List<Vehiculo> ListarVehiculos { get; set; }
 
+        public List<Viaje> ListarViajes { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
@@ -23,6 +25,10 @@ namespace TPCuatrimestal
                 repVehiculos.DataSource = ListarVehiculos;
                 repVehiculos.DataBind();
             }
+
+
+
+
         }
 
         protected void btnAltaViaje_Click(object sender, EventArgs e)
@@ -63,6 +69,11 @@ namespace TPCuatrimestal
         protected void btnAsignar_Click(object sender, EventArgs e)
         {
             Response.Redirect("altaModificacionViaje.aspx", false);
+        }
+
+        protected void dgvViajes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

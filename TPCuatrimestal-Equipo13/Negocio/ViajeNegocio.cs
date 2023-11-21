@@ -18,34 +18,34 @@ namespace Negocio
 
             try
             {
-                datosViaje.SetearConsulta("SELECT xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                datosViaje.SetearConsulta("SELECT IDCHOFER, IDCLIENTE, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO FROM VIAJES WHERE IDVIAJE = @IDVIAJE");
                 datosViaje.EjecutarConsulta();
 
                 while (datosViaje.Lector.Read())
                 {
                     Viaje aux = new Viaje();
 
-                    aux.NumViaje = (int)datosViaje.Lector["NumViaje"];
+                    aux.NumViaje = (int)datosViaje.Lector["IDVIAJE"];
 
-                    aux.IDChofer = (int)datosViaje.Lector["IDChofer"];
+                    aux.IDChofer = (int)datosViaje.Lector["IDCHOFER"];
 
-                    aux.IDCliente = (int)datosViaje.Lector["IDCliente"];
+                    aux.IDCliente = (int)datosViaje.Lector["IDCLIENTE"];
 
-                    aux.TipoViaje = (string)datosViaje.Lector["TipoViaje"];
+                    aux.TipoViaje = (string)datosViaje.Lector["TIPOVIAJE"];
 
-                    aux.Importe = (decimal)datosViaje.Lector["Importe"];
+                    aux.Importe = (decimal)datosViaje.Lector["IMPORTE"];
 
-                    //aux.Origen = (string)datosViaje.Lector["Origen"];                             objeto
+                    aux.Origen.IDDomicilio = (long)datosViaje.Lector["IDDOMORIGEN"];
 
-                    //aux.Destinos = (string)datosViaje.Lector["Destinos"];                         lista
+                    //aux.Destinos= (long)datosViaje.Lector["IDDOMDESTINO1"];
 
-                    aux.Estado = (string)datosViaje.Lector["Estado"];
+                    aux.Estado = (string)datosViaje.Lector["ESTADO"];
 
-                    aux.FechaHoraViaje = (DateTime)datosViaje.Lector["FechaHoraViaje"];
+                    aux.FechaHoraViaje = (DateTime)datosViaje.Lector["FECHAHORAVIAJE"];
 
-                    aux.MedioDePago = (string)datosViaje.Lector["MedioDePago"];
+                    aux.MedioDePago = (string)datosViaje.Lector["MEDIODEPAGO"];
 
-                    aux.Pagado = (bool)datosViaje.Lector["Pagado"];
+                    aux.Pagado = (bool)datosViaje.Lector["PAGADO"];
 
                     viajes.Add(aux);
                 }

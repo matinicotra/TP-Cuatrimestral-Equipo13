@@ -73,5 +73,27 @@ namespace Negocio
             }
 
         }
+
+        public void BajaViaje(int IdViaje)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("DELETE FROM VIAJES WHERE IDVIAJE = @IDVIAJE");
+                datos.SetearParametro("@IDPERSONA", IdViaje);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+
     }
 }

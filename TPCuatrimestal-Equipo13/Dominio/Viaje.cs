@@ -24,5 +24,10 @@ namespace Dominio
         public DateTime FechaHoraViaje { get; set; }
         public string MedioDePago { get; set; }
         public bool Pagado { get; set; }
+
+        public override string ToString()
+        {
+            return NumViaje + " - " + TipoViaje + " (" + Estado + ")";
+        }
     }
 }

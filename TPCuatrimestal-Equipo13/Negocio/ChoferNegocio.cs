@@ -29,6 +29,7 @@ namespace Negocio
                 else
                 {
                     datosChofer.SetearConsulta("SELECT C.IDCHOFER, C.IDPERSONA, Z.NOMBREZONA, Z.IDZONA, C.IDVEHICULO FROM CHOFER AS C INNER JOIN ZONAS AS Z ON C.IDZONA = Z.IDZONA WHERE C.IDCHOFER = @IDCHOFER");
+
                     datosChofer.SetearParametro("@IDCHOFER", idChofer);
                 }
 
@@ -47,7 +48,7 @@ namespace Negocio
                         return listaChoferes; //retorna la lista al no encontrar una persona
                     }
 
-                    personaAux = perAux.ObtenerPersona((int)datosChofer.Lector["IDPERSONA"]); //asigna la persona a personaAux
+                    personaAux = perAux.ObtenerPersona(datosChofer.Lector["IDPERSONA"] is DBNull ? -1 : (int)datosChofer.Lector["IDPERSONA"]); //asigna la persona a personaAux
 
                     //Asigna al choferAux los datos de la persona
                     choferAux.Nombres = personaAux.Nombres;
@@ -61,7 +62,7 @@ namespace Negocio
                     choferAux.IDPersona = personaAux.IDPersona;
 
                     //asigna el id Chofer
-                    choferAux.IDChofer = (int)datosChofer.Lector["IDCHOFER"];
+                    choferAux.IDChofer = datosChofer.Lector["IDCHOFER"] is DBNull ? -1 : (int)datosChofer.Lector["IDCHOFER"];
 
                     //lee la zona y la asigna
                     choferAux.ZonaAsignada = ZonaNegocio.ObtenerZonas(datosChofer.Lector["IDZONA"] is DBNull ? 0 : (int)datosChofer.Lector["IDZONA"])[0];
@@ -89,7 +90,6 @@ namespace Negocio
                                 choferAux.AutoAsignado = null;
                                 AsignarDesasignarAuto(choferAux.IDChofer, -1);
                             }
-
                         }
                     }
 
@@ -124,6 +124,7 @@ namespace Negocio
                 domiAux.BajaDomicilio(choAux.Direccion.IDDomicilio);
 
                 datos.SetearConsulta("DELETE FROM CHOFER WHERE IDCHOFER = @IDCHOFER");
+
                 datos.SetearParametro("@IDCHOFER", idChofer);
 
                 datos.EjecutarAccion();
@@ -165,7 +166,9 @@ namespace Negocio
                     perAux.AltaModificacionPersona(aux, false);
 
                     datos.SetearConsulta("UPDATE CHOFER SET IDZONA = @IDZONA, IDVEHICULO = @IDVEHICULO WHERE IDCHOFER = @IDCHOFER");
+
                     datos.SetearParametro("@IDZONA", choferAux.ZonaAsignada.IDZona);
+
                     if (choferAux.AutoAsignado == null)
                     {
                         datos.SetearParametro("@IDVEHICULO", DBNull.Value);
@@ -174,6 +177,7 @@ namespace Negocio
                     {
                         datos.SetearParametro("@IDVEHICULO", choferAux.AutoAsignado.IDVehiculo);
                     }
+
                     datos.SetearParametro("@IDCHOFER", choferAux.IDChofer);
                 }
                 else
@@ -198,8 +202,10 @@ namespace Negocio
                     int idPersona = perAux.ultimoIdPersona();//obtiene el ultimo id de persona
 
                     datos.SetearConsulta("INSERT INTO CHOFER (IDPERSONA, IDZONA, IDVEHICULO) VALUES (@IDPERSONA, @IDZONA, @IDVEHICULO)");
+                    
                     datos.SetearParametro("@IDPERSONA", idPersona);//setea el  idPersona recien insertado
                     datos.SetearParametro("@IDZONA", choferAux.ZonaAsignada.IDZona);
+                    
                     if (choferAux.AutoAsignado == null)
                     {
                         datos.SetearParametro("@IDVEHICULO", DBNull.Value);
@@ -228,7 +234,9 @@ namespace Negocio
             try
             {
                 datos.SetearConsulta("UPDATE CHOFER SET IDVEHICULO = @IDVEHICULO WHERE IDCHOFER = @IDCHOFER");
+                
                 datos.SetearParametro("@IDCHOFER", idChofer);
+                
                 if (idVehiculo <= 0)
                 {
                     datos.SetearParametro("@IDVEHICULO", DBNull.Value);
@@ -237,18 +245,17 @@ namespace Negocio
                 {
                     datos.SetearParametro("@IDVEHICULO", idVehiculo);
                 }
+
                 datos.EjecutarAccion();
             }
             catch (Exception)
             {
-
                 throw;
             }
             finally
             {
                 datos.CerrarConexion();
             }
-
         }
     }
 }

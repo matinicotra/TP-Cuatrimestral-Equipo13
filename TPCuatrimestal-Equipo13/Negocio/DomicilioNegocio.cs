@@ -23,9 +23,9 @@ namespace Negocio
                 if (datosDomicilio.Lector.Read()) //si hay registro lo lee y setea
                 {
                     domicilioAux.IDDomicilio = IdDomicilio;
-                    domicilioAux.Direccion = (string)datosDomicilio.Lector["DIRECCION"];
-                    domicilioAux.Localidad = (string)datosDomicilio.Lector["LOCALIDAD"];
-                    domicilioAux.Provincia = (string)datosDomicilio.Lector["PROVINCIA"];
+                    domicilioAux.Direccion = datosDomicilio.Lector["DIRECCION"] is DBNull ? "S/D" : (string)datosDomicilio.Lector["DIRECCION"];
+                    domicilioAux.Localidad = datosDomicilio.Lector["LOCALIDAD"] is DBNull ? "S/L" : (string)datosDomicilio.Lector["LOCALIDAD"];
+                    domicilioAux.Provincia = datosDomicilio.Lector["PROVINCIA"] is DBNull ? "S/P" : (string)datosDomicilio.Lector["PROVINCIA"];
                     domicilioAux.Descripcion = datosDomicilio.Lector["DESCRIPCION"] is DBNull ? "S/D" : (string)datosDomicilio.Lector["DESCRIPCION"];
 
                     return domicilioAux;
@@ -54,7 +54,9 @@ namespace Negocio
             try
             {
                 datos.SetearConsulta("DELETE FROM DOMICILIO WHERE IDDOMICILIO = @IDDOMICILIO");
+                
                 datos.SetearParametro("@IDPDOMICILIO", IdDomicilio);
+                
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
@@ -76,6 +78,7 @@ namespace Negocio
                 if (!esAlta)
                 {
                     datos.SetearConsulta("UPDATE DOMICILIO SET DIRECCION = @DIRECCION, LOCALIDAD = @LOCALIDAD, PROVINCIA = @PROVINCIA, DESCRIPCION = @DESCRIPCION WHERE IDDOMICILIO = @IDDOMICILIO");
+                    
                     datos.SetearParametro("@DIRECCION", domiAux.Direccion);
                     datos.SetearParametro("@LOCALIDAD", domiAux.Localidad);
                     datos.SetearParametro("@PROVINCIA", domiAux.Provincia);
@@ -85,6 +88,7 @@ namespace Negocio
                 else
                 {
                     datos.SetearConsulta("INSERT INTO DOMICILIO (DIRECCION, LOCALIDAD, PROVINCIA, DESCRIPCION) VALUES (@DIRECCION, @LOCALIDAD, @PROVINCIA, @DESCRIPCION)");
+                    
                     datos.SetearParametro("@DIRECCION", domiAux.Direccion);
                     datos.SetearParametro("@LOCALIDAD", domiAux.Localidad);
                     datos.SetearParametro("@PROVINCIA", domiAux.Provincia);
@@ -112,11 +116,12 @@ namespace Negocio
             try
             {
                 datos.SetearConsulta("SELECT TOP 1 * FROM DOMICILIO ORDER BY IDDOMICILIO DESC");
+                
                 datos.EjecutarConsulta();
 
                 if (datos.Lector.Read())
                 {
-                    idDomicilio = (long)datos.Lector["IDDOMICILIO"];
+                    idDomicilio = datos.Lector["IDDOMICILIO"] is DBNull? -1 : (long)datos.Lector["IDDOMICILIO"];
                 }
             }
             catch (Exception)

@@ -25,9 +25,9 @@ namespace Negocio
                 {
                     TipoVehiculo auxTipoVehiculo = new TipoVehiculo();
 
-                    auxTipoVehiculo.IDTipo = (int)datosTipoVehiculo.Lector["IDTIPO"];
-                    auxTipoVehiculo.NombreTipo = (string)datosTipoVehiculo.Lector["TIPO"];
-                    auxTipoVehiculo.CantAsientos = (int)datosTipoVehiculo.Lector["CANT_ASIENTOS"];                    
+                    auxTipoVehiculo.IDTipo = datosTipoVehiculo.Lector["IDTIPO"] is DBNull? -1 : (int)datosTipoVehiculo.Lector["IDTIPO"];
+                    auxTipoVehiculo.NombreTipo = datosTipoVehiculo.Lector["TIPO"] is DBNull ? "S/T" : (string)datosTipoVehiculo.Lector["TIPO"];
+                    auxTipoVehiculo.CantAsientos = datosTipoVehiculo.Lector["CANT_ASIENTOS"] is DBNull ? 0 : (int)datosTipoVehiculo.Lector["CANT_ASIENTOS"];                    
 
                     tipoVehiculo.Add(auxTipoVehiculo);
                 }
@@ -42,7 +42,6 @@ namespace Negocio
             {
                 datosTipoVehiculo.CerrarConexion();
             }
-
         }
     }
 }

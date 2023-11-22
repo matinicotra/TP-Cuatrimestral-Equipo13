@@ -36,12 +36,18 @@ namespace Negocio
                 else
                 {
                     datos.SetearConsulta("SELECT IDZONA, NOMBREZONA FROM ZONAS WHERE IDZONA = @IDZONA");
+                    
                     datos.SetearParametro("@IDZONA", idZona);
+                    
                     datos.EjecutarConsulta();
+                    
                     datos.Lector.Read();
+                    
                     Zona aux = new Zona();
+                    
                     aux.IDZona = datos.Lector["IDZONA"] is DBNull ? -1 : (int)datos.Lector["IDZONA"];
                     aux.NombreZona = datos.Lector["NOMBREZONA"] is DBNull ? "S/Z" : (string)datos.Lector["NOMBREZONA"];
+                    
                     listAux.Add(aux);
                 }
 
@@ -49,7 +55,6 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -57,6 +62,5 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
-    
     }
 }

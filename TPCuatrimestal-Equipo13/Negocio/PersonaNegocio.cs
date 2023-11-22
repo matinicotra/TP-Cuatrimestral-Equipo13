@@ -24,20 +24,20 @@ namespace Negocio
                 if (datosPersona.Lector.Read()) //si hay registro lo lee y setea
                 {
                     personaAux.IDPersona = IdPersona;
-                    personaAux.Nombres = (string)datosPersona.Lector["NOMBRES"];
-                    personaAux.Apellidos = (string)datosPersona.Lector["APELLIDOS"];
+                    personaAux.Nombres = datosPersona.Lector["NOMBRES"] is DBNull? "S/N" : (string)datosPersona.Lector["NOMBRES"];
+                    personaAux.Apellidos = datosPersona.Lector["APELLIDOS"] is DBNull ? "S/A" : (string)datosPersona.Lector["APELLIDOS"];
                     personaAux.DNI = datosPersona.Lector["DNI"] is DBNull ? "S/D" : (string)datosPersona.Lector["DNI"];
                     personaAux.Nacionalidad = datosPersona.Lector["NACIONALIDAD"] is DBNull ? "S/N" : (string)datosPersona.Lector["NACIONALIDAD"];
-                    personaAux.FechaNacimiento = (DateTime)datosPersona.Lector["FECHANACIMIENTO"];
+                    personaAux.FechaNacimiento = datosPersona.Lector["FECHANACIMIENTO"] is DBNull ? DateTime.Parse("01-01-1900") : (DateTime)datosPersona.Lector["FECHANACIMIENTO"];
                     personaAux.Email = datosPersona.Lector["EMAIL"] is DBNull ? "S/E" : (string)datosPersona.Lector["EMAIL"];
-                    personaAux.Telefono = (string)datosPersona.Lector["TELEFONO"];
+                    personaAux.Telefono = datosPersona.Lector["TELEFONO"] is DBNull ? "S/T" : (string)datosPersona.Lector["TELEFONO"];
 
 
                     //lectura domicilio
                     Domicilio domicilioAux = new Domicilio();
                     DomicilioNegocio dnAux = new DomicilioNegocio();
 
-                    long idDomicilio = (long)datosPersona.Lector["DOMICILIO"];
+                    long idDomicilio = datosPersona.Lector["DOMICILIO"] is DBNull ? 0 : (long)datosPersona.Lector["DOMICILIO"];
                     domicilioAux = dnAux.ObtenerDomicilio(idDomicilio);
 
                     if (domicilioAux.IDDomicilio != -1) //si no devuelve -1 tiene domicilio
@@ -75,7 +75,9 @@ namespace Negocio
             try
             {
                 datos.SetearConsulta("DELETE FROM PERSONA WHERE IDPERSONA = @IDPERSONA");
+                
                 datos.SetearParametro("@IDPERSONA", IdPersona);
+                
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
@@ -97,6 +99,7 @@ namespace Negocio
                 if (!esAlta)
                 {
                     datos.SetearConsulta("UPDATE PERSONA SET NOMBRES = @NOMBRES, APELLIDOS = @APELLIDOS, DNI = @DNI, FECHANACIMIENTO = @FECHANACIMIENTO, DOMICILIO = @DOMICILIO, NACIONALIDAD = @NACIONALIDAD, TELEFONO = @TELEFONO, EMAIL = @EMAIL WHERE IDPERSONA = @IDPERSONA");
+                    
                     datos.SetearParametro("@NOMBRES", perAux.Nombres);
                     datos.SetearParametro("@APELLIDOS", perAux.Apellidos);
                     datos.SetearParametro("@DNI", perAux.DNI);
@@ -106,11 +109,11 @@ namespace Negocio
                     datos.SetearParametro("@EMAIL", perAux.Email);
                     datos.SetearParametro("@TELEFONO", perAux.Telefono);
                     datos.SetearParametro("@IDPERSONA", perAux.IDPersona);
-
                 }
                 else
                 {
                     datos.SetearConsulta("INSERT INTO PERSONA (NOMBRES, APELLIDOS, DNI, FECHANACIMIENTO, DOMICILIO, NACIONALIDAD, EMAIL, TELEFONO) VALUES (@NOMBRES, @APELLIDOS, @DNI, @FECHANACIMIENTO, @IDDOMICILIO, @NACIONALIDAD, @EMAIL, @TELEFONO)");
+                    
                     datos.SetearParametro("@NOMBRES", perAux.Nombres);
                     datos.SetearParametro("@APELLIDOS", perAux.Apellidos);
                     datos.SetearParametro("@DNI", perAux.DNI);
@@ -137,24 +140,27 @@ namespace Negocio
         {
             int idPersona = 0;
             AccesoDatos datos = new AccesoDatos();
+
             try
             {
                 datos.SetearConsulta("SELECT TOP 1 IDPERSONA FROM PERSONA ORDER BY IDPERSONA DESC");
+                
                 datos.EjecutarConsulta();
+
                 if (datos.Lector.Read())
                 {
-                    idPersona = (int)datos.Lector["IDPERSONA"];
+                    idPersona = datos.Lector["IDPERSONA"] is DBNull? -1 : (int)datos.Lector["IDPERSONA"];
                 }
             }
             catch (Exception)
             {
-
                 throw;
             }
             finally
             {
                 datos.CerrarConexion();
             }
+
             return idPersona;
         }
     }

@@ -19,24 +19,26 @@ namespace Negocio
             try
             {
                 datosViaje.SetearConsulta("SELECT IDVIAJE, IDCHOFER, IDCLIENTE, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO FROM VIAJES");
+                
                 datosViaje.EjecutarConsulta();
 
                 while (datosViaje.Lector.Read())
                 {
                     Viaje aux = new Viaje();
+                    DomicilioNegocio domicilioNegocio = new DomicilioNegocio();
                     Domicilio destino1 = new Domicilio();
                     Domicilio destino2 = new Domicilio();
                     Domicilio destino3 = new Domicilio();
 
-                    aux.NumViaje = (long)datosViaje.Lector["IDVIAJE"];
+                    aux.NumViaje = datosViaje.Lector["IDVIAJE"] is DBNull ? -1 : (long)datosViaje.Lector["IDVIAJE"];
 
-                    aux.IDChofer = (int)datosViaje.Lector["IDCHOFER"];
+                    aux.IDChofer = datosViaje.Lector["IDCHOFER"] is DBNull ? -1 : (int)datosViaje.Lector["IDCHOFER"];
 
-                    aux.IDCliente = (int)datosViaje.Lector["IDCLIENTE"];
+                    aux.IDCliente = datosViaje.Lector["IDCLIENTE"] is DBNull ? -1 : (int)datosViaje.Lector["IDCLIENTE"];
 
-                    aux.TipoViaje = (string)datosViaje.Lector["TIPOVIAJE"];
+                    aux.TipoViaje = datosViaje.Lector["TIPOVIAJE"] is DBNull ? "S/T" : (string)datosViaje.Lector["TIPOVIAJE"];
 
-                    aux.Importe = (decimal)datosViaje.Lector["IMPORTE"];
+                    aux.Importe = datosViaje.Lector["IMPORTE"] is DBNull ? -1 : (decimal)datosViaje.Lector["IMPORTE"];
 
                     aux.Origen.IDDomicilio = datosViaje.Lector["IDDOMORIGEN"] is DBNull ? -1 : (long)datosViaje.Lector["IDDOMORIGEN"];
 
@@ -46,17 +48,32 @@ namespace Negocio
 
                     destino3.IDDomicilio = datosViaje.Lector["IDDOMDESTINO3"] is DBNull ? -1 : (long)datosViaje.Lector["IDDOMDESTINO3"];
 
-                    aux.Estado = (string)datosViaje.Lector["ESTADO"];
+                    aux.Estado = datosViaje.Lector["ESTADO"] is DBNull ? "S/E" : (string)datosViaje.Lector["ESTADO"];
 
-                    aux.FechaHoraViaje = (DateTime)datosViaje.Lector["FECHAHORAVIAJE"];
+                    aux.FechaHoraViaje = datosViaje.Lector["FECHAHORAVIAJE"] is DBNull ? DateTime.Parse("01-01-1900") : (DateTime)datosViaje.Lector["FECHAHORAVIAJE"];
 
-                    aux.MedioDePago = (string)datosViaje.Lector["MEDIODEPAGO"];
+                    aux.MedioDePago = datosViaje.Lector["MEDIODEPAGO"] is DBNull ? "S/MP" : (string)datosViaje.Lector["MEDIODEPAGO"];
 
-                    aux.Pagado = (bool)datosViaje.Lector["PAGADO"];
+                    aux.Pagado = datosViaje.Lector["PAGADO"] is DBNull ? false : (bool)datosViaje.Lector["PAGADO"];
 
-                    aux.Destinos.Add(destino1);
-                    aux.Destinos.Add(destino2);
-                    aux.Destinos.Add(destino3);
+
+                    if (destino1.IDDomicilio != -1)
+                    {
+                        destino1 = domicilioNegocio.ObtenerDomicilio(destino1.IDDomicilio);
+                        aux.Destinos.Add(destino1);
+                    }
+
+                    if (destino2.IDDomicilio != -1)
+                    {
+                        destino2 = domicilioNegocio.ObtenerDomicilio(destino2.IDDomicilio);
+                        aux.Destinos.Add(destino2);
+                    }
+
+                    if (destino3.IDDomicilio != -1)
+                    {
+                        destino3 = domicilioNegocio.ObtenerDomicilio(destino3.IDDomicilio);
+                        aux.Destinos.Add(destino3);
+                    }
 
                     viajes.Add(aux);
                 }
@@ -71,7 +88,6 @@ namespace Negocio
             {
                 datosViaje.CerrarConexion();
             }
-
         }
 
         public void BajaViaje(int IdViaje)
@@ -81,7 +97,9 @@ namespace Negocio
             try
             {
                 datos.SetearConsulta("DELETE FROM VIAJES WHERE IDVIAJE = @IDVIAJE");
+
                 datos.SetearParametro("@IDVIAJE", IdViaje);
+
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
@@ -101,6 +119,7 @@ namespace Negocio
             try
             {
                 datos.SetearConsulta("INSERT INTO VIAJES (IDCHOFER, IDCLIENTE, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO)");
+
                 datos.SetearParametro("@IDCHOFER", viaje.IDChofer);
                 datos.SetearParametro("@IDCLIENTE", viaje.IDCliente);
                 datos.SetearParametro("@TIPOVIAJE", viaje.TipoViaje);
@@ -132,6 +151,7 @@ namespace Negocio
             try
             {
                 datos.SetearConsulta("UPDATE VIAJES SET IDCHOFER = @IDCHOFER, IDCLIENTE = @IDCLIENTE, TIPOVIAJE = @TIPOVIAJE, IMPORTE = @IMPORTE, IDDOMORIGEN = @IDDOMORIGEN, IDDOMDESTINO1 = @IDDOMDESTINO1, IDDOMDESTINO2 = @IDDOMDESTINO2, IDDOMDESTINO3 = @IDDOMDESTINO3, ESTADO = @ESTADO, FECHAHORAVIAJE = @FECHAHORAVIAJE, PAGADO = @PAGADO, MEDIODEPAGO = @MEDIODEPAGO WHERE IDVIAJE = @IDVIAJE)");
+
                 datos.SetearParametro("@IDVIAJE", viaje.NumViaje);
                 datos.SetearParametro("@IDCHOFER", viaje.IDChofer);
                 datos.SetearParametro("@IDCLIENTE", viaje.IDCliente);
@@ -156,7 +176,5 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
-
-
     }
 }

@@ -31,14 +31,10 @@ namespace Negocio
                     auxVehiculo.Tipo.NombreTipo = datosVehiculo.Lector["TIPO"] is DBNull ? " " : (string)datosVehiculo.Lector["TIPO"];
                     auxVehiculo.Tipo.CantAsientos = datosVehiculo.Lector["CANT_ASIENTOS"] is DBNull ? 0 : (int)datosVehiculo.Lector["CANT_ASIENTOS"];
 
-                    if(!auxVehiculo.Estado && !cargarInactivos)
-                    {
-                    }
-                    else
+                    if (auxVehiculo.Estado && cargarInactivos)
                     {
                         vehiculos.Add(auxVehiculo);
                     }
-
                 }
 
                 return vehiculos;
@@ -51,7 +47,6 @@ namespace Negocio
             {
                 datosVehiculo.CerrarConexion();
             }
-
         }
 
         public void AltaModificacionVehiculo(Vehiculo aux, bool esAlta)
@@ -127,7 +122,9 @@ namespace Negocio
                 {
                     datos.SetearConsulta("UPDATE VEHICULOS SET ESTADO = 0 WHERE IDVEHICULO = @IDVEHICULO");
                 }
+
                 datos.SetearParametro("@IDVEHICULO", IDVehiculo);
+
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
@@ -139,6 +136,5 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
-
     }
 }

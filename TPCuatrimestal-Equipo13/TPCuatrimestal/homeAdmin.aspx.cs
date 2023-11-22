@@ -15,14 +15,15 @@ namespace TPCuatrimestal
 
         public List<Viaje> ListarViajes { get; set; }
 
-        public string seleccionado;
+        //SE CARGA EL ID DEL ELEMENTO SELECCIONADO, EN EL ULTIMO EVENTO
+        public string IDSeleccionado;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
-            ListarVehiculos = vehiculoNegocio.ObtenerDatos();
-
             ViajeNegocio viajeNegocio = new ViajeNegocio();
+
+            ListarVehiculos = vehiculoNegocio.ObtenerDatos();
             ListarViajes = viajeNegocio.ObtenerDatos();
 
             if (!IsPostBack)
@@ -39,27 +40,29 @@ namespace TPCuatrimestal
                 dgvViajes.DataSource = ListarViajes;
                 dgvViajes.DataBind();
             }
-
         }
 
         protected void btnAltaViaje_Click(object sender, EventArgs e)
         {
+            //SOLO IMPACTAR INSERT EN DB
             Response.Redirect("altaModificacionViaje.aspx", false);
         }
 
         protected void btnBajaViaje_Click(object sender, EventArgs e)
         {
-
+            //REALIZAR BAJA LOGICA (CAMBIAR ESTADO DE VIAJE A "CANCELADO" POR EJEMPLO)
         }
 
         protected void btnDetalleViaje_Click(object sender, EventArgs e)
         {
-            Response.Redirect("detalleViaje.aspx", false);
+            //MANEJAR ID EN PÁGINA DETALLEVIAJE
+            Response.Redirect("detalleViaje.aspx?id=" + IDSeleccionado, false);
         }
 
         protected void btnModificarViaje_Click(object sender, EventArgs e)
         {
-            Response.Redirect("altaModificacionViaje.aspx", false);
+            //MANEJAR ID EN PÁGINA ALTAMODIFICACIONVIAJE
+            Response.Redirect("altaModificacionViaje.aspx?id=" + IDSeleccionado, false);
         }
 
         protected void btnEmpresa_Click(object sender, EventArgs e)
@@ -87,12 +90,12 @@ namespace TPCuatrimestal
         protected void dgvViajes_SelectedIndexChanged(object sender, EventArgs e)
         {
             var numViajeSeleccionado = dgvViajes.SelectedDataKey.Value.ToString();
-
         }
 
         protected void lbViajesDelDia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            seleccionado = lbListaViajes.SelectedIndex.ToString();
+            //SE GUARDA EL ID DEL VIAJE SELECCIONADO
+            IDSeleccionado = lbListaViajes.SelectedValue.ToCharArray()[0].ToString();
         }
     }
 }

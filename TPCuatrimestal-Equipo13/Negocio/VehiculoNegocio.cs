@@ -31,7 +31,10 @@ namespace Negocio
                     auxVehiculo.Tipo.NombreTipo = datosVehiculo.Lector["TIPO"] is DBNull ? " " : (string)datosVehiculo.Lector["TIPO"];
                     auxVehiculo.Tipo.CantAsientos = datosVehiculo.Lector["CANT_ASIENTOS"] is DBNull ? 0 : (int)datosVehiculo.Lector["CANT_ASIENTOS"];
 
-                    if (auxVehiculo.Estado && cargarInactivos)
+                    if (!auxVehiculo.Estado && !cargarInactivos)
+                    {
+                    }
+                    else
                     {
                         vehiculos.Add(auxVehiculo);
                     }

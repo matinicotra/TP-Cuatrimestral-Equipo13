@@ -16,5 +16,6 @@ namespace Dominio
         public int IDChofer { get; set; }
         public Zona ZonaAsignada { get; set; }
         public Vehiculo AutoAsignado { get; set; }
+        public bool Estado { get; set; }
     }
 }

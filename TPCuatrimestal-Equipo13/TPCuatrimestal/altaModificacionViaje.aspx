@@ -14,24 +14,17 @@
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblSinCliente" runat="server" Font-Bold="false">OMITIR CLIENTE</asp:Label>
-                <asp:CheckBox ID="cbxSinCliente" runat="server" />
+                <asp:CheckBox ID="cbxSinCliente" runat="server" CssClass="m-2" />
                 <!-- SI ESTÁ TRUE DESHABILITAR TODA LA SECCION CLIENTE O DEJAR SOLO NOMBRE -->
             </div>
 
             <div class="input-group mb-3">
-                <asp:Label CssClass="input-group-text" ID="lblEmpresa" runat="server" Font-Bold="false">¿ES EMPRESA?</asp:Label>
-                <asp:CheckBox CssClass="form-check-input" ID="cbxEmpresa" runat="server" />
-                <!-- SI ESTÁ TRUE DESHABILITAR NOMBRE DE EMPRESA -->
+                <asp:Label CssClass="input-group-text" ID="lblNombre" runat="server" Font-Bold="false">NOMBRE</asp:Label>
+                <asp:TextBox CssClass="form-control" ID="txtNombre" runat="server"></asp:TextBox>
             </div>
-
             <div class="input-group mb-3">
-                <asp:Label CssClass="input-group-text" ID="lblNombreEmpresa" runat="server" Font-Bold="false">NOMBRE EMPRESA</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtNombreEmpresa" runat="server"></asp:TextBox>
-            </div>
-
-            <div class="input-group mb-3">
-                <asp:Label CssClass="input-group-text" ID="lblNombreApellido" runat="server" Font-Bold="false">NOMBRE Y APELLIDO PASAJERO/A</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtNombreApellido" runat="server"></asp:TextBox>
+                <asp:Label CssClass="input-group-text" ID="lblApellido" runat="server" Font-Bold="false">APELLIDO</asp:Label>
+                <asp:TextBox CssClass="form-control" ID="txtApellido" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-3">
@@ -39,28 +32,27 @@
                 <asp:TextBox CssClass="form-control" ID="txtTelefonoCliente" runat="server"></asp:TextBox>
             </div>
 
-            <div class="input-group mb-3">
-                <asp:Label CssClass="input-group-text" ID="lblFormaDePago" runat="server" Font-Bold="false">FORMA DE PAGO</asp:Label>
-                <asp:RadioButtonList CssClass="table" ID="RadioButtonList1" runat="server">
-                    <asp:ListItem Text="No Especifica" Value="1" />
-                    <asp:ListItem Text="Efectivo" Value="2" Selected="True" />
-                    <asp:ListItem Text="Debito" Value="3" />
-                    <asp:ListItem Text="Credito" Value="4" />
-                    <asp:ListItem Text="Mercado Pago" Value="5" />
-                    <asp:ListItem Text="Cuenta Corriente" Value="6" />
-                </asp:RadioButtonList>
+            <div class="input-group mb-3 d-block">
+                <div cssclass="input-group-prepend">
+                    <asp:Label CssClass="input-group-text" ID="lblFormaDePago" runat="server" Font-Bold="false">FORMA DE PAGO</asp:Label>
+                </div>
+                <div cssclass="form-check form-check-inline mx-1 d-flex">
+                    <asp:RadioButtonList CssClass="" ID="RadioButtonList1" runat="server">
+                            <asp:ListItem CssClass="form-check-input" Text="No Especifica" Value="1" Selected="True" />
+                            <asp:ListItem CssClass="form-check-input" Text="Efectivo" Value="2" />
+                            <asp:ListItem CssClass="form-check-input" Text="Debito" Value="3" />
+                            <asp:ListItem CssClass="form-check-input" Text="Credito" Value="4" />
+                            <asp:ListItem CssClass="form-check-input" Text="Mercado Pago" Value="5" />
+                            <asp:ListItem CssClass="form-check-input" Text="Cuenta Corriente" Value="6" />
+                    </asp:RadioButtonList>
+                </div>
             </div>
 
             <h5 class="text-lg-cent">DOMICILIO ORIGEN</h5>
 
             <div class="input-group mb-3">
-                <asp:Label CssClass="input-group-text" ID="lblCalleOrigen" runat="server" Font-Bold="false">CALLE</asp:Label>
+                <asp:Label CssClass="input-group-text" ID="lblCalleOrigen" runat="server" Font-Bold="false">DIRECCION</asp:Label>
                 <asp:TextBox CssClass="form-control" ID="txtCalleOrigen" runat="server"></asp:TextBox>
-            </div>
-
-            <div class="input-group mb-3">
-                <asp:Label CssClass="input-group-text" ID="lblAlturaOrigen" runat="server" Font-Bold="false">ALTURA</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtAlturaOrigen" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-3">
@@ -97,20 +89,21 @@
 
             <div class="mb-3">
                 <asp:Button ID="btnAgregarDestino" runat="server" Text="Agregar Destino" CssClass="btn btn-primary" />
-                <asp:Button ID="btnQuitarDestino" runat="server" Text="Quitar Destino" CssClass="btn btn-secondary" />
+                <asp:Button ID="btnQuitarDestino" runat="server" Text="Quitar Destino" CssClass="btn btn-danger" />
             </div>
 
             <h5 class="text-lg-center">CHOFER</h5>
 
             <div class="input-group mb-3">
-                <asp:Label CssClass="input-group-text" ID="Label1" runat="server" Font-Bold="false">ASIGNAR DESPUES</asp:Label>
-                <asp:CheckBox ID="cbxAsignarDespues" runat="server" Checked="true" />
+                <asp:Label CssClass="input-group-text" ID="lblAsignarDespues" runat="server" Font-Bold="false">ASIGNAR DESPUES</asp:Label>
+                <asp:CheckBox ID="cbxAsignarDespues" runat="server" Checked="true" CssClass="m-2"/>
                 <!-- SI ESTÁ TRUE DESHABILITAR TODA LA SECCION CHOFER -->
             </div>
 
             <div class="input-group mb-3">
-                <asp:Label CssClass="input-group-text" ID="lblNombreChofer" runat="server" Font-Bold="false">NOMBRE</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtNombreChofer" runat="server"></asp:TextBox>
+                <asp:Label CssClass="input-group-text" ID="lblNombreChofer" runat="server" Font-Bold="false">CHOFER</asp:Label>
+                <%--<asp:TextBox CssClass="form-control" ID="txtNombreChofer" runat="server"></asp:TextBox>--%>
+                <asp:DropDownList ID="ddlChoferes" runat="server"></asp:DropDownList>
             </div>
 
             <div class="text-center">

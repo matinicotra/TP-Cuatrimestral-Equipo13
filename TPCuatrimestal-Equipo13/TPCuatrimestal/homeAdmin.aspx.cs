@@ -22,7 +22,7 @@ namespace TPCuatrimestal
         {
             VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
             ViajeNegocio viajeNegocio = new ViajeNegocio();
-
+            
             ListarVehiculos = vehiculoNegocio.ObtenerDatos();
             ListarViajes = viajeNegocio.ObtenerDatos();
 
@@ -32,6 +32,8 @@ namespace TPCuatrimestal
                 repVehiculos.DataBind();
 
                 // LISTAR VIAJES
+                lbListaViajes.DataValueField = "NumViaje";
+                lbListaViajes.DataTextField = "NumViaje";
                 lbListaViajes.SelectedIndex = 0;
                 lbListaViajes.DataSource = ListarViajes;
                 lbListaViajes.DataBind();
@@ -98,6 +100,13 @@ namespace TPCuatrimestal
             //SE GUARDA EL ID DEL VIAJE SELECCIONADO
             IDSeleccionado = lbListaViajes.SelectedValue.ToCharArray()[0].ToString();
             Response.Redirect("altaModificacionViaje.aspx?id=" + IDSeleccionado, false);
+        }
+
+        protected void btnModificar_Click(object sender, ImageClickEventArgs e)
+        {
+            ImageButton btnImg = (ImageButton)sender;
+            long numViaje = long.Parse(btnImg.CommandArgument);
+            Response.Redirect("altaModificacionViaje.aspx?id=" + numViaje, false);
         }
     }
 }

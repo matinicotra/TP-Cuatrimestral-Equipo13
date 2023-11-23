@@ -90,7 +90,7 @@ namespace Negocio
             }
         }
 
-        public List<Viaje> ObtenerDatos(int idViaje)
+        public List<Viaje> ObtenerDatos(long idViaje)
         {
             AccesoDatos datosViaje = new AccesoDatos();
 
@@ -168,7 +168,7 @@ namespace Negocio
             }
         }
 
-        public void BajaViaje(int IdViaje)
+        public void BajaViaje(long IdViaje)
         {
             AccesoDatos datos = new AccesoDatos();
 

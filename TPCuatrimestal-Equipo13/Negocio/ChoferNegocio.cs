@@ -24,11 +24,11 @@ namespace Negocio
             {
                 if (idChofer == -1)
                 {
-                    datosChofer.SetearConsulta("SELECT C.IDCHOFER, C.IDPERSONA, Z.NOMBREZONA, Z.IDZONA, C.IDVEHICULO FROM CHOFER AS C INNER JOIN ZONAS AS Z ON C.IDZONA = Z.IDZONA");
+                    datosChofer.SetearConsulta("SELECT C.IDCHOFER, C.IDPERSONA, Z.NOMBREZONA, Z.IDZONA, C.IDVEHICULO, C.ESTADO FROM CHOFER AS C INNER JOIN ZONAS AS Z ON C.IDZONA = Z.IDZONA");
                 }
                 else
                 {
-                    datosChofer.SetearConsulta("SELECT C.IDCHOFER, C.IDPERSONA, Z.NOMBREZONA, Z.IDZONA, C.IDVEHICULO FROM CHOFER AS C INNER JOIN ZONAS AS Z ON C.IDZONA = Z.IDZONA WHERE C.IDCHOFER = @IDCHOFER");
+                    datosChofer.SetearConsulta("SELECT C.IDCHOFER, C.IDPERSONA, Z.NOMBREZONA, Z.IDZONA, C.IDVEHICULO, C.ESTADO FROM CHOFER AS C INNER JOIN ZONAS AS Z ON C.IDZONA = Z.IDZONA WHERE C.IDCHOFER = @IDCHOFER");
 
                     datosChofer.SetearParametro("@IDCHOFER", idChofer);
                 }
@@ -61,8 +61,11 @@ namespace Negocio
                     choferAux.Telefono = personaAux.Telefono;
                     choferAux.IDPersona = personaAux.IDPersona;
 
+
                     //asigna el id Chofer
                     choferAux.IDChofer = datosChofer.Lector["IDCHOFER"] is DBNull ? -1 : (int)datosChofer.Lector["IDCHOFER"];
+
+                    choferAux.Estado = (bool)datosChofer.Lector["ESTADO"];
 
                     //lee la zona y la asigna
                     choferAux.ZonaAsignada = ZonaNegocio.ObtenerZonas(datosChofer.Lector["IDZONA"] is DBNull ? 0 : (int)datosChofer.Lector["IDZONA"])[0];

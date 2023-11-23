@@ -5,9 +5,9 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div style=" background-color:aliceblue; display: flex; align-items: center; justify-content: center; flex-direction: column; grid-row-gap: 30px; margin-top: 50px; margin-bottom: 150px;">
+    <div style="background-color: aliceblue; display: flex; align-items: center; justify-content: center; flex-direction: column; grid-row-gap: 30px; margin-top: 50px; margin-bottom: 150px;">
 
-        <div CssClass="input-group" style="display:flex; ">
+        <div cssclass="input-group" style="display: flex;">
             <asp:TextBox ID="txtFiltrar" runat="server" CssClass="form-control" PlaceHolder="Busqueda..."></asp:TextBox>
             <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" CssClass="btn btn-primary ms-2" />
         </div>
@@ -17,12 +17,18 @@
             <h5>Viajes con grid view</h5>
             <asp:GridView ID="dgvViajes" DataKeyNames="NumViaje" OnSelectedIndexChanged="dgvViajes_SelectedIndexChanged" AutoGenerateColumns="false" CssClass="table table-primary" runat="server">
                 <Columns>
-                    <asp:Boundfield HeaderText="Chofer" DataField="IdChofer" />
-                    <asp:Boundfield HeaderText="Cliente" DataField="IdCliente" />
-                    <asp:Boundfield HeaderText="Importe" DataField="Importe" />
-                    <asp:Boundfield HeaderText="Pagado" DataField="Pagado" />
+                    <asp:BoundField HeaderText="Chofer" DataField="IdChofer" />
+                    <asp:BoundField HeaderText="Cliente" DataField="IdCliente" />
+                    <asp:BoundField HeaderText="Importe" DataField="Importe" />
+                    <asp:BoundField HeaderText="Pagado" DataField="Pagado" />
 
-                    <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Accion" />
+                    <asp:TemplateField HeaderText="Accion">
+                        <ItemTemplate>
+                            <asp:ImageButton ID="btnModificar" runat="server" ImageUrl="https://img2.freepng.es/20201210/hcb/transparent-edit-icon-interface-icon-5fd2c0863c4dc9.114206481607647366247.jpg" class="btn btn-close btn-lg border ms-1" CommandName="Modificar" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Modificar" OnClick="btnModificar_Click" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <%--<asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Accion" />--%>
                 </Columns>
             </asp:GridView>
         </div>

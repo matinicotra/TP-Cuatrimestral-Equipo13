@@ -29,19 +29,26 @@ namespace TPCuatrimestal
                 ChoferNegocio choferNegocio = new ChoferNegocio();
                 DomicilioNegocio domicilioNegocio = new DomicilioNegocio();
 
-                int idViaje = int.Parse(Request.QueryString["id"]);
+                long idViaje = long.Parse(Request.QueryString["id"]);
 
                 viajeAux = viajeNegocio.ObtenerDatos(idViaje)[0];
                 clienteAux = clienteNegocio.ObtenerDatos(viajeAux.IDCliente)[0];
                 choferAux = choferNegocio.ObtenerDatos(viajeAux.IDChofer)[0];
                 dirOrigen = domicilioNegocio.ObtenerDomicilio(viajeAux.Origen.IDDomicilio);
                 dirDestino1 = domicilioNegocio.ObtenerDomicilio(viajeAux.Destinos[0].IDDomicilio);
-                dirDestino2 = domicilioNegocio.ObtenerDomicilio(viajeAux.Destinos[1].IDDomicilio);
-                dirDestino3 = domicilioNegocio.ObtenerDomicilio(viajeAux.Destinos[2].IDDomicilio);
+                if (viajeAux.Destinos.Count() > 1)
+                {
+                    dirDestino2 = domicilioNegocio.ObtenerDomicilio(viajeAux.Destinos[1].IDDomicilio);
+                    if (viajeAux.Destinos.Count() > 2)
+                    {
+                        dirDestino3 = domicilioNegocio.ObtenerDomicilio(viajeAux.Destinos[2].IDDomicilio);
+                    }
+                }
 
-                txtNombreApellido.Text = clienteAux.Nombres + " " + clienteAux.Apellidos;
+                txtNombre.Text = clienteAux.Nombres;
+                txtApellido.Text = clienteAux.Apellidos;
                 txtTelefonoCliente.Text = clienteAux.Telefono;
-                txtNombreChofer.Text = choferAux.Nombres + " " + choferAux.Apellidos;
+                //txtNombreChofer.Text = choferAux.Nombres + " " + choferAux.Apellidos;
                 txtCalleOrigen.Text = dirOrigen.Direccion;
                 //txtAlturaOrigen.Text = dirOrigen.Direccion; // ver altura
                 txtLocalidadOrigen.Text = dirOrigen.Localidad;
@@ -51,6 +58,23 @@ namespace TPCuatrimestal
                 txtLocalidadDestino1.Text = dirDestino1.Localidad;
                 txtProvinciaDestino1.Text = dirDestino1.Provincia;
 
+                CargarDesplegables();
+            }
+        }
+
+        private void CargarDesplegables()
+        {
+            ChoferNegocio cnAux = new ChoferNegocio();
+            List<Chofer> listChoferes = new List<Chofer>();
+
+            listChoferes = cnAux.ObtenerDatos();
+            ddlChoferes.Items.Add("No Asignado");
+            foreach (Chofer X in listChoferes)
+            {
+                if (X.Estado)
+                {
+                    ddlChoferes.Items.Add(X.IDChofer.ToString() + " - " + X.Nombres + " " + X.Apellidos);
+                }
             }
         }
 

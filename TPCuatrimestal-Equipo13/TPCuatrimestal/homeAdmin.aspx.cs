@@ -62,6 +62,7 @@ namespace TPCuatrimestal
         protected void btnModificarViaje_Click(object sender, EventArgs e)
         {
             //MANEJAR ID EN PÁGINA ALTAMODIFICACIONVIAJE
+            IDSeleccionado = lbListaViajes.SelectedValue;
             Response.Redirect("altaModificacionViaje.aspx?id=" + IDSeleccionado, false);
         }
 

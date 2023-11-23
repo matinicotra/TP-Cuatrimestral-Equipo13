@@ -97,6 +97,7 @@ namespace TPCuatrimestal
         {
             //SE GUARDA EL ID DEL VIAJE SELECCIONADO
             IDSeleccionado = lbListaViajes.SelectedValue.ToCharArray()[0].ToString();
+            Response.Redirect("altaModificacionViaje.aspx?id=" + IDSeleccionado, false);
         }
     }
 }

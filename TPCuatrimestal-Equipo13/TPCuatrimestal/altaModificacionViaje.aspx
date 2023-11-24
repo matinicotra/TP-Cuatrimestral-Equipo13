@@ -38,12 +38,12 @@
                 </div>
                 <div cssclass="form-check form-check-inline mx-1 d-flex">
                     <asp:RadioButtonList CssClass="" ID="RadioButtonList1" runat="server">
-                            <asp:ListItem CssClass="form-check-input" Text="No Especifica" Value="1" Selected="True" />
-                            <asp:ListItem CssClass="form-check-input" Text="Efectivo" Value="2" />
-                            <asp:ListItem CssClass="form-check-input" Text="Debito" Value="3" />
-                            <asp:ListItem CssClass="form-check-input" Text="Credito" Value="4" />
-                            <asp:ListItem CssClass="form-check-input" Text="Mercado Pago" Value="5" />
-                            <asp:ListItem CssClass="form-check-input" Text="Cuenta Corriente" Value="6" />
+                        <asp:ListItem CssClass="form-check-input" Text="No Especifica" Value="1" Selected="True" />
+                        <asp:ListItem CssClass="form-check-input" Text="Efectivo" Value="2" />
+                        <asp:ListItem CssClass="form-check-input" Text="Debito" Value="3" />
+                        <asp:ListItem CssClass="form-check-input" Text="Credito" Value="4" />
+                        <asp:ListItem CssClass="form-check-input" Text="Mercado Pago" Value="5" />
+                        <asp:ListItem CssClass="form-check-input" Text="Cuenta Corriente" Value="6" />
                     </asp:RadioButtonList>
                 </div>
             </div>
@@ -67,14 +67,17 @@
 
             <h5 class="text-lg-center">DOMICILIO DESTINO</h5>
 
-            <div class="input-group mb-3">
-                <asp:Label CssClass="input-group-text" ID="lblCalleDestino1" runat="server" Font-Bold="false">CALLE</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtCalleDestino1" runat="server"></asp:TextBox>
+            <div cssclass="input-group mb-3">
+                <asp:Label ID="lblCantidadDestino" runat="server" Text="CANTIDAD DESTINOS" CssClass="input-group-text" ></asp:Label>
+                <asp:DropDownList ID="ddlCantidadDestino" runat="server" CssClass="custom-select" AutoPostBack="True" OnSelectedIndexChanged="ddlCantidadDestino_SelectedIndexChanged" >
+                    <asp:ListItem Text="1" Value="1" />
+                    <asp:ListItem Text="2" Value="2" />
+                    <asp:ListItem Text="3" Value="3" />
+                </asp:DropDownList>
             </div>
-
             <div class="input-group mb-3">
-                <asp:Label CssClass="input-group-text" ID="lblAlturaDestino1" runat="server" Font-Bold="false">ALTURA</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtAlturaDestino1" runat="server"></asp:TextBox>
+                <asp:Label CssClass="input-group-text" ID="lblCalleDestino1" runat="server" Font-Bold="false">DOMICILIO</asp:Label>
+                <asp:TextBox CssClass="form-control" ID="txtCalleDestino1" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-3">
@@ -86,28 +89,62 @@
                 <asp:Label CssClass="input-group-text" ID="lblProvinciaDestino1" runat="server" Font-Bold="false">PROVINCIA</asp:Label>
                 <asp:TextBox CssClass="form-control" ID="txtProvinciaDestino1" runat="server"></asp:TextBox>
             </div>
+                <% if (int.Parse(ddlCantidadDestino.SelectedValue) > 1)
+                    {
+                %>
+                <h6>SEGUNDO DOMICILIO</h6>
+                <div class="input-group mb-3">
+                    <asp:Label CssClass="input-group-text" ID="lblCalleDestino2" runat="server" Font-Bold="false">2DO DOMICILIO</asp:Label>
+                    <asp:TextBox CssClass="form-control" ID="txtCalleDestino2" runat="server"></asp:TextBox>
+                </div>
 
-            <div class="mb-3">
-                <asp:Button ID="btnAgregarDestino" runat="server" Text="Agregar Destino" CssClass="btn btn-primary" />
-                <asp:Button ID="btnQuitarDestino" runat="server" Text="Quitar Destino" CssClass="btn btn-danger" />
-            </div>
+
+                <div class="input-group mb-3">
+                    <asp:Label CssClass="input-group-text" ID="lblLocalidadDestino2" runat="server" Font-Bold="false">2DA LOCALIDAD</asp:Label>
+                    <asp:TextBox CssClass="form-control" ID="txtLocalidadDestino2" runat="server"></asp:TextBox>
+                </div>
+
+                <div class="input-group mb-3">
+                    <asp:Label CssClass="input-group-text" ID="lblProvinciaDestino2" runat="server" Font-Bold="false">2DA PROVINCIA</asp:Label>
+                    <asp:TextBox CssClass="form-control" ID="txtProvinciaDestino2" runat="server"></asp:TextBox>
+                </div>
+                    <% if (int.Parse(ddlCantidadDestino.SelectedValue) > 2)
+                        {
+                    %>
+                    <h6>TERCER DOMICILIO</h6>
+                    <div class="input-group mb-3">
+                        <asp:Label CssClass="input-group-text" ID="lblCalleDestino3" runat="server" Font-Bold="false">3ER DOMICILIO</asp:Label>
+                        <asp:TextBox CssClass="form-control" ID="txtCalleDestino3" runat="server"></asp:TextBox>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <asp:Label CssClass="input-group-text" ID="lblLocalidadDestino3" runat="server" Font-Bold="false">3RA LOCALIDAD</asp:Label>
+                        <asp:TextBox CssClass="form-control" ID="txtLocalidadDestino3" runat="server"></asp:TextBox>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <asp:Label CssClass="input-group-text" ID="lblProvinciaDestino3" runat="server" Font-Bold="false">3RA PROVINCIA</asp:Label>
+                        <asp:TextBox CssClass="form-control" ID="txtProvinciaDestino3" runat="server"></asp:TextBox>
+                    </div>
+                    <%}
+                        } %>
 
             <h5 class="text-lg-center">CHOFER</h5>
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblAsignarDespues" runat="server" Font-Bold="false">ASIGNAR DESPUES</asp:Label>
-                <asp:CheckBox ID="cbxAsignarDespues" runat="server" Checked="true" CssClass="m-2"/>
+                <asp:CheckBox ID="cbxAsignarDespues" runat="server" Checked="true" CssClass="m-2" />
                 <!-- SI ESTÁ TRUE DESHABILITAR TODA LA SECCION CHOFER -->
             </div>
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblNombreChofer" runat="server" Font-Bold="false">CHOFER</asp:Label>
                 <%--<asp:TextBox CssClass="form-control" ID="txtNombreChofer" runat="server"></asp:TextBox>--%>
-                <asp:DropDownList ID="ddlChoferes" runat="server"></asp:DropDownList>
+                <asp:DropDownList ID="ddlChoferes" runat="server" CssClass="custom-select"></asp:DropDownList>
             </div>
 
             <div class="text-center">
-                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" />
+                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" OnClick="btnAceptar_Click" />
                 <asp:Button ID="btnCanelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCanelar_Click" />
             </div>
 

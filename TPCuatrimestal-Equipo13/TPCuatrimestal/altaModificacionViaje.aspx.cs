@@ -69,11 +69,16 @@ namespace TPCuatrimestal
 
             listChoferes = cnAux.ObtenerDatos();
             ddlChoferes.Items.Add("No Asignado");
+            ddlChoferes.SelectedIndex = 0;
+            int contador = 0;
             foreach (Chofer X in listChoferes)
             {
                 if (X.Estado)
                 {
                     ddlChoferes.Items.Add(X.IDChofer.ToString() + " - " + X.Nombres + " " + X.Apellidos);
+                    contador++;
+                    if (X.IDChofer == viajeAux.IDChofer)
+                        ddlChoferes.SelectedIndex = contador;
                 }
             }
         }

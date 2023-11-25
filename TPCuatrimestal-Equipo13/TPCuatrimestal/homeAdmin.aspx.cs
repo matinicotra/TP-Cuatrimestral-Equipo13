@@ -58,6 +58,7 @@ namespace TPCuatrimestal
         protected void btnDetalleViaje_Click(object sender, EventArgs e)
         {
             //MANEJAR ID EN PÁGINA DETALLEVIAJE
+            IDSeleccionado = lbListaViajes.SelectedValue.ToCharArray()[0].ToString();
             Response.Redirect("detalleViaje.aspx?id=" + IDSeleccionado, false);
         }
 
@@ -65,6 +66,7 @@ namespace TPCuatrimestal
         {
             //MANEJAR ID EN PÁGINA ALTAMODIFICACIONVIAJE
             IDSeleccionado = lbListaViajes.SelectedValue;
+            IDSeleccionado = lbListaViajes.SelectedValue.ToCharArray()[0].ToString();
             Response.Redirect("altaModificacionViaje.aspx?id=" + IDSeleccionado, false);
         }
 
@@ -99,7 +101,6 @@ namespace TPCuatrimestal
         {
             //SE GUARDA EL ID DEL VIAJE SELECCIONADO
             IDSeleccionado = lbListaViajes.SelectedValue.ToCharArray()[0].ToString();
-            Response.Redirect("altaModificacionViaje.aspx?id=" + IDSeleccionado, false);
         }
 
         protected void btnModificar_Click(object sender, ImageClickEventArgs e)

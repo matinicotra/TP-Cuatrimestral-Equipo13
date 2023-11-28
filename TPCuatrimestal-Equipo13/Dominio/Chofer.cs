@@ -17,5 +17,12 @@ namespace Dominio
         public Zona ZonaAsignada { get; set; }
         public Vehiculo AutoAsignado { get; set; }
         public bool Estado { get; set; }
+
+        public override string ToString()
+        {
+            if (this.IDPersona != 0)
+                return this.Nombres + " " + this.Apellidos;
+            return "Sin Chofer";
+        }
     }
 }

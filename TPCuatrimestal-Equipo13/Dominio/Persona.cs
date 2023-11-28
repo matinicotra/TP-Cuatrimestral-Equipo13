@@ -11,6 +11,7 @@ namespace Dominio
         public Persona() 
         {
             Direccion = new Domicilio();
+            IDPersona = 0;
         }
         public int IDPersona { get; set; }
         public string Nombres { get; set; }

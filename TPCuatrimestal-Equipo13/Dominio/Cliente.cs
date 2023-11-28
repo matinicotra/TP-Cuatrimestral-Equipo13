@@ -11,5 +11,12 @@ namespace Dominio
         public int IDCliente { get; set; }
         public Zona zonaCliente { get; set; }
         public bool Estado { get; set; }
+
+        public override string ToString()
+        {
+            if (this.IDPersona != 0)
+                return this.Nombres + " " + this.Apellidos;
+            return "Sin Cliente";
+        }
     }
 }

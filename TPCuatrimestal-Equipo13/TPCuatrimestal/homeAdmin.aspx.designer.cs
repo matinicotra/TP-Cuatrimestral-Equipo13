@@ -51,33 +51,6 @@ namespace TPCuatrimestal
         protected global::System.Web.UI.WebControls.Button btnAltaViaje;
 
         /// <summary>
-        /// Control btnModificarViaje.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificarViaje;
-
-        /// <summary>
-        /// Control btnBajaViaje.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBajaViaje;
-
-        /// <summary>
-        /// Control btnDetalleViaje.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDetalleViaje;
-
-        /// <summary>
         /// Control calOtrosDias.
         /// </summary>
         /// <remarks>

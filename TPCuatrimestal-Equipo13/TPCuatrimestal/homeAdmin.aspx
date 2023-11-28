@@ -17,22 +17,22 @@
             <h5>Viajes con grid view</h5>
             <asp:GridView ID="dgvViajes" DataKeyNames="NumViaje" OnSelectedIndexChanged="dgvViajes_SelectedIndexChanged" AutoGenerateColumns="false" CssClass="table table-primary" runat="server">
                 <Columns>
-                    <%--<asp:BoundField HeaderText="Chofer" DataField="ChoferViaje.Apellidos"  />--%>
+                    <asp:BoundField HeaderText="Viaje N°" DataField="NumViaje" />
+
                     <asp:TemplateField HeaderText="Chofer">
                         <ItemTemplate>
-                            <%# Eval("ChoferViaje.Nombres") + " " + Eval("ChoferViaje.Apellidos") %>
+                            <%# Eval("ChoferViaje") %>
                         </ItemTemplate>
                     </asp:TemplateField>
+
                     <asp:TemplateField HeaderText="Cliente">
                         <ItemTemplate>
-                            <%# Eval("ClienteViaje.Nombres") + " " + Eval("ClienteViaje.Apellidos") %>
+                            <%# Eval("ClienteViaje")%>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <%--<asp:BoundField HeaderText="Cliente" DataField="ClienteViaje.Apellidos" />--%>
+
                     <asp:BoundField HeaderText="Importe" DataField="Importe" DataFormatString="{0:F2}" />
                     <asp:BoundField HeaderText="Pagado" DataField="Pagado" />
-                    <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="" />
-
                     <asp:TemplateField HeaderText="Accion">
                         <ItemTemplate>
                             <asp:ImageButton ID="btnModificar" runat="server" ImageUrl="https://img2.freepng.es/20201210/hcb/transparent-edit-icon-interface-icon-5fd2c0863c4dc9.114206481607647366247.jpg" class="btn btn-close btn-lg border ms-1" CommandName="Modificar" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Modificar" OnClick="btnModificar_Click" />
@@ -59,9 +59,9 @@
 
         <div role="group">
             <asp:Button ID="btnAltaViaje" runat="server" Text="Alta viaje" CssClass="btn btn-success" OnClick="btnAltaViaje_Click" />
-            <asp:Button ID="btnModificarViaje" runat="server" Text="Modificar viaje" CssClass="btn btn-warning" OnClick="btnModificarViaje_Click" />
-            <asp:Button ID="btnBajaViaje" runat="server" Text="Baja viaje" CssClass="btn btn-danger" OnClick="btnBajaViaje_Click" />
-            <asp:Button ID="btnDetalleViaje" runat="server" Text="Detalle viaje" CssClass="btn btn-info" OnClick="btnDetalleViaje_Click" />
+            <%--<asp:Button ID="btnModificarViaje" run<%--at="server" Text="Modificar viaje" CssClass="btn btn-warning" OnClick="btnModificarViaje_Click" />--%>
+            <%--<asp:Button ID="btnBajaViaje" runat="server" Text="Baja viaje" CssClass="btn btn-danger" OnClick="btnBajaViaje_Click" />--%>
+            <%--<asp:Button ID="btnDetalleViaje" runat="server" Text="Detalle viaje" CssClass="btn btn-info" OnClick="btnDetalleViaje_Click" />--%>
         </div>
 
         <div>

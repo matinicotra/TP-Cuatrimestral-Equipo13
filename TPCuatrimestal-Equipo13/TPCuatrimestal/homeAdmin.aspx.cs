@@ -32,16 +32,25 @@ namespace TPCuatrimestal
                 repVehiculos.DataBind();
 
                 // LISTAR VIAJES
-                lbListaViajes.DataValueField = "NumViaje";
-                lbListaViajes.DataTextField = "NumViaje";
-                lbListaViajes.SelectedIndex = 0;
-                lbListaViajes.DataSource = ListarViajes;
-                lbListaViajes.DataBind();
+                //lbListaViajes.DataValueField = "NumViaje";
+                //lbListaViajes.DataTextField = "NumViaje";
+                //lbListaViajes.SelectedIndex = 0;
+                //lbListaViajes.DataSource = ListarViajes;
+                //lbListaViajes.DataBind();
 
                 // OPCION listar viajes CON GRID VIEW //
-                dgvViajes.DataSource = ListarViajes;
-                dgvViajes.DataBind();
+                //dgvViajes.DataSource = ListarViajes;
+                //dgvViajes.DataBind();
+                CargarDGVViajes();
             }
+        }
+
+        private void CargarDGVViajes()
+        {
+            ViajeNegocio viajeNegocio = new ViajeNegocio();
+            ListarViajes = viajeNegocio.ObtenerDatos();
+            dgvViajes.DataSource = ListarViajes;
+            dgvViajes.DataBind();
         }
 
         protected void btnAltaViaje_Click(object sender, EventArgs e)
@@ -58,15 +67,15 @@ namespace TPCuatrimestal
         protected void btnDetalleViaje_Click(object sender, EventArgs e)
         {
             //MANEJAR ID EN PÁGINA DETALLEVIAJE
-            IDSeleccionado = lbListaViajes.SelectedValue.ToCharArray()[0].ToString();
+            //IDSeleccionado = lbListaViajes.SelectedValue.ToCharArray()[0].ToString();
             Response.Redirect("detalleViaje.aspx?id=" + IDSeleccionado, false);
         }
 
         protected void btnModificarViaje_Click(object sender, EventArgs e)
         {
             //MANEJAR ID EN PÁGINA ALTAMODIFICACIONVIAJE
-            IDSeleccionado = lbListaViajes.SelectedValue;
-            IDSeleccionado = lbListaViajes.SelectedValue.ToCharArray()[0].ToString();
+            //IDSeleccionado = lbListaViajes.SelectedValue;
+            //IDSeleccionado = lbListaViajes.SelectedValue.ToCharArray()[0].ToString();
             Response.Redirect("altaModificacionViaje.aspx?id=" + IDSeleccionado, false);
         }
 
@@ -100,7 +109,7 @@ namespace TPCuatrimestal
         protected void lbViajesDelDia_SelectedIndexChanged(object sender, EventArgs e)
         {
             //SE GUARDA EL ID DEL VIAJE SELECCIONADO
-            IDSeleccionado = lbListaViajes.SelectedValue.ToCharArray()[0].ToString();
+            //IDSeleccionado = lbListaViajes.SelectedValue.ToCharArray()[0].ToString();
         }
 
         protected void btnModificar_Click(object sender, ImageClickEventArgs e)
@@ -108,6 +117,33 @@ namespace TPCuatrimestal
             ImageButton btnImg = (ImageButton)sender;
             long numViaje = long.Parse(btnImg.CommandArgument);
             Response.Redirect("altaModificacionViaje.aspx?id=" + numViaje, false);
+        }
+
+        protected void btnEliminar_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnPagado_Click(object sender, ImageClickEventArgs e)
+        {
+            ViajeNegocio viajeNegocio = new ViajeNegocio();
+
+            int valorID = int.Parse(((ImageButton)sender).CommandArgument);
+
+            viajeNegocio.PagarDespagarViaje(valorID, true);
+
+            CargarDGVViajes();
+        }
+
+        protected void btnNoPagado_Click(object sender, ImageClickEventArgs e)
+        {
+            ViajeNegocio viajeNegocio = new ViajeNegocio();
+
+            int valorID = int.Parse(((ImageButton)sender).CommandArgument);
+
+            viajeNegocio.PagarDespagarViaje(valorID, false);
+
+            CargarDGVViajes();
         }
     }
 }

@@ -37,12 +37,20 @@ namespace Negocio
                     Domicilio destino1 = new Domicilio();
                     Domicilio destino2 = new Domicilio();
                     Domicilio destino3 = new Domicilio();
+                    ChoferNegocio ChoferNegocioAux = new ChoferNegocio();
+                    ClienteNegocio ClienteNegocioAux = new ClienteNegocio();
 
                     aux.NumViaje = datosViaje.Lector["IDVIAJE"] is DBNull ? -1 : (long)datosViaje.Lector["IDVIAJE"];
 
                     aux.IDChofer = datosViaje.Lector["IDCHOFER"] is DBNull ? -1 : (int)datosViaje.Lector["IDCHOFER"];
 
+                    if (aux.IDChofer != -1)
+                        aux.ChoferViaje = ChoferNegocioAux.ObtenerDatos(aux.IDChofer)[0];
+
                     aux.IDCliente = datosViaje.Lector["IDCLIENTE"] is DBNull ? -1 : (int)datosViaje.Lector["IDCLIENTE"];
+
+                    if (aux.IDCliente != -1)
+                        aux.ClienteViaje = ClienteNegocioAux.ObtenerDatos(aux.IDCliente)[0];
 
                     aux.TipoViaje = datosViaje.Lector["TIPOVIAJE"] is DBNull ? "S/T" : (string)datosViaje.Lector["TIPOVIAJE"];
 
@@ -148,6 +156,30 @@ namespace Negocio
                 datos.SetearParametro("@ESTADO", viaje.Estado);
                 datos.SetearParametro("@PAGADO", viaje.Pagado);
                 datos.SetearParametro("@MEDIODEPAGO", viaje.MedioDePago);
+
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void PagarDespagarViaje(long IdViaje, bool Pagado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("UPDATE VIAJES SET PAGADO = @PAGADO WHERE IDVIAJE = @IDVIAJE");
+
+                datos.SetearParametro("@IDVIAJE", IdViaje);
+
+                datos.SetearParametro("@PAGADO", Pagado);
 
                 datos.EjecutarAccion();
             }

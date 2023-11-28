@@ -12,10 +12,14 @@ namespace Dominio
         {
             Origen = new Domicilio();
             Destinos = new List<Domicilio>();
+            ChoferViaje = new Chofer();
+            ClienteViaje = new Cliente();
         }
         public long NumViaje { get; set; }
         public int IDChofer { get; set; }
+        public Chofer ChoferViaje { get; set; }
         public int IDCliente { get; set; }
+        public Cliente ClienteViaje { get; set; }
         public string TipoViaje { get; set; }
         public decimal Importe { get; set; }
         public Domicilio Origen { get; set; }

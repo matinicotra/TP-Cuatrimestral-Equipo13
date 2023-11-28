@@ -17,27 +17,43 @@
             <h5>Viajes con grid view</h5>
             <asp:GridView ID="dgvViajes" DataKeyNames="NumViaje" OnSelectedIndexChanged="dgvViajes_SelectedIndexChanged" AutoGenerateColumns="false" CssClass="table table-primary" runat="server">
                 <Columns>
-                    <asp:BoundField HeaderText="Chofer" DataField="IdChofer" />
-                    <asp:BoundField HeaderText="Cliente" DataField="IdCliente" />
-                    <asp:BoundField HeaderText="Importe" DataField="Importe" />
+                    <%--<asp:BoundField HeaderText="Chofer" DataField="ChoferViaje.Apellidos"  />--%>
+                    <asp:TemplateField HeaderText="Chofer">
+                        <ItemTemplate>
+                            <%# Eval("ChoferViaje.Nombres") + " " + Eval("ChoferViaje.Apellidos") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Cliente">
+                        <ItemTemplate>
+                            <%# Eval("ClienteViaje.Nombres") + " " + Eval("ClienteViaje.Apellidos") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <%--<asp:BoundField HeaderText="Cliente" DataField="ClienteViaje.Apellidos" />--%>
+                    <asp:BoundField HeaderText="Importe" DataField="Importe" DataFormatString="{0:F2}" />
                     <asp:BoundField HeaderText="Pagado" DataField="Pagado" />
+                    <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="" />
 
                     <asp:TemplateField HeaderText="Accion">
                         <ItemTemplate>
                             <asp:ImageButton ID="btnModificar" runat="server" ImageUrl="https://img2.freepng.es/20201210/hcb/transparent-edit-icon-interface-icon-5fd2c0863c4dc9.114206481607647366247.jpg" class="btn btn-close btn-lg border ms-1" CommandName="Modificar" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Modificar" OnClick="btnModificar_Click" />
+                            <asp:ImageButton ID="btnEliminar" runat="server" ImageUrl="https://e7.pngegg.com/pngimages/729/952/png-clipart-computer-icons-recycling-bin-waste-others-text-recycling.png" class="btn btn-close btn-lg border ms-1" CommandName="Eliminar" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Eliminar" OnClick="btnEliminar_Click" />
+
+                            <!-- EVALUA EL ESTADO DEL VIAJE Y ASIGNA EL BOTON CORRESPONDIENTE -->
+                            <asp:ImageButton ID="btnNoPagado" ImageUrl="https://us.123rf.com/450wm/igoun/igoun1805/igoun180500088/101280971-icono-de-cruz-en-c%C3%ADrculo-se-puede-utilizar-como-bot%C3%B3n-de-eliminar-bloquear-cerrar-etc-eliminar.jpg" OnClick="btnNoPagado_Click" CommandArgument='<%#Eval("NumViaje")%>' CommandName="NumViaje" runat="server" Text="No Pagado" CssClass="btn btn-close btn-lg border ms-1" ToolTip="No Pagado" Visible='<%# Convert.ToBoolean(Eval("Pagado")) %>' />
+
+                            <asp:ImageButton ID="btnPagado" ImageUrl="https://c0.klipartz.com/pngpicture/605/284/gratis-png-cheque-verde-ogo-iconos-de-la-marca-de-verificacion-marca-verde-thumbnail.png" OnClick="btnPagado_Click" CommandArgument='<%#Eval("NumViaje")%>' CommandName="NumViaje" runat="server" Text="Pagado" CssClass="btn btn-close btn-lg border ms-1" ToolTip="Pagado" Visible='<%# !Convert.ToBoolean(Eval("Pagado")) %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <%--<asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Accion" />--%>
                 </Columns>
             </asp:GridView>
         </div>
 
 
-        <div>
+        <%-- <div>
             <h5>Viajes del dia</h5>
             <asp:ListBox ID="lbListaViajes" CssClass="list-group list-group-flush" OnSelectedIndexChanged="lbViajesDelDia_SelectedIndexChanged" runat="server"></asp:ListBox>
-        </div>
+        </div>--%>
 
 
 

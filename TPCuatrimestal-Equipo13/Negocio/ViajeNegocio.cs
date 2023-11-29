@@ -106,15 +106,39 @@ namespace Negocio
             }
         }
 
-        public void BajaViaje(long IdViaje)
+        public void BajaLogicaViaje(long IdViaje)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.SetearConsulta("DELETE FROM VIAJES WHERE IDVIAJE = @IDVIAJE");
+                datos.SetearConsulta("UPDATE VIAJES SET ESTADO = 'Cancelado' WHERE IDVIAJE = @IDVIAJE");
 
                 datos.SetearParametro("@IDVIAJE", IdViaje);
+
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void CambiarEstado(long IdViaje, string Estado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("UPDATE VIAJES SET ESTADO = @ESTADO WHERE IDVIAJE = @IDVIAJE");
+
+                datos.SetearParametro("@IDVIAJE", IdViaje);
+
+                datos.SetearParametro("@ESTADO", IdViaje);
 
                 datos.EjecutarAccion();
             }

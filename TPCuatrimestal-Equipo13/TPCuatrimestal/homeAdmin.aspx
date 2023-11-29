@@ -33,10 +33,21 @@
 
                     <asp:BoundField HeaderText="Importe" DataField="Importe" DataFormatString="{0:F2}" />
                     <asp:BoundField HeaderText="Pagado" DataField="Pagado" />
+                    <asp:TemplateField HeaderText="Estado">
+                        <ItemTemplate>
+                            <asp:DropDownList ID="ddlEstado" runat="server">
+                                <asp:ListItem Text="Cancelado" Value="1" />
+                                <asp:ListItem Text="Asignado" Value="2" />
+                                <asp:ListItem Text="Libre" Value="3" />
+                                <asp:ListItem Text="Finalizado" Value="4" />
+                            </asp:DropDownList>
+                            <asp:LinkButton ID="lbOk" runat="server" OnClick="lbOk_Click" CommandArgument='<%# Eval("NumViaje") %>'>OK</asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:TemplateField HeaderText="Accion">
                         <ItemTemplate>
                             <asp:ImageButton ID="btnModificar" runat="server" ImageUrl="https://img2.freepng.es/20201210/hcb/transparent-edit-icon-interface-icon-5fd2c0863c4dc9.114206481607647366247.jpg" class="btn btn-close btn-lg border ms-1" CommandName="Modificar" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Modificar" OnClick="btnModificar_Click" />
-                            <asp:ImageButton ID="btnEliminar" runat="server" ImageUrl="https://e7.pngegg.com/pngimages/729/952/png-clipart-computer-icons-recycling-bin-waste-others-text-recycling.png" class="btn btn-close btn-lg border ms-1" CommandName="Eliminar" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Eliminar" OnClick="btnEliminar_Click" />
+                            <%-- <asp:ImageButton ID="btnEliminar" runat="server" ImageUrl="https://e7.pngegg.com/pngimages/729/952/png-clipart-computer-icons-recycling-bin-waste-others-text-recycling.png" class="btn btn-close btn-lg border ms-1" CommandName="Eliminar" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Eliminar" OnClick="btnEliminar_Click" />--%>
 
                             <!-- EVALUA EL ESTADO DEL VIAJE Y ASIGNA EL BOTON CORRESPONDIENTE -->
                             <asp:ImageButton ID="btnNoPagado" ImageUrl="https://us.123rf.com/450wm/igoun/igoun1805/igoun180500088/101280971-icono-de-cruz-en-c%C3%ADrculo-se-puede-utilizar-como-bot%C3%B3n-de-eliminar-bloquear-cerrar-etc-eliminar.jpg" OnClick="btnNoPagado_Click" CommandArgument='<%#Eval("NumViaje")%>' CommandName="NumViaje" runat="server" Text="No Pagado" CssClass="btn btn-close btn-lg border ms-1" ToolTip="No Pagado" Visible='<%# Convert.ToBoolean(Eval("Pagado")) %>' />

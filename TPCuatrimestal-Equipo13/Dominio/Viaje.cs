@@ -24,7 +24,9 @@ namespace Dominio
         public decimal Importe { get; set; }
         public Domicilio Origen { get; set; }
         public List<Domicilio> Destinos { get; set; }
-        public string Estado { get; set; }
+        
+            // ESTADOS A MANEJAR= 'Cancelado' (baja logica) , 'Asignado' (con chofer) , 'Libre' (sin chofer) , 'Finalizado' 
+        public string Estado { get; set; } 
         public DateTime FechaHoraViaje { get; set; }
         public string MedioDePago { get; set; }
         public bool Pagado { get; set; }

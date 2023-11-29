@@ -64,6 +64,7 @@ namespace TPCuatrimestal
                 txtCalleDestino1.Text = dirDestino1.Direccion;
                 txtLocalidadDestino1.Text = dirDestino1.Localidad;
                 txtProvinciaDestino1.Text = dirDestino1.Provincia;
+                cbxPagado.Checked = viajeAux.Pagado;
 
 
 

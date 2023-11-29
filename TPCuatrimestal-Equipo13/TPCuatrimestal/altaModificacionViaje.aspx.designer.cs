@@ -15,6 +15,24 @@ namespace TPCuatrimestal
     {
 
         /// <summary>
+        /// Control lblPagado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPagado;
+
+        /// <summary>
+        /// Control cbxPagado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbxPagado;
+
+        /// <summary>
         /// Control lblSinCliente.
         /// </summary>
         /// <remarks>

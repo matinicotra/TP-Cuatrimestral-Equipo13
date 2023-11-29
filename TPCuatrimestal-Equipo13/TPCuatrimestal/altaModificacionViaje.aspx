@@ -10,11 +10,16 @@
 
             <h4 class="text-lg-center">VIAJE</h4>
 
+            <div class="input-group mb-3">
+                <asp:Label ID="lblPagado" runat="server" Text="Pagado" CssClass="input-group-text"></asp:Label>
+                <asp:CheckBox ID="cbxPagado" runat="server" Checked="false" CssClass="input-group-text"/>
+            </div>
+
             <h5 class="text-lg-center">DATOS CLIENTE</h5>
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblSinCliente" runat="server" Font-Bold="false">OMITIR CLIENTE</asp:Label>
-                <asp:CheckBox ID="cbxSinCliente" runat="server" CssClass="m-2" />
+                <asp:CheckBox ID="cbxSinCliente" runat="server" CssClass="input-group-text" />
                 <!-- SI ESTÁ TRUE DESHABILITAR TODA LA SECCION CLIENTE O DEJAR SOLO NOMBRE -->
             </div>
 

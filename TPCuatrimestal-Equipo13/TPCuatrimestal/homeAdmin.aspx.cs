@@ -50,7 +50,12 @@ namespace TPCuatrimestal
             ViajeNegocio viajeNegocio = new ViajeNegocio();
             ListarViajes = viajeNegocio.ObtenerDatos();
             dgvViajes.DataSource = ListarViajes;
+            
             dgvViajes.DataBind();
+        }
+
+        private void CargarDDLEstado()
+        {
         }
 
         protected void btnAltaViaje_Click(object sender, EventArgs e)
@@ -121,7 +126,13 @@ namespace TPCuatrimestal
 
         protected void btnEliminar_Click(object sender, ImageClickEventArgs e)
         {
+            ViajeNegocio viajeNegocio = new ViajeNegocio();
 
+            int valorID = int.Parse(((ImageButton)sender).CommandArgument);
+
+            viajeNegocio.BajaLogicaViaje(valorID);
+
+            CargarDGVViajes();
         }
 
         protected void btnPagado_Click(object sender, ImageClickEventArgs e)
@@ -142,6 +153,18 @@ namespace TPCuatrimestal
             int valorID = int.Parse(((ImageButton)sender).CommandArgument);
 
             viajeNegocio.PagarDespagarViaje(valorID, false);
+
+            CargarDGVViajes();
+        }
+
+        protected void lbOk_Click(object sender, EventArgs e)
+        {
+            ViajeNegocio viajeNegocio = new ViajeNegocio();
+            //recupera del commandArgument el valorID de la row clickeada
+            long valorID = long.Parse(((LinkButton)sender).CommandArgument);
+
+            //falta setear el Estado y enviarlo como parametro
+            //viajeNegocio.CambiarEstado(valorID, Estado);
 
             CargarDGVViajes();
         }

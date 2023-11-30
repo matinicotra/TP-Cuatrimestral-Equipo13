@@ -1,0 +1,83 @@
+							******************************
+							**********PANTALLAS***********
+							******************************
+
+----------------------USUARIO-ADMINISTRADOR----------------------------------------------
+
+-PRINCIPAL: 
+	-Lista con viajes del dia X (la fecha del dia por defecto) 
+	-Opciones ABM de viajes
+	-btn ver detalles del viaje 
+	-filtrado por distintos criterios
+	-opciones de ver otros dias
+	-asignar viaje a chhofer y compartir datos del viaje
+	-BTN Accesos a pantalla empresa, clientes, choferes.
+
+**Pantalla detalle viaje: 
+	-todos los datos del viaje
+	-ABM del viaje.
+
+**Pantalla empresa: 
+	-Datos emprersa
+	-cantidad de clientes
+	-BTN accesos a pantalla clientes
+	-resúmenes x mes, x año, total.
+
+**Pantalla clientes: 
+	-Principales datos 
+	-cantidad viajes realizados 
+	-BTN ver detalles
+	-Filtrado por empresa
+	-Busqueda por nombre, domicilio, etc. 
+	-Resúmenes x mes, x año, total.
+		
+		*Pantalla detalle clientes: 
+
+**Pantalla choferes: 
+	-Lista de choferes con algunos detalles
+	-BTN ver detalles 
+	-ABM 
+	-saldo
+	
+		**Pantalla detalle choferes:
+			-btn rendir hasta X fecha.
+
+---------------------USUARIO-CHOFER------------------------------------------------------
+
+**PRINCIPAL:
+	-Lista de viajes realizados y pendientes
+	-saldo
+	-BTN detalles viajes.
+		
+		**Pantalla detalle viaje:
+	
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+Observaciones nuevas:
+
+	-decidir que hacer con tema Empresa
+
+	-validar alta vacio en adminChofer
+	-validar alta vacio en adminVehiculo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

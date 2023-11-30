@@ -163,6 +163,7 @@ namespace TPCuatrimestal
             //recupera del commandArgument el valorID de la row clickeada
             long valorID = long.Parse(((LinkButton)sender).CommandArgument);
 
+           
             //falta setear el Estado y enviarlo como parametro
             //viajeNegocio.CambiarEstado(valorID, Estado);
 

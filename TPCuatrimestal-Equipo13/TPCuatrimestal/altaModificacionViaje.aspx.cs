@@ -36,7 +36,6 @@ namespace TPCuatrimestal
                 choferAux = choferNegocio.ObtenerDatos(viajeAux.IDChofer)[0];
                 dirOrigen = domicilioNegocio.ObtenerDomicilio(viajeAux.Origen.IDDomicilio);
                 dirDestino1 = domicilioNegocio.ObtenerDomicilio(viajeAux.Destinos[0].IDDomicilio);
-                CargarDesplegable();
                 if (viajeAux.Destinos.Count() > 1)
                 {
                     dirDestino2 = domicilioNegocio.ObtenerDomicilio(viajeAux.Destinos[1].IDDomicilio);
@@ -77,6 +76,8 @@ namespace TPCuatrimestal
                     ddlCantidadDestino.SelectedValue = viajeAux.Destinos.Count().ToString();
                 }
             }
+            if (!IsPostBack)
+                CargarDesplegable();
         }
 
         private void CargarDesplegable()
@@ -86,7 +87,7 @@ namespace TPCuatrimestal
 
             listChoferes = cnAux.ObtenerDatos();
 
-                //no asignado es index = 0
+            //no asignado es index = 0
             ddlChoferes.Items.Add("No Asignado");
             ddlChoferes.SelectedIndex = 0;
             int contador = 0;
@@ -94,11 +95,14 @@ namespace TPCuatrimestal
             {
                 if (X.Estado)
                 {
-                    ddlChoferes.Items.Add(X.IDChofer.ToString() + " - " + X.Nombres + " " + X.Apellidos);
+                    ddlChoferes.Items.Add(X.IDChofer.ToString() + "- " + X.Nombres + " " + X.Apellidos + " | " + X.AutoAsignado.ToString());
                     contador++;
-                    if (X.IDChofer == viajeAux.IDChofer)
+                    if (viajeAux != null)
                     {
-                        ddlChoferes.SelectedIndex = contador;
+                        if (X.IDChofer == viajeAux.IDChofer)
+                        {
+                            ddlChoferes.SelectedIndex = contador;
+                        }
                     }
                 }
             }

@@ -33,24 +33,6 @@ namespace TPCuatrimestal
         protected global::System.Web.UI.WebControls.CheckBox cbxPagado;
 
         /// <summary>
-        /// Control lblSinCliente.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSinCliente;
-
-        /// <summary>
-        /// Control cbxSinCliente.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbxSinCliente;
-
-        /// <summary>
         /// Control lblNombre.
         /// </summary>
         /// <remarks>
@@ -121,6 +103,24 @@ namespace TPCuatrimestal
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
+
+        /// <summary>
+        /// Control txtHora.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtHora;
+
+        /// <summary>
+        /// Control txtFecha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFecha;
 
         /// <summary>
         /// Control lblCalleOrigen.
@@ -355,24 +355,6 @@ namespace TPCuatrimestal
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtProvinciaDestino3;
-
-        /// <summary>
-        /// Control lblAsignarDespues.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAsignarDespues;
-
-        /// <summary>
-        /// Control cbxAsignarDespues.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbxAsignarDespues;
 
         /// <summary>
         /// Control lblNombreChofer.

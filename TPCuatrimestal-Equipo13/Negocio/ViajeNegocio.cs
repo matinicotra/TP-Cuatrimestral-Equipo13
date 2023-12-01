@@ -57,6 +57,9 @@ namespace Negocio
                     aux.Importe = datosViaje.Lector["IMPORTE"] is DBNull ? -1 : (decimal)datosViaje.Lector["IMPORTE"];
 
                     aux.Origen.IDDomicilio = datosViaje.Lector["IDDOMORIGEN"] is DBNull ? -1 : (long)datosViaje.Lector["IDDOMORIGEN"];
+                    if(aux.Origen.IDDomicilio != -1)
+                        aux.Origen = domicilioNegocio.ObtenerDomicilio(aux.Origen.IDDomicilio);
+
 
                     destino1.IDDomicilio = datosViaje.Lector["IDDOMDESTINO1"] is DBNull ? -1 : (long)datosViaje.Lector["IDDOMDESTINO1"];
 

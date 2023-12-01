@@ -169,5 +169,11 @@ namespace TPCuatrimestal
 
             CargarDGVViajes();
         }
+
+        protected void btnDetalle_Click(object sender, ImageClickEventArgs e)
+        {
+            int valorID = int.Parse(((ImageButton)sender).CommandArgument);
+            Response.Redirect("detalleViaje.aspx?id=" + valorID, false);
+        }
     }
 }

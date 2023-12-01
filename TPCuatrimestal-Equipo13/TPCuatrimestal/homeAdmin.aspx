@@ -31,7 +31,7 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:BoundField HeaderText="Importe" DataField="Importe" DataFormatString="{0:F2}" />
+                    <asp:BoundField HeaderText="Importe" DataField="Importe" DataFormatString="{0:F1}" />
                     <asp:BoundField HeaderText="Pagado" DataField="Pagado" />
                     <asp:TemplateField HeaderText="Estado">
                         <ItemTemplate>
@@ -47,6 +47,8 @@
                     <asp:TemplateField HeaderText="Accion">
                         <ItemTemplate>
                             <asp:ImageButton ID="btnModificar" runat="server" ImageUrl="https://img2.freepng.es/20201210/hcb/transparent-edit-icon-interface-icon-5fd2c0863c4dc9.114206481607647366247.jpg" class="btn btn-close btn-lg border ms-1" CommandName="Modificar" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Modificar" OnClick="btnModificar_Click" />
+
+                            <asp:ImageButton ID="btnDetalle" runat="server" ImageUrl="https://w7.pngwing.com/pngs/756/956/png-transparent-computer-icons-symbol-hamburger-button-details-miscellaneous-blue-angle-thumbnail.png" class="btn btn-close btn-lg border ms-1" CommandName="Detalle" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Detalle" OnClick="btnDetalle_Click" />
                             <%-- <asp:ImageButton ID="btnEliminar" runat="server" ImageUrl="https://e7.pngegg.com/pngimages/729/952/png-clipart-computer-icons-recycling-bin-waste-others-text-recycling.png" class="btn btn-close btn-lg border ms-1" CommandName="Eliminar" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Eliminar" OnClick="btnEliminar_Click" />--%>
 
                             <!-- EVALUA EL ESTADO DEL VIAJE Y ASIGNA EL BOTON CORRESPONDIENTE -->

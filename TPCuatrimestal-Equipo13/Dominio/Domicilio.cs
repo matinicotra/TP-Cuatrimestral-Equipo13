@@ -13,5 +13,13 @@ namespace Dominio
         public string Localidad { get; set; }
         public string Provincia { get; set; }
         public string Descripcion {  get; set; }
+
+        public override string ToString()
+        {
+            string aux = Direccion + " " + Localidad;
+            return aux;
+        }
+
     }
+
 }

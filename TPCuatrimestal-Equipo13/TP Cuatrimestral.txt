@@ -1,69 +1,74 @@
-							******************************
-							**********PANTALLAS***********
-							******************************
 
-----------------------USUARIO-ADMINISTRADOR----------------------------------------------
-
--PRINCIPAL: 
-	-Lista con viajes del dia X (la fecha del dia por defecto) 
-	-Opciones ABM de viajes
-	-btn ver detalles del viaje 
-	-filtrado por distintos criterios
-	-opciones de ver otros dias
-	-asignar viaje a chhofer y compartir datos del viaje
-	-BTN Accesos a pantalla empresa, clientes, choferes.
-
-**Pantalla detalle viaje: 
-	-todos los datos del viaje
-	-ABM del viaje.
-
-**Pantalla empresa: 
-	-Datos emprersa
-	-cantidad de clientes
-	-BTN accesos a pantalla clientes
-	-resúmenes x mes, x año, total.
-
-**Pantalla clientes: 
-	-Principales datos 
-	-cantidad viajes realizados 
-	-BTN ver detalles
-	-Filtrado por empresa
-	-Busqueda por nombre, domicilio, etc. 
-	-Resúmenes x mes, x año, total.
-		
-		*Pantalla detalle clientes: 
-
-**Pantalla choferes: 
-	-Lista de choferes con algunos detalles
-	-BTN ver detalles 
-	-ABM 
-	-saldo
-	
-		**Pantalla detalle choferes:
-			-btn rendir hasta X fecha.
-
----------------------USUARIO-CHOFER------------------------------------------------------
-
-**PRINCIPAL:
-	-Lista de viajes realizados y pendientes
-	-saldo
-	-BTN detalles viajes.
-		
-		**Pantalla detalle viaje:
 	
 ---------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------
 Observaciones nuevas:
 
-	-decidir que hacer con tema Empresa
+-validar alta vacio en adminChofer
+-validar alta vacio en adminVehiculo
 
-	-validar alta vacio en adminChofer
-	-validar alta vacio en adminVehiculo
+-Baja viaje (boton en grid view y logica)
+-Boton detalle viaje en grid view
+-Pantalla detalleViaje (carga del viaje)
+-Armar busqueda por Dia
+-la bbdd debe aceptar chofer y cliente nulls en tabla viajes
+-Hacer Alta/Modificar viajes btnAceptar
+
+-corregir btnAceptar en altamodificacionViaje
+
+-Armar los usuarios y el login y permisos (al momento de cargar chofer que genere usuario)
+-Filtros de busqueda
+-Desplegable homeAdmin
 
 
+----------
+****armar pantalla lista de viajes por chofer y por cliente. Recibe 3 parametros: un idViaje, un intervalo de fechas string y id persona
+
+	homeAdmin
+-Filtros de busqueda
+-Desplegable para filtrar (por chofer, por cliente, por estado)
+-Construir calendario para ver viajes por fechas seleccionadas
+-columna hora en grid view
+-hacer andar ddlEstado en grid view
+
+	detalleViaje 
+(permisos chofer y admin pero con diferencias: copiar detalles viajes solo admin, chofer solo ve boton atras)
+-Armar form y cargarlo
+-Armar boton de whatsapp (solo chofer)
+
+	homeChofer
+-Armar en la bbdd funcion de concatenar la direccion para url de ubicacion
+-Sacar calendario, filtro, copiar datos del viaje
+-Primer viaje de la lista será modificable, el resto solo lectura
+-Armar logica de resumenes chofer (con vistas en la bbdd) que sean envios de mail al chofer
+
+ 	adminVehiculo
+-armar filtro por: Modelo, Tipo y plazas
+-acomodar footer
+
+	adminChoferes
+-armar filtro por: nombre y apellido, zona y vehiculo (puede estar sin auto)
+-agregar boton volver
+
+	adminCliente
+-armar filtro por: nombre y apellido, localidad
+
+	detalleCliente
+-Calendario, filtro busqueda, botones eliminar y modificar fuera
+-boton volver
+-acomodar footer
+-acomodar datos
+-listar viajes por id cliente ordenado por fecha
+
+	detalleChofer
+-botones alta, baja, modificar, calendario, filtros fuera
+-listar viajes por id chofer ordenado por fecha
+-Mostrar datos del chofer
 
 
+vistas en bbdd:
+-Ver resumenes de viajes
 
 
 

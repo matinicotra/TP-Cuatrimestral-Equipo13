@@ -9,16 +9,25 @@
             <asp:Label ID="lblTitulo" CssClass="h1 text-primary" runat="server" Text=""></asp:Label>
         </div>
         <div class="list-group">
-
             <%-- LISTA DE LOS DETALLES DEL VIAJE --%>
+
+            <div class="list-group list-group-horizontal">
+                <asp:Label ID="lblEstado" CssClass="list-group-item list-group-item-primary mb-2" runat="server" Text="Estado:"></asp:Label>
+                <asp:Label ID="lblEstadoData" CssClass="list-group-item mb-2" runat="server" Text=""></asp:Label>
+            </div>
+
             <div class="list-group list-group-horizontal">
                 <asp:Label ID="lblCliente" CssClass="list-group-item list-group-item-primary mb-2" runat="server" Text="Cliente:"></asp:Label>
                 <asp:Label ID="lblClienteData" CssClass="list-group-item mb-2" runat="server" Text=""></asp:Label>
             </div>
 
             <div class="list-group list-group-horizontal">
-                <asp:Label ID="lblOrigen" CssClass="list-group-item list-group-item-primary mb-2" runat="server" Text="Direccion Origen:"></asp:Label>
-                <asp:Label ID="lblOrigenData" CssClass="list-group-item mb-2" runat="server" Text=""></asp:Label>
+                <asp:Label ID="lblOrigen" CssClass="list-group-item list-group-item-primary mb-1" runat="server" Text="Direccion Origen:"></asp:Label>
+                <asp:Label ID="lblOrigenData" CssClass="list-group-item mb-1" runat="server" Text=""></asp:Label>
+            </div>
+            <div class="list-group list-group-horizontal">
+                <asp:Label ID="lblOrigenObservacion" CssClass="list-group-item list-group-item-primary mb-2" runat="server" Text="Observacion:"></asp:Label>
+                <asp:Label ID="lblOrigenObservacionData" CssClass="list-group-item mb-2" runat="server" Text=""></asp:Label>
             </div>
 
             <div class="list-group list-group-horizontal">
@@ -39,14 +48,22 @@
             <%if (viaje.Destinos.Count() > 1)
                 { %>
             <div class="list-group list-group-horizontal">
-                <asp:Label ID="lblDestino2" CssClass="list-group-item list-group-item-primary mb-2" runat="server" Text="Direccion Segundo Destino:"></asp:Label>
-                <asp:Label ID="lblDestino2Data" CssClass="list-group-item mb-2" runat="server" Text=""></asp:Label>
+                <asp:Label ID="lblDestino2" CssClass="list-group-item list-group-item-primary mb-1" runat="server" Text="Direccion Segundo Destino:"></asp:Label>
+                <asp:Label ID="lblDestino2Data" CssClass="list-group-item mb-1" runat="server" Text=""></asp:Label>
+            </div>
+            <div class="list-group list-group-horizontal">
+                <asp:Label ID="lblObservacionDestino2" CssClass="list-group-item list-group-item-primary mb-2" runat="server" Text="Observacion:"></asp:Label>
+                <asp:Label ID="lblObservacionDestino2Data" CssClass="list-group-item mb-2" runat="server" Text=""></asp:Label>
             </div>
             <%if (viaje.Destinos.Count() > 2)
                 { %>
             <div class="list-group list-group-horizontal">
-                <asp:Label ID="lblDestino3" CssClass="list-group-item list-group-item-primary mb-2" runat="server" Text="Direccion Tercer Destino:"></asp:Label>
-                <asp:Label ID="lblDestino3Data" CssClass="list-group-item mb-2" runat="server" Text=""></asp:Label>
+                <asp:Label ID="lblDestino3" CssClass="list-group-item list-group-item-primary mb-1" runat="server" Text="Direccion Tercer Destino:"></asp:Label>
+                <asp:Label ID="lblDestino3Data" CssClass="list-group-item mb-1" runat="server" Text=""></asp:Label>
+            </div>
+            <div class="list-group list-group-horizontal">
+                <asp:Label ID="lblObservacionDestino3" CssClass="list-group-item list-group-item-primary mb-2" runat="server" Text="Observacion:"></asp:Label>
+                <asp:Label ID="lblObservacionDestino3Data" CssClass="list-group-item mb-2" runat="server" Text=""></asp:Label>
             </div>
             <%}
                 } %>

@@ -33,6 +33,15 @@ namespace TPCuatrimestal
         protected global::System.Web.UI.WebControls.CheckBox cbxPagado;
 
         /// <summary>
+        /// Control ddlClientes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlClientes;
+
+        /// <summary>
         /// Control lblNombre.
         /// </summary>
         /// <remarks>
@@ -96,13 +105,13 @@ namespace TPCuatrimestal
         protected global::System.Web.UI.WebControls.Label lblFormaDePago;
 
         /// <summary>
-        /// Control RadioButtonList1.
+        /// Control rblFormaDePago.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
+        protected global::System.Web.UI.WebControls.RadioButtonList rblFormaDePago;
 
         /// <summary>
         /// Control txtHora.

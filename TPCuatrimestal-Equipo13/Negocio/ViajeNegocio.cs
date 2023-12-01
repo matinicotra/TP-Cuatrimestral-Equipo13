@@ -71,7 +71,7 @@ namespace Negocio
 
                     aux.FechaHoraViaje = datosViaje.Lector["FECHAHORAVIAJE"] is DBNull ? DateTime.Parse("01-01-1900") : (DateTime)datosViaje.Lector["FECHAHORAVIAJE"];
 
-                    aux.MedioDePago = datosViaje.Lector["MEDIODEPAGO"] is DBNull ? "S/MP" : (string)datosViaje.Lector["MEDIODEPAGO"];
+                    aux.MedioDePago = datosViaje.Lector["MEDIODEPAGO"] is DBNull ? "No Especifica" : (string)datosViaje.Lector["MEDIODEPAGO"];
 
                     aux.Pagado = datosViaje.Lector["PAGADO"] is DBNull ? false : (bool)datosViaje.Lector["PAGADO"];
 

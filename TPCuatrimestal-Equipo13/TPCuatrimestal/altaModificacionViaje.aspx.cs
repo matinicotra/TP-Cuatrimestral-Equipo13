@@ -21,6 +21,12 @@ namespace TPCuatrimestal
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request.QueryString["id"] == null)
+            {
+                txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                txtHora.Text = "07:00";
+                rblFormaDePago.SelectedValue = "No Especifica";
+            }
 
             if (Request.QueryString["id"] != null && !IsPostBack)
             {
@@ -64,8 +70,10 @@ namespace TPCuatrimestal
                 txtLocalidadDestino1.Text = dirDestino1.Localidad;
                 txtProvinciaDestino1.Text = dirDestino1.Provincia;
                 cbxPagado.Checked = viajeAux.Pagado;
+                txtFecha.Text = viajeAux.FechaHoraViaje.ToString("yyyy-MM-dd");
+                txtHora.Text = viajeAux.FechaHoraViaje.ToString("HH:mm");
 
-
+                rblFormaDePago.SelectedValue = viajeAux.MedioDePago;
 
                 if (Session["CantidadDestino"] != null)
                 {
@@ -75,12 +83,21 @@ namespace TPCuatrimestal
                 {
                     ddlCantidadDestino.SelectedValue = viajeAux.Destinos.Count().ToString();
                 }
+                if ((Session["Cliente"] != null))
+                {
+                    ddlClientes.SelectedIndex = (int)Session["Cliente"];
+                } else
+                {
+                    ddlClientes.SelectedIndex = 0;
+                }
             }
             if (!IsPostBack)
-                CargarDesplegable();
+            {
+                CargarDesplegables();
+            }
         }
 
-        private void CargarDesplegable()
+        private void CargarDesplegables()
         {
             ChoferNegocio cnAux = new ChoferNegocio();
             List<Chofer> listChoferes = new List<Chofer>();
@@ -106,6 +123,24 @@ namespace TPCuatrimestal
                     }
                 }
             }
+
+            ClienteNegocio clienteNegocioAux = new ClienteNegocio();
+            List<Cliente> listaClientes = clienteNegocioAux.ObtenerDatos();
+            ddlClientes.Items.Add("Cliente Nuevo");
+            ddlClientes.SelectedIndex = 0;
+            contador = 0;
+            foreach (Cliente Y in listaClientes)
+            {
+                ddlClientes.Items.Add(Y.ToString());
+                contador++;
+                if (viajeAux != null)
+                {
+                    if (Y.IDCliente == viajeAux.IDCliente)
+                    {
+                        ddlClientes.SelectedIndex = contador;
+                    }
+                }
+            }
         }
         protected void ddlCantidadDestino_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -119,7 +154,14 @@ namespace TPCuatrimestal
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            //armmar metodo para dar de alta o modificar
+            viajeAux.Pagado = cbxPagado.Checked;
+            //cliente tiene un campo int de ID y un campo (como composicion) ClienteViaje de la class Cliente. Hay que setear ambos
+
+        }
+
+        protected void ddlClientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["Cliente"] = ddlClientes.SelectedValue;
         }
     }
 }

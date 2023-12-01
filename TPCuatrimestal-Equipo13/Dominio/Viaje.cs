@@ -28,6 +28,7 @@ namespace Dominio
             // ESTADOS A MANEJAR= 'Cancelado' (baja logica) , 'Asignado' (con chofer) , 'Libre' (sin chofer) , 'Finalizado' 
         public string Estado { get; set; } 
         public DateTime FechaHoraViaje { get; set; }
+            //MEDIOS DE PAGO A MANEJAR= 'No Especifica', 'Efectivo', 'Tarjeta de Credito', 'Tarjeta de Debito', 'Mercado Pago', 'Cuenta Corriente'
         public string MedioDePago { get; set; }
         public bool Pagado { get; set; }
 

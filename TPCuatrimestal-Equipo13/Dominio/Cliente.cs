@@ -15,7 +15,7 @@ namespace Dominio
         public override string ToString()
         {
             if (this.IDPersona != 0)
-                return this.Nombres + " " + this.Apellidos;
+                return this.IDCliente + " " + this.Nombres + " " + this.Apellidos;
             return "Sin Cliente";
         }
     }

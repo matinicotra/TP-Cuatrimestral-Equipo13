@@ -16,7 +16,9 @@
             </div>
 
             <h5 class="text-center">DATOS DEL CLIENTE</h5>
-
+            <div class="input-group mb-1">
+                <asp:DropDownList ID="ddlClientes" runat="server" CssClass="btn btn-primary dropdown-toggle" AutoPostBack="True" OnSelectedIndexChanged="ddlClientes_SelectedIndexChanged"> </asp:DropDownList>
+            </div>
             <%--d<%--iv class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblSinCliente" runat="server" Font-Bold="false">OMITIR CLIENTE</asp:Label>
                 <asp:CheckBox ID="cbxSinCliente" runat="server" CssClass="input-group-text" />
@@ -42,20 +44,20 @@
                     <asp:Label CssClass="input-group-text" ID="lblFormaDePago" runat="server" Font-Bold="false">FORMA DE PAGO</asp:Label>
                 </div>
                 <div cssclass="form-check form-check-inline mx-1 d-flex">
-                    <asp:RadioButtonList CssClass="" ID="RadioButtonList1" runat="server">
-                        <asp:ListItem CssClass="form-check-input" Text="No Especifica" Value="1" Selected="True" />
-                        <asp:ListItem CssClass="form-check-input" Text="Efectivo" Value="2" />
-                        <asp:ListItem CssClass="form-check-input" Text="Debito" Value="3" />
-                        <asp:ListItem CssClass="form-check-input" Text="Credito" Value="4" />
-                        <asp:ListItem CssClass="form-check-input" Text="Mercado Pago" Value="5" />
-                        <asp:ListItem CssClass="form-check-input" Text="Cuenta Corriente" Value="6" />
+                    <asp:RadioButtonList CssClass="" ID="rblFormaDePago" runat="server">
+                        <asp:ListItem CssClass="form-check-input" Text="No Especifica" Value="No Especifica" />
+                        <asp:ListItem CssClass="form-check-input" Text="Efectivo" Value="Efectivo" />
+                        <asp:ListItem CssClass="form-check-input" Text="Tarjeta de Debito" Value="Tarjeta de Debito" />
+                        <asp:ListItem CssClass="form-check-input" Text="Tarjeta de Credito" Value="Tarjeta de Credito" />
+                        <asp:ListItem CssClass="form-check-input" Text="Mercado Pago" Value="Mercado Pago" />
+                        <asp:ListItem CssClass="form-check-input" Text="Cuenta Corriente" Value="Cuenta Corriente" />
                     </asp:RadioButtonList>
                 </div>
             </div>
             <h5 class="text-center">HORA Y FECHA</h5>
             <div cssclass="form-check form-check-inline">
-                <asp:TextBox ID="txtHora" CssClass="form-control mb-1" runat="server" TextMode="Time"></asp:TextBox>
-                <asp:TextBox ID="txtFecha" CssClass="form-control mb-3" runat="server" TextMode="Date"></asp:TextBox>
+                <asp:TextBox ID="txtHora" CssClass="col-form-label" runat="server" TextMode="Time"></asp:TextBox>
+                <asp:TextBox ID="txtFecha" CssClass="col-form-label ms-2 mb-3" runat="server" TextMode="Date"></asp:TextBox>
             </div>
 
             <h5 class="text-center">DOMICILIO ORIGEN</h5>
@@ -78,13 +80,13 @@
             <h5 class="text-center">DOMICILIO DESTINO</h5>
 
             <div class="input-group mb-3">
-                    <asp:Label ID="lblCantidadDestino" runat="server" Text="CANTIDAD DESTINOS" CssClass="input-group-text"></asp:Label>
-                    <asp:DropDownList ID="ddlCantidadDestino" runat="server" CssClass="dropdown-toggle" AutoPostBack="True" OnSelectedIndexChanged="ddlCantidadDestino_SelectedIndexChanged">
-                        <asp:ListItem Text="1" Value="1" />
-                        <asp:ListItem Text="2" Value="2" />
-                        <asp:ListItem Text="3" Value="3" />
-                    </asp:DropDownList>
-                
+                <asp:Label ID="lblCantidadDestino" runat="server" Text="CANTIDAD DESTINOS" CssClass="input-group-text"></asp:Label>
+                <asp:DropDownList ID="ddlCantidadDestino" runat="server" CssClass="btn btn-primary dropdown-toggle" AutoPostBack="True" OnSelectedIndexChanged="ddlCantidadDestino_SelectedIndexChanged">
+                    <asp:ListItem Text="1" Value="1" />
+                    <asp:ListItem Text="2" Value="2" />
+                    <asp:ListItem Text="3" Value="3" />
+                </asp:DropDownList>
+
             </div>
             <div class="input-group mb-1">
                 <asp:Label CssClass="input-group-text" ID="lblCalleDestino1" runat="server" Font-Bold="false">DOMICILIO</asp:Label>

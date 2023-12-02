@@ -8,8 +8,33 @@
     <div style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px; margin-top: 40px; margin-bottom: 100px;">
 
         <div>
-            <h4>Listado de viajes del dia</h4>
-            <asp:ListBox ID="ListBox1" runat="server"></asp:ListBox>
+            <h4>Listado de viajes</h4>
+            <asp:GridView ID="dgvViajes" runat="server" CssClass="table table-primary" OnSelectedIndexChanged="dgvViajes_SelectedIndexChanged" DataKeyNames="NumViaje" AutoGenerateColumns="false">
+                <Columns>
+                    <asp:BoundField HeaderText="Viaje N°" DataField="NumViaje" />
+
+                    <asp:TemplateField HeaderText="Cliente">
+                        <ItemTemplate>
+                            <%# Eval("ClienteViaje")%>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:BoundField HeaderText="Importe" DataField="Importe" DataFormatString="{0:F1}" />
+
+                    <asp:BoundField HeaderText="Pagado" DataField="Pagado" />
+
+                    <asp:TemplateField HeaderText="Accion">
+                        <ItemTemplate>
+                            <asp:ImageButton ID="btnDireccion" runat="server" ImageUrl="https://w7.pngwing.com/pngs/756/956/png-transparent-computer-icons-symbol-hamburger-button-details-miscellaneous-blue-angle-thumbnail.png" class="btn btn-close btn-lg border ms-1" CommandName="Detalle" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Detalle" OnClick="btnDireccion_Click"/>
+
+                            <asp:ImageButton ID="btnNoPagado" ImageUrl="https://us.123rf.com/450wm/igoun/igoun1805/igoun180500088/101280971-icono-de-cruz-en-c%C3%ADrculo-se-puede-utilizar-como-bot%C3%B3n-de-eliminar-bloquear-cerrar-etc-eliminar.jpg" CommandArgument='<%#Eval("NumViaje")%>' CommandName="NumViaje" runat="server" Text="No Pagado" CssClass="btn btn-close btn-lg border ms-1" ToolTip="No Pagado" Visible='<%# Convert.ToBoolean(Eval("Pagado")) %>' OnClick="btnNoPagado_Click" />
+
+                            <asp:ImageButton ID="btnPagado" ImageUrl="https://c0.klipartz.com/pngpicture/605/284/gratis-png-cheque-verde-ogo-iconos-de-la-marca-de-verificacion-marca-verde-thumbnail.png" CommandArgument='<%#Eval("NumViaje")%>' CommandName="NumViaje" runat="server" Text="Pagado" CssClass="btn btn-close btn-lg border ms-1" ToolTip="Pagado" Visible='<%# !Convert.ToBoolean(Eval("Pagado")) %>' OnClick="btnPagado_Click" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                </Columns>
+            </asp:GridView>
         </div>
 
         <div>
@@ -20,9 +45,7 @@
                 style="border: 0"
                 loading="lazy"
                 allowfullscreen
-                referrerpolicy="no-referrer-when-downgrade"
-                src="">
-            </iframe>
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
         <div>

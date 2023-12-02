@@ -12,17 +12,6 @@
             <asp:Label ID="lblTelefonoTitulo" runat="server" Text=""></asp:Label>
         </div>
 
-        <div class="row justify-content-center">
-            <div class="input-group mb-3" style="display: flex; align-items: center; flex-direction: row;">
-                <asp:TextBox ID="txtFiltrar" runat="server" CssClass="form-control" PlaceHolder="Busqueda..."></asp:TextBox>
-                <asp:DropDownList ID="ddlFiltrar" runat="server" CssClass="custom-select ms-2"></asp:DropDownList>
-                <!-- AGREGAR LOS CRITERIOS DE ORDEN-->
-                <div class="ms-2">
-                    <asp:Button ID="btnFiltrar" runat="server" CssClass="btn btn-primary" Text="Buscar" />
-                </div>
-            </div>
-        </div>
-
         <div>
             <h5>Listado de viajes</h5>
             <asp:ListBox ID="listaViajesPorCliente" runat="server"></asp:ListBox>
@@ -33,20 +22,10 @@
         </div>
 
         <div>
-            <asp:Button CssClass="btn btn-danger" ID="btnBajaCliente" runat="server" Text="Eliminar" />
-            <asp:Button CssClass="btn btn-warning" ID="btnModificarViaje" runat="server" Text="Modificar" OnClick="btnModificarViaje_Click" />
-        </div>
-
-        <div>
-            <h5>BUSQUEDA POR DIA</h5>
-            <asp:Calendar ID="verDiaCliente" runat="server" class="table table-secondary table-striped"></asp:Calendar>
-        </div>
-
-        <div>
-            <h5 class="text-sm-center">Resumenes del Cliente</h5>
-            <asp:Button CssClass="btn btn-info" ID="btnResumenAnioCliente" runat="server" Text="Por Año" />
-            <asp:Button CssClass="btn btn-info" ID="btnResumenMesCliente" runat="server" Text="Por Mes" />
-            <asp:Button CssClass="btn btn-info" ID="btnResumenTotalCliente" runat="server" Text="Total" />
+            <h5 class="text-sm-center">Resumen del Cliente</h5>
+            <asp:Button CssClass="btn btn-info" ID="btnResumenAnioCliente" runat="server" Text="Semanal" />
+            <asp:Button CssClass="btn btn-info" ID="btnResumenMesCliente" runat="server" Text="Quincenal" />
+            <asp:Button CssClass="btn btn-info" ID="btnResumenTotalCliente" runat="server" Text="Mensual" />
         </div>
         <div>
             <h6>DATOS CLIENTE</h6>

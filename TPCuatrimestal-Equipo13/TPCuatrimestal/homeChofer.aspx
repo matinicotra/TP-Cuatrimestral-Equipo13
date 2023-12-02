@@ -54,17 +54,11 @@
 
         <div>
             <asp:Button CssClass="btn btn-info" ID="btnDetalleViaje" runat="server" Text="Detalle viaje" OnClick="btnDetalleViaje_Click" />
-            <asp:Button CssClass="btn btn-info" ID="btnCopiarDatosViajeSeleccionado" runat="server" Text="Copiar datos del viaje" />
         </div>
 
         <div style="display: flex; flex-direction: row; width: 400px;">
             <asp:TextBox CssClass="form-control" ID="txtFiltrar" runat="server">Filtrar</asp:TextBox>
             <asp:Button CssClass="btn btn-info" ID="btnFiltrar" runat="server" Text="Buscar" />
-        </div>
-
-        <div>
-            <h5>Ver viajes por día</h5>
-            <asp:Calendar ID="calOtrosDias" runat="server"></asp:Calendar>
         </div>
 
         <div>

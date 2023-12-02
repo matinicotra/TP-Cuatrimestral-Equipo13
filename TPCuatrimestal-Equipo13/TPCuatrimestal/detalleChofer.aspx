@@ -16,17 +16,6 @@
         <div>
             <asp:Label ID="lblAutoAsignado" runat="server" Text=""></asp:Label>
         </div>
-        <div class="row justify-content-center">
-            <div class="input-group mb-3" style="display: flex; align-items: center; flex-direction: row;">
-                <asp:TextBox ID="txtFiltrar" runat="server" CssClass="form-control" PlaceHolder="Busqueda..."></asp:TextBox>
-                <asp:DropDownList ID="ddlFiltrar" runat="server" CssClass="custom-select ms-2"></asp:DropDownList>
-                <!-- AGREGAR LOS CRITERIOS DE ORDEN-->
-                <div class="ms-2">
-                    <asp:Button ID="btnFiltrar" runat="server" CssClass="btn btn-primary" Text="Buscar" />
-                </div>
-            </div>
-
-        </div>
 
         <div>
             <h5 class="text-sm-center">VIAJES</h5>
@@ -41,22 +30,14 @@
         </div>-->
 
         <div>
-            <asp:Button CssClass="btn btn-success" ID="btnAltaViaje" runat="server" Text="Alta" />
-            <asp:Button CssClass="btn btn-danger" ID="btnBajaViaje" runat="server" Text="Baja" />
-            <asp:Button CssClass="btn btn-warning" ID="btnModificarViaje" runat="server" Text="Modificar" OnClick="btnModificarViaje_Click"/>
             <asp:Button CssClass="btn btn-info" ID="btnDetalleViaje" runat="server" Text="Detalles viaje" OnClick="btnDetalleViaje_Click" />
         </div>
 
         <div>
-            <h5>BUSQUEDA POR DIA</h5>
-            <asp:Calendar ID="verDiaChofer" runat="server" class="table table-secondary table-striped"></asp:Calendar>
-        </div>
-
-        <div>
-            <h5 class="text-sm-center">Resumenes del Chofer</h5>
-            <asp:Button CssClass="btn btn-info" ID="btnResumenAnioChofer" runat="server" Text="Por Anio" />
-            <asp:Button CssClass="btn btn-info" ID="btnResumenMesChofer" runat="server" Text="Por Mes" />
-            <asp:Button CssClass="btn btn-info" ID="btnResumenTotalChofer" runat="server" Text="Total" />
+            <h5 class="text-sm-center">Resumen del Chofer</h5>
+            <asp:Button CssClass="btn btn-info" ID="btnResumenAnioChofer" runat="server" Text="Semanal" />
+            <asp:Button CssClass="btn btn-info" ID="btnResumenMesChofer" runat="server" Text="Quincenal" />
+            <asp:Button CssClass="btn btn-info" ID="btnResumenTotalChofer" runat="server" Text="Mensual" />
         </div>
     </div>
 </asp:Content>

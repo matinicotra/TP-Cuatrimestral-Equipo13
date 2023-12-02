@@ -25,7 +25,7 @@
 
                     <asp:TemplateField HeaderText="Accion">
                         <ItemTemplate>
-                            <asp:ImageButton ID="btnDireccion" runat="server" ImageUrl="https://w7.pngwing.com/pngs/756/956/png-transparent-computer-icons-symbol-hamburger-button-details-miscellaneous-blue-angle-thumbnail.png" class="btn btn-close btn-lg border ms-1" CommandName="Detalle" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Detalle" OnClick="btnDireccion_Click"/>
+                            <asp:ImageButton ID="btnMapa" runat="server" CssClass="btn btn-close btn-lg border ms-1" CommandArgument='<%# Eval("NumViaje") %>' OnClick="btnMapa_Click" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcrDhC3i0jmSXhxnMoI5TDMWulKu0GZ6Jn2g&usqp=CAU"/>
 
                             <asp:ImageButton ID="btnNoPagado" ImageUrl="https://us.123rf.com/450wm/igoun/igoun1805/igoun180500088/101280971-icono-de-cruz-en-c%C3%ADrculo-se-puede-utilizar-como-bot%C3%B3n-de-eliminar-bloquear-cerrar-etc-eliminar.jpg" CommandArgument='<%#Eval("NumViaje")%>' CommandName="NumViaje" runat="server" Text="No Pagado" CssClass="btn btn-close btn-lg border ms-1" ToolTip="No Pagado" Visible='<%# Convert.ToBoolean(Eval("Pagado")) %>' OnClick="btnNoPagado_Click" />
 

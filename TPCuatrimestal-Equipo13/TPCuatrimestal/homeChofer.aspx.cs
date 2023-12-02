@@ -15,7 +15,7 @@ namespace TPCuatrimestal
 
         private List<Viaje> viajes = new List<Viaje>();
 
-        private Domicilio origen = new Domicilio();
+        private Domicilio domicilioOrigen = new Domicilio();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,23 +24,11 @@ namespace TPCuatrimestal
             ViajeNegocio viajeNegocio = new ViajeNegocio();
             viajes = viajeNegocio.ObtenerViajesChofer(idChofer);
 
-            dgvViajes.DataSource = viajes;
-            dgvViajes.DataBind();
-
-
-            // MAPA //
-            //string direccionPrueba = "cochabamba+1200,+capital+federal";        // desarrollar una funcion para concatenar la direccion
-            //urlIframe.Attributes.Add("src", "https://www.google.com/maps/embed/v1/place?key=AIzaSyDoBiKY57PiZmKkaMIjWRjSMPZO2i-XJJM&q=" + direccionPrueba);
-            string direccion = viajes[0].Origen.Direccion.ToString().Replace(" ", "+");
-            string localidad = viajes[0].Origen.Localidad.ToString().Replace(" ", "+");
-            string provincia = viajes[0].Origen.Provincia.ToString().Replace(" ", "+");
-            //cambiar el indice por el viaje seleccionado o activo o actual
-
-            string direccionPrueba = "cochabamba+1200,+capital+federal";
-            string domicilio = direccion + "," + localidad + "," + provincia;
-
-            urlIframe.Attributes.Add("src", "https://www.google.com/maps/embed/v1/place?key=AIzaSyDoBiKY57PiZmKkaMIjWRjSMPZO2i-XJJM&q=" + domicilio);
-
+            if (!IsPostBack)
+            {
+                dgvViajes.DataSource = viajes;
+                dgvViajes.DataBind();
+            }
         }
 
         protected void btnDetalleViaje_Click(object sender, EventArgs e)
@@ -59,12 +47,6 @@ namespace TPCuatrimestal
             var numViajeSeleccionado = dgvViajes.SelectedDataKey.Value.ToString();
         }
 
-        protected void btnDireccion_Click(object sender, ImageClickEventArgs e)
-        {
-
-        }
-
-
         protected void btnNoPagado_Click(object sender, ImageClickEventArgs e)
         {
             ViajeNegocio viajeNegocio = new ViajeNegocio();
@@ -81,6 +63,21 @@ namespace TPCuatrimestal
             int valorID = int.Parse(((ImageButton)sender).CommandArgument);
 
             viajeNegocio.PagarDespagarViaje(valorID, true);
+        }
+
+        protected void btnMapa_Click(object sender, ImageClickEventArgs e)
+        {
+            ImageButton btnImg = (ImageButton)sender;
+            long numViaje = long.Parse(btnImg.CommandArgument);
+            Viaje viaje = viajes.Find(X => X.NumViaje == numViaje);
+
+            string direccion = viaje.Origen.Direccion.ToString().Replace(" ", "+");
+            string localidad = viaje.Origen.Localidad.ToString().Replace(" ", "+");
+            string provincia = viaje.Origen.Provincia.ToString().Replace(" ", "+");
+
+            string domicilio = direccion + "," + localidad + "," + provincia;
+
+            urlIframe.Attributes.Add("src", "https://www.google.com/maps/embed/v1/place?key=AIzaSyDoBiKY57PiZmKkaMIjWRjSMPZO2i-XJJM&q=" + domicilio);
         }
     }
 }

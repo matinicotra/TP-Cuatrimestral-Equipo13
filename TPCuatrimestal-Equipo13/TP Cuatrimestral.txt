@@ -38,7 +38,6 @@ Observaciones nuevas:
 -Armar boton de whatsapp (solo chofer)
 
 	homeChofer
--Armar en la bbdd funcion de concatenar la direccion para url de ubicacion
 -Sacar calendario, filtro, copiar datos del viaje
 -Primer viaje de la lista será modificable, el resto solo lectura
 -Armar logica de resumenes chofer (con vistas en la bbdd) que sean envios de mail al chofer

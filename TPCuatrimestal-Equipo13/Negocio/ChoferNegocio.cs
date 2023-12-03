@@ -122,15 +122,25 @@ namespace Negocio
 
             try
             {
-                perAux.BajaPersona(choAux.IDPersona);
-
-                domiAux.BajaDomicilio(choAux.Direccion.IDDomicilio);
-
-                datos.SetearConsulta("DELETE FROM CHOFER WHERE IDCHOFER = @IDCHOFER");
+                datos.SetearConsulta("UPDATE VIAJES SET IDCHOFER = NULL WHERE IDCHOFER = @IDCHOFER");
 
                 datos.SetearParametro("@IDCHOFER", idChofer);
 
                 datos.EjecutarAccion();
+
+                datos.CerrarConexion();
+
+                datos.SetearConsulta("DELETE FROM CHOFER WHERE IDCHOFER = @CHOFER");
+
+                datos.SetearParametro("@CHOFER", idChofer);
+
+                datos.EjecutarAccion();
+
+                datos.CerrarConexion();
+
+                perAux.BajaPersona(choAux.IDPersona);
+
+                domiAux.BajaDomicilio(choAux.Direccion.IDDomicilio);
             }
             catch (Exception ex)
             {

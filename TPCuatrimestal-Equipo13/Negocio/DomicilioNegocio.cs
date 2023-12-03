@@ -55,7 +55,7 @@ namespace Negocio
             {
                 datos.SetearConsulta("DELETE FROM DOMICILIO WHERE IDDOMICILIO = @IDDOMICILIO");
                 
-                datos.SetearParametro("@IDPDOMICILIO", IdDomicilio);
+                datos.SetearParametro("@IDDOMICILIO", IdDomicilio);
                 
                 datos.EjecutarAccion();
             }

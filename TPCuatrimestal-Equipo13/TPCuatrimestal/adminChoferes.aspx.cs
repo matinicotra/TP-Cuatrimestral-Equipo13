@@ -22,10 +22,8 @@ namespace TPCuatrimestal
             if (!IsPostBack)
             {
                 cargarChoferes();
-                listaChoferes.SelectedIndex = 0;
+                listaChoferes.SelectedIndex = -1;
             }
-
-           
         }
 
         private void cargarChoferes()
@@ -53,6 +51,7 @@ namespace TPCuatrimestal
                     {
                         autoAsignado = chofer.AutoAsignado.Patente + " " + chofer.AutoAsignado.Tipo.ToString();
                     }
+
                     item.Text = $"{chofer.Nombres} {chofer.Apellidos} - {chofer.ZonaAsignada.NombreZona} - {autoAsignado}";
                     item.Attributes["class"] = "list-group-item my-1 mx-2";
                     listaChoferes.Items.Add(item);
@@ -92,15 +91,16 @@ namespace TPCuatrimestal
 
         protected void btnBajaChofer_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(listaChoferes.SelectedValue);
             ChoferNegocio negocio = new ChoferNegocio();
 
-            negocio.BajaChofer(id);
+            int id = listaChoferes.SelectedIndex == -1 ? -1 : int.Parse(listaChoferes.SelectedValue);
+
+            if (id != -1)
+            {
+                negocio.BajaChofer(id);
+            }
 
             cargarChoferes();
         }
-
-
-        
     }
 }

@@ -75,14 +75,6 @@ VALUES
 (8 , 4)
 GO
 
---CARGA DE DATOS VIAJES
-INSERT INTO VIAJES (IDCHOFER, IDCLIENTE, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO)
-VALUES 
-    (1, 1, 'Ejecutivo', 23.40, 1, 1, null, null, 'Asignado', GETDATE(), 0, 'Efectivo'),
-    (2, 2, 'Particular', 30.40, 7, 18, null, null, 'Asignado', GETDATE(), 0, 'Trajeta de Credito'),
-    (3, 3, 'Ejecutivo', 40.40, 1, 3, null, null, 'Asignado', GETDATE(), 0, 'Trajeta de Debito'),
-    (4, 4, 'Urbano', 28.40, 1, 4, null, null, 'Asignado', GETDATE(), 0, 'Efectivo');
-
 	-- CARGA DE DATOS DOMICILIOS
 INSERT INTO DOMICILIO (DIRECCION, LOCALIDAD, PROVINCIA, DESCRIPCION)
 VALUES
@@ -97,8 +89,14 @@ VALUES
     ('Av. Callao 901', 'Lomas de Zamora', 'Buenos Aires', 'Modern loft in a trendy area'),
     ('Calle Pueyrredón 1234', 'Banfield', 'Buenos Aires', 'Suburban house with easy access to the city');
 
+--CARGA DE DATOS VIAJES
+INSERT INTO VIAJES (IDCHOFER, IDCLIENTE, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO)
+VALUES 
+    (1, 1, 'Ejecutivo', 23.40, 1, 1, null, null, 'Asignado', GETDATE(), 0, 'Efectivo'),
+    (2, 2, 'Particular', 30.40, 7, 18, null, null, 'Asignado', GETDATE(), 0, 'Trajeta de Credito'),
+    (3, 3, 'Ejecutivo', 40.40, 1, 3, null, null, 'Asignado', GETDATE(), 0, 'Trajeta de Debito'),
+    (4, 4, 'Urbano', 28.40, 1, 4, null, null, 'Asignado', GETDATE(), 0, 'Efectivo');
 
 SELECT * FROM DOMICILIO
 SELECT * FROM CHOFER
-
 SELECT * FROM VIAJES

@@ -71,18 +71,30 @@ namespace TPCuatrimestal
 
         protected void btnDetalleChofer_Click(object sender, EventArgs e)
         {
-            string idSeleccionado = listaChoferes.SelectedValue;
+            if (listaChoferes.SelectedIndex != -1)
+            {
+                string idSeleccionado = listaChoferes.SelectedValue;
 
-            Response.Redirect("detalleChofer.aspx?id=" + idSeleccionado, false);
+                Response.Redirect("detalleChofer.aspx?id=" + idSeleccionado, false);
+            }
+            else
+            {
+                cargarChoferes();
+            }
         }
 
         protected void btnModificarChofer_Click(object sender, EventArgs e)
         {
-            string idSeleccionado = listaChoferes.SelectedValue;
+            if (listaChoferes.SelectedIndex != -1)
+            {
+                string idSeleccionado = listaChoferes.SelectedValue;
 
-            Session.Add("RediChofer", 2);
-
-            Response.Redirect("altaModificacionChofer.aspx?id=" + idSeleccionado, false);
+                Response.Redirect("altaModificacionChofer.aspx?id=" + idSeleccionado, false);
+            }
+            else
+            {
+                cargarChoferes();
+            }
         }
 
         protected void listaChoferes_SelectedIndexChanged(object sender, EventArgs e)

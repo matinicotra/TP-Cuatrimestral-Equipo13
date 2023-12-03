@@ -79,6 +79,7 @@ namespace TPCuatrimestal
 
                 string autoString = choferAux.AutoAsignado.IDVehiculo.ToString() + " - " + "(" + choferAux.AutoAsignado.Patente + ")";
                 ListItem autoPreseleccionado = ddlAutoAsignado.Items.FindByValue(autoString);
+
                 if (autoPreseleccionado != null)
                 {
                     ddlAutoAsignado.SelectedIndex = ddlAutoAsignado.Items.IndexOf(autoPreseleccionado);
@@ -86,6 +87,7 @@ namespace TPCuatrimestal
 
                 string zonaString = choferAux.ZonaAsignada.IDZona.ToString() + " - " + choferAux.ZonaAsignada.NombreZona;
                 ListItem zonaPreseleccionada = ddlZona.Items.FindByValue(zonaString);
+
                 if (zonaPreseleccionada != null)
                 {
                     ddlZona.SelectedIndex = ddlZona.Items.IndexOf(zonaPreseleccionada);
@@ -106,16 +108,7 @@ namespace TPCuatrimestal
 
         protected void btnCanelar_Click(object sender, EventArgs e)
         {
-            int Redireccionar = Session["RediChofer"] == null ? 0: (int)Session["RediChofer"];
-
-            if (Redireccionar == 1)
-            {
-                Response.Redirect("detalleChofer.aspx?id=" + choferAux.IDChofer, false);
-            }
-            else
-            {
-                Response.Redirect("adminChoferes.aspx", false);
-            }
+            Response.Redirect("adminChoferes.aspx", false);
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
@@ -124,6 +117,7 @@ namespace TPCuatrimestal
             Zona zonaAux = new Zona();
             Vehiculo vehiculoAux = null;
             VehiculoNegocio vnAux = new VehiculoNegocio();
+
             bool banderaAlta = false;
 
             if (Request.QueryString["id"] == null)
@@ -156,9 +150,10 @@ namespace TPCuatrimestal
             //seteo vehiculo
             int idVehiculo = -1;
             idVehiculo = ddlAutoAsignado.SelectedIndex >= 0 && ddlAutoAsignado.SelectedIndex < vnAux.ObtenerDatos().Count() + 1 ? ddlAutoAsignado.SelectedIndex : 0;
-            if(idVehiculo > 0)
+            
+            if (idVehiculo > 0)
             {
-            vehiculoAux = vnAux.ObtenerDatos()[idVehiculo - 1];
+                vehiculoAux = vnAux.ObtenerDatos()[idVehiculo - 1];
             }
             choferAux.AutoAsignado = vehiculoAux;
 

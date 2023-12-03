@@ -31,16 +31,6 @@ namespace TPCuatrimestal
             lblZona.Text = clienteAux.zonaCliente.NombreZona;
 
         }
-
-        protected void btnModificarViaje_Click(object sender, EventArgs e)
-        {
-            string idSeleccionado = clienteAux.IDCliente.ToString();
-
-            Session.Add("RediCliente", 1);
-
-            Response.Redirect("altaModificacionCliente.aspx?id=" + idSeleccionado, false);
-        }
-
         protected void btnDetalleViaje_Click(object sender, EventArgs e)
         {
             Response.Redirect("detalleViaje.aspx", false);

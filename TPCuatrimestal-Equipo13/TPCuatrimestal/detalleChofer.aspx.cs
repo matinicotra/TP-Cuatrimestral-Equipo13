@@ -35,8 +35,6 @@ namespace TPCuatrimestal
         {
             string idSeleccionado = Request.QueryString["id"];
 
-            Session.Add("RediChofer", 1);
-
             Response.Redirect("altaModificacionChofer.aspx?id=" + idSeleccionado, false);
         }
 
@@ -58,7 +56,6 @@ namespace TPCuatrimestal
             DateTime OUT = DateTime.Now.AddDays(1);
 
             Response.Redirect("listaViajes.aspx?Ide=" + Ide + "&ID=" + ID + "&Inicio=" + IN.ToString() + "&Fin=" + OUT.ToString(), false);
-
         }
 
         protected void btnResumenMensualChofer_Click(object sender, EventArgs e)
@@ -69,7 +66,6 @@ namespace TPCuatrimestal
             DateTime OUT = DateTime.Now.AddDays(1);
 
             Response.Redirect("listaViajes.aspx?Ide=" + Ide + "&ID=" + ID + "&Inicio=" + IN.ToString() + "&Fin=" + OUT.ToString(), false);
-
         }
     }
 }

@@ -56,6 +56,8 @@ namespace TPCuatrimestal
 
         protected void btnAltaCliente_Click(object sender, EventArgs e)
         {
+            Session.Add("RediCliente", 2);
+
             Response.Redirect("altaModificacionCliente.aspx", false);
         }
 
@@ -75,17 +77,29 @@ namespace TPCuatrimestal
 
         protected void btnModificarCliente_Click(object sender, EventArgs e)
         {
-            string idSeleccionado = listaClientes.SelectedValue;
+            if (listaClientes.SelectedIndex != -1)
+            {
+                string idSeleccionado = listaClientes.SelectedValue;
 
-            Session.Add("RediCliente", 2);
-
-            Response.Redirect("altaModificacionCliente.aspx?id=" + idSeleccionado, false);
+                Response.Redirect("altaModificacionCliente.aspx?id=" + idSeleccionado, false);
+            }
+            else
+            {
+                cargarClientes();
+            }
         }
 
         protected void btnDetalleCliente_Click(object sender, EventArgs e)
         {
-            string idSeleccionado = listaClientes.SelectedValue;
-            Response.Redirect("detalleCliente.aspx?id=" + idSeleccionado, false);
+            if (listaClientes.SelectedIndex != -1)
+            {
+                string idSeleccionado = listaClientes.SelectedValue;
+                Response.Redirect("detalleCliente.aspx?id=" + idSeleccionado, false);
+            }
+            else
+            {
+                cargarClientes();
+            }
         }
 
         protected void listaClientes_SelectedIndexChanged(object sender, EventArgs e)

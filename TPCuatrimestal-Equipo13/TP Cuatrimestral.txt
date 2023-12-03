@@ -23,7 +23,6 @@ Observaciones nuevas:
 
 
 ----------
-****armar pantalla lista de viajes por chofer y por cliente. Recibe 3 parametros: un idViaje, un intervalo de fechas string y id persona
 
 	homeAdmin
 -Filtros de busqueda
@@ -39,7 +38,7 @@ Observaciones nuevas:
 
 	homeChofer
 -Primer viaje de la lista será modificable, el resto solo lectura
--Armar logica de resumenes chofer (con vistas en la bbdd) que sean envios de mail al chofer
+-Enviar resumen por mail al chofer
 
  	adminVehiculo
 -armar filtro por: Modelo, Tipo y plazas
@@ -56,12 +55,10 @@ Observaciones nuevas:
 -boton volver
 -acomodar footer
 -acomodar datos
--listar viajes por id cliente ordenado por fecha
 
 	detalleChofer
 -listar viajes por id chofer ordenado por fecha
 -Mostrar datos del chofer
-
 
 vistas en bbdd:
 -Ver resumenes de viajes

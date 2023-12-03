@@ -57,7 +57,7 @@ namespace Negocio
                     aux.Importe = datosViaje.Lector["IMPORTE"] is DBNull ? -1 : (decimal)datosViaje.Lector["IMPORTE"];
 
                     aux.Origen.IDDomicilio = datosViaje.Lector["IDDOMORIGEN"] is DBNull ? -1 : (long)datosViaje.Lector["IDDOMORIGEN"];
-                    if(aux.Origen.IDDomicilio != -1)
+                    if (aux.Origen.IDDomicilio != -1)
                         aux.Origen = domicilioNegocio.ObtenerDomicilio(aux.Origen.IDDomicilio);
 
 
@@ -109,16 +109,25 @@ namespace Negocio
             }
         }
 
-        public List<Viaje> ObtenerViajesChofer(long idChofer)
+        public List<Viaje> ViajesClientesChoferes(long ID, bool EsChofer)
         {
             AccesoDatos datosViaje = new AccesoDatos();
 
             try
             {
-                datosViaje.SetearConsulta("SELECT IDVIAJE, IDCLIENTE, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO FROM VIAJES WHERE IDCHOFER = @IDCHOFER ORDER BY FECHAHORAVIAJE ASC");
-                datosViaje.SetearParametro("@IDCHOFER", idChofer);
-                datosViaje.EjecutarConsulta();
-                
+                if (EsChofer)
+                {
+                    datosViaje.SetearConsulta("SELECT IDVIAJE, IDCLIENTE, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO FROM VIAJES WHERE IDCHOFER = @IDCHOFER ORDER BY FECHAHORAVIAJE ASC");
+                    datosViaje.SetearParametro("@IDCHOFER", ID);
+                    datosViaje.EjecutarConsulta();
+                }
+                else
+                {
+                    datosViaje.SetearConsulta("SELECT IDVIAJE, IDCLIENTE, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO FROM VIAJES WHERE IDCLIENTE = @IDCLIENTE ORDER BY FECHAHORAVIAJE ASC");
+                    datosViaje.SetearParametro("@IDCLIENTE", ID);
+                    datosViaje.EjecutarConsulta();
+                }
+
 
                 while (datosViaje.Lector.Read())
                 {

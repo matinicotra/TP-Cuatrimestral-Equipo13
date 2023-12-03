@@ -22,7 +22,7 @@ namespace TPCuatrimestal
             long idChofer = 2;      //el login determina el idChofer
 
             ViajeNegocio viajeNegocio = new ViajeNegocio();
-            viajes = viajeNegocio.ObtenerViajesChofer(idChofer);
+            viajes = viajeNegocio.ViajesClientesChoferes(idChofer, true);
 
             if (!IsPostBack)
             {

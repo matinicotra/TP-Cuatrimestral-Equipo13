@@ -4,7 +4,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="container-md" style="background-color:aliceblue; display:flex; align-items:center; justify-content:center; flex-direction:column; max-width: 900px"">
+    <div class="container-md" style="background-color:aliceblue; display:flex; align-items:center; justify-content:center; flex-direction:column">
     <div style="display: flex; align-items: center; margin: 20px; flex-direction: column; gap: 20px;">
 
         <div>

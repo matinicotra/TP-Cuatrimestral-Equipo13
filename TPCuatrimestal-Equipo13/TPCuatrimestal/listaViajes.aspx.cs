@@ -35,7 +35,7 @@ namespace TPCuatrimestal
 
                 chofer = negoAux.ObtenerDatos(ID)[0];
 
-                viajes = viajeNego.ObtenerViajesChofer(chofer.IDChofer);
+                viajes = viajeNego.ViajesClientesChoferes(chofer.IDChofer, true);
 
                 lblClienteOChofer.Text = "Chofer:";
                 lblNombre.Text = chofer.Nombres;
@@ -56,16 +56,22 @@ namespace TPCuatrimestal
                 {
                     lblEstado.Text = "Inactivo";
                 }
-
-                repViajes.DataSource = viajes.FindAll(X => X.FechaHoraViaje >= Inicio && X.FechaHoraViaje <= Fin);
-                repViajes.DataBind();
-
             }
             else
             {
                 ClienteNegocio negoAux = new ClienteNegocio();
+                decimal Total = 0;
 
                 cliente = negoAux.ObtenerDatos(ID)[0];
+
+                viajes = viajeNego.ViajesClientesChoferes(cliente.IDCliente, false);
+
+                foreach (Viaje X in viajes)
+                {
+                    Total += X.Importe;
+                }
+
+                lblTotal.Text = "TOTAL: $" + Total;
 
                 lblClienteOChofer.Text = "Cliente:";
                 lblNombre.Text = cliente.Nombres;
@@ -80,6 +86,9 @@ namespace TPCuatrimestal
                     lblEstado.Text = "Inactivo";
                 }
             }
+
+            repViajes.DataSource = viajes.FindAll(X => X.FechaHoraViaje >= Inicio && X.FechaHoraViaje <= Fin);
+            repViajes.DataBind();
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
@@ -98,7 +107,6 @@ namespace TPCuatrimestal
 
                 Response.Redirect("detalleCliente.aspx?id=" + ID, false);
             }
-
         }
     }
 }

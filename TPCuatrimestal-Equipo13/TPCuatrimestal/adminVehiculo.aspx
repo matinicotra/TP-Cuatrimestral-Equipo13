@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div style="background-color: aliceblue; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+    <div class="container-md" style="background-color:aliceblue; display:flex; align-items:center; justify-content:center; flex-direction:column">
 
         <div style="margin: 10px 15px;">
             <h4>ADMINISTRAR VEHICULOS</h4>

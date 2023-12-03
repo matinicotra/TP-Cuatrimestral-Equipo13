@@ -48,17 +48,32 @@ namespace TPCuatrimestal
 
         protected void btnResumenSemanalCliente_Click(object sender, EventArgs e)
         {
+            string Ide = "0";
+            string ID = Request.QueryString["id"];
+            DateTime IN = DateTime.Now.AddDays(-7);
+            DateTime OUT = DateTime.Now.AddDays(1);
 
+            Response.Redirect("listaViajes.aspx?Ide=" + Ide + "&ID=" + ID + "&Inicio=" + IN.ToString() + "&Fin=" + OUT.ToString(), false);
         }
 
         protected void btnResumenQuincenalCliente_Click(object sender, EventArgs e)
         {
+            string Ide = "0";
+            string ID = Request.QueryString["id"];
+            DateTime IN = DateTime.Now.AddDays(-15);
+            DateTime OUT = DateTime.Now.AddDays(1);
 
+            Response.Redirect("listaViajes.aspx?Ide=" + Ide + "&ID=" + ID + "&Inicio=" + IN.ToString() + "&Fin=" + OUT.ToString(), false);
         }
 
         protected void btnResumenMensualCliente_Click(object sender, EventArgs e)
         {
+            string Ide = "0";
+            string ID = Request.QueryString["id"];
+            DateTime IN = DateTime.Now.AddDays(-30);
+            DateTime OUT = DateTime.Now.AddDays(1);
 
+            Response.Redirect("listaViajes.aspx?Ide=" + Ide + "&ID=" + ID + "&Inicio=" + IN.ToString() + "&Fin=" + OUT.ToString(), false);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace TPCuatrimestal
             if (!IsPostBack)
             {
                 cargarClientes();
-                listaClientes.SelectedIndex = 0;
+                listaClientes.SelectedIndex = -1;
             }
         }
 
@@ -27,7 +27,9 @@ namespace TPCuatrimestal
         {
             ClienteNegocio clienteNegocio = new ClienteNegocio();
             listarClientes = null;
+
             listaClientes.Items.Clear();
+
             listarClientes = clienteNegocio.ObtenerDatos();
 
             try
@@ -35,10 +37,15 @@ namespace TPCuatrimestal
                 foreach (Cliente cliente in listarClientes)
                 {
                     ListItem item = new ListItem();
-                    item.Value = cliente.IDCliente.ToString();
-                    item.Text = $"{cliente.Apellidos} {cliente.Nombres} - {cliente.Direccion.Direccion} - {cliente.Direccion.Localidad}";
-                    item.Attributes["class"] = "list-group-item my-1 mx-2";
-                    listaClientes.Items.Add(item);
+
+                    if (cliente.Estado)
+                    {
+                        item.Value = cliente.IDCliente.ToString();
+                        item.Text = $"{cliente.Apellidos} {cliente.Nombres} - {cliente.Direccion.Direccion} - {cliente.Direccion.Localidad}";
+                        item.Attributes["class"] = "list-group-item my-1 mx-2";
+
+                        listaClientes.Items.Add(item);
+                    }
                 }
             }
             catch (Exception ex)
@@ -49,16 +56,20 @@ namespace TPCuatrimestal
 
         protected void btnAltaCliente_Click(object sender, EventArgs e)
         {
-            //SI ES ALTA, SOLO REDIRECT
-            //SI ES MODIFICACIÓN, CON PARAMETRO POR URL O DE ALGÚNA OTRA MANERA
             Response.Redirect("altaModificacionCliente.aspx", false);
         }
 
         protected void btnBajaCliente_Click(object sender, EventArgs e)
         {
-            int idSeleccionado = int.Parse(listaClientes.SelectedValue);
-            ClienteNegocio cnAux = new ClienteNegocio();
-            cnAux.BajaFisicaCliente(idSeleccionado);
+            ClienteNegocio negocio = new ClienteNegocio();
+
+            int id = listaClientes.SelectedIndex == -1 ? -1 : int.Parse(listaClientes.SelectedValue);
+
+            if (id != -1)
+            {
+                negocio.BajaLogicaCliente(id);
+            }
+
             cargarClientes();
         }
 

@@ -43,6 +43,7 @@ namespace TPCuatrimestal
                     // Asigna el valor y el texto del ListItem con las propiedades de Chofer
                     item.Value = chofer.IDChofer.ToString(); // Asigna el valor deseado
                     string autoAsignado;
+
                     if (chofer.AutoAsignado == null || chofer.AutoAsignado.Estado == false)
                     {
                         autoAsignado = "Sin Auto";

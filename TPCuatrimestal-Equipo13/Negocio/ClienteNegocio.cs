@@ -21,11 +21,11 @@ namespace Negocio
             {
                 if(idCliente == -1)
                 {
-                    datosCliente.SetearConsulta("SELECT IDCLIENTE, IDPERSONA, IDZONA FROM CLIENTE");
+                    datosCliente.SetearConsulta("SELECT IDCLIENTE, IDPERSONA, IDZONA, ESTADO FROM CLIENTE");
                 }
                 else
                 {
-                    datosCliente.SetearConsulta("SELECT IDCLIENTE, IDPERSONA, IDZONA FROM CLIENTE WHERE IDCLIENTE = @IDCLIENTE");
+                    datosCliente.SetearConsulta("SELECT IDCLIENTE, IDPERSONA, IDZONA, ESTADO FROM CLIENTE WHERE IDCLIENTE = @IDCLIENTE");
                     
                     datosCliente.SetearParametro("@IDCLIENTE", idCliente);
                 }
@@ -49,6 +49,7 @@ namespace Negocio
                     clienteAux.IDPersona = personaAux.IDPersona;
                     clienteAux.Email = personaAux.Email;
                     clienteAux.Telefono = personaAux.Telefono;
+                    clienteAux.Estado = datosCliente.Lector["ESTADO"] is DBNull ? false : (bool)datosCliente.Lector["ESTADO"];
 
                     clienteAux.IDCliente = datosCliente.Lector["IDCLIENTE"] is DBNull? -1 : (int)datosCliente.Lector["IDCLIENTE"];
                     personaAux.IDPersona = datosCliente.Lector["IDCLIENTE"] is DBNull? -1 : (int)datosCliente.Lector["IDPERSONA"];
@@ -162,12 +163,12 @@ namespace Negocio
             }
         }
         
-        public void BajaFisicaCliente(int idCliente)
+        public void BajaLogicaCliente(int idCliente)
         {
             AccesoDatos Datos = new AccesoDatos();
             try
             {
-                Datos.SetearConsulta("EXEC SP_BAJAFISICACLIENTE @IDCLIENTE");
+                Datos.SetearConsulta("EXEC SP_BAJALOGICACLIENTE @IDCLIENTE");
                 
                 Datos.SetearParametro("@IDCLIENTE", idCliente);
                 

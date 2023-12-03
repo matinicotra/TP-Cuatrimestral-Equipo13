@@ -106,7 +106,7 @@ namespace TPCuatrimestal
 
         protected void btnCanelar_Click(object sender, EventArgs e)
         {
-            int Redireccionar = (int)Session["RediChofer"];
+            int Redireccionar = Session["RediChofer"] == null ? 0: (int)Session["RediChofer"];
 
             if (Redireccionar == 1)
             {

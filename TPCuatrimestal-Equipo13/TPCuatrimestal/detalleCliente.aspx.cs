@@ -46,5 +46,19 @@ namespace TPCuatrimestal
             Response.Redirect("detalleViaje.aspx", false);
         }
 
+        protected void btnResumenSemanalCliente_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnResumenQuincenalCliente_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnResumenMensualCliente_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

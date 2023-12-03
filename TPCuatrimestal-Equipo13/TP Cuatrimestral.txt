@@ -38,7 +38,6 @@ Observaciones nuevas:
 -Armar boton de whatsapp (solo chofer)
 
 	homeChofer
--Sacar calendario, filtro, copiar datos del viaje
 -Primer viaje de la lista será modificable, el resto solo lectura
 -Armar logica de resumenes chofer (con vistas en la bbdd) que sean envios de mail al chofer
 
@@ -54,25 +53,20 @@ Observaciones nuevas:
 -armar filtro por: nombre y apellido, localidad
 
 	detalleCliente
--Calendario, filtro busqueda, botones eliminar y modificar fuera
 -boton volver
 -acomodar footer
 -acomodar datos
 -listar viajes por id cliente ordenado por fecha
 
 	detalleChofer
--botones alta, baja, modificar, calendario, filtros fuera
 -listar viajes por id chofer ordenado por fecha
 -Mostrar datos del chofer
 
 
 vistas en bbdd:
 -Ver resumenes de viajes
-
-
-
-
-
+Procedimiento almacenado creado, recibe un IDPERSONA, FECHAINICIO y FECHAFIN
+Se muestran 3 columnas: TipoViaje, Importe, FechaHoraViaje
 
 
 

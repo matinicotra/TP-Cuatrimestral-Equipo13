@@ -23,9 +23,9 @@
 
         <div>
             <h5 class="text-sm-center">Resumen del Cliente</h5>
-            <asp:Button CssClass="btn btn-info" ID="btnResumenAnioCliente" runat="server" Text="Semanal" />
-            <asp:Button CssClass="btn btn-info" ID="btnResumenMesCliente" runat="server" Text="Quincenal" />
-            <asp:Button CssClass="btn btn-info" ID="btnResumenTotalCliente" runat="server" Text="Mensual" />
+            <asp:Button CssClass="btn btn-info" ID="btnResumenSemanalCliente" runat="server" Text="Semanal" OnClick="btnResumenSemanalCliente_Click" />
+            <asp:Button CssClass="btn btn-info" ID="btnResumenQuincenalCliente" runat="server" Text="Quincenal" OnClick="btnResumenQuincenalCliente_Click" />
+            <asp:Button CssClass="btn btn-info" ID="btnResumenMensualCliente" runat="server" Text="Mensual" OnClick="btnResumenMensualCliente_Click"/>
         </div>
         <div>
             <h6>DATOS CLIENTE</h6>

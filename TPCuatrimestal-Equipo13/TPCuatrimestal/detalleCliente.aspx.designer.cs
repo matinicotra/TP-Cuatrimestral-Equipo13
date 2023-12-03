@@ -51,31 +51,31 @@ namespace TPCuatrimestal
         protected global::System.Web.UI.WebControls.Button btnDetalleViaje;
 
         /// <summary>
-        /// Control btnResumenAnioCliente.
+        /// Control btnResumenSemanalCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnResumenAnioCliente;
+        protected global::System.Web.UI.WebControls.Button btnResumenSemanalCliente;
 
         /// <summary>
-        /// Control btnResumenMesCliente.
+        /// Control btnResumenQuincenalCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnResumenMesCliente;
+        protected global::System.Web.UI.WebControls.Button btnResumenQuincenalCliente;
 
         /// <summary>
-        /// Control btnResumenTotalCliente.
+        /// Control btnResumenMensualCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnResumenTotalCliente;
+        protected global::System.Web.UI.WebControls.Button btnResumenMensualCliente;
 
         /// <summary>
         /// Control lblNombre.

@@ -93,6 +93,7 @@
     <Content Include="Global.asax" />
     <Content Include="homeAdmin.aspx" />
     <Content Include="homeChofer.aspx" />
+    <Content Include="listaViajes.aspx" />
     <Content Include="login.aspx" />
     <None Include="Resources\map.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -190,6 +191,13 @@
     </Compile>
     <Compile Include="homeChofer.aspx.designer.cs">
       <DependentUpon>homeChofer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="listaViajes.aspx.cs">
+      <DependentUpon>listaViajes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="listaViajes.aspx.designer.cs">
+      <DependentUpon>listaViajes.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>

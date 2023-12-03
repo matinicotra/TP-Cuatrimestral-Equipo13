@@ -35,9 +35,9 @@
 
         <div>
             <h5 class="text-sm-center">Resumen del Chofer</h5>
-            <asp:Button CssClass="btn btn-info" ID="btnResumenAnioChofer" runat="server" Text="Semanal" />
-            <asp:Button CssClass="btn btn-info" ID="btnResumenMesChofer" runat="server" Text="Quincenal" />
-            <asp:Button CssClass="btn btn-info" ID="btnResumenTotalChofer" runat="server" Text="Mensual" />
+            <asp:Button CssClass="btn btn-info" ID="btnResumenSemanalChofer" runat="server" Text="Semanal" OnClick="btnResumenSemanalChofer_Click"/>
+            <asp:Button CssClass="btn btn-info" ID="btnResumenQuincenalChofer" runat="server" Text="Quincenal" OnClick="btnResumenQuincenalChofer_Click"/>
+            <asp:Button CssClass="btn btn-info" ID="btnResumenMensualChofer" runat="server" Text="Mensual" OnClick="btnResumenMensualChofer_Click"/>
         </div>
     </div>
 </asp:Content>

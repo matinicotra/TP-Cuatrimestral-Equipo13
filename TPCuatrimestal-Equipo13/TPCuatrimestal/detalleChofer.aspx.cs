@@ -39,5 +39,37 @@ namespace TPCuatrimestal
 
             Response.Redirect("altaModificacionChofer.aspx?id=" + idSeleccionado, false);
         }
+
+        protected void btnResumenSemanalChofer_Click(object sender, EventArgs e)
+        {
+            string Ide = "1";
+            string ID = Request.QueryString["id"];
+            DateTime IN = DateTime.Now.AddDays(-7);
+            DateTime OUT = DateTime.Now.AddDays(1);
+
+            Response.Redirect("listaViajes.aspx?Ide=" + Ide + "&ID=" + ID + "&Inicio=" + IN.ToString() + "&Fin=" + OUT.ToString(), false);
+        }
+
+        protected void btnResumenQuincenalChofer_Click(object sender, EventArgs e)
+        {
+            string Ide = "1";
+            string ID = Request.QueryString["id"];
+            DateTime IN = DateTime.Now.AddDays(-15);
+            DateTime OUT = DateTime.Now.AddDays(1);
+
+            Response.Redirect("listaViajes.aspx?Ide=" + Ide + "&ID=" + ID + "&Inicio=" + IN.ToString() + "&Fin=" + OUT.ToString(), false);
+
+        }
+
+        protected void btnResumenMensualChofer_Click(object sender, EventArgs e)
+        {
+            string Ide = "1";
+            string ID = Request.QueryString["id"];
+            DateTime IN = DateTime.Now.AddDays(-30);
+            DateTime OUT = DateTime.Now.AddDays(1);
+
+            Response.Redirect("listaViajes.aspx?Ide=" + Ide + "&ID=" + ID + "&Inicio=" + IN.ToString() + "&Fin=" + OUT.ToString(), false);
+
+        }
     }
 }

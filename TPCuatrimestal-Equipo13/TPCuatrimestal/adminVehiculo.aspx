@@ -3,9 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container-md" style="background-color:aliceblue; display:flex; align-items:center; justify-content:center; flex-direction:column">
+    <div class="container" style="background-color:aliceblue; display:flex; align-items:center; justify-content:center; flex-direction:column; margin-bottom: 100px;">
 
-        <div style="margin: 10px 15px;">
+        <div>
             <h4>ADMINISTRAR VEHICULOS</h4>
             <div class="input-group mb-3" style="display: flex; align-items: center; flex-direction: row;">
                 <asp:TextBox ID="txtFiltrar" runat="server" CssClass="form-control" PlaceHolder="Busqueda..."></asp:TextBox>

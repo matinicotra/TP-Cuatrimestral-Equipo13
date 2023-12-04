@@ -33,6 +33,8 @@
 
                     <asp:BoundField HeaderText="Pagado" DataField="Pagado" />
 
+                    <asp:BoundField HeaderText="Estado" DataField="Estado" />
+
                     <asp:TemplateField HeaderText="Acciones">
                         <ItemTemplate>
                             <asp:ImageButton ID="btnMapa" runat="server" CssClass="btn btn-close btn-lg border ms-1" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Origen" OnClick="btnMapa_Click" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcrDhC3i0jmSXhxnMoI5TDMWulKu0GZ6Jn2g&usqp=CAU" />

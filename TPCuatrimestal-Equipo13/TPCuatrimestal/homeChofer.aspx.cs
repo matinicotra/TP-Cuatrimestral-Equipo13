@@ -15,43 +15,66 @@ namespace TPCuatrimestal
 
         private List<Viaje> viajes = new List<Viaje>();
 
+        private List<Viaje> viajesAsignados = new List<Viaje>();
+
         private Domicilio domicilioOrigen = new Domicilio();
 
         private long idChofer = 1;   // !!! cambiar cuando hagamos el login
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             ViajeNegocio viajeNegocio = new ViajeNegocio();
             viajes = viajeNegocio.ViajesClientesChoferes(idChofer, true);
+
+            viajesAsignados.Clear();
+
+            foreach (Viaje viaje in viajes)
+            {
+                if (viaje.Estado.ToString() != "Finalizado")
+                {
+                    viajesAsignados.Add(viaje);
+                }
+            }
 
             if (!IsPostBack)
             {
-                dgvViajes.DataSource = viajes;
+                dgvViajes.DataSource = viajesAsignados;
                 dgvViajes.DataBind();
-                
             }
 
-            CargarMapa(viajes[0]);   // !!! vamos a tener un viaje activo o seria el primero de la lista?
+            if (viajesAsignados.Count != 0)
+                CargarMapa(viajesAsignados[0]);
         }
 
-        private void CargarDGVViajes()
+        private void CargarViajesAsignados()
         {
             ViajeNegocio viajeNegocio = new ViajeNegocio();
             viajes = viajeNegocio.ViajesClientesChoferes(idChofer, true);
-            dgvViajes.DataSource = viajes;
+
+            viajesAsignados.Clear();
+
+            foreach (Viaje viaje in viajes)
+            {
+                if (viaje.Estado.ToString() != "Finalizado")
+                {
+                    viajesAsignados.Add(viaje);
+                }
+            }
+
+            dgvViajes.DataSource = viajesAsignados;
             dgvViajes.DataBind();
+
+            if (viajesAsignados.Count != 0)
+                CargarMapa(viajesAsignados[0]);
         }
 
-        //CARGA EL MAPA CON EL PRIMER VIAJE POR DEFECTO
         protected void CargarMapa(Viaje viaje)
-        { 
+        {
             string direccion = viaje.Origen.Direccion.ToString().Replace(" ", "+");
             string localidad = viaje.Origen.Localidad.ToString().Replace(" ", "+");
             string provincia = viaje.Origen.Provincia.ToString().Replace(" ", "+");
 
             string domicilio = direccion + "," + localidad + "," + provincia;
-
             urlIframe.Attributes.Add("src", "https://www.google.com/maps/embed/v1/place?key=AIzaSyDoBiKY57PiZmKkaMIjWRjSMPZO2i-XJJM&q=" + domicilio);
         }
 
@@ -62,7 +85,7 @@ namespace TPCuatrimestal
 
         protected void dgvViajes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var numViajeSeleccionado = dgvViajes.SelectedDataKey.Value.ToString();
+            
         }
 
         protected void btnPagado_Click(object sender, ImageClickEventArgs e)
@@ -73,7 +96,7 @@ namespace TPCuatrimestal
 
             viajeNegocio.PagarDespagarViaje(valorID, true);
 
-            CargarDGVViajes();
+            CargarViajesAsignados();
         }
 
         // MAPA ORIGEN
@@ -81,7 +104,7 @@ namespace TPCuatrimestal
         {
             ImageButton btnImg = (ImageButton)sender;
             long numViaje = long.Parse(btnImg.CommandArgument);
-            Viaje viaje = viajes.Find(X => X.NumViaje == numViaje);
+            Viaje viaje = viajesAsignados.Find(X => X.NumViaje == numViaje);
 
             string direccion = viaje.Origen.Direccion.ToString().Replace(" ", "+");
             string localidad = viaje.Origen.Localidad.ToString().Replace(" ", "+");
@@ -97,7 +120,7 @@ namespace TPCuatrimestal
         {
             ImageButton btnImg = (ImageButton)sender;
             long numViaje = long.Parse(btnImg.CommandArgument);
-            Viaje viaje = viajes.Find(X => X.NumViaje == numViaje);
+            Viaje viaje = viajesAsignados.Find(X => X.NumViaje == numViaje);
 
             string direccion = viaje.Destinos[0].Direccion.ToString().Replace(" ", "+");        // !!! ver lista destinos 
             string localidad = viaje.Destinos[0].Localidad.ToString().Replace(" ", "+");
@@ -113,7 +136,7 @@ namespace TPCuatrimestal
         {
             ImageButton btnImg = (ImageButton)sender;
             long numViaje = long.Parse(btnImg.CommandArgument);
-            Viaje viaje = viajes.Find(X => X.NumViaje == numViaje);
+            Viaje viaje = viajesAsignados.Find(X => X.NumViaje == numViaje);
 
             string telefono = viaje.ClienteViaje.Telefono.ToString();
             Response.Redirect("https://wa.me/" + telefono + "?text=Tu%20transporte%20ha%20llegado!");
@@ -125,6 +148,8 @@ namespace TPCuatrimestal
             long idViaje = long.Parse(btnImg.CommandArgument);
             ViajeNegocio viajeNegocio = new ViajeNegocio();
             viajeNegocio.FinalizarViaje(idViaje);
+
+            CargarViajesAsignados();
         }
     }
 }

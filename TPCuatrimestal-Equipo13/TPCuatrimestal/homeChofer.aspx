@@ -33,17 +33,6 @@
 
                     <asp:BoundField HeaderText="Pagado" DataField="Pagado" />
 
-                    <asp:TemplateField HeaderText="Estado">
-                        <ItemTemplate>
-                            <asp:DropDownList ID="ddlEstado" runat="server">
-                                <asp:ListItem Text="Finalizado" Value="1" />
-                                <asp:ListItem Text="Cancelado" Value="2" />
-                            </asp:DropDownList>
-                            <asp:LinkButton ID="lbOk" runat="server" OnClick="lbOk_Click" CommandArgument='<%# Eval("NumViaje") %>'>OK</asp:LinkButton>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-
-
                     <asp:TemplateField HeaderText="Acciones">
                         <ItemTemplate>
                             <asp:ImageButton ID="btnMapa" runat="server" CssClass="btn btn-close btn-lg border ms-1" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Origen" OnClick="btnMapa_Click" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcrDhC3i0jmSXhxnMoI5TDMWulKu0GZ6Jn2g&usqp=CAU" />
@@ -52,7 +41,10 @@
 
                             <asp:ImageButton ID="btnWhatsApp" runat="server" CssClass="btn btn-close btn-lg border ms-1" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Enviar WhatsApp" OnClick="btnWhatsApp_Click1" src="https://i.pinimg.com/736x/b3/80/4c/b3804c40eb070822e5673157950faa96.jpg" />
 
-                            <asp:ImageButton ID="btnPagado" ImageUrl="https://c0.klipartz.com/pngpicture/605/284/gratis-png-cheque-verde-ogo-iconos-de-la-marca-de-verificacion-marca-verde-thumbnail.png" CommandArgument='<%#Eval("NumViaje")%>' CommandName="NumViaje" runat="server" Text="Pagado" CssClass="btn btn-close btn-lg border ms-1" ToolTip="Pagado" Visible='<%# !Convert.ToBoolean(Eval("Pagado")) %>' OnClick="btnPagado_Click" />
+                            <asp:ImageButton ID="btnPagado" CommandArgument='<%#Eval("NumViaje")%>' CommandName="NumViaje" runat="server" Text="Pagado" CssClass="btn btn-close btn-lg border ms-1" ToolTip="Pagado" Visible='<%# !Convert.ToBoolean(Eval("Pagado")) %>' OnClick="btnPagado_Click" src="https://img.freepik.com/vector-premium/signo-dolar-icono-plano-ilustracion-vectorial_686498-432.jpg"/>
+                        
+                            <asp:ImageButton ID="btnFinalizado" runat="server" CommandArgument='<%#Eval("NumViaje")%>' CommandName="NumViaje" Text="Finalizado" ToolTip="Finalizado"  CssClass="btn btn-close btn-lg border ms-1" OnClick="btnFinalizado_Click" src="https://cdn.icon-icons.com/icons2/1506/PNG/512/emblemok_103757.png" />
+                        
                         </ItemTemplate>
                     </asp:TemplateField>
 

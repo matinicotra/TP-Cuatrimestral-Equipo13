@@ -17,7 +17,7 @@ namespace TPCuatrimestal
 
         private Domicilio domicilioOrigen = new Domicilio();
 
-        private long idChofer = 4;   // !!! cambiar cuando hagamos el login
+        private long idChofer = 1;   // !!! cambiar cuando hagamos el login
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -99,7 +99,7 @@ namespace TPCuatrimestal
             long numViaje = long.Parse(btnImg.CommandArgument);
             Viaje viaje = viajes.Find(X => X.NumViaje == numViaje);
 
-            string direccion = viaje.Destinos[0].Direccion.ToString().Replace(" ", "+");
+            string direccion = viaje.Destinos[0].Direccion.ToString().Replace(" ", "+");        // !!! ver lista destinos 
             string localidad = viaje.Destinos[0].Localidad.ToString().Replace(" ", "+");
             string provincia = viaje.Destinos[0].Provincia.ToString().Replace(" ", "+");
 
@@ -117,6 +117,14 @@ namespace TPCuatrimestal
 
             string telefono = viaje.ClienteViaje.Telefono.ToString();
             Response.Redirect("https://wa.me/" + telefono + "?text=Tu%20transporte%20ha%20llegado!");
+        }
+
+        protected void btnFinalizado_Click(object sender, ImageClickEventArgs e)
+        {
+            ImageButton btnImg = (ImageButton)sender;
+            long idViaje = long.Parse(btnImg.CommandArgument);
+            ViajeNegocio viajeNegocio = new ViajeNegocio();
+            viajeNegocio.FinalizarViaje(idViaje);
         }
     }
 }

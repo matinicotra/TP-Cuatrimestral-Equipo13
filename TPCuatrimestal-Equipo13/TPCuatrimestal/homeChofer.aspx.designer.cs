@@ -42,15 +42,6 @@ namespace TPCuatrimestal
         protected global::System.Web.UI.HtmlControls.HtmlIframe urlIframe;
 
         /// <summary>
-        /// btnWhatsapp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnWhatsapp;
-
-        /// <summary>
         /// btnDetalleViaje control.
         /// </summary>
         /// <remarks>

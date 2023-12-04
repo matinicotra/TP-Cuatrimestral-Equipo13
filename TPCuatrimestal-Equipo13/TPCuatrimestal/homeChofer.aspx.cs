@@ -64,14 +64,6 @@ namespace TPCuatrimestal
             Response.Redirect("detalleViaje.aspx", false);
         }
 
-        protected void btnWhatsapp_Click(object sender, EventArgs e)
-        {
-            var numViajeSeleccionado = dgvViajes.SelectedDataKey.Value.ToString();
-
-            string telefono = "1535947980";      //  prueba
-            Response.Redirect("https://wa.me/" + telefono + "?text=Tu%20vehiculo%20ha%20llegado!");
-        }
-
         protected void dgvViajes_SelectedIndexChanged(object sender, EventArgs e)
         {
             var numViajeSeleccionado = dgvViajes.SelectedDataKey.Value.ToString();
@@ -123,6 +115,17 @@ namespace TPCuatrimestal
             string domicilio = direccion + "," + localidad + "," + provincia;
 
             urlIframe.Attributes.Add("src", "https://www.google.com/maps/embed/v1/place?key=AIzaSyDoBiKY57PiZmKkaMIjWRjSMPZO2i-XJJM&q=" + domicilio);
+        }
+
+        protected void btnWhatsApp_Click1(object sender, ImageClickEventArgs e)
+        {
+            ImageButton btnImg = (ImageButton)sender;
+            long numViaje = long.Parse(btnImg.CommandArgument);
+            Viaje viaje = viajes.Find(X => X.NumViaje == numViaje);
+
+            string telefono = viaje.ClienteViaje.Telefono.ToString();
+
+            Response.Redirect("https://wa.me/" + telefono + "?text=Tu%20transporte%20ha%20llegado!");
         }
     }
 }

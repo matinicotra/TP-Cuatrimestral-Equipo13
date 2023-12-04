@@ -13,11 +13,13 @@ namespace TPCuatrimestal
     {
         private Viaje viajeAux;
         private Cliente clienteAux;
+        private List<Cliente> listaClientes;
         private Chofer choferAux;
         private Domicilio dirOrigen;
         private Domicilio dirDestino1;
         private Domicilio dirDestino2;
         private Domicilio dirDestino3;
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -125,7 +127,7 @@ namespace TPCuatrimestal
             }
 
             ClienteNegocio clienteNegocioAux = new ClienteNegocio();
-            List<Cliente> listaClientes = clienteNegocioAux.ObtenerDatos();
+            listaClientes = clienteNegocioAux.ObtenerDatos();
             ddlClientes.Items.Add("Cliente Nuevo");
             ddlClientes.SelectedIndex = 0;
             contador = 0;
@@ -141,6 +143,7 @@ namespace TPCuatrimestal
                     }
                 }
             }
+            Session["listaClientes"] = listaClientes;
         }
         protected void ddlCantidadDestino_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -161,7 +164,28 @@ namespace TPCuatrimestal
 
         protected void ddlClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Session["Cliente"] = ddlClientes.SelectedValue;
+            listaClientes = (List<Cliente>)Session["listaClientes"];
+            if(ddlClientes.SelectedIndex != 0)
+            {
+                Session["clienteAux"] = listaClientes[ddlClientes.SelectedIndex - 1];
+                clienteAux = (Cliente)Session["clienteAux"];
+                txtNombre.Text = clienteAux.Nombres;
+                txtApellido.Text = clienteAux.Apellidos;
+                txtTelefonoCliente.Text = clienteAux.Telefono;
+                txtNombre.Enabled = false;
+                txtApellido.Enabled = false;
+                txtTelefonoCliente.Enabled = false;
+            }
+            else
+            {
+                Session["clienteAux"] = null;
+                txtNombre.Text = string.Empty;
+                txtApellido.Text = string.Empty;
+                txtTelefonoCliente.Text = string.Empty;
+                txtNombre.Enabled = true;
+                txtApellido.Enabled = true;
+                txtTelefonoCliente.Enabled = true;
+            }
         }
     }
 }

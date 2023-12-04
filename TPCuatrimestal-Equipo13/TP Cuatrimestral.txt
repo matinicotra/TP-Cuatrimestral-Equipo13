@@ -27,7 +27,7 @@ Observaciones nuevas:
 	homeAdmin
 -Filtros de busqueda
 -Desplegable para filtrar (por chofer, por cliente, por estado)
--Construir calendario para ver viajes por fechas seleccionadas
+-AGREGAR BOTON PARA LIMPIAR SELECCION DE CALENDARIO
 -columna hora en grid view
 -hacer andar ddlEstado en grid view
 
@@ -60,7 +60,7 @@ Observaciones nuevas:
 -listar viajes por id chofer ordenado por fecha
 -Mostrar datos del chofer
 
-vistas en bbdd:
+Procedimientos almacenados en bbdd:
 -Ver resumenes de viajes
 Procedimiento almacenado creado, recibe un IDPERSONA, FECHAINICIO y FECHAFIN
 Se muestran 3 columnas: TipoViaje, Importe, FechaHoraViaje

@@ -175,5 +175,22 @@ namespace TPCuatrimestal
             int valorID = int.Parse(((ImageButton)sender).CommandArgument);
             Response.Redirect("detalleViaje.aspx?id=" + valorID, false);
         }
+
+        protected void calOtrosDias_SelectionChanged(object sender, EventArgs e)
+        {
+            DateTime seleccion = calOtrosDias.SelectedDate;
+            List<Viaje> viajes = new List<Viaje>();
+
+            foreach (Viaje X in ListarViajes)
+            {
+                if (X.FechaHoraViaje.Date == seleccion)
+                {
+                    viajes.Add(X);
+                }
+            }
+
+            dgvViajes.DataSource = viajes;
+            dgvViajes.DataBind();
+        }
     }
 }

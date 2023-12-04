@@ -79,7 +79,7 @@
 
         <div>
             <h5>BUSQUEDA POR DIA</h5>
-            <asp:Calendar ID="calOtrosDias" runat="server" class="table table-secondary table-striped"></asp:Calendar>
+            <asp:Calendar ID="calOtrosDias" runat="server" class="table table-secondary table-striped" OnSelectionChanged="calOtrosDias_SelectionChanged"></asp:Calendar>
         </div>
 
         <div style="font-family: cursive;" role="group">

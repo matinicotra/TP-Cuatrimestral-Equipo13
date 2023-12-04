@@ -42,7 +42,6 @@ Observaciones nuevas:
 
  	adminVehiculo
 -armar filtro por: Modelo, Tipo y plazas
--acomodar footer
 
 	adminChoferes
 -armar filtro por: nombre y apellido, zona y vehiculo (puede estar sin auto)

@@ -19,9 +19,10 @@ namespace TPCuatrimestal
 
         private Domicilio domicilioDestino1 = new Domicilio();
 
+        private long idChofer = 1;      //cambiar cuando hagamos el login
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            long idChofer = 2;      //el login determina el idChofer
 
             ViajeNegocio viajeNegocio = new ViajeNegocio();
             viajes = viajeNegocio.ViajesClientesChoferes(idChofer, true);
@@ -30,10 +31,18 @@ namespace TPCuatrimestal
             {
                 dgvViajes.DataSource = viajes;
                 dgvViajes.DataBind();
+                CargarDGVViajes();
             }
 
-
             CargarMapa(viajes[0]);
+        }
+
+        private void CargarDGVViajes()
+        {
+            ViajeNegocio viajeNegocio = new ViajeNegocio();
+            viajes = viajeNegocio.ViajesClientesChoferes(idChofer, true);
+            dgvViajes.DataSource = viajes;
+            dgvViajes.DataBind();
         }
 
         //CARGA EL MAPA CON EL PRIMER VIAJE POR DEFECTO
@@ -57,7 +66,7 @@ namespace TPCuatrimestal
 
         protected void btnWhatsapp_Click(object sender, EventArgs e)
         {
-            var numViajeSeleccionado = dgvViajes.SelectedDataKey.Value.ToString()
+            var numViajeSeleccionado = dgvViajes.SelectedDataKey.Value.ToString();
 
             string telefono = "1535947980";      //  prueba
             Response.Redirect("https://wa.me/" + telefono + "?text=Tu%20vehiculo%20ha%20llegado!");
@@ -99,8 +108,21 @@ namespace TPCuatrimestal
             string domicilio = direccion + "," + localidad + "," + provincia;
 
             urlIframe.Attributes.Add("src", "https://www.google.com/maps/embed/v1/place?key=AIzaSyDoBiKY57PiZmKkaMIjWRjSMPZO2i-XJJM&q=" + domicilio);
+        }
 
-            lblOrigen.Text = viaje.Origen.Direccion.ToString();
+        protected void btnMapaDestino_Click(object sender, ImageClickEventArgs e)
+        {
+            ImageButton btnImg = (ImageButton)sender;
+            long numViaje = long.Parse(btnImg.CommandArgument);
+            Viaje viaje = viajes.Find(X => X.NumViaje == numViaje);
+
+            string direccion = viaje.Destinos[0].Direccion.ToString().Replace(" ", "+");
+            string localidad = viaje.Destinos[0].Localidad.ToString().Replace(" ", "+");
+            string provincia = viaje.Destinos[0].Provincia.ToString().Replace(" ", "+");
+
+            string domicilio = direccion + "," + localidad + "," + provincia;
+
+            urlIframe.Attributes.Add("src", "https://www.google.com/maps/embed/v1/place?key=AIzaSyDoBiKY57PiZmKkaMIjWRjSMPZO2i-XJJM&q=" + domicilio);
         }
     }
 }

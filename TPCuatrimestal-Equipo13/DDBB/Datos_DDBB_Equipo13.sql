@@ -80,12 +80,7 @@ GO
 INSERT INTO VIAJES (IDCHOFER, IDCLIENTE, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO)
 VALUES 
     (1, 1, 'Ejecutivo', 23.40, 1, 2, null, null, 'Asignado', '2023-11-4', 0, 'Efectivo'),
-    (2, 2, 'Particular', 30.40, 7, 3, null, null, 'Asignado', GETDATE(), 0, 'Trajeta de Credito'),
-    (3, 3, 'Ejecutivo', 40.40, 5, 4, null, null, 'Asignado', GETDATE(), 0, 'Trajeta de Debito'),
-    (4, 4, 'Urbano', 28.40, 6, 8, null, null, 'Asignado', GETDATE(), 0, 'Efectivo');
+    (1, 2, 'Particular', 30.40, 7, 3, null, null, 'Asignado', GETDATE(), 0, 'Trajeta de Credito'),
+    (1, 3, 'Ejecutivo', 40.40, 5, 4, null, null, 'Asignado', GETDATE(), 0, 'Trajeta de Debito'),
+    (1, 4, 'Urbano', 28.40, 6, 8, null, null, 'Asignado', GETDATE(), 0, 'Efectivo');
 
-SELECT * FROM DOMICILIO
-SELECT * FROM CHOFER
-SELECT * FROM VIAJES
-
-DROP DATABASE BBDD_Equipo13

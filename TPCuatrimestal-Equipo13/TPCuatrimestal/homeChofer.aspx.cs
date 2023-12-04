@@ -17,9 +17,7 @@ namespace TPCuatrimestal
 
         private Domicilio domicilioOrigen = new Domicilio();
 
-        private Domicilio domicilioDestino1 = new Domicilio();
-
-        private long idChofer = 1;      //cambiar cuando hagamos el login
+        private long idChofer = 4;   // !!! cambiar cuando hagamos el login
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,10 +29,10 @@ namespace TPCuatrimestal
             {
                 dgvViajes.DataSource = viajes;
                 dgvViajes.DataBind();
-                CargarDGVViajes();
+                
             }
 
-            CargarMapa(viajes[0]);
+            CargarMapa(viajes[0]);   // !!! vamos a tener un viaje activo o seria el primero de la lista?
         }
 
         private void CargarDGVViajes()
@@ -55,8 +53,6 @@ namespace TPCuatrimestal
             string domicilio = direccion + "," + localidad + "," + provincia;
 
             urlIframe.Attributes.Add("src", "https://www.google.com/maps/embed/v1/place?key=AIzaSyDoBiKY57PiZmKkaMIjWRjSMPZO2i-XJJM&q=" + domicilio);
-
-            lblOrigen.Text = viaje.Origen.Direccion.ToString();
         }
 
         protected void btnDetalleViaje_Click(object sender, EventArgs e)
@@ -69,15 +65,6 @@ namespace TPCuatrimestal
             var numViajeSeleccionado = dgvViajes.SelectedDataKey.Value.ToString();
         }
 
-        protected void btnNoPagado_Click(object sender, ImageClickEventArgs e)
-        {
-            ViajeNegocio viajeNegocio = new ViajeNegocio();
-
-            int valorID = int.Parse(((ImageButton)sender).CommandArgument);
-
-            viajeNegocio.PagarDespagarViaje(valorID, false);
-        }
-
         protected void btnPagado_Click(object sender, ImageClickEventArgs e)
         {
             ViajeNegocio viajeNegocio = new ViajeNegocio();
@@ -85,8 +72,11 @@ namespace TPCuatrimestal
             int valorID = int.Parse(((ImageButton)sender).CommandArgument);
 
             viajeNegocio.PagarDespagarViaje(valorID, true);
+
+            CargarDGVViajes();
         }
 
+        // MAPA ORIGEN
         protected void btnMapa_Click(object sender, ImageClickEventArgs e)
         {
             ImageButton btnImg = (ImageButton)sender;
@@ -102,6 +92,7 @@ namespace TPCuatrimestal
             urlIframe.Attributes.Add("src", "https://www.google.com/maps/embed/v1/place?key=AIzaSyDoBiKY57PiZmKkaMIjWRjSMPZO2i-XJJM&q=" + domicilio);
         }
 
+        // MAPA DESTINO
         protected void btnMapaDestino_Click(object sender, ImageClickEventArgs e)
         {
             ImageButton btnImg = (ImageButton)sender;
@@ -117,6 +108,7 @@ namespace TPCuatrimestal
             urlIframe.Attributes.Add("src", "https://www.google.com/maps/embed/v1/place?key=AIzaSyDoBiKY57PiZmKkaMIjWRjSMPZO2i-XJJM&q=" + domicilio);
         }
 
+        // MENSAJE WHATSAPP
         protected void btnWhatsApp_Click1(object sender, ImageClickEventArgs e)
         {
             ImageButton btnImg = (ImageButton)sender;
@@ -124,7 +116,6 @@ namespace TPCuatrimestal
             Viaje viaje = viajes.Find(X => X.NumViaje == numViaje);
 
             string telefono = viaje.ClienteViaje.Telefono.ToString();
-
             Response.Redirect("https://wa.me/" + telefono + "?text=Tu%20transporte%20ha%20llegado!");
         }
     }

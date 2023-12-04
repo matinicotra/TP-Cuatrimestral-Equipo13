@@ -32,7 +32,9 @@
                     </asp:TemplateField>
 
                     <asp:BoundField HeaderText="Importe" DataField="Importe" DataFormatString="{0:F1}" />
+
                     <asp:BoundField HeaderText="Pagado" DataField="Pagado" />
+
                     <asp:TemplateField HeaderText="Estado">
                         <ItemTemplate>
                             <asp:DropDownList ID="ddlEstado" runat="server">
@@ -44,6 +46,7 @@
                             <asp:LinkButton ID="lbOk" runat="server" OnClick="lbOk_Click" CommandArgument='<%# Eval("NumViaje") %>'>OK</asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
+
                     <asp:TemplateField HeaderText="Accion">
                         <ItemTemplate>
                             <asp:ImageButton ID="btnModificar" runat="server" ImageUrl="https://img2.freepng.es/20201210/hcb/transparent-edit-icon-interface-icon-5fd2c0863c4dc9.114206481607647366247.jpg" class="btn btn-close btn-lg border ms-1" CommandName="Modificar" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Modificar" OnClick="btnModificar_Click" />

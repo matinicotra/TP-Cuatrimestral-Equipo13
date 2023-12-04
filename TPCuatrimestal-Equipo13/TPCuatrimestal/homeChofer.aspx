@@ -21,7 +21,7 @@
 
                     <asp:BoundField HeaderText="Origen" DataField="Origen" />
 
-                   <%-- <asp:TemplateField HeaderText="Destino">
+                    <%-- <asp:TemplateField HeaderText="Destino">
                         <ItemTemplate>
                             <%# Eval("Domicilio")%>
                         </ItemTemplate>
@@ -33,16 +33,24 @@
 
                     <asp:BoundField HeaderText="Pagado" DataField="Pagado" />
 
+                    <asp:TemplateField HeaderText="Estado">
+                        <ItemTemplate>
+                            <asp:DropDownList ID="ddlEstado" runat="server">
+                                <asp:ListItem Text="Finalizado" Value="1" />
+                                <asp:ListItem Text="Cancelado" Value="2" />
+                            </asp:DropDownList>
+                            <asp:LinkButton ID="lbOk" runat="server" OnClick="lbOk_Click" CommandArgument='<%# Eval("NumViaje") %>'>OK</asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Accion">
+
+                    <asp:TemplateField HeaderText="Acciones">
                         <ItemTemplate>
                             <asp:ImageButton ID="btnMapa" runat="server" CssClass="btn btn-close btn-lg border ms-1" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Origen" OnClick="btnMapa_Click" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcrDhC3i0jmSXhxnMoI5TDMWulKu0GZ6Jn2g&usqp=CAU" />
-                            
-                            <asp:ImageButton ID="btnMapaDestino" runat="server" CssClass="btn btn-close btn-lg border ms-1" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Destino" onclick="btnMapaDestino_Click" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcrDhC3i0jmSXhxnMoI5TDMWulKu0GZ6Jn2g&usqp=CAU" />
 
-                            <asp:ImageButton ID="btnWhatsApp" runat="server" CssClass="btn btn-close btn-lg border ms-1" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Enviar WhatsApp" OnClick="btnWhatsApp_Click1" src="https://i.pinimg.com/736x/b3/80/4c/b3804c40eb070822e5673157950faa96.jpg"/>
+                            <asp:ImageButton ID="btnMapaDestino" runat="server" CssClass="btn btn-close btn-lg border ms-1" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Destino" OnClick="btnMapaDestino_Click" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcrDhC3i0jmSXhxnMoI5TDMWulKu0GZ6Jn2g&usqp=CAU" />
 
-                            <asp:ImageButton ID="btnNoPagado" ImageUrl="https://us.123rf.com/450wm/igoun/igoun1805/igoun180500088/101280971-icono-de-cruz-en-c%C3%ADrculo-se-puede-utilizar-como-bot%C3%B3n-de-eliminar-bloquear-cerrar-etc-eliminar.jpg" CommandArgument='<%#Eval("NumViaje")%>' CommandName="NumViaje" runat="server" Text="No Pagado" CssClass="btn btn-close btn-lg border ms-1" ToolTip="No Pagado" Visible='<%# Convert.ToBoolean(Eval("Pagado")) %>' OnClick="btnNoPagado_Click" />
+                            <asp:ImageButton ID="btnWhatsApp" runat="server" CssClass="btn btn-close btn-lg border ms-1" CommandArgument='<%# Eval("NumViaje") %>' ToolTip="Enviar WhatsApp" OnClick="btnWhatsApp_Click1" src="https://i.pinimg.com/736x/b3/80/4c/b3804c40eb070822e5673157950faa96.jpg" />
 
                             <asp:ImageButton ID="btnPagado" ImageUrl="https://c0.klipartz.com/pngpicture/605/284/gratis-png-cheque-verde-ogo-iconos-de-la-marca-de-verificacion-marca-verde-thumbnail.png" CommandArgument='<%#Eval("NumViaje")%>' CommandName="NumViaje" runat="server" Text="Pagado" CssClass="btn btn-close btn-lg border ms-1" ToolTip="Pagado" Visible='<%# !Convert.ToBoolean(Eval("Pagado")) %>' OnClick="btnPagado_Click" />
                         </ItemTemplate>

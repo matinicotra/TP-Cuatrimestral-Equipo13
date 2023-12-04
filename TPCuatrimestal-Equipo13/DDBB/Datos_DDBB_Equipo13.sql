@@ -25,16 +25,16 @@ GO
 -- CARGA DE DATOS DOMICILIOS
 INSERT INTO DOMICILIO (DIRECCION, LOCALIDAD, PROVINCIA, DESCRIPCION)
 VALUES 
-('Calle 1', 'Localidad 1', 'Provincia 1', 'Descripción 1'),
-('Calle 2', 'Localidad 2', 'Provincia 2', 'Descripción 2'),
-('Calle 3', 'Localidad 3', 'Provincia 3', 'Descripción 3'),
-('Calle 4', 'Localidad 4', 'Provincia 4', 'Descripción 4'),
-('Calle 5', 'Localidad 5', 'Provincia 5', 'Descripción 5'),
-('Calle 6', 'Localidad 6', 'Provincia 6', 'Descripción 6'),
-('Calle 7', 'Localidad 7', 'Provincia 7', 'Descripción 7'),
-('Calle 8', 'Localidad 8', 'Provincia 8', 'Descripción 8'),
-('Calle 9', 'Localidad 9', 'Provincia 9', 'Descripción 9'),
-('Calle 10', 'Localidad 10', 'Provincia 10', 'Descripción 10');
+	('Av. Corrientes 123', 'CABA', 'Buenos Aires', 'Central location in the city'),
+    ('Calle Lavalle 456', 'San Isidro', 'Buenos Aires', 'Quiet residential street near the river'),
+    ('Av. Libertador 789', 'Vicente López', 'Buenos Aires', 'Luxury apartment with a view of the skyline'),
+    ('Calle Maipú 234', 'Olivos', 'Buenos Aires', 'Family home in a green neighborhood'),
+    ('Av. Cabildo 567', 'Belgrano', 'CABA', 'Conveniently located near public transport'),
+    ('Calle San Martín 890', 'La Matanza', 'Buenos Aires', 'Spacious house with a large backyard'),
+    ('Av. Santa Fe 345', 'San Justo', 'Buenos Aires', 'Close to shopping centers and entertainment'),
+    ('Calle Reconquista 678', 'Quilmes', 'Buenos Aires', 'Cozy apartment in a lively neighborhood'),
+    ('Av. Callao 901', 'Lomas de Zamora', 'Buenos Aires', 'Modern loft in a trendy area'),
+    ('Calle Pueyrredón 1234', 'Banfield', 'Buenos Aires', 'Suburban house with easy access to the city');
 GO
 
 -- CARGA DE DATOS PERSONAS
@@ -75,29 +75,17 @@ VALUES
 (8 , 4)
 GO
 
-	-- CARGA DE DATOS DOMICILIOS
-INSERT INTO DOMICILIO (DIRECCION, LOCALIDAD, PROVINCIA, DESCRIPCION)
-VALUES
-    ('Av. Corrientes 123', 'CABA', 'Buenos Aires', 'Central location in the city'),
-    ('Calle Lavalle 456', 'San Isidro', 'Buenos Aires', 'Quiet residential street near the river'),
-    ('Av. Libertador 789', 'Vicente López', 'Buenos Aires', 'Luxury apartment with a view of the skyline'),
-    ('Calle Maipú 234', 'Olivos', 'Buenos Aires', 'Family home in a green neighborhood'),
-    ('Av. Cabildo 567', 'Belgrano', 'CABA', 'Conveniently located near public transport'),
-    ('Calle San Martín 890', 'La Matanza', 'Buenos Aires', 'Spacious house with a large backyard'),
-    ('Av. Santa Fe 345', 'San Justo', 'Buenos Aires', 'Close to shopping centers and entertainment'),
-    ('Calle Reconquista 678', 'Quilmes', 'Buenos Aires', 'Cozy apartment in a lively neighborhood'),
-    ('Av. Callao 901', 'Lomas de Zamora', 'Buenos Aires', 'Modern loft in a trendy area'),
-    ('Calle Pueyrredón 1234', 'Banfield', 'Buenos Aires', 'Suburban house with easy access to the city');
 
 --CARGA DE DATOS VIAJES
 INSERT INTO VIAJES (IDCHOFER, IDCLIENTE, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO)
 VALUES 
-    (1, 1, 'Ejecutivo', 23.40, 1, 1, null, null, 'Asignado', '2023-11-4', 0, 'Efectivo'),
-    (2, 2, 'Particular', 30.40, 7, 18, null, null, 'Asignado', GETDATE(), 0, 'Trajeta de Credito'),
-    (3, 3, 'Ejecutivo', 40.40, 1, 3, null, null, 'Asignado', GETDATE(), 0, 'Trajeta de Debito'),
-    (4, 4, 'Urbano', 28.40, 1, 4, null, null, 'Asignado', GETDATE(), 0, 'Efectivo');
+    (1, 1, 'Ejecutivo', 23.40, 1, 2, null, null, 'Asignado', '2023-11-4', 0, 'Efectivo'),
+    (2, 2, 'Particular', 30.40, 7, 3, null, null, 'Asignado', GETDATE(), 0, 'Trajeta de Credito'),
+    (3, 3, 'Ejecutivo', 40.40, 5, 4, null, null, 'Asignado', GETDATE(), 0, 'Trajeta de Debito'),
+    (4, 4, 'Urbano', 28.40, 6, 8, null, null, 'Asignado', GETDATE(), 0, 'Efectivo');
 
 SELECT * FROM DOMICILIO
 SELECT * FROM CHOFER
 SELECT * FROM VIAJES
 
+DROP DATABASE BBDD_Equipo13

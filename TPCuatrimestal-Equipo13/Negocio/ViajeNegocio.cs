@@ -313,5 +313,26 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+
+        public void FinalizarViaje(long IdViaje)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("UPDATE VIAJES SET ESTADO = @ESTADO WHERE IDVIAJE = @IDVIAJE");
+                datos.SetearParametro("@IDVIAJE", IdViaje);
+                datos.SetearParametro("@ESTADO", "Finalizado");
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
     }
 }

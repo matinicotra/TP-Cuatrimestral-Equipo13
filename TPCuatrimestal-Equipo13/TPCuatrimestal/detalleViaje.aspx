@@ -97,8 +97,8 @@
 
             <div class="list-group list-group-horizontal">
                 <asp:Button ID="btnAtras" runat="server" Text="Atras" CssClass="btn btn-primary m-2" OnClick="btnAtras_Click" />
-                <asp:Button ID="btnCopiarDatos" runat="server" Text="Copiar Datos" CssClass="btn btn-warning m-2" />
-                <asp:Button ID="btnEnviarDatosViaje" runat="server" CssClass="btn btn-success m-2" Text="Enviar Por WhatsApp" />
+                <%--<asp:Button ID="btnCopiarDatos" runat="server" Text="Copiar Datos" CssClass="btn btn-warning m-2" />
+                <asp:Button ID="btnEnviarDatosViaje" runat="server" CssClass="btn btn-success m-2" Text="Enviar Por WhatsApp" />--%>
             </div>
 
         </div>

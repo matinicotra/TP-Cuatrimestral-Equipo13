@@ -20,7 +20,9 @@ namespace Dominio
 
         public override string ToString()
         {
-            string aux = Tipo.ToString() ?? "Sin Auto";
+            string aux = Tipo.ToString() + Patente ?? "Sin Auto";
+            if (String.IsNullOrEmpty(aux))
+                aux = "Sin Auto";
             return aux;
         }
     }

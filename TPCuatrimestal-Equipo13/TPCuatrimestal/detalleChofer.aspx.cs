@@ -11,6 +11,7 @@ namespace TPCuatrimestal
 {
     public partial class detalleChofer : System.Web.UI.Page
     {
+        List<Viaje> listaViajes;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.QueryString["id"] != null)
@@ -21,14 +22,17 @@ namespace TPCuatrimestal
                 Chofer choferAux = cnAux.ObtenerDatos(int.Parse(idChofer))[0];
 
                 lblTituloChofer.Text = choferAux.Nombres + " " + choferAux.Apellidos;
-                lblAutoAsignado.Text = choferAux.AutoAsignado.Patente;
+                lblAutoAsignado.Text = choferAux.AutoAsignado.ToString();
                 lblZona.Text = choferAux.ZonaAsignada.NombreZona;
+
+                listarViajes();
             }
         }
 
         protected void btnDetalleViaje_Click(object sender, EventArgs e)
         {
-            Response.Redirect("detalleViaje.aspx", false);
+            string idSeleccionado = lbxListaViajesChofer.SelectedValue;
+            Response.Redirect("detalleViaje.aspx?id=" + idSeleccionado, false);
         }
 
         protected void btnModificarViaje_Click(object sender, EventArgs e)
@@ -66,6 +70,40 @@ namespace TPCuatrimestal
             DateTime OUT = DateTime.Now.AddDays(1);
 
             Response.Redirect("listaViajes.aspx?Ide=" + Ide + "&ID=" + ID + "&Inicio=" + IN.ToString() + "&Fin=" + OUT.ToString(), false);
+        }
+
+        protected void listarViajes()
+        {
+            ViajeNegocio viajesNegocio = new ViajeNegocio();
+            try
+            {
+                listaViajes = viajesNegocio.ViajesClientesChoferes(int.Parse(Request.QueryString["id"]), true);
+
+                if (listaViajes.Count <= 0)
+                {
+                    lbxListaViajesChofer.Visible = false;
+                    btnDetalleViaje.Visible = false;
+                }
+                else
+                {
+                    foreach (Viaje X in listaViajes)
+                    {
+                        ListItem item = new ListItem();
+
+                        item.Value = X.NumViaje.ToString();
+                        item.Text = $"{X.NumViaje} - {X.FechaHoraViaje.ToShortDateString()} - {X.ClienteViaje} - {X.Estado} - Pago: {X.Pagado} - ${X.Importe.ToString("f0")}";
+                        item.Attributes["class"] = "list-group-item my-1 mx-2";
+
+                        lbxListaViajesChofer.Items.Add(item);
+                    }
+                    lbxListaViajesChofer.SelectedIndex = 0;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

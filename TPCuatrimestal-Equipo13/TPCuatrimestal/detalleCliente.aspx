@@ -6,15 +6,15 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-lg" style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px;">
         <div>
-            <asp:Label ID="lblNombreTitulo" runat="server" Text=""></asp:Label>
+            <asp:Label ID="lblNombreTitulo" runat="server" Text="" CssClass="h3 text-primary-emphasis"></asp:Label>
         </div>
         <div>
-            <asp:Label ID="lblTelefonoTitulo" runat="server" Text=""></asp:Label>
+            <asp:Label ID="lblTelefonoTitulo" runat="server" Text="" CssClass="h3 text-primary-emphasis" ></asp:Label>
         </div>
 
         <div>
-            <h5>Listado de viajes</h5>
-            <asp:ListBox ID="listaViajesPorCliente" runat="server"></asp:ListBox>
+            <h5 class="text-center h5">VIAJES</h5>
+            <asp:ListBox ID="lbxListaViajesPorCliente" runat="server" CssClass="list-group list-group-flush"></asp:ListBox>
         </div>
 
         <div>

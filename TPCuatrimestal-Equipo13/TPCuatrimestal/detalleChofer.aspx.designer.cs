@@ -42,13 +42,13 @@ namespace TPCuatrimestal
         protected global::System.Web.UI.WebControls.Label lblAutoAsignado;
 
         /// <summary>
-        /// Control listaViajesPorChofer.
+        /// Control lbxListaViajesChofer.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox listaViajesPorChofer;
+        protected global::System.Web.UI.WebControls.ListBox lbxListaViajesChofer;
 
         /// <summary>
         /// Control btnAsignarViaje.

@@ -109,7 +109,7 @@ namespace Negocio
             }
         }
 
-        public List<Viaje> ViajesClientesChoferes(long ID, bool EsChofer)
+        public List<Viaje> ViajesClientesChoferes(int ID, bool EsChofer)
         {
             AccesoDatos datosViaje = new AccesoDatos();
 
@@ -117,13 +117,13 @@ namespace Negocio
             {
                 if (EsChofer)
                 {
-                    datosViaje.SetearConsulta("SELECT IDVIAJE, IDCLIENTE, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO FROM VIAJES WHERE IDCHOFER = @IDCHOFER ORDER BY FECHAHORAVIAJE ASC");
+                    datosViaje.SetearConsulta("SELECT IDVIAJE, IDCLIENTE, IDCHOFER, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO FROM VIAJES WHERE IDCHOFER = @IDCHOFER ORDER BY FECHAHORAVIAJE ASC");
                     datosViaje.SetearParametro("@IDCHOFER", ID);
                     datosViaje.EjecutarConsulta();
                 }
                 else
                 {
-                    datosViaje.SetearConsulta("SELECT IDVIAJE, IDCLIENTE, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO FROM VIAJES WHERE IDCLIENTE = @IDCLIENTE ORDER BY FECHAHORAVIAJE ASC");
+                    datosViaje.SetearConsulta("SELECT IDVIAJE, IDCLIENTE, IDCHOFER, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO FROM VIAJES WHERE IDCLIENTE = @IDCLIENTE ORDER BY FECHAHORAVIAJE ASC");
                     datosViaje.SetearParametro("@IDCLIENTE", ID);
                     datosViaje.EjecutarConsulta();
                 }
@@ -145,6 +145,11 @@ namespace Negocio
 
                     if (aux.IDCliente != -1)
                         aux.ClienteViaje = ClienteNegocioAux.ObtenerDatos(aux.IDCliente)[0];
+
+                    aux.IDChofer = datosViaje.Lector["IDCHOFER"] is DBNull ? -1 : (int)datosViaje.Lector["IDCHOFER"];
+
+                    if (aux.IDChofer != -1)
+                        aux.ChoferViaje = ChoferNegocioAux.ObtenerDatos(aux.IDChofer)[0];
 
                     aux.TipoViaje = datosViaje.Lector["TIPOVIAJE"] is DBNull ? "S/T" : (string)datosViaje.Lector["TIPOVIAJE"];
 

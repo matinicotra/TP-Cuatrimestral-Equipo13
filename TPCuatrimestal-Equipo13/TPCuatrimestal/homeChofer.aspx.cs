@@ -19,22 +19,31 @@ namespace TPCuatrimestal
 
         private Domicilio domicilioOrigen = new Domicilio();
 
-        private long idChofer = 1;   // !!! cambiar cuando hagamos el login
+        private int idChofer = 1;   // !!! cambiar cuando hagamos el login
 
         protected void Page_Load(object sender, EventArgs e)
         {
             ViajeNegocio viajeNegocio = new ViajeNegocio();
             viajes = viajeNegocio.ViajesClientesChoferes(idChofer, true);
 
-            viajesAsignados.Clear();
-
-            foreach (Viaje viaje in viajes)
+            if (viajes.Count() < 1)
             {
-                if (viaje.Estado.ToString() != "Finalizado")
-                {
-                    viajesAsignados.Add(viaje);
-                }
+                dgvViajes.Visible = false;
             }
+            else
+            {
+                viajesAsignados.Clear();
+
+                foreach (Viaje viaje in viajes)
+                {
+                    if (viaje.Estado.ToString() != "Finalizado")
+                    {
+                        viajesAsignados.Add(viaje);
+                    }
+                }
+
+            }
+
 
             if (!IsPostBack)
             {
@@ -85,7 +94,7 @@ namespace TPCuatrimestal
 
         protected void dgvViajes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void btnPagado_Click(object sender, ImageClickEventArgs e)
@@ -150,6 +159,13 @@ namespace TPCuatrimestal
             viajeNegocio.FinalizarViaje(idViaje);
 
             CargarViajesAsignados();
+        }
+
+        protected void btnDetalle_Click(object sender, ImageClickEventArgs e)
+        {
+            int valorID = int.Parse(((ImageButton)sender).CommandArgument);
+            string esChofer = "true";
+            Response.Redirect("detalleViaje.aspx?id=" + valorID + "&esChofer=" + esChofer, false);
         }
     }
 }

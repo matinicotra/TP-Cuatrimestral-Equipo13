@@ -11,8 +11,18 @@
             <h4 class="text-center">VIAJE</h4>
 
             <div class="input-group mb-3">
-                <asp:Label ID="lblPagado" runat="server" Text="Pagado" CssClass="input-group-text"></asp:Label>
+                <asp:Label ID="lblPagado" runat="server" Text="PAGADO" CssClass="input-group-text"></asp:Label>
                 <asp:CheckBox ID="cbxPagado" runat="server" Checked="false" CssClass="input-group-text" />
+            </div>
+
+            <div class="input-group mb-3">
+                <asp:Label ID="lblEstadoViaje" runat="server" Text="ESTADO" CssClass="input-group-text"></asp:Label>
+                <asp:DropDownList ID="ddlEstadoViaje" runat="server">
+                    <asp:ListItem Text="Asignado" Value="Asignado" />
+                    <asp:ListItem Text="Libre" Value="Libre" />
+                    <asp:ListItem Text="Finalizado" Value="Finalizado" />
+                    <asp:ListItem Text="Cancelado" Value="Cancelado" />
+                </asp:DropDownList>
             </div>
 
             <h5 class="text-center">DATOS DEL CLIENTE</h5>
@@ -23,7 +33,7 @@
             </div>
 
             <div class="input-group mb-1">
-                <asp:DropDownList ID="ddlClientes" runat="server" CssClass="btn btn-primary dropdown-toggle" AutoPostBack="True" OnSelectedIndexChanged="ddlClientes_SelectedIndexChanged" ></asp:DropDownList>
+                <asp:DropDownList ID="ddlClientes" runat="server" CssClass="btn btn-primary dropdown-toggle" AutoPostBack="True" OnSelectedIndexChanged="ddlClientes_SelectedIndexChanged"></asp:DropDownList>
             </div>
 
             <div class="input-group mb-1">
@@ -178,7 +188,7 @@
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblImporte" runat="server" Font-Bold="false">IMPORTE $</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtImporte" runat="server" TextMode="Number" ></asp:TextBox>
+                <asp:TextBox CssClass="form-control" ID="txtImporte" runat="server" TextMode="Number"></asp:TextBox>
             </div>
 
             <div class="text-center">

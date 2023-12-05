@@ -267,7 +267,7 @@ namespace Negocio
                 }
                 DateTime dateTimeViaje = Convert.ToDateTime(viaje.FechaHoraViaje);
                 datos.SetearParametro("@FECHAHORAVIAJE", dateTimeViaje);
-                datos.SetearParametro("@IDCHOFER", viaje.IDChofer);
+                datos.SetearParametro("@IDCHOFER", viaje.IDChofer != 0 ? (object)viaje.IDChofer : DBNull.Value);
 
                     //LOGICA PARA CLIENTE: SI EL CLIENTE YA EXISTE SOLO SETEA SU ID Y PREGUNTA SI EL DOMICILIO ES NUEVO O ES UNO EXISTENTE
                  //             (SI VIENE IDCLIENTE = 0 ES CLIENTE NUEVO)
@@ -353,7 +353,10 @@ namespace Negocio
                     datos.SetearParametro("@IDDOMDESTINO2", DBNull.Value);
                 }
                 datos.SetearParametro("@IMPORTE", viaje.Importe);
-                datos.SetearParametro("@ESTADO", viaje.Estado);
+                if (viaje.Estado != null)
+                    datos.SetearParametro("@ESTADO", viaje.Estado);
+                else
+                    datos.SetearParametro("@ESTADO", DBNull.Value);
                 datos.SetearParametro("@PAGADO", viaje.Pagado);
                 datos.SetearParametro("@MEDIODEPAGO", viaje.MedioDePago);
 

@@ -28,12 +28,14 @@ namespace TPCuatrimestal
                 txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 txtHora.Text = "07:00";
                 rblFormaDePago.SelectedValue = "No Especifica";
+                ddlEstadoViaje.SelectedIndex = 0;
+                ddlChoferes.SelectedIndex = 0;
                 CargarDesplegables();
             }
 
             if (Request.QueryString["id"] != null && !IsPostBack)
             {
-                
+
                 ViajeNegocio viajeNegocio = new ViajeNegocio();
                 ClienteNegocio clienteNegocio = new ClienteNegocio();
                 ChoferNegocio choferNegocio = new ChoferNegocio();
@@ -43,7 +45,17 @@ namespace TPCuatrimestal
 
                 viajeAux = viajeNegocio.ObtenerDatos(idViaje)[0];
                 clienteAux = clienteNegocio.ObtenerDatos(viajeAux.IDCliente)[0];
-                choferAux = choferNegocio.ObtenerDatos(viajeAux.IDChofer)[0];
+
+                if (viajeAux.IDChofer != -1)
+                {
+                    choferAux = choferNegocio.ObtenerDatos(viajeAux.IDChofer)[0];
+                    Session["ChoferID"] = choferAux.IDChofer;
+                }
+                else
+                {
+                    Session["ChoferID"] = 0;
+                }
+
                 dirOrigen = domicilioNegocio.ObtenerDomicilio(viajeAux.Origen.IDDomicilio);
                 dirDestino1 = domicilioNegocio.ObtenerDomicilio(viajeAux.Destinos[0].IDDomicilio);
 
@@ -51,7 +63,6 @@ namespace TPCuatrimestal
 
                 Session["clienteAux"] = viajeAux.ClienteViaje;
 
-                Session["ChoferID"] = choferAux.IDChofer;
 
                 if (viajeAux.Destinos.Count() > 1)
                 {
@@ -88,6 +99,8 @@ namespace TPCuatrimestal
                 txtDescripcionDestino1.Text = dirDestino1.Descripcion;
 
                 cbxPagado.Checked = viajeAux.Pagado;
+                ddlEstadoViaje.Text = viajeAux.Estado;
+
                 txtFecha.Text = viajeAux.FechaHoraViaje.ToString("yyyy-MM-dd");
                 txtHora.Text = viajeAux.FechaHoraViaje.ToString("HH:mm");
                 txtTipoDeViaje.Text = viajeAux.TipoViaje;
@@ -128,16 +141,16 @@ namespace TPCuatrimestal
 
             //no asignado es index = 0
             ddlChoferes.DataValueField = "IDChofer";
-            
-                //Se configura con el Items.Add y el new  ListItem (Valor del campo a mostrar, DataValueField)
-            ddlChoferes.Items.Add(new ListItem ("No Asignado", "0"));
+
+            //Se configura con el Items.Add y el new  ListItem (Valor del campo a mostrar, DataValueField)
+            ddlChoferes.Items.Add(new ListItem("No Asignado", "0"));
             int contador = 0;
             ddlChoferes.SelectedIndex = 0;
             foreach (Chofer X in listaChoferes)
             {
                 if (X.Estado)
                 {
-                    ddlChoferes.Items.Add(new ListItem(X.IDChofer.ToString() + "- " + X.Nombres + " " + X.Apellidos + " | " + X.AutoAsignado.ToString(),X.IDChofer.ToString()));
+                    ddlChoferes.Items.Add(new ListItem(X.IDChofer.ToString() + "- " + X.Nombres + " " + X.Apellidos + " | " + X.AutoAsignado.ToString(), X.IDChofer.ToString()));
                     contador++;
                     if (viajeAux != null)
                     {
@@ -152,10 +165,10 @@ namespace TPCuatrimestal
             ClienteNegocio clienteNegocioAux = new ClienteNegocio();
             listaClientes = clienteNegocioAux.ObtenerDatos();
 
-                //No asignado es index = 0
+            //No asignado es index = 0
             ddlClientes.DataValueField = "IDCliente";
 
-            ddlClientes.Items.Add(new ListItem ("Cliente Nuevo", "0"));
+            ddlClientes.Items.Add(new ListItem("Cliente Nuevo", "0"));
             ddlClientes.SelectedIndex = 0;
             contador = 0;
             foreach (Cliente Y in listaClientes)
@@ -185,8 +198,9 @@ namespace TPCuatrimestal
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             viajeAux = new Viaje();
-            
+
             viajeAux.Pagado = cbxPagado.Checked;
+            viajeAux.Estado = ddlEstadoViaje.SelectedValue;
 
             if (cbxSinCliente.Checked)
             {
@@ -228,7 +242,7 @@ namespace TPCuatrimestal
             dirDestino1.Descripcion = txtDescripcionDestino1.Text;
             viajeAux.Destinos.Add(dirDestino1);
 
-            if(ddlCantidadDestino.SelectedIndex > 1)
+            if (ddlCantidadDestino.SelectedIndex > 1)
             {
                 dirDestino2 = new Domicilio();
                 dirDestino2.Direccion = txtCalleDestino2.Text;
@@ -236,7 +250,7 @@ namespace TPCuatrimestal
                 dirDestino2.Direccion = txtProvinciaDestino2.Text;
                 dirDestino2.Direccion = txtDescripcionDestino2.Text;
                 viajeAux.Destinos.Add(dirDestino2);
-                if(ddlCantidadDestino.SelectedIndex > 2)
+                if (ddlCantidadDestino.SelectedIndex > 2)
                 {
                     dirDestino3 = new Domicilio();
                     dirDestino3.Direccion = txtCalleDestino3.Text;
@@ -247,18 +261,17 @@ namespace TPCuatrimestal
                 }
             }
 
-            if(ddlChoferes.SelectedIndex != 0)
+            if (ddlChoferes.SelectedIndex != 0)
             {
                 ChoferNegocio choferNegocio = new ChoferNegocio();
                 string aux = ddlChoferes.SelectedValue;
                 int idChofer = int.Parse(ddlChoferes.SelectedValue);
                 choferAux = choferNegocio.ObtenerDatos(int.Parse(ddlChoferes.SelectedValue))[0];
-                viajeAux.Estado = "Asignado";
+
                 viajeAux.IDChofer = choferAux.IDChofer;
             }
             else
             {
-                viajeAux.Estado = "Libre";
                 viajeAux.IDChofer = 0;
             }
 
@@ -357,7 +370,7 @@ namespace TPCuatrimestal
 
         protected void rblFormaDePago_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
         }
     }
 }

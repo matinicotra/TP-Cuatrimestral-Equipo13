@@ -183,5 +183,34 @@ namespace Negocio
                 Datos.CerrarConexion();
             }
         }
+
+        public int ultimoIdCliente()
+        {
+            int idCliente = -1;
+
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("SELECT TOP 1 * FROM CLIENTE ORDER BY IDCLIENTE DESC");
+
+                datos.EjecutarConsulta();
+
+                if (datos.Lector.Read())
+                {
+                    idCliente = datos.Lector["IDCLIENTE"] is DBNull ? -1 : (int)datos.Lector["IDCLIENTE"];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+
+            return idCliente;
+        }
     }
 }

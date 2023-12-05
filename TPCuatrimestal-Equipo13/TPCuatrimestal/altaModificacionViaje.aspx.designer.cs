@@ -33,6 +33,24 @@ namespace TPCuatrimestal
         protected global::System.Web.UI.WebControls.CheckBox cbxPagado;
 
         /// <summary>
+        /// Control lblSinCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSinCliente;
+
+        /// <summary>
+        /// Control cbxSinCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbxSinCliente;
+
+        /// <summary>
         /// Control ddlClientes.
         /// </summary>
         /// <remarks>
@@ -186,6 +204,24 @@ namespace TPCuatrimestal
         protected global::System.Web.UI.WebControls.TextBox txtProvinciaOrigen;
 
         /// <summary>
+        /// Control lblDescripcionOrigen.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDescripcionOrigen;
+
+        /// <summary>
+        /// Control txtDescripcionOrigen.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDescripcionOrigen;
+
+        /// <summary>
         /// Control lblCantidadDestino.
         /// </summary>
         /// <remarks>
@@ -258,6 +294,24 @@ namespace TPCuatrimestal
         protected global::System.Web.UI.WebControls.TextBox txtProvinciaDestino1;
 
         /// <summary>
+        /// Control lblDescripcionDestino1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDescripcionDestino1;
+
+        /// <summary>
+        /// Control txtDescripcionDestino1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDescripcionDestino1;
+
+        /// <summary>
         /// Control lblCalleDestino2.
         /// </summary>
         /// <remarks>
@@ -310,6 +364,24 @@ namespace TPCuatrimestal
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtProvinciaDestino2;
+
+        /// <summary>
+        /// Control lblDescripcionDestino2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDescripcionDestino2;
+
+        /// <summary>
+        /// Control txtDescripcionDestino2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDescripcionDestino2;
 
         /// <summary>
         /// Control lblCalleDestino3.
@@ -366,6 +438,24 @@ namespace TPCuatrimestal
         protected global::System.Web.UI.WebControls.TextBox txtProvinciaDestino3;
 
         /// <summary>
+        /// Control lblDescripcionDestino3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDescripcionDestino3;
+
+        /// <summary>
+        /// Control txtDescripcionDestino3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDescripcionDestino3;
+
+        /// <summary>
         /// Control lblNombreChofer.
         /// </summary>
         /// <remarks>
@@ -382,6 +472,42 @@ namespace TPCuatrimestal
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlChoferes;
+
+        /// <summary>
+        /// Control lblTipoDeViaje.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTipoDeViaje;
+
+        /// <summary>
+        /// Control txtTipoDeViaje.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTipoDeViaje;
+
+        /// <summary>
+        /// Control lblImporte.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblImporte;
+
+        /// <summary>
+        /// Control txtImporte.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtImporte;
 
         /// <summary>
         /// Control btnAceptar.

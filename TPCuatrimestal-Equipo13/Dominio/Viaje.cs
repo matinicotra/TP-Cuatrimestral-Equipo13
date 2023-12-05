@@ -18,6 +18,7 @@ namespace Dominio
         public long NumViaje { get; set; }
         public int IDChofer { get; set; }
         public Chofer ChoferViaje { get; set; }
+            //si el IDCliente = -1 significa que  no tiene cliente
         public int IDCliente { get; set; }
         public Cliente ClienteViaje { get; set; }
         public string TipoViaje { get; set; }

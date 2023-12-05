@@ -54,9 +54,9 @@ namespace Negocio
             try
             {
                 datos.SetearConsulta("DELETE FROM DOMICILIO WHERE IDDOMICILIO = @IDDOMICILIO");
-                
+
                 datos.SetearParametro("@IDDOMICILIO", IdDomicilio);
-                
+
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
@@ -78,7 +78,7 @@ namespace Negocio
                 if (!esAlta)
                 {
                     datos.SetearConsulta("UPDATE DOMICILIO SET DIRECCION = @DIRECCION, LOCALIDAD = @LOCALIDAD, PROVINCIA = @PROVINCIA, DESCRIPCION = @DESCRIPCION WHERE IDDOMICILIO = @IDDOMICILIO");
-                    
+
                     datos.SetearParametro("@DIRECCION", domiAux.Direccion);
                     datos.SetearParametro("@LOCALIDAD", domiAux.Localidad);
                     datos.SetearParametro("@PROVINCIA", domiAux.Provincia);
@@ -88,7 +88,7 @@ namespace Negocio
                 else
                 {
                     datos.SetearConsulta("INSERT INTO DOMICILIO (DIRECCION, LOCALIDAD, PROVINCIA, DESCRIPCION) VALUES (@DIRECCION, @LOCALIDAD, @PROVINCIA, @DESCRIPCION)");
-                    
+
                     datos.SetearParametro("@DIRECCION", domiAux.Direccion);
                     datos.SetearParametro("@LOCALIDAD", domiAux.Localidad);
                     datos.SetearParametro("@PROVINCIA", domiAux.Provincia);
@@ -106,7 +106,7 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
-        
+
         public long ultimoIdDomicilio()
         {
             long idDomicilio = 0;
@@ -116,12 +116,12 @@ namespace Negocio
             try
             {
                 datos.SetearConsulta("SELECT TOP 1 * FROM DOMICILIO ORDER BY IDDOMICILIO DESC");
-                
+
                 datos.EjecutarConsulta();
 
                 if (datos.Lector.Read())
                 {
-                    idDomicilio = datos.Lector["IDDOMICILIO"] is DBNull? -1 : (long)datos.Lector["IDDOMICILIO"];
+                    idDomicilio = datos.Lector["IDDOMICILIO"] is DBNull ? -1 : (long)datos.Lector["IDDOMICILIO"];
                 }
             }
             catch (Exception)
@@ -134,6 +134,39 @@ namespace Negocio
             }
 
             return idDomicilio;
+        }
+
+        public long existeDomicilio(Domicilio domicilio)
+        {
+            long domicilioNumero = -1;
+
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                //COMPARA LA DIRECCION Y LOCALIDAD, SI COINCIDEN DEVUELVE EL ID DEL DOMICILIO
+                //SI NO ENCUENTRA NADA DEVUELVE -1
+                datos.SetearConsulta("SELECT IDDOMICILIO FROM DOMICILIO WHERE DIRECCION LIKE '@DIRECCION' AND LOCALIDAD LIKE '@LOCALIDAD'");
+                datos.SetearParametro("@DIRECCION", domicilio.Direccion);
+                datos.SetearParametro("@LOCALIDAD", domicilio.Localidad);
+                datos.EjecutarConsulta();
+
+                if (datos.Lector.Read())
+                {
+                    domicilioNumero = datos.Lector["IDDOMICILIO"] is DBNull ? -1 : (long)datos.Lector["IDDOMICILIO"];
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+
+            return domicilioNumero;
         }
     }
 }

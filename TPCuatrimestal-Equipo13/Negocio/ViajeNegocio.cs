@@ -255,25 +255,98 @@ namespace Negocio
 
             try
             {
+                DomicilioNegocio domicilioNegocio = new DomicilioNegocio();
                 if (esAlta)
                 {
-                    datos.SetearConsulta("INSERT INTO VIAJES (IDCHOFER, IDCLIENTE, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO)");
-                    datos.SetearParametro("@FECHAHORAVIAJE", "GETDATE()");       /// funciona????
+                    datos.SetearConsulta("INSERT INTO VIAJES (IDCHOFER, IDCLIENTE, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO) VALUES (@IDCHOFER, @IDCLIENTE, @TIPOVIAJE, @IMPORTE, @IDDOMORIGEN, @IDDOMDESTINO1, @IDDOMDESTINO2, @IDDOMDESTINO3,  @ESTADO, @FECHAHORAVIAJE, @PAGADO, @MEDIODEPAGO)");
                 }
                 else
                 {
                     datos.SetearConsulta("UPDATE VIAJES SET IDCHOFER = @IDCHOFER, IDCLIENTE = @IDCLIENTE, TIPOVIAJE = @TIPOVIAJE, IMPORTE = @IMPORTE, IDDOMORIGEN = @IDDOMORIGEN, IDDOMDESTINO1 = @IDDOMDESTINO1, IDDOMDESTINO2 = @IDDOMDESTINO2, IDDOMDESTINO3 = @IDDOMDESTINO3, ESTADO = @ESTADO, FECHAHORAVIAJE = @FECHAHORAVIAJE, PAGADO = @PAGADO, MEDIODEPAGO = @MEDIODEPAGO WHERE IDVIAJE = @IDVIAJE)");
                     datos.SetearParametro("@IDVIAJE", viaje.NumViaje);
-                    datos.SetearParametro("@FECHAHORAVIAJE", viaje.FechaHoraViaje);
                 }
 
+                datos.SetearParametro("@FECHAHORAVIAJE", viaje.FechaHoraViaje);
                 datos.SetearParametro("@IDCHOFER", viaje.IDChofer);
-                datos.SetearParametro("@IDCLIENTE", viaje.IDCliente);
+
+                //SI VIENE IDCLIENTE = 0 ES CLIENTE NUEVO
+                if(viaje.IDCliente != 0)
+                {
+                    datos.SetearParametro("@IDCLIENTE", viaje.IDCliente);
+                }
+                else
+                {
+                    ClienteNegocio clienteNegocio = new ClienteNegocio();
+                    clienteNegocio.AltaModificacionCliente(viaje.ClienteViaje, true);
+                    datos.SetearParametro("@IDCLIENTE", clienteNegocio.ultimoIdCliente());
+                }
+
                 datos.SetearParametro("@TIPOVIAJE", viaje.TipoViaje);
-                datos.SetearParametro("@IDDOMORIGEN", viaje.Origen.IDDomicilio);
-                datos.SetearParametro("@IDDOMDESTINO1", viaje.Destinos[0].IDDomicilio);
-                datos.SetearParametro("@IDDOMDESTINO2", viaje.Destinos[1].IDDomicilio);
-                datos.SetearParametro("@IDDOMDESTINO3", viaje.Destinos[2].IDDomicilio);
+
+
+                    //DESTINO ORIGEN
+                    //si no existe domicilio (devuelve -1) hace un insert con uno nuevo
+                if (domicilioNegocio.existeDomicilio(viaje.Origen) == -1)
+                {
+                    domicilioNegocio.AltaModificacionDomicilio(viaje.Origen, true);
+                    datos.SetearParametro("@IDDOMORIGEN", domicilioNegocio.ultimoIdDomicilio());
+                }
+                //si existe el domicilio solo setea el id de domicilio
+                else
+                {
+                    datos.SetearParametro("@IDDOMORIGEN", viaje.Origen.IDDomicilio);
+                }
+
+                    //DESTINO 1
+                    //comprueba si existe el domicilio en el destino 1
+                if (domicilioNegocio.existeDomicilio(viaje.Destinos[0]) == -1)
+                {
+                    domicilioNegocio.AltaModificacionDomicilio(viaje.Destinos[0], true);
+                    datos.SetearParametro("@IDDOMDESTINO1", domicilioNegocio.ultimoIdDomicilio());
+                }
+                     //si existe el domicilio solo setea el id de domicilio en destino 1
+                else
+                {
+                    datos.SetearParametro("@IDDOMDESTINO1", viaje.Destinos[0].IDDomicilio);
+                }
+
+
+                    //DESTINO 2
+                    //comprueba  si tiene mas de 1 destino y hace lo mismo
+                if (viaje.Destinos.Count > 1)
+                {
+                    if (domicilioNegocio.existeDomicilio(viaje.Destinos[1]) == -1)
+                    {
+                        domicilioNegocio.AltaModificacionDomicilio(viaje.Destinos[1], true);
+                        datos.SetearParametro("@IDDOMDESTINO2", domicilioNegocio.ultimoIdDomicilio());
+                    }
+                    
+                    else
+                    {
+                        datos.SetearParametro("@IDDOMDESTINO2", viaje.Destinos[1].IDDomicilio);
+                    }
+
+                            //DESTINO 3
+                            //si  tiene mas de 2 destinos
+                        if (viaje.Destinos.Count > 2)
+                        {
+                            if (domicilioNegocio.existeDomicilio(viaje.Destinos[2]) == -1)
+                            {
+                                domicilioNegocio.AltaModificacionDomicilio(viaje.Destinos[2], true);
+                                datos.SetearParametro("@IDDOMDESTINO3", domicilioNegocio.ultimoIdDomicilio());
+                            }
+                            else
+                            {
+                                datos.SetearParametro("@IDDOMDESTINO3", viaje.Destinos[2].IDDomicilio);
+                            }
+                        }
+                }
+                else
+                {
+                    datos.SetearParametro("@IDDOMDESTINO3", "null");
+                    datos.SetearParametro("@IDDOMDESTINO2", "null");
+                }
+                datos.SetearParametro("@IMPORTE", viaje.Importe);
                 datos.SetearParametro("@ESTADO", viaje.Estado);
                 datos.SetearParametro("@PAGADO", viaje.Pagado);
                 datos.SetearParametro("@MEDIODEPAGO", viaje.MedioDePago);

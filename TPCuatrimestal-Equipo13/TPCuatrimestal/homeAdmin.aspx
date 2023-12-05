@@ -14,7 +14,8 @@
 
 
         <div style="display: flex; flex-direction: column;">
-            <h5>Viajes con grid view</h5>
+
+            <asp:Label ID="lblViajesDelDia" runat="server" Text="VIAJES DEL DIA" CssClass="h3 text-center"></asp:Label>
             <asp:GridView ID="dgvViajes" DataKeyNames="NumViaje" OnSelectedIndexChanged="dgvViajes_SelectedIndexChanged" AutoGenerateColumns="false" CssClass="table table-primary" runat="server">
                 <Columns>
                     <asp:BoundField HeaderText="Viaje N°" DataField="NumViaje" />
@@ -49,13 +50,13 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:BoundField HeaderText="Importe" DataField="Importe" DataFormatString="{0:F1}" />
+                    <asp:BoundField HeaderText="Importe" DataField="Importe" DataFormatString="{0:F0}" />
 
                     <asp:BoundField HeaderText="Pagado" DataField="Pagado" />
 
-                    <asp:TemplateField HeaderText="Estado" >
+                    <asp:TemplateField HeaderText="Estado">
                         <ItemTemplate>
-                             <%# Eval("Estado")%>
+                            <%# Eval("Estado")%>
                         </ItemTemplate>
                     </asp:TemplateField>
 
@@ -69,7 +70,7 @@
                             <!-- EVALUA EL ESTADO DEL VIAJE Y ASIGNA EL BOTON CORRESPONDIENTE -->
                             <asp:ImageButton ID="btnNoPagado" ImageUrl="https://us.123rf.com/450wm/igoun/igoun1805/igoun180500088/101280971-icono-de-cruz-en-c%C3%ADrculo-se-puede-utilizar-como-bot%C3%B3n-de-eliminar-bloquear-cerrar-etc-eliminar.jpg" OnClick="btnNoPagado_Click" CommandArgument='<%#Eval("NumViaje")%>' CommandName="NumViaje" runat="server" Text="No Pagado" CssClass="btn btn-close btn-lg border ms-1" ToolTip="No Pagado" Visible='<%# Convert.ToBoolean(Eval("Pagado")) %>' />
 
-                            <asp:ImageButton ID="btnPagado" ImageUrl="https://c0.klipartz.com/pngpicture/605/284/gratis-png-cheque-verde-ogo-iconos-de-la-marca-de-verificacion-marca-verde-thumbnail.png" OnClick="btnPagado_Click" CommandArgument='<%#Eval("NumViaje")%>' CommandName="NumViaje" runat="server" Text="Pagado" CssClass="btn btn-close btn-lg border ms-1" ToolTip="Pagado" Visible='<%# !Convert.ToBoolean(Eval("Pagado")) %>' />
+                            <asp:ImageButton ID="btnPagado" ImageUrl="https://c0.klipartz.com/pngpicture/605/284/gratis-png-cheque-verde-ogo-iconos-de-la-marca-de-verificacion-marca-verde-thumbnail.png" OnClick="btnPagado_Click" CommandArgument='<%#Eval("NumViaje")%>' CommandName="NumViaje" runat="server" Text="Pagado" CssClass="btn btn-close btn-lg border ms-1" ToolTip="Pagado" Visible='<%# !Convert.ToBoolean(Eval("Pagado"))%>' />
                         </ItemTemplate>
                     </asp:TemplateField>
 
@@ -93,8 +94,13 @@
         </div>
 
         <div>
-            <h5>BUSQUEDA POR DIA</h5>
-            <asp:Calendar ID="calOtrosDias" runat="server" class="table table-secondary table-striped" OnSelectionChanged="calOtrosDias_SelectionChanged"></asp:Calendar>
+            <div>
+                <asp:Label ID="lblCalendario" runat="server" Text="BUSQUEDA POR DIA" CssClass="h4 text-center"></asp:Label>
+                <asp:Button ID="btnVolverHoy" runat="server" Text="Listar Hoy" OnClick="btnVolverHoy_Click" CssClass="btn btn-primary m-2"/>
+            </div>
+            <div>
+                <asp:Calendar ID="calOtrosDias" runat="server" class="table table-secondary table-striped" OnSelectionChanged="calOtrosDias_SelectionChanged"></asp:Calendar>
+            </div>
         </div>
 
         <div style="font-family: cursive;" role="group">

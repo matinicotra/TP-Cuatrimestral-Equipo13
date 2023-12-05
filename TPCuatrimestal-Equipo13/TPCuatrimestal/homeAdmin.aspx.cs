@@ -30,6 +30,10 @@ namespace TPCuatrimestal
             {
                 repVehiculos.DataSource = ListarVehiculos;
                 repVehiculos.DataBind();
+                if (Session["diaSeleccionado"] == null)
+                    Session["diaSeleccionado"] = DateTime.Today;
+
+                calOtrosDias.SelectedDate = (DateTime)Session["diaSeleccionado"];
 
                 // LISTAR VIAJES
                 //lbListaViajes.DataValueField = "NumViaje";
@@ -41,22 +45,18 @@ namespace TPCuatrimestal
                 // OPCION listar viajes CON GRID VIEW //
                 //dgvViajes.DataSource = ListarViajes;
                 //dgvViajes.DataBind();
-                CargarDGVViajes();
+                listarViajesPorDia((DateTime)Session["diaSeleccionado"]);
             }
         }
 
-        private void CargarDGVViajes()
-        {
-            ViajeNegocio viajeNegocio = new ViajeNegocio();
-            ListarViajes = viajeNegocio.ObtenerDatos();
-            dgvViajes.DataSource = ListarViajes;
+        //private void CargarDGVViajes()
+        //{
+        //    ViajeNegocio viajeNegocio = new ViajeNegocio();
+        //    ListarViajes = viajeNegocio.ObtenerDatos();
+        //    dgvViajes.DataSource = ListarViajes;
             
-            dgvViajes.DataBind();
-        }
-
-        private void CargarDDLEstado()
-        {
-        }
+        //    dgvViajes.DataBind();
+        //}
 
         protected void btnAltaViaje_Click(object sender, EventArgs e)
         {
@@ -132,7 +132,7 @@ namespace TPCuatrimestal
 
             viajeNegocio.BajaLogicaViaje(valorID);
 
-            CargarDGVViajes();
+            listarViajesPorDia((DateTime)Session["diaSeleccionado"]);
         }
 
         protected void btnPagado_Click(object sender, ImageClickEventArgs e)
@@ -143,7 +143,7 @@ namespace TPCuatrimestal
 
             viajeNegocio.PagarDespagarViaje(valorID, true);
 
-            CargarDGVViajes();
+            listarViajesPorDia((DateTime)Session["diaSeleccionado"]);
         }
 
         protected void btnNoPagado_Click(object sender, ImageClickEventArgs e)
@@ -154,7 +154,7 @@ namespace TPCuatrimestal
 
             viajeNegocio.PagarDespagarViaje(valorID, false);
 
-            CargarDGVViajes();
+            listarViajesPorDia((DateTime)Session["diaSeleccionado"]);
         }
 
         protected void btnDetalle_Click(object sender, ImageClickEventArgs e)
@@ -165,12 +165,18 @@ namespace TPCuatrimestal
 
         protected void calOtrosDias_SelectionChanged(object sender, EventArgs e)
         {
-            DateTime seleccion = calOtrosDias.SelectedDate;
+            Session["diaSeleccionado"] = calOtrosDias.SelectedDate;
+            listarViajesPorDia((DateTime)Session["diaSeleccionado"]);
+        }
+        
+        protected void listarViajesPorDia(DateTime dateTime)
+        {
+            
             List<Viaje> viajes = new List<Viaje>();
 
             foreach (Viaje X in ListarViajes)
             {
-                if (X.FechaHoraViaje.Date == seleccion)
+                if (X.FechaHoraViaje.Date == dateTime)
                 {
                     viajes.Add(X);
                 }
@@ -178,6 +184,13 @@ namespace TPCuatrimestal
 
             dgvViajes.DataSource = viajes;
             dgvViajes.DataBind();
+        }
+
+        protected void btnVolverHoy_Click(object sender, EventArgs e)
+        {
+            calOtrosDias.SelectedDate = DateTime.Today;
+            Session["diaSeleccionado"] = DateTime.Today;
+            listarViajesPorDia((DateTime)Session["diaSeleccionado"]);
         }
     }
 }

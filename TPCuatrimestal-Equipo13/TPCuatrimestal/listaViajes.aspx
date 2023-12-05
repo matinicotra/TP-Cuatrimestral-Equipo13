@@ -25,9 +25,9 @@
                 <ItemTemplate>
                     <tbody>
                         <tr>
-                            <td class="text-md-center"><%#Eval("TipoViaje")%></td>
-                            <td class="text-md-center"><%#Eval("Importe")%></td>
                             <td class="text-md-center"><%#Eval("FechaHoraViaje")%></td>
+                            <td class="text-md-center"><%#Eval("TipoViaje")%></td>
+                            <td class="text-md-center"><%#((Decimal)Eval("Importe")).ToString("f2")%></td>
                         </tr>
                     </tbody>
                 </ItemTemplate>

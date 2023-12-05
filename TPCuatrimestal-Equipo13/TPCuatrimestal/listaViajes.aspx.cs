@@ -46,7 +46,7 @@ namespace TPCuatrimestal
                     Total += X.Importe;
                 }
 
-                lblTotal.Text = "TOTAL (PAGANDO AL 0.30): $" + (Total * (decimal)0.30);
+                lblTotal.Text = "TOTAL (PAGANDO AL %30): $" + (Total * (decimal)0.30).ToString("f2");
 
                 if (chofer.Estado)
                 {
@@ -71,7 +71,7 @@ namespace TPCuatrimestal
                     Total += X.Importe;
                 }
 
-                lblTotal.Text = "TOTAL: $" + Total;
+                lblTotal.Text = "TOTAL: $" + Total.ToString("f2");
 
                 lblClienteOChofer.Text = "Cliente:";
                 lblNombre.Text = cliente.Nombres;
@@ -95,17 +95,24 @@ namespace TPCuatrimestal
         {
             string ID;
 
-            if (chofer != null)
+            if (Request.QueryString["esChofer"] != "true")
             {
-                ID = chofer.IDChofer.ToString();
+                if (chofer != null)
+                {
+                    ID = chofer.IDChofer.ToString();
 
-                Response.Redirect("detalleChofer.aspx?id=" + ID, false);
+                    Response.Redirect("detalleChofer.aspx?id=" + ID, false);
+                }
+                else
+                {
+                    ID = cliente.IDCliente.ToString();
+
+                    Response.Redirect("detalleCliente.aspx?id=" + ID, false);
+                }
             }
             else
             {
-                ID = cliente.IDCliente.ToString();
-
-                Response.Redirect("detalleCliente.aspx?id=" + ID, false);
+                Response.Redirect("homeChofer.aspx", false);
             }
         }
     }

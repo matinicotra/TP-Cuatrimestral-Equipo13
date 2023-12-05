@@ -82,9 +82,9 @@
 
         <div>
             <h5>Resumenes del Chofer</h5>
-            <asp:Button CssClass="btn btn-info" ID="btnResumenAnioChofer" runat="server" Text="Por Anio" />
-            <asp:Button CssClass="btn btn-info" ID="btnResumenMesChofer" runat="server" Text="Por Mes" />
-            <asp:Button CssClass="btn btn-info" ID="btnResumenTotalChofer" runat="server" Text="Total" />
+            <asp:Button CssClass="btn btn-info" ID="btnResumenSemanal" runat="server" Text="Semanal" OnClick="btnResumenSemanal_Click" />
+            <asp:Button CssClass="btn btn-info" ID="btnResumenQuincenal" runat="server" Text="Quincenal" OnClick="btnResumenQuincenal_Click" />
+            <asp:Button CssClass="btn btn-info" ID="btnResumenMesChofer" runat="server" Text="Mensual" OnClick="btnResumenMesChofer_Click"/>
         </div>
 
     </div>

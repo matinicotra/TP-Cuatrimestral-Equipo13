@@ -23,6 +23,14 @@ namespace TPCuatrimestal
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                txtHora.Text = "07:00";
+                rblFormaDePago.SelectedValue = "No Especifica";
+                CargarDesplegables();
+            }
+
             if (Request.QueryString["id"] != null && !IsPostBack)
             {
                 
@@ -38,6 +46,13 @@ namespace TPCuatrimestal
                 choferAux = choferNegocio.ObtenerDatos(viajeAux.IDChofer)[0];
                 dirOrigen = domicilioNegocio.ObtenerDomicilio(viajeAux.Origen.IDDomicilio);
                 dirDestino1 = domicilioNegocio.ObtenerDomicilio(viajeAux.Destinos[0].IDDomicilio);
+
+                Session["ClienteID"] = clienteAux.IDCliente;
+
+                Session["clienteAux"] = viajeAux.ClienteViaje;
+
+                Session["ChoferID"] = choferAux.IDChofer;
+
                 if (viajeAux.Destinos.Count() > 1)
                 {
                     dirDestino2 = domicilioNegocio.ObtenerDomicilio(viajeAux.Destinos[1].IDDomicilio);
@@ -45,6 +60,7 @@ namespace TPCuatrimestal
                     txtCalleDestino2.Text = dirDestino2.Direccion;
                     txtLocalidadDestino2.Text = dirDestino2.Localidad;
                     txtProvinciaDestino2.Text = dirDestino2.Provincia;
+                    txtDescripcionDestino2.Text = dirDestino2.Descripcion;
 
                     if (viajeAux.Destinos.Count() > 2)
                     {
@@ -53,23 +69,29 @@ namespace TPCuatrimestal
                         txtCalleDestino3.Text = dirDestino3.Direccion;
                         txtLocalidadDestino3.Text = dirDestino3.Localidad;
                         txtProvinciaDestino3.Text = dirDestino3.Provincia;
+                        txtDescripcionDestino3.Text = dirDestino3.Descripcion;
                     }
                 }
 
                 txtNombre.Text = clienteAux.Nombres;
                 txtApellido.Text = clienteAux.Apellidos;
                 txtTelefonoCliente.Text = clienteAux.Telefono;
+
                 txtCalleOrigen.Text = dirOrigen.Direccion;
                 txtLocalidadOrigen.Text = dirOrigen.Localidad;
                 txtProvinciaOrigen.Text = dirOrigen.Provincia;
+                txtDescripcionOrigen.Text = dirOrigen.Descripcion;
+
                 txtCalleDestino1.Text = dirDestino1.Direccion;
                 txtLocalidadDestino1.Text = dirDestino1.Localidad;
                 txtProvinciaDestino1.Text = dirDestino1.Provincia;
+                txtDescripcionDestino1.Text = dirDestino1.Descripcion;
+
                 cbxPagado.Checked = viajeAux.Pagado;
                 txtFecha.Text = viajeAux.FechaHoraViaje.ToString("yyyy-MM-dd");
                 txtHora.Text = viajeAux.FechaHoraViaje.ToString("HH:mm");
                 txtTipoDeViaje.Text = viajeAux.TipoViaje;
-                txtImporte.Text = viajeAux.Importe.ToString();
+                txtImporte.Text = viajeAux.Importe.ToString("f0");
 
                 rblFormaDePago.SelectedValue = viajeAux.MedioDePago;
 
@@ -81,21 +103,19 @@ namespace TPCuatrimestal
                 {
                     ddlCantidadDestino.SelectedValue = viajeAux.Destinos.Count().ToString();
                 }
-                if ((Session["Cliente"] != null))
+                if ((Session["ClienteID"] != null))
                 {
-                    ddlClientes.SelectedIndex = (int)Session["Cliente"];
+                    ddlClientes.SelectedValue = Session["ClienteID"].ToString();
+                    txtNombre.Enabled = false;
+                    txtApellido.Enabled = false;
+                    txtTelefonoCliente.Enabled = false;
                 }
                 else
                 {
                     ddlClientes.SelectedIndex = 0;
                 }
-            }
-            if (!IsPostBack)
-            {
-                txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                txtHora.Text = "07:00";
-                rblFormaDePago.SelectedValue = "No Especifica";
-                CargarDesplegables();
+                if (Session["ChoferID"] != null)
+                    ddlChoferes.SelectedValue = Session["ChoferID"].ToString();
             }
         }
 
@@ -131,12 +151,16 @@ namespace TPCuatrimestal
 
             ClienteNegocio clienteNegocioAux = new ClienteNegocio();
             listaClientes = clienteNegocioAux.ObtenerDatos();
-            ddlClientes.Items.Add("Cliente Nuevo");
+
+                //No asignado es index = 0
+            ddlClientes.DataValueField = "IDCliente";
+
+            ddlClientes.Items.Add(new ListItem ("Cliente Nuevo", "0"));
             ddlClientes.SelectedIndex = 0;
             contador = 0;
             foreach (Cliente Y in listaClientes)
             {
-                ddlClientes.Items.Add(Y.ToString());
+                ddlClientes.Items.Add(new ListItem(Y.ToString(), Y.IDCliente.ToString()));
                 contador++;
                 if (viajeAux != null)
                 {
@@ -161,6 +185,7 @@ namespace TPCuatrimestal
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             viajeAux = new Viaje();
+            
             viajeAux.Pagado = cbxPagado.Checked;
 
             if (cbxSinCliente.Checked)
@@ -246,9 +271,14 @@ namespace TPCuatrimestal
             ViajeNegocio viajeNegocio = new ViajeNegocio();
 
             if ((Request.QueryString["id"] == null))
+            {
                 viajeNegocio.AltaModificacionViaje(viajeAux, true);
+            }
             else
+            {
+                viajeAux.NumViaje = long.Parse(Request.QueryString["id"]);
                 viajeNegocio.AltaModificacionViaje(viajeAux, false);
+            }
 
             Response.Redirect("homeAdmin.aspx", false);
         }

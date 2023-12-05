@@ -19,6 +19,18 @@
                 <Columns>
                     <asp:BoundField HeaderText="Viaje N°" DataField="NumViaje" />
 
+                    <asp:TemplateField HeaderText="Fecha">
+                        <ItemTemplate>
+                            <%# ((DateTime)Eval("FechaHoraViaje")).ToString("yyyy-MM-dd") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="Hora">
+                        <ItemTemplate>
+                            <%# ((DateTime)Eval("FechaHoraViaje")).ToString("HH:mm") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
                     <asp:TemplateField HeaderText="Chofer">
                         <ItemTemplate>
                             <%# Eval("ChoferViaje") %>
@@ -31,19 +43,19 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
+                    <asp:TemplateField HeaderText="Tipo Viaje">
+                        <ItemTemplate>
+                            <%# Eval("TipoViaje")%>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
                     <asp:BoundField HeaderText="Importe" DataField="Importe" DataFormatString="{0:F1}" />
 
                     <asp:BoundField HeaderText="Pagado" DataField="Pagado" />
 
-                    <asp:TemplateField HeaderText="Estado">
+                    <asp:TemplateField HeaderText="Estado" >
                         <ItemTemplate>
-                            <asp:DropDownList ID="ddlEstado" runat="server">
-                                <asp:ListItem Text="Cancelado" Value="1" />
-                                <asp:ListItem Text="Asignado" Value="2" />
-                                <asp:ListItem Text="Libre" Value="3" />
-                                <asp:ListItem Text="Finalizado" Value="4" />
-                            </asp:DropDownList>
-                            <asp:LinkButton ID="lbOk" runat="server" OnClick="lbOk_Click" CommandArgument='<%# Eval("NumViaje") %>'>OK</asp:LinkButton>
+                             <%# Eval("Estado")%>
                         </ItemTemplate>
                     </asp:TemplateField>
 

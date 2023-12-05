@@ -23,7 +23,7 @@
             </div>
 
             <div class="input-group mb-1">
-                <asp:DropDownList ID="ddlClientes" runat="server" CssClass="btn btn-primary dropdown-toggle" AutoPostBack="True" OnSelectedIndexChanged="ddlClientes_SelectedIndexChanged"></asp:DropDownList>
+                <asp:DropDownList ID="ddlClientes" runat="server" CssClass="btn btn-primary dropdown-toggle" AutoPostBack="True" OnSelectedIndexChanged="ddlClientes_SelectedIndexChanged" ></asp:DropDownList>
             </div>
 
             <div class="input-group mb-1">
@@ -178,7 +178,7 @@
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblImporte" runat="server" Font-Bold="false">IMPORTE $</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtImporte" runat="server" TextMode="Number"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" ID="txtImporte" runat="server" TextMode="Number" ></asp:TextBox>
             </div>
 
             <div class="text-center">

@@ -157,19 +157,6 @@ namespace TPCuatrimestal
             CargarDGVViajes();
         }
 
-        protected void lbOk_Click(object sender, EventArgs e)
-        {
-            ViajeNegocio viajeNegocio = new ViajeNegocio();
-            //recupera del commandArgument el valorID de la row clickeada
-            long valorID = long.Parse(((LinkButton)sender).CommandArgument);
-
-           
-            //falta setear el Estado y enviarlo como parametro
-            //viajeNegocio.CambiarEstado(valorID, Estado);
-
-            CargarDGVViajes();
-        }
-
         protected void btnDetalle_Click(object sender, ImageClickEventArgs e)
         {
             int valorID = int.Parse(((ImageButton)sender).CommandArgument);

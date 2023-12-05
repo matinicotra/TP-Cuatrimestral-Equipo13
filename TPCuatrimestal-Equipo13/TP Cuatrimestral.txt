@@ -28,12 +28,9 @@ Observaciones nuevas:
 -Filtros de busqueda
 -Desplegable para filtrar (por chofer, por cliente, por estado)
 -AGREGAR BOTON PARA LIMPIAR SELECCION DE CALENDARIO
--columna hora en grid view
--hacer andar ddlEstado en grid view
 
 	detalleViaje 
 (permisos chofer y admin pero con diferencias: copiar detalles viajes solo admin, chofer solo ve boton atras)
--Armar form y cargarlo
 -Armar boton de whatsapp (solo chofer)
 
 	homeChofer

@@ -30,6 +30,7 @@ namespace TPCuatrimestal
                 rblFormaDePago.SelectedValue = "No Especifica";
                 ddlEstadoViaje.SelectedIndex = 0;
                 ddlChoferes.SelectedIndex = 0;
+                ddlClientes.SelectedIndex = 0;
                 CargarDesplegables();
             }
 
@@ -44,7 +45,18 @@ namespace TPCuatrimestal
                 long idViaje = long.Parse(Request.QueryString["id"]);
 
                 viajeAux = viajeNegocio.ObtenerDatos(idViaje)[0];
-                clienteAux = clienteNegocio.ObtenerDatos(viajeAux.IDCliente)[0];
+                if (viajeAux.IDCliente > 0)
+                {
+                    clienteAux = clienteNegocio.ObtenerDatos(viajeAux.IDCliente)[0];
+                    Session["ClienteID"] = clienteAux.IDCliente;
+                }
+                else
+                {
+                    clienteAux = new Cliente();
+                    Session["ClienteID"] = 0;
+                    cbxSinCliente.Checked = true;
+                    cbxSinCliente_CheckedChanged(this,e);
+                }
 
                 if (viajeAux.IDChofer != -1)
                 {
@@ -58,8 +70,6 @@ namespace TPCuatrimestal
 
                 dirOrigen = domicilioNegocio.ObtenerDomicilio(viajeAux.Origen.IDDomicilio);
                 dirDestino1 = domicilioNegocio.ObtenerDomicilio(viajeAux.Destinos[0].IDDomicilio);
-
-                Session["ClienteID"] = clienteAux.IDCliente;
 
                 Session["clienteAux"] = viajeAux.ClienteViaje;
 
@@ -116,7 +126,7 @@ namespace TPCuatrimestal
                 {
                     ddlCantidadDestino.SelectedValue = viajeAux.Destinos.Count().ToString();
                 }
-                if ((Session["ClienteID"] != null))
+                if ((int.Parse(Session["ClienteID"].ToString()) != 0))
                 {
                     ddlClientes.SelectedValue = Session["ClienteID"].ToString();
                     txtNombre.Enabled = false;
@@ -202,10 +212,11 @@ namespace TPCuatrimestal
             viajeAux.Pagado = cbxPagado.Checked;
             viajeAux.Estado = ddlEstadoViaje.SelectedValue;
 
+            //Carga CLIENTE: SI SE OMITE CLIENTE DEVUELVE IDCLIENTE -1, SI ES CLIENTE NUEVO ES IDCLIENTE 0
             if (cbxSinCliente.Checked)
             {
                 viajeAux.ClienteViaje = null;
-                viajeAux.IDCliente = 0;
+                viajeAux.IDCliente = -1;
             }
             else
             {
@@ -216,7 +227,7 @@ namespace TPCuatrimestal
                     viajeAux.ClienteViaje.Telefono = txtTelefonoCliente.Text;
                 }
                 else
-                {
+                {       //SI ES CLIENTE YA INGRESADO SE LO RECUPERA
                     viajeAux.ClienteViaje = (Cliente)Session["clienteAux"];
                     Cliente cliente = (Cliente)Session["clienteAux"];
                     viajeAux.IDCliente = cliente.IDCliente;

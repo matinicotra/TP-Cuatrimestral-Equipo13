@@ -146,9 +146,11 @@ namespace Negocio
             {
                 //COMPARA LA DIRECCION Y LOCALIDAD, SI COINCIDEN DEVUELVE EL ID DEL DOMICILIO
                 //SI NO ENCUENTRA NADA DEVUELVE -1
-                datos.SetearConsulta("SELECT IDDOMICILIO FROM DOMICILIO WHERE DIRECCION LIKE '@DIRECCION' AND LOCALIDAD LIKE '@LOCALIDAD'");
+                datos.SetearConsulta("SELECT * FROM DOMICILIO WHERE DIRECCION LIKE @DIRECCION AND LOCALIDAD LIKE @LOCALIDAD AND PROVINCIA LIKE @PROVINCIA AND DESCRIPCION LIKE @DESCRIPCION");
                 datos.SetearParametro("@DIRECCION", domicilio.Direccion);
                 datos.SetearParametro("@LOCALIDAD", domicilio.Localidad);
+                datos.SetearParametro("@PROVINCIA", domicilio.Provincia);
+                datos.SetearParametro("@DESCRIPCION", domicilio.Descripcion);
                 datos.EjecutarConsulta();
 
                 if (datos.Lector.Read())

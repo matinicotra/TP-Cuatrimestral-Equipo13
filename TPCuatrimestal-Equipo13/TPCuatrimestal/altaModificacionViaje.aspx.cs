@@ -23,12 +23,6 @@ namespace TPCuatrimestal
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.QueryString["id"] == null)
-            {
-                txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                txtHora.Text = "07:00";
-            }
-
             if (Request.QueryString["id"] != null && !IsPostBack)
             {
                 
@@ -98,6 +92,8 @@ namespace TPCuatrimestal
             }
             if (!IsPostBack)
             {
+                txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                txtHora.Text = "07:00";
                 rblFormaDePago.SelectedValue = "No Especifica";
                 CargarDesplegables();
             }
@@ -254,6 +250,7 @@ namespace TPCuatrimestal
             else
                 viajeNegocio.AltaModificacionViaje(viajeAux, false);
 
+            Response.Redirect("homeAdmin.aspx", false);
         }
 
         //los siguientes dos eventos comparten código, ver la manera de hacerlo mas eficiente

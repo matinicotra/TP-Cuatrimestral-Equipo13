@@ -262,40 +262,46 @@ namespace Negocio
                 }
                 else
                 {
-                    datos.SetearConsulta("UPDATE VIAJES SET IDCHOFER = @IDCHOFER, IDCLIENTE = @IDCLIENTE, TIPOVIAJE = @TIPOVIAJE, IMPORTE = @IMPORTE, IDDOMORIGEN = @IDDOMORIGEN, IDDOMDESTINO1 = @IDDOMDESTINO1, IDDOMDESTINO2 = @IDDOMDESTINO2, IDDOMDESTINO3 = @IDDOMDESTINO3, ESTADO = @ESTADO, FECHAHORAVIAJE = @FECHAHORAVIAJE, PAGADO = @PAGADO, MEDIODEPAGO = @MEDIODEPAGO WHERE IDVIAJE = @IDVIAJE)");
+                    datos.SetearConsulta("UPDATE VIAJES SET IDCHOFER = @IDCHOFER, IDCLIENTE = @IDCLIENTE, TIPOVIAJE = @TIPOVIAJE, IMPORTE = @IMPORTE, IDDOMORIGEN = @IDDOMORIGEN, IDDOMDESTINO1 = @IDDOMDESTINO1, IDDOMDESTINO2 = @IDDOMDESTINO2, IDDOMDESTINO3 = @IDDOMDESTINO3, ESTADO = @ESTADO, FECHAHORAVIAJE = @FECHAHORAVIAJE, PAGADO = @PAGADO, MEDIODEPAGO = @MEDIODEPAGO WHERE IDVIAJE = @IDVIAJE");
                     datos.SetearParametro("@IDVIAJE", viaje.NumViaje);
                 }
-
-                datos.SetearParametro("@FECHAHORAVIAJE", viaje.FechaHoraViaje);
+                DateTime dateTimeViaje = Convert.ToDateTime(viaje.FechaHoraViaje);
+                datos.SetearParametro("@FECHAHORAVIAJE", dateTimeViaje);
                 datos.SetearParametro("@IDCHOFER", viaje.IDChofer);
 
-                //SI VIENE IDCLIENTE = 0 ES CLIENTE NUEVO
+                    //LOGICA PARA CLIENTE: SI EL CLIENTE YA EXISTE SOLO SETEA SU ID Y PREGUNTA SI EL DOMICILIO ES NUEVO O ES UNO EXISTENTE
+                 //             (SI VIENE IDCLIENTE = 0 ES CLIENTE NUEVO)
                 if(viaje.IDCliente != 0)
                 {
                     datos.SetearParametro("@IDCLIENTE", viaje.IDCliente);
-                }
+                        //DESTINO ORIGEN
+                        //si no existe domicilio (devuelve -1) hace un insert con uno nuevo
+                    if (domicilioNegocio.existeDomicilio(viaje.Origen) == -1)
+                    {
+                        domicilioNegocio.AltaModificacionDomicilio(viaje.Origen, true);
+                        datos.SetearParametro("@IDDOMORIGEN", domicilioNegocio.ultimoIdDomicilio());
+                    }
+                    //si existe el domicilio solo setea el id de domicilio
+                    else
+                    {
+                        datos.SetearParametro("@IDDOMORIGEN", domicilioNegocio.existeDomicilio(viaje.Origen));
+                    }
+                }       
+                        //SI EL CLIENTE ES NUEVO SETEA EL NUEVO CLIENTE Y EL UN NUEVO DOMICILIO
                 else
                 {
                     ClienteNegocio clienteNegocio = new ClienteNegocio();
+                    viaje.ClienteViaje.Direccion = viaje.Origen;
                     clienteNegocio.AltaModificacionCliente(viaje.ClienteViaje, true);
                     datos.SetearParametro("@IDCLIENTE", clienteNegocio.ultimoIdCliente());
+                    datos.SetearParametro("@IDDOMORIGEN", domicilioNegocio.ultimoIdDomicilio());
                 }
+
+
 
                 datos.SetearParametro("@TIPOVIAJE", viaje.TipoViaje);
 
 
-                    //DESTINO ORIGEN
-                    //si no existe domicilio (devuelve -1) hace un insert con uno nuevo
-                if (domicilioNegocio.existeDomicilio(viaje.Origen) == -1)
-                {
-                    domicilioNegocio.AltaModificacionDomicilio(viaje.Origen, true);
-                    datos.SetearParametro("@IDDOMORIGEN", domicilioNegocio.ultimoIdDomicilio());
-                }
-                //si existe el domicilio solo setea el id de domicilio
-                else
-                {
-                    datos.SetearParametro("@IDDOMORIGEN", viaje.Origen.IDDomicilio);
-                }
 
                     //DESTINO 1
                     //comprueba si existe el domicilio en el destino 1
@@ -307,7 +313,7 @@ namespace Negocio
                      //si existe el domicilio solo setea el id de domicilio en destino 1
                 else
                 {
-                    datos.SetearParametro("@IDDOMDESTINO1", viaje.Destinos[0].IDDomicilio);
+                    datos.SetearParametro("@IDDOMDESTINO1", domicilioNegocio.existeDomicilio(viaje.Destinos[0]));
                 }
 
 
@@ -323,7 +329,7 @@ namespace Negocio
                     
                     else
                     {
-                        datos.SetearParametro("@IDDOMDESTINO2", viaje.Destinos[1].IDDomicilio);
+                        datos.SetearParametro("@IDDOMDESTINO2", domicilioNegocio.existeDomicilio(viaje.Destinos[1]));
                     }
 
                             //DESTINO 3
@@ -337,14 +343,14 @@ namespace Negocio
                             }
                             else
                             {
-                                datos.SetearParametro("@IDDOMDESTINO3", viaje.Destinos[2].IDDomicilio);
+                                datos.SetearParametro("@IDDOMDESTINO3", domicilioNegocio.existeDomicilio(viaje.Destinos[2]));
                             }
                         }
                 }
                 else
                 {
-                    datos.SetearParametro("@IDDOMDESTINO3", "null");
-                    datos.SetearParametro("@IDDOMDESTINO2", "null");
+                    datos.SetearParametro("@IDDOMDESTINO3", DBNull.Value);
+                    datos.SetearParametro("@IDDOMDESTINO2", DBNull.Value);
                 }
                 datos.SetearParametro("@IMPORTE", viaje.Importe);
                 datos.SetearParametro("@ESTADO", viaje.Estado);

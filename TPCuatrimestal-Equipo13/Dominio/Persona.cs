@@ -12,6 +12,11 @@ namespace Dominio
         {
             Direccion = new Domicilio();
             IDPersona = 0;
+            FechaNacimiento = DateTime.Now;
+            Nacionalidad = "";
+            DNI = "";
+            Email = "";
+            Telefono = "";
         }
         public int IDPersona { get; set; }
         public string Nombres { get; set; }

@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="container" style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px; margin: 40px 40px; margin-bottom: 100px">
+    <div class="container-lg" style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px;">
 
         <div>
             <asp:Label ID="lblTituloChofer" runat="server" Text="" CssClass="h3 text-primary-emphasis"></asp:Label>
@@ -35,9 +35,12 @@
 
         <div>
             <h5 class="text-sm-center">Resumen del Chofer</h5>
-            <asp:Button CssClass="btn btn-info" ID="btnResumenSemanalChofer" runat="server" Text="Semanal" OnClick="btnResumenSemanalChofer_Click"/>
-            <asp:Button CssClass="btn btn-info" ID="btnResumenQuincenalChofer" runat="server" Text="Quincenal" OnClick="btnResumenQuincenalChofer_Click"/>
-            <asp:Button CssClass="btn btn-info" ID="btnResumenMensualChofer" runat="server" Text="Mensual" OnClick="btnResumenMensualChofer_Click"/>
+            <asp:Button CssClass="btn btn-info" ID="btnResumenSemanalChofer" runat="server" Text="Semanal" OnClick="btnResumenSemanalChofer_Click" />
+            <asp:Button CssClass="btn btn-info" ID="btnResumenQuincenalChofer" runat="server" Text="Quincenal" OnClick="btnResumenQuincenalChofer_Click" />
+            <asp:Button CssClass="btn btn-info" ID="btnResumenMensualChofer" runat="server" Text="Mensual" OnClick="btnResumenMensualChofer_Click" />
         </div>
+    </div>
+    <div>
+        <asp:Button CssClass="btn btn-primary" ID="btnVolver" runat="server" Text="Volver" OnClick="btnVolver_Click"/>
     </div>
 </asp:Content>

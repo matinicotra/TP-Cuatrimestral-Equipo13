@@ -68,7 +68,10 @@ namespace TPCuatrimestal
 
                 foreach (Viaje X in viajes)
                 {
-                    Total += X.Importe;
+                    if (X.Importe > 0)
+                    {
+                        Total += X.Importe;
+                    }
                 }
 
                 lblTotal.Text = "TOTAL: $" + Total.ToString("f2");
@@ -101,7 +104,14 @@ namespace TPCuatrimestal
                 {
                     ID = chofer.IDChofer.ToString();
 
-                    Response.Redirect("detalleChofer.aspx?id=" + ID, false);
+                    if (Request.QueryString["Home"] != null)
+                    {
+                        Response.Redirect("homeChofer.aspx?id=" + ID, false);
+                    }
+                    else
+                    {
+                        Response.Redirect("detalleChofer.aspx?id=" + ID, false);
+                    }
                 }
                 else
                 {

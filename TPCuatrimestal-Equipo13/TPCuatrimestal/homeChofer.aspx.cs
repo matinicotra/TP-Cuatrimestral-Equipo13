@@ -171,43 +171,39 @@ namespace TPCuatrimestal
         protected void btnResumenSemanal_Click(object sender, EventArgs e)
         {
             string Ide = "1";
-            string esChofer = "true";
+            string homeChofer = "1";
 
             //ACA SETEAR UN PARAMETRO IDCHOFER: USAR EL USUARIO PARA ESO (PUEDE SER CON SESSION[])
-            //string ID = Request.QueryString["id"];
 
             DateTime IN = DateTime.Now.AddDays(-7);
             DateTime OUT = DateTime.Now.AddDays(1);
 
-            Response.Redirect("listaViajes.aspx?Ide=" + Ide + "&esChofer=" + esChofer  + "&ID=" + ID + "&Inicio=" + IN.ToString() + "&Fin=" + OUT.ToString(), false);
+            Response.Redirect("listaViajes.aspx?Ide=" + Ide + "&ID=" + idChofer + "&Inicio=" + IN.ToString() + "&Fin=" + OUT.ToString() + "&Home=" + homeChofer, false);
         }
 
         protected void btnResumenMesChofer_Click(object sender, EventArgs e)
         {
             string Ide = "1";
-            string esChofer = "true";
+            string homeChofer = "1";
 
             //ACA SETEAR UN PARAMETRO IDCHOFER: USAR EL USUARIO PARA ESO (PUEDE SER CON SESSION[])
-            //string ID = Request.QueryString["id"];
 
             DateTime IN = DateTime.Now.AddDays(-15);
             DateTime OUT = DateTime.Now.AddDays(1);
 
-            Response.Redirect("listaViajes.aspx?Ide=" + Ide + "&esChofer=" + esChofer + "&ID=" + ID + "&Inicio=" + IN.ToString() + "&Fin=" + OUT.ToString(), false);
+            Response.Redirect("listaViajes.aspx?Ide=" + Ide + "&ID=" + idChofer + "&Inicio=" + IN.ToString() + "&Fin=" + OUT.ToString() + "&Home=" + homeChofer, false);
         }
 
         protected void btnResumenQuincenal_Click(object sender, EventArgs e)
         {
             string Ide = "1";
-            string esChofer = "true";
-
+            string homeChofer = "1";
             //ACA SETEAR UN PARAMETRO IDCHOFER: USAR EL USUARIO PARA ESO (PUEDE SER CON SESSION[])
-            //string ID = Request.QueryString["id"];
 
             DateTime IN = DateTime.Now.AddDays(-30);
             DateTime OUT = DateTime.Now.AddDays(1);
 
-            Response.Redirect("listaViajes.aspx?Ide=" + "&esChofer=" + esChofer + Ide + "&ID=" + ID + "&Inicio=" + IN.ToString() + "&Fin=" + OUT.ToString(), false);
+            Response.Redirect("listaViajes.aspx?Ide=" + Ide + "&ID=" + idChofer + "&Inicio=" + IN.ToString() + "&Fin=" + OUT.ToString() + "&Home=" + homeChofer, false);
         }
     }
 }

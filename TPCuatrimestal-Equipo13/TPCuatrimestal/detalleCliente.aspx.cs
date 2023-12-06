@@ -16,9 +16,9 @@ namespace TPCuatrimestal
         List<Viaje> listaViajes;
         protected void Page_Load(object sender, EventArgs e)
         {
-            string idCliente = Request.QueryString["id"];
             ClienteNegocio cnAux = new ClienteNegocio();
 
+            string idCliente = Request.QueryString["id"];
             clienteAux = cnAux.ObtenerDatos(int.Parse(idCliente))[0];
 
             lblNombreTitulo.Text = clienteAux.Nombres;
@@ -95,9 +95,9 @@ namespace TPCuatrimestal
 
                         lbxListaViajesPorCliente.Items.Add(item);
                     }
+
                     lbxListaViajesPorCliente.SelectedIndex = 0;
                 }
-
             }
             catch (Exception ex)
             {
@@ -107,7 +107,7 @@ namespace TPCuatrimestal
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("adminClientes.aspx", false);
         }
     }
 }

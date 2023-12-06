@@ -75,6 +75,7 @@ namespace TPCuatrimestal
         protected void listarViajes()
         {
             ViajeNegocio viajesNegocio = new ViajeNegocio();
+
             try
             {
                 listaViajes = viajesNegocio.ViajesClientesChoferes(int.Parse(Request.QueryString["id"]), true);
@@ -96,6 +97,7 @@ namespace TPCuatrimestal
 
                         lbxListaViajesChofer.Items.Add(item);
                     }
+
                     lbxListaViajesChofer.SelectedIndex = 0;
                 }
 
@@ -105,7 +107,6 @@ namespace TPCuatrimestal
                 throw ex;
             }
         }
-
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("adminChoferes.aspx", false);

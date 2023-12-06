@@ -41,7 +41,7 @@ namespace TPCuatrimestal
                     if (cliente.Estado)
                     {
                         item.Value = cliente.IDCliente.ToString();
-                        item.Text = $"{cliente.Apellidos} {cliente.Nombres} - {cliente.Direccion.Direccion} - {cliente.Direccion.Localidad}";
+                        item.Text = $"{cliente.Nombres} {cliente.Apellidos} - {cliente.Direccion.Localidad} - {cliente.zonaCliente.NombreZona}";
                         item.Attributes["class"] = "list-group-item my-1 mx-2";
 
                         listaClientes.Items.Add(item);
@@ -94,6 +94,7 @@ namespace TPCuatrimestal
             if (listaClientes.SelectedIndex != -1)
             {
                 string idSeleccionado = listaClientes.SelectedValue;
+
                 Response.Redirect("detalleCliente.aspx?id=" + idSeleccionado, false);
             }
             else
@@ -101,7 +102,6 @@ namespace TPCuatrimestal
                 cargarClientes();
             }
         }
-
         protected void listaClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             Seleccionado = listaClientes.SelectedValue;

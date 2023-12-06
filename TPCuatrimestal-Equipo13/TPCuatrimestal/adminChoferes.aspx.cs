@@ -53,8 +53,9 @@ namespace TPCuatrimestal
                         autoAsignado = chofer.AutoAsignado.Patente + " " + chofer.AutoAsignado.Tipo.ToString();
                     }
 
-                    item.Text = $"{chofer.Nombres} {chofer.Apellidos} - {chofer.ZonaAsignada.NombreZona} - {autoAsignado}";
+                    item.Text = $"{chofer.Nombres} {chofer.Apellidos} - {autoAsignado} - {chofer.ZonaAsignada.NombreZona}";
                     item.Attributes["class"] = "list-group-item my-1 mx-2";
+
                     listaChoferes.Items.Add(item);
                 }
             }

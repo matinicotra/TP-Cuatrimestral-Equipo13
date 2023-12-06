@@ -4,11 +4,19 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="container col-3">
-        <asp:Label ID="lblClienteOChofer" runat="server"></asp:Label>
-        <asp:Label ID="lblNombre" runat="server"></asp:Label>
-        <asp:Label ID="lblZona" runat="server"></asp:Label>
-        <asp:Label ID="lblEstado" runat="server"></asp:Label>
+    <div class="container-lg" style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px;"">
+        <div>
+            <asp:Label ID="lblClienteOChofer" runat="server" Font-Size="Large" Font-Bold="true"></asp:Label>
+        </div>
+        <div>
+            <asp:Label ID="lblNombre" runat="server"></asp:Label>
+        </div>
+        <div>
+            <asp:Label ID="lblZona" runat="server"></asp:Label>
+        </div>
+        <div>
+            <asp:Label ID="lblEstado" runat="server"></asp:Label>        
+        </div>
     </div>
 
     <div id="div1">

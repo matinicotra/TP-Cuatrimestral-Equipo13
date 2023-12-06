@@ -37,9 +37,9 @@ namespace TPCuatrimestal
 
                 viajes = viajeNego.ViajesClientesChoferes(chofer.IDChofer, true);
 
-                lblClienteOChofer.Text = "Chofer:";
-                lblNombre.Text = chofer.Nombres;
-                lblZona.Text = chofer.ZonaAsignada.NombreZona;
+                lblClienteOChofer.Text = "CHOFER";
+                lblNombre.Text = "NOMBRE: " + chofer.Nombres;
+                lblZona.Text = "ZONA: " + chofer.ZonaAsignada.NombreZona;
 
                 foreach (Viaje X in viajes)
                 {
@@ -50,11 +50,11 @@ namespace TPCuatrimestal
 
                 if (chofer.Estado)
                 {
-                    lblEstado.Text = "Activo";
+                    lblEstado.Text = "ESTADO: Activo";
                 }
                 else
                 {
-                    lblEstado.Text = "Inactivo";
+                    lblEstado.Text = "ESTADO: Inactivo";
                 }
             }
             else
@@ -76,17 +76,17 @@ namespace TPCuatrimestal
 
                 lblTotal.Text = "TOTAL: $" + Total.ToString("f2");
 
-                lblClienteOChofer.Text = "Cliente:";
-                lblNombre.Text = cliente.Nombres;
-                lblZona.Text = cliente.zonaCliente.NombreZona;
+                lblClienteOChofer.Text = "CLIENTE";
+                lblNombre.Text = "NOMBRE: " + cliente.Nombres;
+                lblZona.Text = "ZONA: " + cliente.zonaCliente.NombreZona;
 
                 if (cliente.Estado)
                 {
-                    lblEstado.Text = "Activo";
+                    lblEstado.Text = "ESTADO: Activo";
                 }
                 else
                 {
-                    lblEstado.Text = "Inactivo";
+                    lblEstado.Text = "ESTADO: Inactivo";
                 }
             }
 
@@ -98,31 +98,24 @@ namespace TPCuatrimestal
         {
             string ID;
 
-            if (Request.QueryString["esChofer"] != "true")
+            if (chofer != null)
             {
-                if (chofer != null)
-                {
-                    ID = chofer.IDChofer.ToString();
+                ID = chofer.IDChofer.ToString();
 
-                    if (Request.QueryString["Home"] != null)
-                    {
-                        Response.Redirect("homeChofer.aspx?id=" + ID, false);
-                    }
-                    else
-                    {
-                        Response.Redirect("detalleChofer.aspx?id=" + ID, false);
-                    }
+                if (Request.QueryString["Home"] != null)
+                {
+                    Response.Redirect("homeChofer.aspx?id=" + ID, false);
                 }
                 else
                 {
-                    ID = cliente.IDCliente.ToString();
-
-                    Response.Redirect("detalleCliente.aspx?id=" + ID, false);
+                    Response.Redirect("detalleChofer.aspx?id=" + ID, false);
                 }
             }
             else
             {
-                Response.Redirect("homeChofer.aspx", false);
+                ID = cliente.IDCliente.ToString();
+
+                Response.Redirect("detalleCliente.aspx?id=" + ID, false);
             }
         }
     }

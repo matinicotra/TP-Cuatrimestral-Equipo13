@@ -8,7 +8,11 @@ namespace Dominio
 {
     public class Usuario
     {
+        //Email varchar(50)
         public string Email { get; set; }
-        public string Contraseña { get; set; }
+        //contrasenia varchar(15)
+        public string Contrasenia { get; set; }
+        public bool esAdmin { get; set; }
+        public int idPersona { get; set; }
     }
 }

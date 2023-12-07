@@ -38,16 +38,18 @@ VALUES
 GO
 
 -- CARGA DE DATOS PERSONAS
-INSERT INTO PERSONA (NOMBRES, APELLIDOS, DNI, FECHANACIMIENTO, DOMICILIO, NACIONALIDAD)
-VALUES 
-('Nombre 1', 'Apellido 1', '12345678', '1990-01-01', 1, 'Argentino'),
-('Nombre 2', 'Apellido 2', '23456789', '1991-02-02', 2, 'Argentino'),
-('Nombre 3', 'Apellido 3', '34567890', '1992-03-03', 3, 'Argentino'),
-('Nombre 4', 'Apellido 4', '45678901', '1993-04-04', 4, 'Argentino'),
-('Nombre 5', 'Apellido 5', '56789012', '1994-05-05', 5, 'Uruguayo'),
-('Nombre 6', 'Apellido 6', '67890123', '1995-06-06', 6, 'Uruguayo'),
-('Nombre 7', 'Apellido 7', '78901234', '1996-07-07', 7, 'Uruguayo'),
-('Nombre 8', 'Apellido 8', '89012345', '1997-08-08', 8, 'Chileno');
+INSERT INTO PERSONA (NOMBRES, APELLIDOS, DNI, FECHANACIMIENTO, DOMICILIO, TELEFONO, EMAIL, NACIONALIDAD)
+VALUES
+('Ana', 'González', '32123456', '1990-05-15', 1, '1123456789', 'ana.gonzalez@email.com', 'Argentina'),
+('Juan', 'Rodríguez', '40123456', '1985-08-22', 2, '1134567890', 'juan.rodriguez@email.com', 'Argentina'),
+('María', 'López', '27123456', '1992-02-10', 3, '1145678901', 'maria.lopez@email.com', 'Argentina'),
+('Lucas', 'Martínez', '38123456', '1988-11-03', 4, '1156789012', 'lucas.martinez@email.com', 'Argentina'),
+('Laura', 'Sánchez', '45123456', '1995-07-18', 5, '1167890123', 'laura.sanchez@email.com', 'Argentina'),
+('Gabriel', 'Díaz', '26123456', '1983-04-27', 6, '1178901234', 'gabriel.diaz@email.com', 'Argentina'),
+('Silvina', 'Fernández', '34123456', '1998-01-05', 7, '1189012345', 'silvina.fernandez@email.com', 'Argentina'),
+('Martín', 'Pérez', '50123456', '1980-09-14', 8, '1190123456', 'martin.perez@email.com', 'Argentina'),
+('Cecilia', 'Giménez', '31123456', '1993-06-30', 9, '1101234567', 'cecilia.gimenez@email.com', 'Argentina'),
+('Pablo', 'Torres', '43123456', '1987-12-08', 10, '1112345678', 'pablo.torres@email.com', 'Argentina');
 GO
 
 --CARGA DE DATOS ZONAS

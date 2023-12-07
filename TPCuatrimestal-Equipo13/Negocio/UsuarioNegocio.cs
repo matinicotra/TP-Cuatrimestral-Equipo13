@@ -17,7 +17,7 @@ namespace Negocio
 
             try
             {
-                datos.SetearConsulta("SELECT * FROM USUARIOS");
+                datos.SetearConsulta("SELECT * FROM USUARIO");
                 datos.EjecutarConsulta();
                 while (datos.Lector.Read())
                 {
@@ -67,15 +67,15 @@ namespace Negocio
         }
 
         //ejecutar solo si el login es correcto
-        public Usuario obtenerDatosUsuario(Usuario usuarioLogin)
+        public Usuario obtenerDatosUsuario(string email)
         {
             AccesoDatos datos = new AccesoDatos();
             Usuario usuarioAux = new Usuario();
 
             try
             {
-                datos.SetearConsulta("SELECT * FROM USUARIOS WHERE EMAIL = @EMAIL");
-                datos.SetearParametro("@EMAIL", usuarioLogin.Email);
+                datos.SetearConsulta("SELECT * FROM USUARIO WHERE EMAIL = @EMAIL");
+                datos.SetearParametro("@EMAIL", email);
                 datos.EjecutarConsulta();
                 if (datos.Lector.Read())
                 {

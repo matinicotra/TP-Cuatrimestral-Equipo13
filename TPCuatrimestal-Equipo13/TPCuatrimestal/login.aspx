@@ -4,25 +4,24 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div style="display:flex; align-items:center; justify-content:center; flex-direction:column; min-width:400px;">
-        <div style="margin:30px 30px;">
-            <h3>INGRESO AL SISTEMA</h3>
+    <div style="display: flex; align-items: center; justify-content: center; flex-direction: column; min-width: 400px;">
+        <div style="margin: 30px 30px;">
+            <h3 class="h3 text-primary-emphasis">LOGIN</h3>
         </div>
-        <form>
+
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <asp:Label ID="lblUsuario" runat="server" CssClass="form-label" Text="USUARIO:"></asp:Label>
+                <asp:TextBox ID="tbxUsuario" CssClass="form-control" runat="server" TextMode="Email"></asp:TextBox>
             </div>
+
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <asp:Label ID="lblConstrasenia" runat="server" CssClass="form-label" Text="CONTRASEÑA:"></asp:Label>
+                <asp:TextBox ID="tbxConstrasenia" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
             </div>
+
             <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <asp:Button ID="btnLogin" class="btn btn-primary" runat="server" Text="Ingresar" OnClick="btnLogin_Click"/>
             </div>
-            <div class="mb-3">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar Sesión</button>
-            </div>
-        </form>
+          
     </div>
 </asp:Content>

@@ -88,5 +88,5 @@ VALUES
 --CARGA DOS USUARIOS DE PRUEBA
 INSERT INTO USUARIO (EMAIL, CONTRASENIA, ESADMIN, IDPERSONA)
 VALUES
-    ('admin', '123', 1, null),
-    ('chofer', '123', 0, 1)
+    ('admin@admin.com', '123', 1, null),
+    ('chofer@chofer.com', '123', 0, 1)

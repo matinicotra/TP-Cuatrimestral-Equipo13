@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,12 @@ namespace TPCuatrimestal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!(Page is login)){
+                if (!Seguridad.sesionActiva(Session["Usuario"]))
+                {
+                    Response.Redirect("login.aspx", false);
+                }
+            }
         }
     }
 }

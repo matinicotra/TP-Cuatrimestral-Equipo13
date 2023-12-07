@@ -8,7 +8,7 @@
     <div style="background-color: aliceblue; display: flex; align-items: center; justify-content: center; flex-direction: column; grid-row-gap: 30px; margin-top: 50px; margin-bottom: 150px;">
 
         <div cssclass="input-group" style="display: flex;">
-            <asp:DropDownList Style="border-radius:5px;" CssClass="dropdown-toggle-split border-secondary-subtle ratio" ID="ddlCampo" runat="server" ToolTip="Campo" AutoPostBack="true">
+            <asp:DropDownList Style="border-radius:5px;" CssClass="dropdown-toggle-split border-secondary-subtle ratio" ID="ddlCampo" runat="server" ToolTip="Campo">
                 <asp:ListItem>CHOFER</asp:ListItem>
                 <asp:ListItem>VIAJES</asp:ListItem>
             </asp:DropDownList>

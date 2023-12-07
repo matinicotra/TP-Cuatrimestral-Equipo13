@@ -12,7 +12,6 @@ namespace TPCuatrimestal
     public partial class homeAdmin : System.Web.UI.Page
     {
         public List<Vehiculo> ListarVehiculos { get; set; }
-
         public List<Viaje> ListarViajes { get; set; }
 
         //SE CARGA EL ID DEL ELEMENTO SELECCIONADO, EN EL ULTIMO EVENTO
@@ -37,7 +36,9 @@ namespace TPCuatrimestal
                 repVehiculos.DataBind();
 
                 if (Session["diaSeleccionado"] == null)
+                {
                     Session["diaSeleccionado"] = DateTime.Today;
+                }
 
                 calOtrosDias.SelectedDate = (DateTime)Session["diaSeleccionado"];
 
@@ -207,6 +208,15 @@ namespace TPCuatrimestal
 
             dgvViajes.DataSource = listaFiltrada;
             dgvViajes.DataBind();
+
+            if (Session["diaSeleccionado"] == null)
+            {
+                Session["diaSeleccionado"] = DateTime.Today;
+            }
+
+            calOtrosDias.SelectedDate = (DateTime)Session["diaSeleccionado"];
+
+            listarViajesPorDia((DateTime)Session["diaSeleccionado"]);
         }
     }
 }

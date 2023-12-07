@@ -82,13 +82,19 @@ GO
 --CARGA DE DATOS VIAJES
 INSERT INTO VIAJES (IDCHOFER, IDCLIENTE, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO)
 VALUES 
-    (1, 1, 'Ejecutivo', 23.40, 1, 2, null, null, 'Asignado', '2023-11-4', 0, 'Efectivo'),
-    (1, 2, 'Particular', 30.40, 7, 3, null, null, 'Asignado', GETDATE(), 0, 'Trajeta de Credito'),
-    (1, 3, 'Ejecutivo', 40.40, 5, 4, null, null, 'Asignado', GETDATE(), 0, 'Trajeta de Debito'),
-    (1, 4, 'Urbano', 28.40, 6, 8, null, null, 'Asignado', GETDATE(), 0, 'Efectivo');
+    (1, 1, 'Ejecutivo', 23.40, 1, 2, 1, null, 'Finalizado', '2023-11-15', 1, 'Efectivo'),
+    (1, 2, 'Ejecutivo', 23.40, 1, 2, null, null, 'Finalizado', '2023-11-16', 1, 'Efectivo'),
+    (2, 2, 'Particular', 30.40, 7, 3, 4, null, 'Asignado', GETDATE(), 0, 'Trajeta de Credito'),
+    (2, 3, 'Ejecutivo', 40.40, 5, 4, null, null, 'Asignado', GETDATE(), 0, 'Trajeta de Debito'),
+    (3, 1, 'Ejecutivo', 23.40, 1, 2, 1, null, 'Finalizado', '2023-11-18', 1, 'Efectivo'),
+    (1, 2, 'Ejecutivo', 23.40, 1, 2, null, null, 'Finalizado', '2023-11-25', 1, 'Efectivo'),
+    (3, 2, 'Particular', 30.40, 7, 3, 4, null, 'Asignado', GETDATE(), 0, 'Trajeta de Credito'),
+    (4, 3, 'Ejecutivo', 40.40, 5, 4, null, null, 'Asignado', GETDATE(), 0, 'Trajeta de Debito'),
+    (4, 3, 'Ejecutivo', 40.40, 5, 4, null, null, 'Asignado', '2023-12-8', 0, 'Trajeta de Debito'),
+    (4, 4, 'Urbano', 28.40, 6, 8, null, null, 'Asignado', GETDATE(), 0, 'Efectivo');
 
 --CARGA DOS USUARIOS DE PRUEBA
-INSERT INTO USUARIO (EMAIL, CONTRASENIA, ESADMIN, IDPERSONA)
+INSERT INTO USUARIO (EMAIL, CONTRASENIA, ESADMIN, IDCHOFER)
 VALUES
     ('admin@admin.com', '123', 1, null),
     ('chofer@chofer.com', '123', 0, 1),

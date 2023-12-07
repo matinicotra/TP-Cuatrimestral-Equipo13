@@ -22,7 +22,7 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     Usuario usuarioAux = new Usuario();
-                    usuarioAux.idChofer = datos.Lector["IDPERSONA"] is DBNull ? 0 : (int)datos.Lector["IDPERSONA"];
+                    usuarioAux.idChofer = datos.Lector["IDCHOFER"] is DBNull ? 0 : (int)datos.Lector["IDCHOFER"];
                     usuarioAux.Contrasenia = (string)datos.Lector["CONTRASENIA"];
                     usuarioAux.Email = (string)datos.Lector["EMAIL"];
                     usuarioAux.esAdmin = (bool)datos.Lector["ESADMIN"];
@@ -79,7 +79,7 @@ namespace Negocio
                 datos.EjecutarConsulta();
                 if (datos.Lector.Read())
                 {
-                    usuarioAux.idChofer = datos.Lector["IDPERSONA"] is DBNull ? 0 : (int)datos.Lector["IDPERSONA"];
+                    usuarioAux.idChofer = datos.Lector["IDCHOFER"] is DBNull ? 0 : (int)datos.Lector["IDCHOFER"];
                     usuarioAux.Contrasenia = (string)datos.Lector["CONTRASENIA"];
                     usuarioAux.Email = (string)datos.Lector["EMAIL"];
                     usuarioAux.esAdmin = (bool)datos.Lector["ESADMIN"];
@@ -106,10 +106,10 @@ namespace Negocio
 
             try
             {
-                datos.SetearConsulta("INSERT INTO USUARIO (EMAIL, CONTRASENIA, ESADMIN, IDPERSONA) VALUES (@EMAIL, @CONTRASENIA, 0, @IDPERSONA)");
+                datos.SetearConsulta("INSERT INTO USUARIO (EMAIL, CONTRASENIA, ESADMIN, IDCHOFER) VALUES (@EMAIL, @CONTRASENIA, 0, @IDCHOFER)");
                 datos.SetearParametro("@EMAIL", chofer.Email);
                 datos.SetearParametro("@CONTRASENIA", chofer.Apellidos + chofer.IDChofer);
-                datos.SetearParametro("@IDPERSONA", chofer.IDChofer);
+                datos.SetearParametro("@IDCHOFER", chofer.IDChofer);
                 datos.EjecutarAccion();
 
             }

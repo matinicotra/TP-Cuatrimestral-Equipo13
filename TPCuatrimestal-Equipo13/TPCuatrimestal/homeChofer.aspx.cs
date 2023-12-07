@@ -19,7 +19,7 @@ namespace TPCuatrimestal
 
         private Domicilio domicilioOrigen = new Domicilio();
 
-        private int idChofer = 1;   // !!! cambiar cuando hagamos el login
+        private int idChofer;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,7 +31,8 @@ namespace TPCuatrimestal
             }
 
             ViajeNegocio viajeNegocio = new ViajeNegocio();
-            idChofer = int.Parse(Request.QueryString["id"]);
+            //idChofer = int.Parse(Request.QueryString["id"]);
+            idChofer = (int)usuario.idPersona;
             viajes = viajeNegocio.ViajesClientesChoferes(idChofer, true);
 
             if (viajes.Count() < 1)
@@ -178,7 +179,7 @@ namespace TPCuatrimestal
 
         protected void btnResumenSemanal_Click(object sender, EventArgs e)
         {
-            string Ide = "1";
+            string Ide = idChofer.ToString();
             string homeChofer = Request.QueryString["id"];
 
             //ACA SETEAR UN PARAMETRO IDCHOFER: USAR EL USUARIO PARA ESO (PUEDE SER CON SESSION[])
@@ -191,7 +192,7 @@ namespace TPCuatrimestal
 
         protected void btnResumenMesChofer_Click(object sender, EventArgs e)
         {
-            string Ide = "1";
+            string Ide = idChofer.ToString();
             string homeChofer = Request.QueryString["id"];
 
             //ACA SETEAR UN PARAMETRO IDCHOFER: USAR EL USUARIO PARA ESO (PUEDE SER CON SESSION[])
@@ -204,7 +205,7 @@ namespace TPCuatrimestal
 
         protected void btnResumenQuincenal_Click(object sender, EventArgs e)
         {
-            string Ide = "1";
+            string Ide = idChofer.ToString();
             string homeChofer = Request.QueryString["id"];
             //ACA SETEAR UN PARAMETRO IDCHOFER: USAR EL USUARIO PARA ESO (PUEDE SER CON SESSION[])
 

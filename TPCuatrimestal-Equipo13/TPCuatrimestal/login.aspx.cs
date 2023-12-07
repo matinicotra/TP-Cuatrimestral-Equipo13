@@ -51,7 +51,9 @@ namespace TPCuatrimestal
             if (usuarioNegocio.login(emailString, constraseniaString))
             {
                 usuarioAux = usuarioNegocio.obtenerDatosUsuario(emailString);
+
                 Session.Add("Usuario", usuarioAux);
+
                 if (usuarioAux.esAdmin)
                 {
                     Response.Redirect("homeAdmin.aspx", false);
@@ -66,6 +68,7 @@ namespace TPCuatrimestal
         protected void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             Session.Clear();
+
             Response.Redirect("login.aspx", false);
         }
     }

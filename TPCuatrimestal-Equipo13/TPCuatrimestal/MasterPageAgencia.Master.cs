@@ -11,8 +11,11 @@ namespace TPCuatrimestal
 {
     public partial class MasterPageAgencia : System.Web.UI.MasterPage
     {
+        public Usuario usuario  { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            hlHome.Visible = false;
+
             if (!(Page is login))
             {
                 if (!Seguridad.sesionActiva(Session["Usuario"]))
@@ -23,26 +26,26 @@ namespace TPCuatrimestal
 
             if (Seguridad.sesionActiva(Session["Usuario"]))
             {
+                usuario = new Usuario();
 
-                Usuario usuarioAux = (Usuario)Session["Usuario"];
-                hlNombreUsuario.Text = usuarioAux.Email;
+                usuario = (Usuario)Session["Usuario"];
+                hlNombreUsuario.Text = usuario.Email;
                 hlNombreUsuario.Visible = true;
-                if (usuarioAux.esAdmin)
+                hlHome.Visible = true;
+
+                if (usuario.esAdmin)
                 {
                     hlHome.NavigateUrl = "homeAdmin.aspx";
                 }
                 else
                 {
-                    hlHome.NavigateUrl = "homeChofer.aspx?id=" + usuarioAux.idChofer;
+                    hlHome.NavigateUrl = "homeChofer.aspx?id=" + usuario.idChofer;
                 }
-
-
             }
             else
             {
                 hlNombreUsuario.Visible = false;
             }
-
         }
 
         protected void btnCerrarSesion_Click(object sender, EventArgs e)

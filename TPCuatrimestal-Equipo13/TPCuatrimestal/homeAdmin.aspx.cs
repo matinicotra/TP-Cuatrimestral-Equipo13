@@ -195,5 +195,32 @@ namespace TPCuatrimestal
             Session["diaSeleccionado"] = DateTime.Today;
             listarViajesPorDia((DateTime)Session["diaSeleccionado"]);
         }
+
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            string filtrada = txtFiltrar.Text;
+
+            if (filtrada.Length < 2 || filtrada == null)
+            {
+                txtFiltrar.Text = string.Empty;
+                //lblVacio.Style.Add(HtmlTextWriterStyle.Visibility, "hidden");
+                dgvViajes.DataSource = ListarViajes;
+                dgvViajes.DataBind();
+                return;
+            }
+            List<Viaje> listaFiltrada = new List<Viaje>();
+            listaFiltrada.Clear();
+
+            foreach (Viaje item in ListarViajes)
+            {
+                if (item.ChoferViaje.Apellidos.Contains(filtrada) || item.ClienteViaje.Apellidos.Contains(filtrada) || item.Estado.Contains(filtrada))
+                {
+                    listaFiltrada.Add(item);
+                }
+
+            }
+            dgvViajes.DataSource = listaFiltrada;
+            dgvViajes.DataBind();
+        }
     }
 }

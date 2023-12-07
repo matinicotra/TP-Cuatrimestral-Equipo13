@@ -9,7 +9,7 @@
 
         <div cssclass="input-group" style="display: flex;">
             <asp:TextBox ID="txtFiltrar" runat="server" CssClass="form-control" PlaceHolder="Busqueda..."></asp:TextBox>
-            <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" CssClass="btn btn-primary ms-2" />
+            <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" CssClass="btn btn-primary ms-2" OnClick="btnFiltrar_Click"/>
         </div>
 
 

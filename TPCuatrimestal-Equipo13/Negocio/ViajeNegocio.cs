@@ -430,5 +430,30 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+
+        // en elaboracion...
+        public List<Viaje> Filtrar(string campo, string filtro)
+        {
+            List<Viaje> lista = new List<Viaje>();
+            AccesoDatos datos = new AccesoDatos();
+
+            string consulta = "SELECT IDVIAJE, IDCLIENTE, IDCHOFER, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO FROM VIAJES WHERE ";
+
+            try
+            {
+                
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+
+            return lista;
+        }
     }
 }

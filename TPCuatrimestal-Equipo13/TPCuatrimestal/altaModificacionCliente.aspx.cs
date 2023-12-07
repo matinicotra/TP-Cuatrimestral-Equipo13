@@ -103,19 +103,19 @@ namespace TPCuatrimestal
             }
 
             //seteo de cliente
-            clienteAux.Nombres = txtNombre.Text;
-            clienteAux.Apellidos = txtApellido.Text;
-            clienteAux.DNI = txtDNI.Text;
+            clienteAux.Nombres = ValidarNullVacio(txtNombre) == false ? "" : txtNombre.Text;
+            clienteAux.Apellidos = ValidarNullVacio(txtApellido) == false ? "" : txtApellido.Text;
+            clienteAux.DNI = ValidarNullVacio(txtDNI) == false ? "" : txtDNI.Text;
             clienteAux.Nacionalidad = ddlNacionalidad.SelectedValue;
-            clienteAux.FechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
-            clienteAux.Telefono = txtTelefono.Text;
-            clienteAux.Email = txtEmail.Text;
+            clienteAux.FechaNacimiento = ValidarNullVacio(txtDNI) == false ? new DateTime(1900,01,01) : Convert.ToDateTime(txtFechaNacimiento.Text);
+            clienteAux.Telefono = ValidarNullVacio(txtTelefono) == false ? "" : txtTelefono.Text;
+            clienteAux.Email = ValidarNullVacio(txtEmail) == false ? "" : txtEmail.Text;
 
             //seteo domicilio
-            clienteAux.Direccion.Direccion = txtCalleyAltura.Text;
-            clienteAux.Direccion.Localidad = txtLocalidad.Text;
-            clienteAux.Direccion.Provincia = txtProvincia.Text;
-            clienteAux.Direccion.Descripcion = txtDescripcion.Text;
+            clienteAux.Direccion.Direccion = ValidarNullVacio(txtCalleyAltura) == false ? "" : txtCalleyAltura.Text;
+            clienteAux.Direccion.Localidad = ValidarNullVacio(txtLocalidad) == false ? "" : txtLocalidad.Text;
+            clienteAux.Direccion.Provincia = ValidarNullVacio(txtProvincia) == false ? "" : txtProvincia.Text;
+            clienteAux.Direccion.Descripcion = ValidarNullVacio(txtDescripcion) == false ? "" : txtDescripcion.Text;
 
             //seteo zona
             int indexZona = -1;
@@ -123,16 +123,42 @@ namespace TPCuatrimestal
             zonaAux = ZonaNegocio.ObtenerZonas()[indexZona];
             clienteAux.zonaCliente = zonaAux;
 
-            if (banderaAlta)
+            if (txtApellido.BorderColor != System.Drawing.Color.Red &&
+                txtCalleyAltura.BorderColor != System.Drawing.Color.Red &&
+                txtDNI.BorderColor != System.Drawing.Color.Red &&
+                txtEmail.BorderColor != System.Drawing.Color.Red &&
+                txtFechaNacimiento.BorderColor != System.Drawing.Color.Red &&
+                txtLocalidad.BorderColor != System.Drawing.Color.Red &&
+                txtNombre.BorderColor != System.Drawing.Color.Red &&
+                txtProvincia.BorderColor != System.Drawing.Color.Red &&
+                txtTelefono.BorderColor != System.Drawing.Color.Red)
             {
-                cnAux.AltaModificacionCliente(clienteAux, true);
+                if (banderaAlta)
+                {
+                    cnAux.AltaModificacionCliente(clienteAux, true);
+                }
+                else
+                {
+                    cnAux.AltaModificacionCliente(clienteAux, false);
+                }
+
+                Response.Redirect("adminCliente.aspx", false);
+            }
+        }
+        private bool ValidarNullVacio(TextBox txtAux)
+        {
+            if (txtAux.Text == null || txtAux.Text == "")
+            {
+                txtAux.BorderColor = System.Drawing.Color.Red;
+
+                return false;
             }
             else
             {
-                cnAux.AltaModificacionCliente(clienteAux, false);
+                txtAux.BorderColor = System.Drawing.Color.Black;
             }
 
-            Response.Redirect("adminCliente.aspx", false);
+            return true;
         }
     }
 }

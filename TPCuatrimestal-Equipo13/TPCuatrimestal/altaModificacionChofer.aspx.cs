@@ -61,6 +61,8 @@ namespace TPCuatrimestal
 
             ChoferNegocio cnAux;
 
+            txtFechaNacimiento.Text = DateTime.Today.ToString("yyyy-MM-dd");
+
             if (Request.QueryString["id"] != null && !IsPostBack)
             {
                 cnAux = new ChoferNegocio();
@@ -136,7 +138,7 @@ namespace TPCuatrimestal
             choferAux.Apellidos = ValidarNullVacio(txtApellido) == false ? "" : txtApellido.Text;
             choferAux.DNI = ValidarNullVacio(txtDNI) == false ? "" : txtDNI.Text;
             choferAux.Nacionalidad = ddlNacionalidad.SelectedValue;
-            choferAux.FechaNacimiento = ValidarNullVacio(txtNombre) == false ? new DateTime(1900, 01, 01) : Convert.ToDateTime(txtFechaNacimiento.Text);
+            choferAux.FechaNacimiento = ValidarNullVacio(txtNombre) == false ? new DateTime(1900,01,01) : DateTime.Parse(txtFechaNacimiento.Text);
             choferAux.Email = ValidarNullVacio(txtEmail) == false ? "" : txtEmail.Text;
             choferAux.Telefono = ValidarNullVacio(txtTelefono) == false ? "" : txtTelefono.Text;
 

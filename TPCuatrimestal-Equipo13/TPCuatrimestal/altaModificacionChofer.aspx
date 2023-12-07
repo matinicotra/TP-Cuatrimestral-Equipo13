@@ -12,27 +12,27 @@
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblNombre" runat="server" Font-Bold="false">NOMBRE</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtNombre" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="50" ID="txtNombre" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblApellido" runat="server" Font-Bold="false">APELLIDO</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtApellido" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="50" ID="txtApellido" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblTelefono" runat="server" Font-Bold="false">TELEFONO</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtTelefono" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="15" ID="txtTelefono" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblEmail" runat="server" Font-Bold="false">E-MAIL</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtEmail" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="30" ID="txtEmail" TextMode="Email" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblDNI" runat="server" Font-Bold="false">DOCUMENTO</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtDNI" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="10" ID="txtDNI" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-3">
@@ -49,22 +49,22 @@
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblCalleyAltura" runat="server" Font-Bold="false">CALLE Y ALTURA</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtCalleyAltura" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="100" ID="txtCalleyAltura" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblLocalidad" runat="server" Font-Bold="false">LOCALIDAD</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtLocalidad" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="80" ID="txtLocalidad" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblProvincia" runat="server" Font-Bold="false">PROVINCIA</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtProvincia" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="25" ID="txtProvincia" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblDescripcion" runat="server" Font-Bold="false">DESCRIPCION</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtDescripcion" runat="server" TextMode="MultiLine" Rows="2"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="200" ID="txtDescripcion" runat="server" TextMode="MultiLine" Rows="2"></asp:TextBox>
             </div>
 
             <h5 class="text-lg-center">DATOS ASIGNADOS</h5>

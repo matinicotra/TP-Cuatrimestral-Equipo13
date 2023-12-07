@@ -47,6 +47,8 @@ namespace TPCuatrimestal
 
             CargarZonasEnDDL();
 
+            txtFechaNacimiento.Text = DateTime.Today.ToString("yyyy-MM-dd");
+
             if (Request.QueryString["id"] != null && !IsPostBack) //si es modificar entra aca
             {
                 string idSeleccionado = Request.QueryString["id"];

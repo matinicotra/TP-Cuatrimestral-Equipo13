@@ -38,16 +38,16 @@
 
             <div class="input-group mb-1">
                 <asp:Label CssClass="input-group-text" ID="lblNombre" runat="server" Font-Bold="false">NOMBRE</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtNombre" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="50" ID="txtNombre" runat="server"></asp:TextBox>
             </div>
             <div class="input-group mb-1">
                 <asp:Label CssClass="input-group-text" ID="lblApellido" runat="server" Font-Bold="false">APELLIDO</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtApellido" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="50" ID="txtApellido" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-1">
                 <asp:Label CssClass="input-group-text" ID="lblTelefonoCliente" runat="server" Font-Bold="false">TELEFONO CLIENTE</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtTelefonoCliente" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="15" ID="txtTelefonoCliente" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-3 d-block">
@@ -75,22 +75,22 @@
 
             <div class="input-group mb-1">
                 <asp:Label CssClass="input-group-text" ID="lblCalleOrigen" runat="server" Font-Bold="false">DIRECCION</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtCalleOrigen" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="100" ID="txtCalleOrigen" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-1">
                 <asp:Label CssClass="input-group-text" ID="lblLocalidadOrigen" runat="server" Font-Bold="false">LOCALIDAD</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtLocalidadOrigen" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="80" ID="txtLocalidadOrigen" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-1">
                 <asp:Label CssClass="input-group-text" ID="lblProvinciaOrigen" runat="server" Font-Bold="false">PROVINCIA</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtProvinciaOrigen" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="25" ID="txtProvinciaOrigen" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblDescripcionOrigen" runat="server" Font-Bold="false">DESCRIPCION</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtDescripcionOrigen" runat="server" TextMode="MultiLine" Rows="2"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="200" ID="txtDescripcionOrigen" runat="server" TextMode="MultiLine" Rows="2"></asp:TextBox>
             </div>
 
             <h5 class="text-center">DOMICILIO DESTINO</h5>
@@ -106,22 +106,22 @@
             </div>
             <div class="input-group mb-1">
                 <asp:Label CssClass="input-group-text" ID="lblCalleDestino1" runat="server" Font-Bold="false">DOMICILIO</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtCalleDestino1" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="100" ID="txtCalleDestino1" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-1">
                 <asp:Label CssClass="input-group-text" ID="lblLocalidadDestino1" runat="server" Font-Bold="false">LOCALIDAD</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtLocalidadDestino1" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="80" ID="txtLocalidadDestino1" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-1">
                 <asp:Label CssClass="input-group-text" ID="lblProvinciaDestino1" runat="server" Font-Bold="false">PROVINCIA</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtProvinciaDestino1" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="25" ID="txtProvinciaDestino1" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblDescripcionDestino1" runat="server" Font-Bold="false">DESCRIPCION</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtDescripcionDestino1" runat="server" TextMode="MultiLine" Rows="2"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="200" ID="txtDescripcionDestino1" runat="server" TextMode="MultiLine" Rows="2"></asp:TextBox>
             </div>
             <% if (int.Parse(ddlCantidadDestino.SelectedValue) > 1)
                 {
@@ -129,23 +129,23 @@
             <h6>SEGUNDO DOMICILIO</h6>
             <div class="input-group mb-1">
                 <asp:Label CssClass="input-group-text" ID="lblCalleDestino2" runat="server" Font-Bold="false">2DO DOMICILIO</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtCalleDestino2" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="80" ID="txtCalleDestino2" runat="server"></asp:TextBox>
             </div>
 
 
             <div class="input-group mb-1">
                 <asp:Label CssClass="input-group-text" ID="lblLocalidadDestino2" runat="server" Font-Bold="false">2DA LOCALIDAD</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtLocalidadDestino2" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="80" ID="txtLocalidadDestino2" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-1">
                 <asp:Label CssClass="input-group-text" ID="lblProvinciaDestino2" runat="server" Font-Bold="false">2DA PROVINCIA</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtProvinciaDestino2" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="25" ID="txtProvinciaDestino2" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblDescripcionDestino2" runat="server" Font-Bold="false">DESCRIPCION</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtDescripcionDestino2" runat="server" TextMode="MultiLine" Rows="2"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="200" ID="txtDescripcionDestino2" runat="server" TextMode="MultiLine" Rows="2"></asp:TextBox>
             </div>
             <% if (int.Parse(ddlCantidadDestino.SelectedValue) > 2)
                 {
@@ -153,22 +153,22 @@
             <h6>TERCER DOMICILIO</h6>
             <div class="input-group mb-1">
                 <asp:Label CssClass="input-group-text" ID="lblCalleDestino3" runat="server" Font-Bold="false">3ER DOMICILIO</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtCalleDestino3" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="100" ID="txtCalleDestino3" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-1">
                 <asp:Label CssClass="input-group-text" ID="lblLocalidadDestino3" runat="server" Font-Bold="false">3RA LOCALIDAD</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtLocalidadDestino3" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="80" ID="txtLocalidadDestino3" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-1">
                 <asp:Label CssClass="input-group-text" ID="lblProvinciaDestino3" runat="server" Font-Bold="false">3RA PROVINCIA</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtProvinciaDestino3" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="25" ID="txtProvinciaDestino3" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblDescripcionDestino3" runat="server" Font-Bold="false">DESCRIPCION</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtDescripcionDestino3" runat="server" TextMode="MultiLine" Rows="2"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="200" ID="txtDescripcionDestino3" runat="server" TextMode="MultiLine" Rows="2"></asp:TextBox>
             </div>
             <%}
                 } %>
@@ -183,12 +183,12 @@
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblTipoDeViaje" runat="server" Font-Bold="false">TIPO DE VIAJE</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtTipoDeViaje" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="15" ID="txtTipoDeViaje" runat="server"></asp:TextBox>
             </div>
 
             <div class="input-group mb-3">
                 <asp:Label CssClass="input-group-text" ID="lblImporte" runat="server" Font-Bold="false">IMPORTE $</asp:Label>
-                <asp:TextBox CssClass="form-control" ID="txtImporte" runat="server" TextMode="Number"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" MaxLength="15" ID="txtImporte" runat="server" TextMode="Number"></asp:TextBox>
             </div>
 
             <div class="text-center">

@@ -28,10 +28,10 @@ namespace TPCuatrimestal
                 listaClientes.SelectedIndex = -1;
             }
         }
-
         private void cargarClientes()
         {
             ClienteNegocio clienteNegocio = new ClienteNegocio();
+
             listarClientes = null;
 
             listaClientes.Items.Clear();
@@ -66,7 +66,6 @@ namespace TPCuatrimestal
 
             Response.Redirect("altaModificacionCliente.aspx", false);
         }
-
         protected void btnBajaCliente_Click(object sender, EventArgs e)
         {
             ClienteNegocio negocio = new ClienteNegocio();
@@ -80,7 +79,6 @@ namespace TPCuatrimestal
 
             cargarClientes();
         }
-
         protected void btnModificarCliente_Click(object sender, EventArgs e)
         {
             if (listaClientes.SelectedIndex != -1)
@@ -94,7 +92,6 @@ namespace TPCuatrimestal
                 cargarClientes();
             }
         }
-
         protected void btnDetalleCliente_Click(object sender, EventArgs e)
         {
             if (listaClientes.SelectedIndex != -1)
@@ -111,6 +108,19 @@ namespace TPCuatrimestal
         protected void listaClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             Seleccionado = listaClientes.SelectedValue;
+        }
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            List<Cliente> listaFiltrada = new List<Cliente>();
+            ClienteNegocio cliente = new ClienteNegocio();
+
+            listaFiltrada = cliente.Filtrar(ddlCampo.SelectedValue, txtFiltrar.Text);
+
+            txtFiltrar.Text = null;
+
+            listaClientes.DataSource = listaFiltrada;
+            listaClientes.DataBind();
+            listaClientes.SelectedIndex = -1;
         }
     }
 }

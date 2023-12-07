@@ -210,6 +210,76 @@ namespace Negocio
 
             return idCliente;
         }
+        public List<Cliente> Filtrar(string campo, string buscar)
+        {
+            List<Cliente> lista = new List<Cliente>();
+            AccesoDatos datosCliente = new AccesoDatos();
 
+            string consulta = "SELECT C.IDCLIENTE, C.IDPERSONA, C.IDZONA, C.ESTADO FROM CLIENTE AS C  ";
+
+            try
+            {
+                if (campo == "NOMBRE")
+                {
+                    consulta += "INNER JOIN PERSONA AS P ON C.IDPERSONA = P.IDPERSONA ";
+                    consulta += "WHERE UPPER(P.NOMBRES) LIKE '%" + buscar.ToUpper() + "%'";
+                }
+                else if (campo == "APELLIDOS")
+                {
+                    consulta += "INNER JOIN PERSONA AS P ON C.IDPERSONA = P.IDPERSONA ";
+                    consulta += "WHERE UPPER(P.APELLIDOS) LIKE '%" + buscar.ToUpper() + "%'";
+                }
+                else if (campo == "ZONA")
+                {
+                    consulta += "INNER JOIN ZONAS AS Z ON C.IDZONA = Z.IDZONA ";
+                    consulta += "WHERE UPPER(Z.NOMBREZONA) LIKE '%" + buscar.ToUpper() + "%'";
+                }
+
+                datosCliente.SetearConsulta(consulta);
+                datosCliente.EjecutarConsulta();
+
+                while (datosCliente.Lector.Read())
+                {
+                    Cliente clienteAux = new Cliente();
+                    Persona personaAux = new Persona();
+                    PersonaNegocio personaNegocioAux = new PersonaNegocio();
+
+                    personaAux = personaNegocioAux.ObtenerPersona((int)datosCliente.Lector["IDPERSONA"]);
+
+                    clienteAux.Nombres = personaAux.Nombres;
+                    clienteAux.Apellidos = personaAux.Apellidos;
+                    clienteAux.DNI = personaAux.DNI;
+                    clienteAux.FechaNacimiento = personaAux.FechaNacimiento;
+                    clienteAux.Direccion = personaAux.Direccion;
+                    clienteAux.Nacionalidad = personaAux.Nacionalidad;
+                    clienteAux.IDPersona = personaAux.IDPersona;
+                    clienteAux.Email = personaAux.Email;
+                    clienteAux.Telefono = personaAux.Telefono;
+
+                    clienteAux.Estado = datosCliente.Lector["ESTADO"] is DBNull ? false : (bool)datosCliente.Lector["ESTADO"];
+                    clienteAux.IDCliente = datosCliente.Lector["IDCLIENTE"] is DBNull ? -1 : (int)datosCliente.Lector["IDCLIENTE"];
+                    personaAux.IDPersona = datosCliente.Lector["IDCLIENTE"] is DBNull ? -1 : (int)datosCliente.Lector["IDPERSONA"];
+
+                    //obtiene la zona
+                    ChoferNegocio cnAux = new ChoferNegocio();
+
+                    Zona zonaAux = ZonaNegocio.ObtenerZonas((int)datosCliente.Lector["IDZONA"])[0];
+
+                    clienteAux.zonaCliente = zonaAux;
+
+                    lista.Add(clienteAux);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datosCliente.CerrarConexion();
+            }
+
+            return lista;
+        }
     }
 }

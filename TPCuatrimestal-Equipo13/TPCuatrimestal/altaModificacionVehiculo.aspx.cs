@@ -63,29 +63,35 @@ namespace TPCuatrimestal
         {
             try
             {
-                //capturamos en vehiculoAux los datos de los campos
-                vehiculoAux.Patente = txtPatente.Text;
-                vehiculoAux.Modelo = int.Parse(txtModelo.Text);
-                string tipoSeleccionado = ddlTipoVehiculo.SelectedValue;
-
                 TipoVehiculo tvAux = new TipoVehiculo();
                 VehiculoNegocio vehiculoNegocioAux = new VehiculoNegocio();
+
+                //capturamos en vehiculoAux los datos de los campos
+                vehiculoAux.Patente = ValidarNullVacio(txtPatente) == false ? "" : txtPatente.Text;
+                vehiculoAux.Modelo = ValidarNullVacio(txtModelo) == false ? 0 : int.Parse(txtModelo.Text);
+
+                string tipoSeleccionado = ddlTipoVehiculo.SelectedValue;
 
                 tvAux = ListTipoVehi.Find(x => x.NombreTipo == tipoSeleccionado);
 
                 vehiculoAux.Tipo = tvAux;
 
 
-                //dividimos si es modificar o cargar uno nuevo
-                if (Request.QueryString["id"] != null) //si es modificar...
+                if (txtModelo.BorderColor != System.Drawing.Color.Red &&
+                    txtPatente.BorderColor != System.Drawing.Color.Red)
                 {
-                    vehiculoAux.IDVehiculo = int.Parse(Request.QueryString["id"]);
+                    if (Request.QueryString["id"] != null) //si es modificar...
+                    {
+                        vehiculoAux.IDVehiculo = int.Parse(Request.QueryString["id"]);
 
-                    vehiculoNegocioAux.AltaModificacionVehiculo(vehiculoAux, true);
-                }
-                else //si es agregar uno nuevo...
-                {
-                    vehiculoNegocioAux.AltaModificacionVehiculo(vehiculoAux, false);
+                        vehiculoNegocioAux.AltaModificacionVehiculo(vehiculoAux, true);
+                    }
+                    else //si es agregar uno nuevo...
+                    {
+                        vehiculoNegocioAux.AltaModificacionVehiculo(vehiculoAux, false);
+                    }
+
+                    Response.Redirect("adminVehiculo.aspx", false);
                 }
             }
             catch (Exception ex)
@@ -93,7 +99,21 @@ namespace TPCuatrimestal
                 throw ex;
             }
 
-            Response.Redirect("adminVehiculo.aspx", false);
+        }
+        private bool ValidarNullVacio(TextBox txtAux)
+        {
+            if (txtAux.Text == null || txtAux.Text == "")
+            {
+                txtAux.BorderColor = System.Drawing.Color.Red;
+
+                return false;
+            }
+            else
+            {
+                txtAux.BorderColor = System.Drawing.Color.Black;
+            }
+
+            return true;
         }
     }
 }

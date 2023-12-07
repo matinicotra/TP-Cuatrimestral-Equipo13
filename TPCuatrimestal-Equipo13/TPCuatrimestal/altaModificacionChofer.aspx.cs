@@ -19,6 +19,7 @@ namespace TPCuatrimestal
 
             ListVehi = aux.ObtenerDatos();
             ddlAutoAsignado.Items.Add("Sin Auto");
+
             foreach (Vehiculo X in ListVehi)
             {
                 if (X.Estado)
@@ -52,7 +53,9 @@ namespace TPCuatrimestal
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Seguridad.esAdmin(Session["Usuario"]))
+            {
                 Response.Redirect("login.aspx", false);
+            }
 
             CargarDesplegables();
 
@@ -61,10 +64,9 @@ namespace TPCuatrimestal
             if (Request.QueryString["id"] != null && !IsPostBack)
             {
                 cnAux = new ChoferNegocio();
+                choferAux = new Chofer();
 
                 string idChofer = Request.QueryString["id"];
-
-                choferAux = new Chofer();
 
                 choferAux = cnAux.ObtenerDatos(int.Parse(idChofer))[0];
 
@@ -108,12 +110,10 @@ namespace TPCuatrimestal
                 choferAux = cnAux.ObtenerDatos(int.Parse(idChofer))[0];
             }
         }
-
         protected void btnCanelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("adminChoferes.aspx", false);
         }
-
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             ChoferNegocio cnAux = new ChoferNegocio();
@@ -132,19 +132,19 @@ namespace TPCuatrimestal
             }
 
             //seteo de chofer
-            choferAux.Nombres = txtNombre.Text;
-            choferAux.Apellidos = txtApellido.Text;
-            choferAux.DNI = txtDNI.Text;
+            choferAux.Nombres = ValidarNullVacio(txtNombre) == false ? "" : txtNombre.Text;
+            choferAux.Apellidos = ValidarNullVacio(txtApellido) == false ? "" : txtApellido.Text;
+            choferAux.DNI = ValidarNullVacio(txtDNI) == false ? "" : txtDNI.Text;
             choferAux.Nacionalidad = ddlNacionalidad.SelectedValue;
-            choferAux.FechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
-            choferAux.Email = txtEmail.Text;
-            choferAux.Telefono = txtTelefono.Text;
+            choferAux.FechaNacimiento = ValidarNullVacio(txtNombre) == false ? new DateTime(1900, 01, 01) : Convert.ToDateTime(txtFechaNacimiento.Text);
+            choferAux.Email = ValidarNullVacio(txtEmail) == false ? "" : txtEmail.Text;
+            choferAux.Telefono = ValidarNullVacio(txtTelefono) == false ? "" : txtTelefono.Text;
 
             //seteo domicilio
-            choferAux.Direccion.Direccion = txtCalleyAltura.Text;
-            choferAux.Direccion.Localidad = txtLocalidad.Text;
-            choferAux.Direccion.Provincia = txtProvincia.Text;
-            choferAux.Direccion.Descripcion = txtDescripcion.Text;
+            choferAux.Direccion.Direccion = ValidarNullVacio(txtCalleyAltura) == false ? "" : txtCalleyAltura.Text;
+            choferAux.Direccion.Localidad = ValidarNullVacio(txtLocalidad) == false ? "" : txtLocalidad.Text;
+            choferAux.Direccion.Provincia = ValidarNullVacio(txtProvincia) == false ? "" : txtProvincia.Text;
+            choferAux.Direccion.Descripcion = ValidarNullVacio(txtDescripcion) == false ? "" : txtDescripcion.Text;
 
             //seteo zona
             int idZona = -1;
@@ -155,25 +155,52 @@ namespace TPCuatrimestal
             //seteo vehiculo
             int idVehiculo = -1;
             idVehiculo = ddlAutoAsignado.SelectedIndex >= 0 && ddlAutoAsignado.SelectedIndex < vnAux.ObtenerDatos().Count() + 1 ? ddlAutoAsignado.SelectedIndex : 0;
-            
+
             if (idVehiculo > 0)
             {
                 vehiculoAux = vnAux.ObtenerDatos()[idVehiculo - 1];
             }
+
             choferAux.AutoAsignado = vehiculoAux;
 
-            if (banderaAlta)
+            if (txtApellido.BorderColor != System.Drawing.Color.Red &&
+                txtCalleyAltura.BorderColor != System.Drawing.Color.Red &&
+                txtDNI.BorderColor != System.Drawing.Color.Red &&
+                txtEmail.BorderColor != System.Drawing.Color.Red &&
+                txtFechaNacimiento.BorderColor != System.Drawing.Color.Red &&
+                txtLocalidad.BorderColor != System.Drawing.Color.Red &&
+                txtNombre.BorderColor != System.Drawing.Color.Red &&
+                txtProvincia.BorderColor != System.Drawing.Color.Red &&
+                txtTelefono.BorderColor != System.Drawing.Color.Red)
             {
-                cnAux.AltaModificacionChofer(choferAux, true);
-                choferAux.IDChofer = cnAux.ultimoIdChofer();
-                unAux.nuevoUsuario(choferAux);
+                if (banderaAlta)
+                {
+                    cnAux.AltaModificacionChofer(choferAux, true);
+                    choferAux.IDChofer = cnAux.ultimoIdChofer();
+                    unAux.nuevoUsuario(choferAux);
+                }
+                else
+                {
+                    cnAux.AltaModificacionChofer(choferAux, false);
+                }
+
+                Response.Redirect("adminChoferes.aspx", false);
+            }
+        }
+        private bool ValidarNullVacio(TextBox txtAux)
+        {
+            if (txtAux.Text == null || txtAux.Text == "")
+            {
+                txtAux.BorderColor = System.Drawing.Color.Red;
+
+                return false;
             }
             else
             {
-                cnAux.AltaModificacionChofer(choferAux, false);
+                txtAux.BorderColor = System.Drawing.Color.Black;
             }
 
-            Response.Redirect("adminChoferes.aspx", false);
+            return true;
         }
     }
 }

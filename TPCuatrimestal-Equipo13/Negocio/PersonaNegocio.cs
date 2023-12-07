@@ -152,9 +152,9 @@ namespace Negocio
                     idPersona = datos.Lector["IDPERSONA"] is DBNull? -1 : (int)datos.Lector["IDPERSONA"];
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally
             {

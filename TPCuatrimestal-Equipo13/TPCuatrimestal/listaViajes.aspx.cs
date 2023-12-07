@@ -105,7 +105,7 @@ namespace TPCuatrimestal
 
                 if (!Seguridad.esAdmin(usuario))
                 {
-                    Response.Redirect("homeChofer.aspx?id=" + usuario.idPersona, false);
+                    Response.Redirect("homeChofer.aspx?id=" + usuario.idChofer, false);
                 }
 
                 if (Request.QueryString["Home"] != null)

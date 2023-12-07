@@ -19,7 +19,7 @@ namespace TPCuatrimestal
             if (!Seguridad.esAdmin(Session["Usuario"]) && Session["Usuario"] != null)
             {
                 Usuario usuario = (Usuario)Session["Usuario"];
-                Response.Redirect("homeChofer.aspx?id=" + usuario.idPersona, false);
+                Response.Redirect("homeChofer.aspx?id=" + usuario.idChofer, false);
             }
 
             if (!IsPostBack)

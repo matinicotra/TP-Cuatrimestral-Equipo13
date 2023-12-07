@@ -165,7 +165,7 @@ namespace TPCuatrimestal
             if (banderaAlta)
             {
                 cnAux.AltaModificacionChofer(choferAux, true);
-                choferAux.IDPersona = pnAux.ultimoIdPersona();
+                choferAux.IDChofer = cnAux.ultimoIdChofer();
                 unAux.nuevoUsuario(choferAux);
             }
             else

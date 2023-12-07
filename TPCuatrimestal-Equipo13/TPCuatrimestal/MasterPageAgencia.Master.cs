@@ -33,7 +33,7 @@ namespace TPCuatrimestal
                 }
                 else
                 {
-                    hlHome.NavigateUrl = "homeChofer.aspx?id=" + usuarioAux.idPersona;
+                    hlHome.NavigateUrl = "homeChofer.aspx?id=" + usuarioAux.idChofer;
                 }
 
 

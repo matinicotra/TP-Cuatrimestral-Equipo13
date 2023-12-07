@@ -58,7 +58,7 @@ namespace TPCuatrimestal
                 }
                 else
                 {
-                    Response.Redirect("homeChofer.aspx?id=" + usuarioAux.idPersona, false);
+                    Response.Redirect("homeChofer.aspx?id=" + usuarioAux.idChofer, false);
                 }
             }
         }

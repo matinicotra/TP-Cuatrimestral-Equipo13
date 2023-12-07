@@ -367,5 +367,35 @@ namespace Negocio
 
             return lista;
         }
+
+        public int ultimoIdChofer()
+        {
+            int idChofer = 0;
+            int idPersona = 0;
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("SELECT TOP 1 IDCHOFER FROM CHOFER ORDER BY IDCHOFER DESC");
+
+                datos.EjecutarConsulta();
+
+                if (datos.Lector.Read())
+                {
+                    idPersona = datos.Lector["IDCHOFER"] is DBNull ? -1 : (int)datos.Lector["IDCHOFER"];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+
+            return idPersona;
+            return idChofer;
+        }
     }
 }

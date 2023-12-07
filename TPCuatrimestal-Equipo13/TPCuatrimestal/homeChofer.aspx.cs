@@ -33,7 +33,7 @@ namespace TPCuatrimestal
             ViajeNegocio viajeNegocio = new ViajeNegocio();
             //idChofer = int.Parse(Request.QueryString["id"]);
             if(usuario != null)
-                idChofer = (int)usuario.idPersona; // !!!!!!!!!!!!!!!!!!!!!!!!!! cambiar aca por el id chofer!!!!
+                idChofer = (int)usuario.idChofer; // !!!!!!!!!!!!!!!!!!!!!!!!!! cambiar aca por el id chofer!!!!
             viajes = viajeNegocio.ViajesClientesChoferes(idChofer, true);
 
             if (viajes.Count() < 1)

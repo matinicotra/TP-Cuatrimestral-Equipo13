@@ -13,6 +13,6 @@ namespace Dominio
         //contrasenia varchar(15)
         public string Contrasenia { get; set; }
         public bool esAdmin { get; set; }
-        public int idPersona { get; set; }
+        public int idChofer { get; set; }
     }
 }

@@ -52,8 +52,8 @@ namespace TPCuatrimestal
             if (Request.QueryString["esChofer"] == "true")
             {
                 Usuario usuario = (Usuario)Session["Usuario"];
-                int idPersona = usuario.idPersona;
-                Response.Redirect("homeChofer.aspx?id=" + idPersona, false);
+                int idChofer = usuario.idChofer;
+                Response.Redirect("homeChofer.aspx?id=" + idChofer, false);
 
             }
             else Response.Redirect("homeAdmin.aspx");

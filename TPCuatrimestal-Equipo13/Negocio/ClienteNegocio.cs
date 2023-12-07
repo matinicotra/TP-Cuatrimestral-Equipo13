@@ -49,8 +49,8 @@ namespace Negocio
                     clienteAux.IDPersona = personaAux.IDPersona;
                     clienteAux.Email = personaAux.Email;
                     clienteAux.Telefono = personaAux.Telefono;
-                    clienteAux.Estado = datosCliente.Lector["ESTADO"] is DBNull ? false : (bool)datosCliente.Lector["ESTADO"];
 
+                    clienteAux.Estado = datosCliente.Lector["ESTADO"] is DBNull ? false : (bool)datosCliente.Lector["ESTADO"];
                     clienteAux.IDCliente = datosCliente.Lector["IDCLIENTE"] is DBNull? -1 : (int)datosCliente.Lector["IDCLIENTE"];
                     personaAux.IDPersona = datosCliente.Lector["IDCLIENTE"] is DBNull? -1 : (int)datosCliente.Lector["IDPERSONA"];
 
@@ -75,7 +75,6 @@ namespace Negocio
                 datosCliente.CerrarConexion();
             }
         }
-        
         public void AltaModificacionCliente(Cliente clienteAux, bool esAlta)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -122,6 +121,7 @@ namespace Negocio
                     datos.SetearParametro("@LOCALIDAD", clienteAux.Direccion.Localidad);
                     datos.SetearParametro("@PROVINCIA", clienteAux.Direccion.Provincia);
                     datos.SetearParametro("@DESCRIPCION", clienteAux.Direccion.Descripcion);
+                    
                     datos.EjecutarAccion();
                     datos.CerrarConexion();
 
@@ -162,7 +162,6 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
-        
         public void BajaLogicaCliente(int idCliente)
         {
             AccesoDatos Datos = new AccesoDatos();
@@ -183,7 +182,6 @@ namespace Negocio
                 Datos.CerrarConexion();
             }
         }
-
         public int ultimoIdCliente()
         {
             int idCliente = -1;
@@ -212,5 +210,6 @@ namespace Negocio
 
             return idCliente;
         }
+
     }
 }

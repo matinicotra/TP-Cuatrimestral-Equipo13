@@ -139,5 +139,55 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+        public List<Vehiculo> Filtrar(string campo, string buscar)
+        {
+            List<Vehiculo> lista = new List<Vehiculo>();
+            AccesoDatos datos = new AccesoDatos();
+
+            string consulta = "SELECT V.IDVEHICULO, V.MODELO, V.PATENTE, V.ESTADO, TV.TIPO, TV.CANT_ASIENTOS FROM VEHICULOS V INNER JOIN TIPOS_VEHICULOS TV ON V.IDTIPO = TV.IDTIPO ";
+
+            try
+            {
+                if (campo == "MODELO")
+                {
+                    consulta += "WHERE V.MODELO LIKE '%" + buscar + "%'";
+                }
+                else if (campo == "TIPO")
+                {
+                    consulta += "WHERE UPPER(TV.TIPO) LIKE '%" + buscar.ToUpper() + "%'";
+                }
+                else if (campo == "PATENTE")
+                {
+                    consulta += "WHERE UPPER(V.PATENTE) LIKE '%" + buscar.ToUpper() + "%'";
+                }
+
+                datos.SetearConsulta(consulta);
+                datos.EjecutarConsulta();
+
+                while (datos.Lector.Read())
+                {
+                    Vehiculo aux = new Vehiculo();
+
+                    aux.IDVehiculo = datos.Lector["IDVEHICULO"] is DBNull ? -1 : (int)datos.Lector["IDVEHICULO"];
+                    aux.Modelo = datos.Lector["MODELO"] is DBNull ? 1900 : (int)datos.Lector["MODELO"];
+                    aux.Patente = datos.Lector["PATENTE"] is DBNull ? " " : (string)datos.Lector["PATENTE"];
+                    aux.Estado = datos.Lector["ESTADO"] is DBNull ? false : (bool)datos.Lector["ESTADO"];
+                    aux.Tipo.NombreTipo = datos.Lector["TIPO"] is DBNull ? " " : (string)datos.Lector["TIPO"];
+                    aux.Tipo.CantAsientos = datos.Lector["CANT_ASIENTOS"] is DBNull ? 0 : (int)datos.Lector["CANT_ASIENTOS"];
+
+                    lista.Add(aux);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+
+            return lista;
+        }
     }
 }

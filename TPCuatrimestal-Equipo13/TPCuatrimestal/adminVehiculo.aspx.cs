@@ -28,6 +28,7 @@ namespace TPCuatrimestal
         private void CargarVehiculos()
         {
             VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
+
             ListarVehiculos = vehiculoNegocio.ObtenerDatos(chbMostrarInactivos.Checked);
 
             repVehiculos.DataSource = ListarVehiculos;
@@ -88,6 +89,19 @@ namespace TPCuatrimestal
         protected void chbMostrarInactivos_CheckedChanged(object sender, EventArgs e)
         {
             CargarVehiculos();
+        }
+
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            List<Vehiculo> listaFiltrada = new List<Vehiculo>();
+            VehiculoNegocio viaje = new VehiculoNegocio();
+
+            listaFiltrada = viaje.Filtrar(ddlCampo.SelectedValue, txtFiltrar.Text);
+
+            txtFiltrar.Text = null;
+
+            repVehiculos.DataSource = listaFiltrada;
+            repVehiculos.DataBind();
         }
     }
 }

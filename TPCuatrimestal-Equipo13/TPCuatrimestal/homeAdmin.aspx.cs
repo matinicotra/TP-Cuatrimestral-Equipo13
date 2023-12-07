@@ -204,6 +204,8 @@ namespace TPCuatrimestal
 
             listaFiltrada = viaje.Filtrar(ddlCampo.SelectedValue, txtFiltrar.Text);
 
+            txtFiltrar.Text = null;
+
             dgvViajes.DataSource = listaFiltrada;
             dgvViajes.DataBind();
         }

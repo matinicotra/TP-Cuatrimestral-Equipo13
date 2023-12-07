@@ -3,13 +3,20 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container" style="background-color:aliceblue; display:flex; align-items:center; justify-content:center; flex-direction:column; margin-bottom: 100px;">
+    <div class="container" style="background-color: aliceblue; display: flex; align-items: center; justify-content: center; flex-direction: column; margin-bottom: 100px;">
 
         <div>
             <h4>ADMINISTRAR VEHICULOS</h4>
             <div class="input-group mb-3" style="display: flex; align-items: center; flex-direction: row;">
+                <div>
+                    <asp:DropDownList Style="border-radius: 5px;" CssClass="form-control-color dropdown-toggle-split border-secondary-subtle ratio" ID="ddlCampo" runat="server" ToolTip="Campo" AutoPostBack="true">
+                        <asp:ListItem>MODELO</asp:ListItem>
+                        <asp:ListItem>PATENTE</asp:ListItem>
+                        <asp:ListItem>TIPO</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
                 <asp:TextBox ID="txtFiltrar" runat="server" CssClass="form-control" PlaceHolder="Busqueda..."></asp:TextBox>
-                <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" CssClass="btn btn-primary" />
+                <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" CssClass="btn btn-primary" OnClick="btnFiltrar_Click" />
                 <asp:CheckBox CssClass="ms-4" ID="chbMostrarInactivos" runat="server" AutoPostBack="true" OnCheckedChanged="chbMostrarInactivos_CheckedChanged" />
                 <asp:Label CssClass="ms-1" ID="lblMostrarInactivos" runat="server" Text="Mostrar Inactivos"></asp:Label>
             </div>

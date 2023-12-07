@@ -14,7 +14,28 @@ namespace TPCuatrimestal
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Usuario"] != null)
+            {
+                Usuario usuario = (Usuario)Session["Usuario"];
+                if (Seguridad.sesionActiva(usuario))
+                {
+                    tbxUsuario.Text = usuario.Email;
+                    tbxUsuario.Enabled = false;
+                    lblConstrasenia.Visible = false;
+                    tbxConstrasenia.Visible = false;
+                    btnLogin.Visible = false;
+                    btnCerrarSesion.Visible = true;
+                }
 
+            }
+            else
+            {
+                tbxUsuario.Enabled = true;
+                lblConstrasenia.Visible = true;
+                tbxConstrasenia.Visible = true;
+                btnLogin.Visible = true;
+                btnCerrarSesion.Visible = false;
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -40,6 +61,12 @@ namespace TPCuatrimestal
                     Response.Redirect("homeChofer.aspx?id=" + usuarioAux.idPersona, false);
                 }
             }
+        }
+
+        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("login.aspx", false);
         }
     }
 }

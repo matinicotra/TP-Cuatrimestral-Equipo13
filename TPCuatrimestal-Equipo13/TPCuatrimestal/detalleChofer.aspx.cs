@@ -14,6 +14,9 @@ namespace TPCuatrimestal
         List<Viaje> listaViajes;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Seguridad.esAdmin(Session["Usuario"]))
+                Response.Redirect("login.aspx", false);
+
             if (Request.QueryString["id"] != null)
             {
                 ChoferNegocio cnAux = new ChoferNegocio();

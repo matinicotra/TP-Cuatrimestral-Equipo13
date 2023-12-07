@@ -21,6 +21,8 @@ namespace TPCuatrimestal
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Seguridad.esAdmin(Session["Usuario"]))
+                Response.Redirect("login.aspx", false);
 
             TipoVehiculoNegocio aux = new TipoVehiculoNegocio();
             ListTipoVehi = new List<TipoVehiculo>();

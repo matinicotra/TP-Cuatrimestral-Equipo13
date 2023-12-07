@@ -89,4 +89,5 @@ VALUES
 INSERT INTO USUARIO (EMAIL, CONTRASENIA, ESADMIN, IDPERSONA)
 VALUES
     ('admin@admin.com', '123', 1, null),
-    ('chofer@chofer.com', '123', 0, 1)
+    ('chofer@chofer.com', '123', 0, 1),
+    ('chofer2@chofer.com', '123', 0, 2)

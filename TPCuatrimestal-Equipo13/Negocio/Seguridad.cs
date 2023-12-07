@@ -11,7 +11,7 @@ namespace Negocio
 {
     public static class Seguridad
     {
-        public static bool sesionActiva (object user)
+        public static bool sesionActiva(object user)
         {
             Usuario usuario = user != null ? (Usuario)user : null;
             if (usuario != null)
@@ -22,6 +22,16 @@ namespace Negocio
             {
                 return false;
             }
+        }
+
+        public static bool esAdmin(object user)
+        {
+            Usuario usuario = user != null ? (Usuario)user : null;
+            if (usuario != null)
+            {
+                return usuario.esAdmin;
+            }
+            else { return false;}
         }
     }
 }

@@ -23,7 +23,15 @@ namespace TPCuatrimestal
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Usuario usuario = (Usuario)Session["Usuario"];
+            if (Seguridad.esAdmin(usuario))
+            {
+                Response.Redirect("homeAdmin.aspx", false);
+                return;
+            }
+
             ViajeNegocio viajeNegocio = new ViajeNegocio();
+            idChofer = int.Parse(Request.QueryString["id"]);
             viajes = viajeNegocio.ViajesClientesChoferes(idChofer, true);
 
             if (viajes.Count() < 1)
@@ -171,7 +179,7 @@ namespace TPCuatrimestal
         protected void btnResumenSemanal_Click(object sender, EventArgs e)
         {
             string Ide = "1";
-            string homeChofer = "1";
+            string homeChofer = Request.QueryString["id"];
 
             //ACA SETEAR UN PARAMETRO IDCHOFER: USAR EL USUARIO PARA ESO (PUEDE SER CON SESSION[])
 
@@ -184,7 +192,7 @@ namespace TPCuatrimestal
         protected void btnResumenMesChofer_Click(object sender, EventArgs e)
         {
             string Ide = "1";
-            string homeChofer = "1";
+            string homeChofer = Request.QueryString["id"];
 
             //ACA SETEAR UN PARAMETRO IDCHOFER: USAR EL USUARIO PARA ESO (PUEDE SER CON SESSION[])
 
@@ -197,7 +205,7 @@ namespace TPCuatrimestal
         protected void btnResumenQuincenal_Click(object sender, EventArgs e)
         {
             string Ide = "1";
-            string homeChofer = "1";
+            string homeChofer = Request.QueryString["id"];
             //ACA SETEAR UN PARAMETRO IDCHOFER: USAR EL USUARIO PARA ESO (PUEDE SER CON SESSION[])
 
             DateTime IN = DateTime.Now.AddDays(-30);

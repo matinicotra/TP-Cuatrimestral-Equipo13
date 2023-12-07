@@ -101,6 +101,12 @@ namespace TPCuatrimestal
             if (chofer != null)
             {
                 ID = chofer.IDChofer.ToString();
+                Usuario usuario = (Usuario)Session["Usuario"];
+
+                if (!Seguridad.esAdmin(usuario))
+                {
+                    Response.Redirect("homeChofer.aspx?id=" + usuario.idPersona, false);
+                }
 
                 if (Request.QueryString["Home"] != null)
                 {

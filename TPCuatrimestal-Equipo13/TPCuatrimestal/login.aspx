@@ -21,6 +21,7 @@
 
             <div class="mb-3">
                 <asp:Button ID="btnLogin" class="btn btn-primary" runat="server" Text="Ingresar" OnClick="btnLogin_Click"/>
+                <asp:Button ID="btnCerrarSesion" class="btn btn-secondary" runat="server" Text="Cerrar Sesion" OnClick="btnCerrarSesion_Click" />
             </div>
           
     </div>

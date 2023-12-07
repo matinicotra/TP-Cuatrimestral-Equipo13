@@ -12,6 +12,19 @@ namespace TPCuatrimestal
     public partial class adminVehiculo : System.Web.UI.Page
     {
         public List<Vehiculo> ListarVehiculos { get; set; }
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!Seguridad.esAdmin(Session["Usuario"]))
+            {
+                Usuario usuario = (Usuario)Session["Usuario"];
+                Response.Redirect("homeChofer.aspx?id=" + usuario.idPersona, false);
+            }
+
+            if (!IsPostBack)
+            {
+                CargarVehiculos();
+            }
+        }
         private void CargarVehiculos()
         {
             VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
@@ -19,13 +32,6 @@ namespace TPCuatrimestal
 
             repVehiculos.DataSource = ListarVehiculos;
             repVehiculos.DataBind();
-        }
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                CargarVehiculos();
-            }
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)

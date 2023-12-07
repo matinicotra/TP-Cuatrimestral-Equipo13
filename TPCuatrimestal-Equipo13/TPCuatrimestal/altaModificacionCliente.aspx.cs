@@ -40,6 +40,9 @@ namespace TPCuatrimestal
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Seguridad.esAdmin(Session["Usuario"]))
+                Response.Redirect("login.aspx", false);
+
             ClienteNegocio cnAux = new ClienteNegocio();
 
             CargarZonasEnDDL();

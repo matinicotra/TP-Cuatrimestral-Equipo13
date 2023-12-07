@@ -46,9 +46,14 @@ namespace TPCuatrimestal
 
         protected void btnAtras_Click(object sender, EventArgs e)
         {
-            if (Request.QueryString["esChofer"] == null)
-                Response.Redirect("homeAdmin.aspx", false);
-            else Response.Redirect("homeChofer.aspx");
+            if (Request.QueryString["esChofer"] == "true")
+            {
+                Usuario usuario = (Usuario)Session["Usuario"];
+                int idPersona = usuario.idPersona;
+                Response.Redirect("homeChofer.aspx?id=" + idPersona, false);
+
+            }
+            else Response.Redirect("homeAdmin.aspx");
         }
     }
 }

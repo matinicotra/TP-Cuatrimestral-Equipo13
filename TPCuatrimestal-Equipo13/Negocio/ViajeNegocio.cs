@@ -432,16 +432,101 @@ namespace Negocio
         }
 
         // en elaboracion...
-        public List<Viaje> Filtrar(string campo, string filtro)
+        public List<Viaje> Filtrar(string campo, string buscar)
         {
             List<Viaje> lista = new List<Viaje>();
             AccesoDatos datos = new AccesoDatos();
 
-            string consulta = "SELECT IDVIAJE, IDCLIENTE, IDCHOFER, TIPOVIAJE, IMPORTE, IDDOMORIGEN, IDDOMDESTINO1, IDDOMDESTINO2, IDDOMDESTINO3, ESTADO, FECHAHORAVIAJE, PAGADO, MEDIODEPAGO FROM VIAJES WHERE ";
+            string consulta = "SELECT V.IDVIAJE, V.IDCLIENTE, V.IDCHOFER, V.TIPOVIAJE, V.IMPORTE, V.IDDOMORIGEN, V.IDDOMDESTINO1, V.IDDOMDESTINO2, V.IDDOMDESTINO3, V.ESTADO, V.FECHAHORAVIAJE, V.PAGADO, V.MEDIODEPAGO FROM VIAJES AS V ";
 
             try
             {
-                
+                if (campo == "CHOFER")
+                {
+                    consulta += "INNER JOIN CHOFER AS C ON V.IDCHOFER = C.IDCHOFER ";
+                    consulta += "INNER JOIN PERSONA AS P ON C.IDPERSONA = P.IDPERSONA ";
+                    consulta += "INNER JOIN ZONAS AS Z ON C.IDZONA = Z.IDZONA ";
+                    consulta += "WHERE UPPER(P.NOMBRES) LIKE '%" + buscar.ToUpper() + "%' ";
+                    consulta += "OR UPPER(P.APELLIDOS) LIKE '%" + buscar.ToUpper() + "%' ";
+                    consulta += "OR UPPER(Z.NOMBREZONA) LIKE '%" + buscar.ToUpper() + "%'";
+                }
+                else
+                {
+                    consulta += "WHERE UPPER(V.TIPOVIAJE) LIKE '%" + buscar.ToUpper() + "%' ";
+                    consulta += "OR UPPER(V.ESTADO) LIKE '%" + buscar.ToUpper() + "%'";
+                }
+
+                datos.SetearConsulta(consulta);
+                datos.EjecutarConsulta();
+
+                while (datos.Lector.Read())
+                {
+                    Viaje aux = new Viaje();
+                    DomicilioNegocio domicilioNegocio = new DomicilioNegocio();
+                    Domicilio destino1 = new Domicilio();
+                    Domicilio destino2 = new Domicilio();
+                    Domicilio destino3 = new Domicilio();
+                    ChoferNegocio ChoferNegocioAux = new ChoferNegocio();
+                    ClienteNegocio ClienteNegocioAux = new ClienteNegocio();
+
+                    aux.NumViaje = datos.Lector["IDVIAJE"] is DBNull ? -1 : (long)datos.Lector["IDVIAJE"];
+
+                    aux.IDChofer = datos.Lector["IDCHOFER"] is DBNull ? -1 : (int)datos.Lector["IDCHOFER"];
+
+                    if (aux.IDChofer != -1)
+                        aux.ChoferViaje = ChoferNegocioAux.ObtenerDatos(aux.IDChofer)[0];
+
+                    aux.IDCliente = datos.Lector["IDCLIENTE"] is DBNull ? -1 : (int)datos.Lector["IDCLIENTE"];
+
+                    if (aux.IDCliente != -1)
+                        aux.ClienteViaje = ClienteNegocioAux.ObtenerDatos(aux.IDCliente)[0];
+
+                    aux.TipoViaje = datos.Lector["TIPOVIAJE"] is DBNull ? "S/T" : (string)datos.Lector["TIPOVIAJE"];
+
+                    aux.Importe = datos.Lector["IMPORTE"] is DBNull ? -1 : (decimal)datos.Lector["IMPORTE"];
+
+                    aux.Origen.IDDomicilio = datos.Lector["IDDOMORIGEN"] is DBNull ? -1 : (long)datos.Lector["IDDOMORIGEN"];
+                    
+                    if (aux.Origen.IDDomicilio != -1)
+                    {
+                        aux.Origen = domicilioNegocio.ObtenerDomicilio(aux.Origen.IDDomicilio);
+                    }
+
+                    destino1.IDDomicilio = datos.Lector["IDDOMDESTINO1"] is DBNull ? -1 : (long)datos.Lector["IDDOMDESTINO1"];
+
+                    destino2.IDDomicilio = datos.Lector["IDDOMDESTINO2"] is DBNull ? -1 : (long)datos.Lector["IDDOMDESTINO2"];
+
+                    destino3.IDDomicilio = datos.Lector["IDDOMDESTINO3"] is DBNull ? -1 : (long)datos.Lector["IDDOMDESTINO3"];
+
+                    aux.Estado = datos.Lector["ESTADO"] is DBNull ? "S/E" : (string)datos.Lector["ESTADO"];
+
+                    aux.FechaHoraViaje = datos.Lector["FECHAHORAVIAJE"] is DBNull ? DateTime.Parse("01-01-1900") : (DateTime)datos.Lector["FECHAHORAVIAJE"];
+
+                    aux.MedioDePago = datos.Lector["MEDIODEPAGO"] is DBNull ? "No Especifica" : (string)datos.Lector["MEDIODEPAGO"];
+
+                    aux.Pagado = datos.Lector["PAGADO"] is DBNull ? false : (bool)datos.Lector["PAGADO"];
+
+
+                    if (destino1.IDDomicilio != -1)
+                    {
+                        destino1 = domicilioNegocio.ObtenerDomicilio(destino1.IDDomicilio);
+                        aux.Destinos.Add(destino1);
+                    }
+
+                    if (destino2.IDDomicilio != -1)
+                    {
+                        destino2 = domicilioNegocio.ObtenerDomicilio(destino2.IDDomicilio);
+                        aux.Destinos.Add(destino2);
+                    }
+
+                    if (destino3.IDDomicilio != -1)
+                    {
+                        destino3 = domicilioNegocio.ObtenerDomicilio(destino3.IDDomicilio);
+                        aux.Destinos.Add(destino3);
+                    }
+
+                    lista.Add(aux);
+                }
             }
             catch (Exception)
             {

@@ -21,11 +21,13 @@ namespace TPCuatrimestal
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Seguridad.esAdmin(Session["Usuario"]))
+            {
                 Response.Redirect("login.aspx", false);
+            }
 
             VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
             ViajeNegocio viajeNegocio = new ViajeNegocio();
-            
+
             ListarVehiculos = vehiculoNegocio.ObtenerDatos();
             ListarViajes = viajeNegocio.ObtenerDatos();
 
@@ -33,6 +35,7 @@ namespace TPCuatrimestal
             {
                 repVehiculos.DataSource = ListarVehiculos;
                 repVehiculos.DataBind();
+
                 if (Session["diaSeleccionado"] == null)
                     Session["diaSeleccionado"] = DateTime.Today;
 
@@ -57,7 +60,7 @@ namespace TPCuatrimestal
         //    ViajeNegocio viajeNegocio = new ViajeNegocio();
         //    ListarViajes = viajeNegocio.ObtenerDatos();
         //    dgvViajes.DataSource = ListarViajes;
-            
+
         //    dgvViajes.DataBind();
         //}
 
@@ -106,8 +109,6 @@ namespace TPCuatrimestal
         {
             Response.Redirect("altaModificacionViaje.aspx", false);
         }
-
-
         // OPCION CON GRID VIEW....
         protected void dgvViajes_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -171,10 +172,10 @@ namespace TPCuatrimestal
             Session["diaSeleccionado"] = calOtrosDias.SelectedDate;
             listarViajesPorDia((DateTime)Session["diaSeleccionado"]);
         }
-        
+
         protected void listarViajesPorDia(DateTime dateTime)
         {
-            
+
             List<Viaje> viajes = new List<Viaje>();
 
             foreach (Viaje X in ListarViajes)
@@ -198,27 +199,11 @@ namespace TPCuatrimestal
 
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
-            string filtrada = txtFiltrar.Text;
-
-            if (filtrada.Length < 2 || filtrada == null)
-            {
-                txtFiltrar.Text = string.Empty;
-                //lblVacio.Style.Add(HtmlTextWriterStyle.Visibility, "hidden");
-                dgvViajes.DataSource = ListarViajes;
-                dgvViajes.DataBind();
-                return;
-            }
             List<Viaje> listaFiltrada = new List<Viaje>();
-            listaFiltrada.Clear();
+            ViajeNegocio viaje = new ViajeNegocio();
 
-            foreach (Viaje item in ListarViajes)
-            {
-                if (item.ChoferViaje.Apellidos.Contains(filtrada) || item.ClienteViaje.Apellidos.Contains(filtrada) || item.Estado.Contains(filtrada))
-                {
-                    listaFiltrada.Add(item);
-                }
+            listaFiltrada = viaje.Filtrar(ddlCampo.SelectedValue, txtFiltrar.Text);
 
-            }
             dgvViajes.DataSource = listaFiltrada;
             dgvViajes.DataBind();
         }

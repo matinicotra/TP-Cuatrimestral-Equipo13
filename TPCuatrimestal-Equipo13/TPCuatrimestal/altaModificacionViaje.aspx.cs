@@ -24,7 +24,9 @@ namespace TPCuatrimestal
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Seguridad.esAdmin(Session["Usuario"]))
+            {
                 Response.Redirect("login.aspx", false);
+            }
 
             if (!IsPostBack)
             {
@@ -34,12 +36,12 @@ namespace TPCuatrimestal
                 ddlEstadoViaje.SelectedIndex = 0;
                 ddlChoferes.SelectedIndex = 0;
                 ddlClientes.SelectedIndex = 0;
+
                 CargarDesplegables();
             }
 
             if (Request.QueryString["id"] != null && !IsPostBack)
             {
-
                 ViajeNegocio viajeNegocio = new ViajeNegocio();
                 ClienteNegocio clienteNegocio = new ClienteNegocio();
                 ChoferNegocio choferNegocio = new ChoferNegocio();
@@ -48,6 +50,7 @@ namespace TPCuatrimestal
                 long idViaje = long.Parse(Request.QueryString["id"]);
 
                 viajeAux = viajeNegocio.ObtenerDatos(idViaje)[0];
+
                 if (viajeAux.IDCliente > 0)
                 {
                     clienteAux = clienteNegocio.ObtenerDatos(viajeAux.IDCliente)[0];
@@ -56,9 +59,10 @@ namespace TPCuatrimestal
                 else
                 {
                     clienteAux = new Cliente();
+
                     Session["ClienteID"] = 0;
                     cbxSinCliente.Checked = true;
-                    cbxSinCliente_CheckedChanged(this,e);
+                    cbxSinCliente_CheckedChanged(this, e);
                 }
 
                 if (viajeAux.IDChofer != -1)
@@ -129,6 +133,7 @@ namespace TPCuatrimestal
                 {
                     ddlCantidadDestino.SelectedValue = viajeAux.Destinos.Count().ToString();
                 }
+
                 if ((int.Parse(Session["ClienteID"].ToString()) != 0))
                 {
                     ddlClientes.SelectedValue = Session["ClienteID"].ToString();
@@ -141,7 +146,9 @@ namespace TPCuatrimestal
                     ddlClientes.SelectedIndex = 0;
                 }
                 if (Session["ChoferID"] != null)
+                {
                     ddlChoferes.SelectedValue = Session["ChoferID"].ToString();
+                }
             }
         }
 
@@ -159,12 +166,15 @@ namespace TPCuatrimestal
             ddlChoferes.Items.Add(new ListItem("No Asignado", "0"));
             int contador = 0;
             ddlChoferes.SelectedIndex = 0;
+
             foreach (Chofer X in listaChoferes)
             {
                 if (X.Estado)
                 {
                     ddlChoferes.Items.Add(new ListItem(X.IDChofer.ToString() + "- " + X.Nombres + " " + X.Apellidos + " | " + X.AutoAsignado.ToString(), X.IDChofer.ToString()));
+
                     contador++;
+
                     if (viajeAux != null)
                     {
                         if (X.IDChofer == viajeAux.IDChofer)
@@ -184,10 +194,13 @@ namespace TPCuatrimestal
             ddlClientes.Items.Add(new ListItem("Cliente Nuevo", "0"));
             ddlClientes.SelectedIndex = 0;
             contador = 0;
+
             foreach (Cliente Y in listaClientes)
             {
                 ddlClientes.Items.Add(new ListItem(Y.ToString(), Y.IDCliente.ToString()));
+
                 contador++;
+
                 if (viajeAux != null)
                 {
                     if (Y.IDCliente == viajeAux.IDCliente)
@@ -196,6 +209,7 @@ namespace TPCuatrimestal
                     }
                 }
             }
+
             Session["listaClientes"] = listaClientes;
         }
         protected void ddlCantidadDestino_SelectedIndexChanged(object sender, EventArgs e)
@@ -225,9 +239,9 @@ namespace TPCuatrimestal
             {
                 if (ddlClientes.SelectedIndex == 0)
                 {
-                    viajeAux.ClienteViaje.Nombres = txtNombre.Text;
-                    viajeAux.ClienteViaje.Apellidos = txtApellido.Text;
-                    viajeAux.ClienteViaje.Telefono = txtTelefonoCliente.Text;
+                    viajeAux.ClienteViaje.Nombres = ValidarNullVacio(txtNombre) == false ? "" : txtNombre.Text;
+                    viajeAux.ClienteViaje.Apellidos = ValidarNullVacio(txtApellido) == false ? "" : txtApellido.Text;
+                    viajeAux.ClienteViaje.Telefono = ValidarNullVacio(txtTelefonoCliente) == false ? "" : txtTelefonoCliente.Text;
                 }
                 else
                 {       //SI ES CLIENTE YA INGRESADO SE LO RECUPERA
@@ -243,34 +257,39 @@ namespace TPCuatrimestal
             viajeAux.FechaHoraViaje = DateTime.Parse(fechaHoraAux);
 
             dirOrigen = new Domicilio();
-            dirOrigen.Direccion = txtCalleOrigen.Text;
-            dirOrigen.Localidad = txtLocalidadOrigen.Text;
-            dirOrigen.Provincia = txtProvinciaOrigen.Text;
-            dirOrigen.Descripcion = txtDescripcionOrigen.Text;
-            viajeAux.Origen = dirOrigen;
+            dirOrigen.Direccion = ValidarNullVacio(txtCalleOrigen) == false ? "" : txtCalleOrigen.Text;
+            dirOrigen.Localidad = ValidarNullVacio(txtLocalidadOrigen) == false ? "" : txtLocalidadOrigen.Text;
+            dirOrigen.Provincia = ValidarNullVacio(txtProvinciaOrigen) == false ? "" : txtProvinciaOrigen.Text;
+            dirOrigen.Descripcion = ValidarNullVacio(txtDescripcionOrigen) == false ? "" : txtDescripcionOrigen.Text;
+            viajeAux.Origen = ValidarNullVacio(txtCalleOrigen) == false ? new Domicilio() : dirOrigen;
 
             dirDestino1 = new Domicilio();
-            dirDestino1.Direccion = txtCalleDestino1.Text;
-            dirDestino1.Localidad = txtLocalidadDestino1.Text;
-            dirDestino1.Provincia = txtProvinciaDestino1.Text;
-            dirDestino1.Descripcion = txtDescripcionDestino1.Text;
+            dirDestino1.Direccion = ValidarNullVacio(txtCalleDestino1) == false ? "" : txtCalleDestino1.Text;
+            dirDestino1.Localidad = ValidarNullVacio(txtLocalidadDestino1) == false ? "" : txtLocalidadDestino1.Text;
+            dirDestino1.Provincia = ValidarNullVacio(txtProvinciaDestino1) == false ? "" : txtProvinciaDestino1.Text;
+            dirDestino1.Descripcion = ValidarNullVacio(txtDescripcionDestino1) == false ? "" : txtDescripcionDestino1.Text;
+
             viajeAux.Destinos.Add(dirDestino1);
 
-            if (ddlCantidadDestino.SelectedIndex > 1)
+            if (ddlCantidadDestino.SelectedIndex > 0)
             {
                 dirDestino2 = new Domicilio();
-                dirDestino2.Direccion = txtCalleDestino2.Text;
-                dirDestino2.Direccion = txtLocalidadDestino2.Text;
-                dirDestino2.Direccion = txtProvinciaDestino2.Text;
-                dirDestino2.Direccion = txtDescripcionDestino2.Text;
+                dirDestino2.Direccion = ValidarNullVacio(txtCalleDestino2) == false ? "" : txtCalleDestino2.Text;
+                dirDestino2.Direccion = ValidarNullVacio(txtLocalidadDestino2) == false ? "" : txtLocalidadDestino2.Text;
+                dirDestino2.Direccion = ValidarNullVacio(txtProvinciaDestino2) == false ? "" : txtProvinciaDestino2.Text;
+                dirDestino2.Direccion = ValidarNullVacio(txtDescripcionDestino2) == false ? "" : txtDescripcionDestino2.Text;
+
                 viajeAux.Destinos.Add(dirDestino2);
-                if (ddlCantidadDestino.SelectedIndex > 2)
+
+                if (ddlCantidadDestino.SelectedIndex > 1)
                 {
                     dirDestino3 = new Domicilio();
-                    dirDestino3.Direccion = txtCalleDestino3.Text;
-                    dirDestino3.Direccion = txtLocalidadDestino3.Text;
-                    dirDestino3.Direccion = txtProvinciaDestino3.Text;
-                    dirDestino3.Direccion = txtDescripcionDestino3.Text;
+
+                    dirDestino3.Direccion = ValidarNullVacio(txtCalleDestino3) == false ? "" : txtCalleDestino3.Text;
+                    dirDestino3.Direccion = ValidarNullVacio(txtLocalidadDestino3) == false ? "" : txtLocalidadDestino3.Text;
+                    dirDestino3.Direccion = ValidarNullVacio(txtProvinciaDestino3) == false ? "" : txtProvinciaDestino3.Text;
+                    dirDestino3.Direccion = ValidarNullVacio(txtDescripcionDestino3) == false ? "" : txtDescripcionDestino3.Text;
+
                     viajeAux.Destinos.Add(dirDestino3);
                 }
             }
@@ -278,8 +297,10 @@ namespace TPCuatrimestal
             if (ddlChoferes.SelectedIndex != 0)
             {
                 ChoferNegocio choferNegocio = new ChoferNegocio();
+
                 string aux = ddlChoferes.SelectedValue;
                 int idChofer = int.Parse(ddlChoferes.SelectedValue);
+
                 choferAux = choferNegocio.ObtenerDatos(int.Parse(ddlChoferes.SelectedValue))[0];
 
                 viajeAux.IDChofer = choferAux.IDChofer;
@@ -291,25 +312,46 @@ namespace TPCuatrimestal
 
             viajeAux.ChoferViaje = choferAux;
 
-            viajeAux.TipoViaje = txtTipoDeViaje.Text;
+            viajeAux.TipoViaje = ValidarNullVacio(txtTipoDeViaje) == false ? "" : txtTipoDeViaje.Text;
 
-            viajeAux.Importe = decimal.Parse(txtImporte.Text);
+            viajeAux.Importe = ValidarNullVacio(txtImporte) == false ? 0 : decimal.Parse(txtImporte.Text);
 
             ViajeNegocio viajeNegocio = new ViajeNegocio();
 
-            if ((Request.QueryString["id"] == null))
+            if (txtCalleOrigen.BorderColor != System.Drawing.Color.Red &&
+                txtApellido.BorderColor != System.Drawing.Color.Red &&
+                txtCalleDestino1.BorderColor != System.Drawing.Color.Red &&
+                txtCalleDestino2.BorderColor != System.Drawing.Color.Red &&
+                txtCalleDestino3.BorderColor != System.Drawing.Color.Red &&
+                txtHora.BorderColor != System.Drawing.Color.Red &&
+                txtImporte.BorderColor != System.Drawing.Color.Red &&
+                txtLocalidadDestino1.BorderColor != System.Drawing.Color.Red &&
+                txtLocalidadDestino2.BorderColor != System.Drawing.Color.Red &&
+                txtLocalidadDestino3.BorderColor != System.Drawing.Color.Red &&
+                txtLocalidadOrigen.BorderColor != System.Drawing.Color.Red &&
+                txtNombre.BorderColor != System.Drawing.Color.Red &&
+                txtProvinciaDestino1.BorderColor != System.Drawing.Color.Red &&
+                txtProvinciaDestino2.BorderColor != System.Drawing.Color.Red &&
+                txtProvinciaDestino3.BorderColor != System.Drawing.Color.Red &&
+                txtProvinciaOrigen.BorderColor != System.Drawing.Color.Red &&
+                txtTelefonoCliente.BorderColor != System.Drawing.Color.Red &&
+                txtTipoDeViaje.BorderColor != System.Drawing.Color.Red)
             {
-                viajeNegocio.AltaModificacionViaje(viajeAux, true);
-            }
-            else
-            {
-                viajeAux.NumViaje = long.Parse(Request.QueryString["id"]);
-                viajeNegocio.AltaModificacionViaje(viajeAux, false);
-            }
 
-            Response.Redirect("homeAdmin.aspx", false);
+                if ((Request.QueryString["id"] == null))
+                {
+                    viajeNegocio.AltaModificacionViaje(viajeAux, true);
+                }
+                else
+                {
+                    viajeAux.NumViaje = long.Parse(Request.QueryString["id"]);
+
+                    viajeNegocio.AltaModificacionViaje(viajeAux, false);
+                }
+
+                Response.Redirect("homeAdmin.aspx", false);
+            }
         }
-
         //los siguientes dos eventos comparten código, ver la manera de hacerlo mas eficiente
         protected void ddlClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -385,6 +427,21 @@ namespace TPCuatrimestal
         protected void rblFormaDePago_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+        private bool ValidarNullVacio(TextBox txtAux)
+        {
+            if (txtAux.Text == null || txtAux.Text == "")
+            {
+                txtAux.BorderColor = System.Drawing.Color.Red;
+
+                return false;
+            }
+            else
+            {
+                txtAux.BorderColor = System.Drawing.Color.Black;
+            }
+
+            return true;
         }
     }
 }

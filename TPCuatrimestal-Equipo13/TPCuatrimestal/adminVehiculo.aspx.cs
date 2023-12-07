@@ -102,7 +102,7 @@ namespace TPCuatrimestal
 
                 txtFiltrar.Text = null;
 
-                repVehiculos.DataSource = listaFiltrada;
+                repVehiculos.DataSource = listaFiltrada.FindAll(X => X.Estado == true);
                 repVehiculos.DataBind();
             }
         }

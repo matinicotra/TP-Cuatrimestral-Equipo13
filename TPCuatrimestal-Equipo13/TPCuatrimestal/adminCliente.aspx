@@ -14,7 +14,7 @@
 
             <div class="input-group mb-3" style="display: flex; align-items: center; flex-direction: row;">
                 <div>
-                    <asp:DropDownList Style="border-radius: 5px;" CssClass="form-control-color dropdown-toggle-split border-secondary-subtle ratio" ID="ddlCampo" runat="server" ToolTip="Campo" AutoPostBack="true">
+                    <asp:DropDownList Style="border-radius: 5px;" CssClass="form-control-color dropdown-toggle-split border-secondary-subtle ratio" ID="ddlCampo" runat="server" ToolTip="Campo">
                         <asp:ListItem>NOMBRE</asp:ListItem>
                         <asp:ListItem>APELLIDO</asp:ListItem>
                         <asp:ListItem>ZONA</asp:ListItem>

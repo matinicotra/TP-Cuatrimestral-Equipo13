@@ -121,5 +121,44 @@ namespace TPCuatrimestal
 
             cargarChoferes();
         }
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            List<Chofer> listaFiltrada = new List<Chofer>();
+            ChoferNegocio chofer = new ChoferNegocio();
+
+            if (txtFiltrar.Text != null || txtFiltrar.Text != "")
+            {
+                listaFiltrada = chofer.Filtrar(ddlCampo.SelectedValue, txtFiltrar.Text);
+
+                txtFiltrar.Text = null;
+
+                listaChoferes.Items.Clear();
+
+                foreach (Chofer X in listaFiltrada)
+                {
+                    ListItem item = new ListItem();
+                    // Asigna el valor y el texto del ListItem con las propiedades de Chofer
+                    item.Value = X.IDChofer.ToString(); // Asigna el valor deseado
+                    string autoAsignado;
+
+                    if (X.AutoAsignado == null || X.AutoAsignado.Estado == false)
+                    {
+                        autoAsignado = "Sin Auto";
+                    }
+                    else
+                    {
+                        autoAsignado = X.AutoAsignado.Patente + " " + X.AutoAsignado.Tipo.ToString();
+                    }
+
+                    item.Text = $"{X.Nombres} {X.Apellidos} - {autoAsignado} - {X.ZonaAsignada.NombreZona}";
+                    item.Attributes["class"] = "list-group-item my-1 mx-2";
+
+                    listaChoferes.Items.Add(item);
+                }
+
+                listaChoferes.DataBind();
+                listaChoferes.SelectedIndex = -1;
+            }
+        }
     }
 }

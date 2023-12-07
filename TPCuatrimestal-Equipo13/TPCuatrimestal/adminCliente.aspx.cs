@@ -59,7 +59,6 @@ namespace TPCuatrimestal
                 throw ex;
             }
         }
-
         protected void btnAltaCliente_Click(object sender, EventArgs e)
         {
             Session.Add("RediCliente", 2);
@@ -114,13 +113,31 @@ namespace TPCuatrimestal
             List<Cliente> listaFiltrada = new List<Cliente>();
             ClienteNegocio cliente = new ClienteNegocio();
 
-            listaFiltrada = cliente.Filtrar(ddlCampo.SelectedValue, txtFiltrar.Text);
+            if (txtFiltrar.Text != null || txtFiltrar.Text != "")
+            {
+                listaFiltrada = cliente.Filtrar(ddlCampo.SelectedValue, txtFiltrar.Text);
 
-            txtFiltrar.Text = null;
+                txtFiltrar.Text = null;
 
-            listaClientes.DataSource = listaFiltrada;
-            listaClientes.DataBind();
-            listaClientes.SelectedIndex = -1;
+                listaClientes.Items.Clear();
+
+                foreach (Cliente X in listaFiltrada)
+                {
+                    ListItem item = new ListItem();
+
+                    if (X.Estado)
+                    {
+                        item.Value = X.IDCliente.ToString();
+                        item.Text = $"{X.Nombres} {X.Apellidos} - {X.Direccion.Localidad} - {X.zonaCliente.NombreZona}";
+                        item.Attributes["class"] = "list-group-item my-1 mx-2";
+
+                        listaClientes.Items.Add(item);
+                    }
+                }
+
+                listaClientes.DataBind();
+                listaClientes.SelectedIndex = -1;
+            }
         }
     }
 }

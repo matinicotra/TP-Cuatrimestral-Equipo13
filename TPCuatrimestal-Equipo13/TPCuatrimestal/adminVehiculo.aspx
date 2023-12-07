@@ -9,7 +9,7 @@
             <h4>ADMINISTRAR VEHICULOS</h4>
             <div class="input-group mb-3" style="display: flex; align-items: center; flex-direction: row;">
                 <div>
-                    <asp:DropDownList Style="border-radius: 5px;" CssClass="form-control-color dropdown-toggle-split border-secondary-subtle ratio" ID="ddlCampo" runat="server" ToolTip="Campo" AutoPostBack="true">
+                    <asp:DropDownList Style="border-radius: 5px;" CssClass="form-control-color dropdown-toggle-split border-secondary-subtle ratio" ID="ddlCampo" runat="server" ToolTip="Campo">
                         <asp:ListItem>MODELO</asp:ListItem>
                         <asp:ListItem>PATENTE</asp:ListItem>
                         <asp:ListItem>TIPO</asp:ListItem>

@@ -96,12 +96,15 @@ namespace TPCuatrimestal
             List<Vehiculo> listaFiltrada = new List<Vehiculo>();
             VehiculoNegocio viaje = new VehiculoNegocio();
 
-            listaFiltrada = viaje.Filtrar(ddlCampo.SelectedValue, txtFiltrar.Text);
+            if (txtFiltrar.Text != null || txtFiltrar.Text != "")
+            {
+                listaFiltrada = viaje.Filtrar(ddlCampo.SelectedValue, txtFiltrar.Text);
 
-            txtFiltrar.Text = null;
+                txtFiltrar.Text = null;
 
-            repVehiculos.DataSource = listaFiltrada;
-            repVehiculos.DataBind();
+                repVehiculos.DataSource = listaFiltrada;
+                repVehiculos.DataBind();
+            }
         }
     }
 }

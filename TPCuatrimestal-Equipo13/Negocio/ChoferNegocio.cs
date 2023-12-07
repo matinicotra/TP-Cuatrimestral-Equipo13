@@ -110,7 +110,6 @@ namespace Negocio
                 datosChofer.CerrarConexion();
             }
         }
-
         public void BajaChofer(int idChofer)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -127,7 +126,6 @@ namespace Negocio
                 datos.SetearParametro("@IDCHOFER", idChofer);
 
                 datos.EjecutarAccion();
-
                 datos.CerrarConexion();
 
                 datos.SetearConsulta("DELETE FROM CHOFER WHERE IDCHOFER = @CHOFER");
@@ -135,7 +133,6 @@ namespace Negocio
                 datos.SetearParametro("@CHOFER", idChofer);
 
                 datos.EjecutarAccion();
-
                 datos.CerrarConexion();
 
                 perAux.BajaPersona(choAux.IDPersona);
@@ -151,7 +148,6 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
-
         public void AltaModificacionChofer(Chofer choferAux, bool esAlta)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -215,10 +211,10 @@ namespace Negocio
                     int idPersona = perAux.ultimoIdPersona();//obtiene el ultimo id de persona
 
                     datos.SetearConsulta("INSERT INTO CHOFER (IDPERSONA, IDZONA, IDVEHICULO) VALUES (@IDPERSONA, @IDZONA, @IDVEHICULO)");
-                    
+
                     datos.SetearParametro("@IDPERSONA", idPersona);//setea el  idPersona recien insertado
                     datos.SetearParametro("@IDZONA", choferAux.ZonaAsignada.IDZona);
-                    
+
                     if (choferAux.AutoAsignado == null)
                     {
                         datos.SetearParametro("@IDVEHICULO", DBNull.Value);
@@ -240,16 +236,15 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
-
         void AsignarDesasignarAuto(int idChofer, int idVehiculo)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.SetearConsulta("UPDATE CHOFER SET IDVEHICULO = @IDVEHICULO WHERE IDCHOFER = @IDCHOFER");
-                
+
                 datos.SetearParametro("@IDCHOFER", idChofer);
-                
+
                 if (idVehiculo <= 0)
                 {
                     datos.SetearParametro("@IDVEHICULO", DBNull.Value);
@@ -269,6 +264,108 @@ namespace Negocio
             {
                 datos.CerrarConexion();
             }
+        }
+        public List<Chofer> Filtrar(string campo, string buscar)
+        {
+            List<Chofer> lista = new List<Chofer>();
+            AccesoDatos datosChofer = new AccesoDatos();
+
+            string consulta = "SELECT C.IDCHOFER, C.IDPERSONA, Z.NOMBREZONA, Z.IDZONA, C.IDVEHICULO, C.ESTADO FROM CHOFER AS C INNER JOIN ZONAS AS Z ON C.IDZONA = Z.IDZONA ";
+
+            try
+            {
+                if (campo == "NOMBRE")
+                {
+                    consulta += "INNER JOIN PERSONA AS P ON C.IDPERSONA = P.IDPERSONA ";
+                    consulta += "WHERE UPPER(P.NOMBRES) LIKE '%" + buscar.ToUpper() + "%'";
+                }
+                else if (campo == "APELLIDO")
+                {
+                    consulta += "INNER JOIN PERSONA AS P ON C.IDPERSONA = P.IDPERSONA ";
+                    consulta += "WHERE UPPER(P.APELLIDOS) LIKE '%" + buscar.ToUpper() + "%'";
+                }
+                else if (campo == "ZONA")
+                {
+                    consulta += "WHERE UPPER(Z.NOMBREZONA) LIKE '%" + buscar.ToUpper() + "%'";
+                }
+
+                datosChofer.SetearConsulta(consulta);
+                datosChofer.EjecutarConsulta();
+
+                while (datosChofer.Lector.Read())
+                {
+                    Chofer aux = new Chofer();
+                    Persona personaAux = new Persona();
+                    ChoferNegocio cnAux = new ChoferNegocio();
+                    PersonaNegocio perAux = new PersonaNegocio();
+
+
+                    if ((int)datosChofer.Lector["IDPERSONA"] == -1) //si no encuentra al id persona devuelve -1
+                    {
+                        return listaChoferes; //retorna la lista al no encontrar una persona
+                    }
+
+                    personaAux = perAux.ObtenerPersona(datosChofer.Lector["IDPERSONA"] is DBNull ? -1 : (int)datosChofer.Lector["IDPERSONA"]); //asigna la persona a personaAux
+
+                    //Asigna al choferAux los datos de la persona
+                    aux.Nombres = personaAux.Nombres;
+                    aux.Apellidos = personaAux.Apellidos;
+                    aux.DNI = personaAux.DNI;
+                    aux.FechaNacimiento = personaAux.FechaNacimiento;
+                    aux.Direccion = personaAux.Direccion;
+                    aux.Nacionalidad = personaAux.Nacionalidad;
+                    aux.Email = personaAux.Email;
+                    aux.Telefono = personaAux.Telefono;
+                    aux.IDPersona = personaAux.IDPersona;
+
+
+                    //asigna el id Chofer
+                    aux.IDChofer = datosChofer.Lector["IDCHOFER"] is DBNull ? -1 : (int)datosChofer.Lector["IDCHOFER"];
+
+                    aux.Estado = (bool)datosChofer.Lector["ESTADO"];
+
+                    //lee la zona y la asigna
+                    aux.ZonaAsignada = ZonaNegocio.ObtenerZonas(datosChofer.Lector["IDZONA"] is DBNull ? 0 : (int)datosChofer.Lector["IDZONA"])[0];
+
+                    //lee el id vehiculo asignado
+                    if (datosChofer.Lector["IDVEHICULO"] != DBNull.Value)
+                    {
+                        if ((int)datosChofer.Lector["IDVEHICULO"] > 0)
+                        {
+                            int IDVehiculo = (int)datosChofer.Lector["IDVEHICULO"];//guarda el id del vehiculo
+                            Vehiculo vehiculoAux = new Vehiculo();
+                            VehiculoNegocio vnAux = new VehiculoNegocio();
+                            List<Vehiculo> listaVehiculos = new List<Vehiculo>();
+
+                            listaVehiculos = vnAux.ObtenerDatos(); //carga la lista de todos los vehiculo de la BBDD
+
+                            vehiculoAux = listaVehiculos.Find(x => x.IDVehiculo == IDVehiculo); //busca por el ID y asigna el vehiculo a vehiculoAux 
+
+                            if (vehiculoAux != null)//si el vehiculo está activado setea el auto del chofer
+                            {
+                                aux.AutoAsignado = vehiculoAux;
+                            }
+                            else //si está desactivado le saca la asignacion
+                            {
+                                aux.AutoAsignado = null;
+                                AsignarDesasignarAuto(aux.IDChofer, -1);
+                            }
+                        }
+                    }
+
+                    lista.Add(aux);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datosChofer.CerrarConexion();
+            }
+
+            return lista;
         }
     }
 }

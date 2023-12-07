@@ -52,7 +52,7 @@ namespace Negocio
 
                     clienteAux.Estado = datosCliente.Lector["ESTADO"] is DBNull ? false : (bool)datosCliente.Lector["ESTADO"];
                     clienteAux.IDCliente = datosCliente.Lector["IDCLIENTE"] is DBNull? -1 : (int)datosCliente.Lector["IDCLIENTE"];
-                    personaAux.IDPersona = datosCliente.Lector["IDCLIENTE"] is DBNull? -1 : (int)datosCliente.Lector["IDPERSONA"];
+                    personaAux.IDPersona = datosCliente.Lector["IDPERSONA"] is DBNull? -1 : (int)datosCliente.Lector["IDPERSONA"];
 
                         //obtiene la zona
                     ChoferNegocio cnAux = new ChoferNegocio();

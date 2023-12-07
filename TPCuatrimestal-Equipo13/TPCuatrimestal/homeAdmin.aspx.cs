@@ -74,7 +74,6 @@ namespace TPCuatrimestal
         {
             //REALIZAR BAJA LOGICA (CAMBIAR ESTADO DE VIAJE A "CANCELADO" POR EJEMPLO)
         }
-
         protected void btnDetalleViaje_Click(object sender, EventArgs e)
         {
             //MANEJAR ID EN PÁGINA DETALLEVIAJE

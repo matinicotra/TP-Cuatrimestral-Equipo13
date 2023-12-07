@@ -17,22 +17,24 @@ namespace TPCuatrimestal
         protected void Page_Load(object sender, EventArgs e)
         {
             ClienteNegocio cnAux = new ClienteNegocio();
+            if (Request.QueryString["id"] != null)
+            {
+                string idCliente = Request.QueryString["id"];
+                clienteAux = cnAux.ObtenerDatos(int.Parse(idCliente))[0];
 
-            string idCliente = Request.QueryString["id"];
-            clienteAux = cnAux.ObtenerDatos(int.Parse(idCliente))[0];
+                lblNombreTitulo.Text = clienteAux.Nombres;
+                lblTelefonoTitulo.Text = clienteAux.Telefono;
+                lblEmail.Text = clienteAux.Email;
+                lblNombre.Text = clienteAux.Nombres;
+                lblApellido.Text = clienteAux.Apellidos;
+                lblCalle.Text = clienteAux.Direccion.Direccion;
+                lblLocalidad.Text = clienteAux.Direccion.Localidad;
+                lblProvincia.Text = clienteAux.Direccion.Provincia;
+                lblDescripcion.Text = clienteAux.Direccion.Descripcion;
+                lblZona.Text = clienteAux.zonaCliente.NombreZona;
 
-            lblNombreTitulo.Text = clienteAux.Nombres;
-            lblTelefonoTitulo.Text = clienteAux.Telefono;
-            lblEmail.Text = clienteAux.Email;
-            lblNombre.Text = clienteAux.Nombres;
-            lblApellido.Text = clienteAux.Apellidos;
-            lblCalle.Text = clienteAux.Direccion.Direccion;
-            lblLocalidad.Text = clienteAux.Direccion.Localidad;
-            lblProvincia.Text = clienteAux.Direccion.Provincia;
-            lblDescripcion.Text = clienteAux.Direccion.Descripcion;
-            lblZona.Text = clienteAux.zonaCliente.NombreZona;
-
-            listarViajes();
+                listarViajes();
+            }
 
         }
         protected void btnDetalleViaje_Click(object sender, EventArgs e)
@@ -107,7 +109,7 @@ namespace TPCuatrimestal
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("adminClientes.aspx", false);
+            Response.Redirect("adminCliente.aspx", false);
         }
     }
 }

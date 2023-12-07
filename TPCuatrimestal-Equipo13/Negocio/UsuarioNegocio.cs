@@ -99,5 +99,30 @@ namespace Negocio
 
             return usuarioAux;
         }
+
+        public void nuevoUsuario (Chofer chofer)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("INSERT INTO USUARIO (EMAIL, CONTRASENIA, ESADMIN, IDPERSONA) VALUES (@EMAIL, @CONTRASENIA, 0, @IDPERSONA)");
+                datos.SetearParametro("@EMAIL", chofer.Email);
+                datos.SetearParametro("@CONTRASENIA", chofer.Apellidos + chofer.IDPersona);
+                datos.SetearParametro("@IDPERSONA", chofer.IDPersona);
+                datos.EjecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
     }
 }

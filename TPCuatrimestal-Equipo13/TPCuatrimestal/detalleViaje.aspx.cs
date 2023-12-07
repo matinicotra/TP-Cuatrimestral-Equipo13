@@ -18,30 +18,33 @@ namespace TPCuatrimestal
         long idViaje;
         protected void Page_Load(object sender, EventArgs e)
         {
-            idViaje = long.Parse(Request.QueryString["id"]);
-            viaje = vnAux.ObtenerDatos(idViaje)[0];
-
-            lblEstadoData.Text = viaje.Estado;
-            lblClienteData.Text = viaje.ClienteViaje.ToString();
-            lblTitulo.Text = "VIAJE NUMERO: " + viaje.NumViaje;
-            lblOrigenData.Text = viaje.Origen.ToString();
-            lblChoferData.Text = viaje.ChoferViaje.ToString() + " | " + viaje.ChoferViaje.AutoAsignado.ToString() + " " + viaje.ChoferViaje.AutoAsignado.Patente;
-            string horaViaje = viaje.FechaHoraViaje.ToString("HH:mm");
-            lblFechaHoraData.Text = horaViaje + " | " + viaje.FechaHoraViaje.ToShortDateString();
-            lblDestino1Data.Text = viaje.Destinos[0].ToString();
-            if (viaje.Destinos.Count > 1)
+            if (Request.QueryString["id"] != null)
             {
-                lblDestino2Data.Text = viaje.Destinos[1].ToString();
-                lblObservacionDestino2Data.Text = viaje.Destinos[1].Descripcion;
-                if (viaje.Destinos.Count > 2)
+                idViaje = long.Parse(Request.QueryString["id"]);
+                viaje = vnAux.ObtenerDatos(idViaje)[0];
+
+                lblEstadoData.Text = viaje.Estado;
+                lblClienteData.Text = viaje.ClienteViaje.ToString();
+                lblTitulo.Text = "VIAJE NUMERO: " + viaje.NumViaje;
+                lblOrigenData.Text = viaje.Origen.ToString();
+                lblChoferData.Text = viaje.ChoferViaje.ToString() + " | " + viaje.ChoferViaje.AutoAsignado.ToString() + " " + viaje.ChoferViaje.AutoAsignado.Patente;
+                string horaViaje = viaje.FechaHoraViaje.ToString("HH:mm");
+                lblFechaHoraData.Text = horaViaje + " | " + viaje.FechaHoraViaje.ToShortDateString();
+                lblDestino1Data.Text = viaje.Destinos[0].ToString();
+                if (viaje.Destinos.Count > 1)
                 {
-                    lblDestino3Data.Text = viaje.Destinos[2].ToString();
-                    lblObservacionDestino3Data.Text = viaje.Destinos[2].Descripcion;
+                    lblDestino2Data.Text = viaje.Destinos[1].ToString();
+                    lblObservacionDestino2Data.Text = viaje.Destinos[1].Descripcion;
+                    if (viaje.Destinos.Count > 2)
+                    {
+                        lblDestino3Data.Text = viaje.Destinos[2].ToString();
+                        lblObservacionDestino3Data.Text = viaje.Destinos[2].Descripcion;
+                    }
                 }
+                lblImporteData.Text = "$ " + viaje.Importe.ToString("f1");
+                lblMedioPagoData.Text = viaje.MedioDePago;
+                lblTipoViajeData.Text = viaje.TipoViaje;
             }
-            lblImporteData.Text = "$ " + viaje.Importe.ToString("f1");
-            lblMedioPagoData.Text = viaje.MedioDePago;
-            lblTipoViajeData.Text = viaje.TipoViaje;
         }
 
         protected void btnAtras_Click(object sender, EventArgs e)

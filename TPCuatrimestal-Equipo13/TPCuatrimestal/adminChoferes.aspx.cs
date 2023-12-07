@@ -18,7 +18,7 @@ namespace TPCuatrimestal
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Seguridad.esAdmin(Session["Usuario"]))
+            if (!Seguridad.esAdmin(Session["Usuario"]) && Session["Usuario"] != null)
             {
                 Usuario usuario = (Usuario)Session["Usuario"];
                 Response.Redirect("homeChofer.aspx?id=" + usuario.idPersona, false);

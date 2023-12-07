@@ -120,6 +120,8 @@ namespace TPCuatrimestal
             Zona zonaAux = new Zona();
             Vehiculo vehiculoAux = null;
             VehiculoNegocio vnAux = new VehiculoNegocio();
+            UsuarioNegocio unAux = new UsuarioNegocio();
+            PersonaNegocio pnAux = new PersonaNegocio();
 
             bool banderaAlta = false;
 
@@ -163,6 +165,8 @@ namespace TPCuatrimestal
             if (banderaAlta)
             {
                 cnAux.AltaModificacionChofer(choferAux, true);
+                choferAux.IDPersona = pnAux.ultimoIdPersona();
+                unAux.nuevoUsuario(choferAux);
             }
             else
             {

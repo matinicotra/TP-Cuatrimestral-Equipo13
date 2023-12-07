@@ -32,7 +32,8 @@ namespace TPCuatrimestal
 
             ViajeNegocio viajeNegocio = new ViajeNegocio();
             //idChofer = int.Parse(Request.QueryString["id"]);
-            idChofer = (int)usuario.idPersona;
+            if(usuario != null)
+                idChofer = (int)usuario.idPersona;
             viajes = viajeNegocio.ViajesClientesChoferes(idChofer, true);
 
             if (viajes.Count() < 1)

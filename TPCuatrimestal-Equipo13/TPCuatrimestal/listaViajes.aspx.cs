@@ -43,10 +43,11 @@ namespace TPCuatrimestal
 
                 foreach (Viaje X in viajes)
                 {
-                    Total += X.Importe;
+                    if(X.FechaHoraViaje >= Inicio && X.FechaHoraViaje <= Fin)
+                        Total += X.Importe;
                 }
 
-                lblTotal.Text = "TOTAL (PAGANDO AL %30): $" + (Total * (decimal)0.30).ToString("f2");
+                lblTotal.Text = "TOTAL COMISION (AL %30): $" + (Total * (decimal)0.30).ToString("f2");
 
                 if (chofer.Estado)
                 {
@@ -68,7 +69,7 @@ namespace TPCuatrimestal
 
                 foreach (Viaje X in viajes)
                 {
-                    if (X.Importe > 0)
+                    if (X.Importe > 0 && X.FechaHoraViaje >= Inicio && X.FechaHoraViaje <= Fin)
                     {
                         Total += X.Importe;
                     }

@@ -180,7 +180,7 @@ namespace TPCuatrimestal
 
         protected void btnResumenSemanal_Click(object sender, EventArgs e)
         {
-            string Ide = idChofer.ToString();
+            string Ide = "1";
             string homeChofer = Request.QueryString["id"];
 
             //ACA SETEAR UN PARAMETRO IDCHOFER: USAR EL USUARIO PARA ESO (PUEDE SER CON SESSION[])
@@ -193,7 +193,7 @@ namespace TPCuatrimestal
 
         protected void btnResumenMesChofer_Click(object sender, EventArgs e)
         {
-            string Ide = idChofer.ToString();
+            string Ide = "1";
             string homeChofer = Request.QueryString["id"];
 
             //ACA SETEAR UN PARAMETRO IDCHOFER: USAR EL USUARIO PARA ESO (PUEDE SER CON SESSION[])

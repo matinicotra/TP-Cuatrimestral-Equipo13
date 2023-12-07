@@ -371,7 +371,6 @@ namespace Negocio
         public int ultimoIdChofer()
         {
             int idChofer = 0;
-            int idPersona = 0;
             AccesoDatos datos = new AccesoDatos();
 
             try
@@ -382,7 +381,7 @@ namespace Negocio
 
                 if (datos.Lector.Read())
                 {
-                    idPersona = datos.Lector["IDCHOFER"] is DBNull ? -1 : (int)datos.Lector["IDCHOFER"];
+                    idChofer = datos.Lector["IDCHOFER"] is DBNull ? -1 : (int)datos.Lector["IDCHOFER"];
                 }
             }
             catch (Exception ex)
@@ -394,7 +393,6 @@ namespace Negocio
                 datos.CerrarConexion();
             }
 
-            return idPersona;
             return idChofer;
         }
     }

@@ -32,9 +32,6 @@ namespace TPCuatrimestal
 
             if (!IsPostBack)
             {
-                repVehiculos.DataSource = ListarVehiculos;
-                repVehiculos.DataBind();
-
                 if (Session["diaSeleccionado"] == null)
                 {
                     Session["diaSeleccionado"] = DateTime.Today;
@@ -42,29 +39,9 @@ namespace TPCuatrimestal
 
                 calOtrosDias.SelectedDate = (DateTime)Session["diaSeleccionado"];
 
-                // LISTAR VIAJES
-                //lbListaViajes.DataValueField = "NumViaje";
-                //lbListaViajes.DataTextField = "NumViaje";
-                //lbListaViajes.SelectedIndex = 0;
-                //lbListaViajes.DataSource = ListarViajes;
-                //lbListaViajes.DataBind();
-
-                // OPCION listar viajes CON GRID VIEW //
-                //dgvViajes.DataSource = ListarViajes;
-                //dgvViajes.DataBind();
                 listarViajesPorDia((DateTime)Session["diaSeleccionado"]);
             }
         }
-
-        //private void CargarDGVViajes()
-        //{
-        //    ViajeNegocio viajeNegocio = new ViajeNegocio();
-        //    ListarViajes = viajeNegocio.ObtenerDatos();
-        //    dgvViajes.DataSource = ListarViajes;
-
-        //    dgvViajes.DataBind();
-        //}
-
         protected void btnAltaViaje_Click(object sender, EventArgs e)
         {
             //SOLO IMPACTAR INSERT EN DB
@@ -202,21 +179,24 @@ namespace TPCuatrimestal
             List<Viaje> listaFiltrada = new List<Viaje>();
             ViajeNegocio viaje = new ViajeNegocio();
 
-            listaFiltrada = viaje.Filtrar(ddlCampo.SelectedValue, txtFiltrar.Text);
-
-            txtFiltrar.Text = null;
-
-            dgvViajes.DataSource = listaFiltrada;
-            dgvViajes.DataBind();
-
-            if (Session["diaSeleccionado"] == null)
+            if (txtFiltrar != null)
             {
-                Session["diaSeleccionado"] = DateTime.Today;
+                listaFiltrada = viaje.Filtrar(ddlCampo.SelectedValue, txtFiltrar.Text, calOtrosDias.SelectedDate);
+
+                txtFiltrar.Text = null;
+
+                dgvViajes.DataSource = listaFiltrada;
+                dgvViajes.DataBind();
+
+                if (Session["diaSeleccionado"] == null)
+                {
+                    Session["diaSeleccionado"] = DateTime.Today;
+                }
             }
-
-            calOtrosDias.SelectedDate = (DateTime)Session["diaSeleccionado"];
-
-            listarViajesPorDia((DateTime)Session["diaSeleccionado"]);
+            else
+            {
+                //solucionar para solo mostrar los viajes del dia si el txtFltro no tiene nada
+            }
         }
     }
 }

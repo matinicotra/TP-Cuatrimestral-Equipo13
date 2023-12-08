@@ -224,7 +224,7 @@ namespace Negocio
                     consulta += "INNER JOIN PERSONA AS P ON C.IDPERSONA = P.IDPERSONA ";
                     consulta += "WHERE UPPER(P.NOMBRES) LIKE '%" + buscar.ToUpper() + "%'";
                 }
-                else if (campo == "APELLIDOS")
+                else if (campo == "APELLIDO")
                 {
                     consulta += "INNER JOIN PERSONA AS P ON C.IDPERSONA = P.IDPERSONA ";
                     consulta += "WHERE UPPER(P.APELLIDOS) LIKE '%" + buscar.ToUpper() + "%'";

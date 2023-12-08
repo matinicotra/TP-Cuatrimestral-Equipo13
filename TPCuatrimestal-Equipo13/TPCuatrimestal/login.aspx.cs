@@ -11,7 +11,6 @@ namespace TPCuatrimestal
 {
     public partial class login : System.Web.UI.Page
     {
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Usuario"] != null)
@@ -26,7 +25,6 @@ namespace TPCuatrimestal
                     btnLogin.Visible = false;
                     btnCerrarSesion.Visible = true;
                 }
-
             }
             else
             {

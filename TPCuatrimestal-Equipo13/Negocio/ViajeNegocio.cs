@@ -311,11 +311,7 @@ namespace Negocio
                     datos.SetearParametro("@IDDOMORIGEN", domicilioNegocio.ultimoIdDomicilio());
                 }
 
-
-
                 datos.SetearParametro("@TIPOVIAJE", viaje.TipoViaje);
-
-
 
                 //DESTINO 1
                 //comprueba si existe el domicilio en el destino 1
@@ -329,7 +325,6 @@ namespace Negocio
                 {
                     datos.SetearParametro("@IDDOMDESTINO1", domicilioNegocio.existeDomicilio(viaje.Destinos[0]));
                 }
-
 
                 //DESTINO 2
                 //comprueba  si tiene mas de 1 destino y hace lo mismo
@@ -432,7 +427,7 @@ namespace Negocio
         }
 
         // en elaboracion...
-        public List<Viaje> Filtrar(string campo, string buscar)
+        public List<Viaje> Filtrar(string campo, string buscar, DateTime fecha)
         {
             List<Viaje> lista = new List<Viaje>();
             AccesoDatos datos = new AccesoDatos();
@@ -448,12 +443,19 @@ namespace Negocio
                     consulta += "INNER JOIN ZONAS AS Z ON C.IDZONA = Z.IDZONA ";
                     consulta += "WHERE UPPER(P.NOMBRES) LIKE '%" + buscar.ToUpper() + "%' ";
                     consulta += "OR UPPER(P.APELLIDOS) LIKE '%" + buscar.ToUpper() + "%' ";
-                    consulta += "OR UPPER(Z.NOMBREZONA) LIKE '%" + buscar.ToUpper() + "%'";
+                    consulta += "OR UPPER(Z.NOMBREZONA) LIKE '%" + buscar.ToUpper() + "%' ";
+                    consulta += "AND YEAR(V.FECHAHORAVIAJE) = " + fecha.Year;
+                    consulta += "AND MONTH(V.FECHAHORAVIAJE) = " + fecha.Month;
+                    consulta += "AND DAY(V.FECHAHORAVIAJE) = " + fecha.Day;
+
                 }
                 else
                 {
                     consulta += "WHERE UPPER(V.TIPOVIAJE) LIKE '%" + buscar.ToUpper() + "%' ";
                     consulta += "OR UPPER(V.ESTADO) LIKE '%" + buscar.ToUpper() + "%'";
+                    consulta += "AND YEAR(V.FECHAHORAVIAJE) = " + fecha.Year;
+                    consulta += "AND MONTH(V.FECHAHORAVIAJE) = " + fecha.Month;
+                    consulta += "AND DAY(V.FECHAHORAVIAJE) = " + fecha.Day;
                 }
 
                 datos.SetearConsulta(consulta);
@@ -474,12 +476,16 @@ namespace Negocio
                     aux.IDChofer = datos.Lector["IDCHOFER"] is DBNull ? -1 : (int)datos.Lector["IDCHOFER"];
 
                     if (aux.IDChofer != -1)
+                    {
                         aux.ChoferViaje = ChoferNegocioAux.ObtenerDatos(aux.IDChofer)[0];
+                    }
 
                     aux.IDCliente = datos.Lector["IDCLIENTE"] is DBNull ? -1 : (int)datos.Lector["IDCLIENTE"];
 
                     if (aux.IDCliente != -1)
+                    {
                         aux.ClienteViaje = ClienteNegocioAux.ObtenerDatos(aux.IDCliente)[0];
+                    }
 
                     aux.TipoViaje = datos.Lector["TIPOVIAJE"] is DBNull ? "S/T" : (string)datos.Lector["TIPOVIAJE"];
 
@@ -506,7 +512,6 @@ namespace Negocio
 
                     aux.Pagado = datos.Lector["PAGADO"] is DBNull ? false : (bool)datos.Lector["PAGADO"];
 
-
                     if (destino1.IDDomicilio != -1)
                     {
                         destino1 = domicilioNegocio.ObtenerDomicilio(destino1.IDDomicilio);
@@ -528,10 +533,9 @@ namespace Negocio
                     lista.Add(aux);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
             finally
             {

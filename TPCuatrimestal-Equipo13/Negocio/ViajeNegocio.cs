@@ -432,33 +432,12 @@ namespace Negocio
             List<Viaje> lista = new List<Viaje>();
             AccesoDatos datos = new AccesoDatos();
 
-            string consulta = "SELECT V.IDVIAJE, V.IDCLIENTE, V.IDCHOFER, V.TIPOVIAJE, V.IMPORTE, V.IDDOMORIGEN, V.IDDOMDESTINO1, V.IDDOMDESTINO2, V.IDDOMDESTINO3, V.ESTADO, V.FECHAHORAVIAJE, V.PAGADO, V.MEDIODEPAGO FROM VIAJES AS V ";
-
             try
             {
-                if (campo == "CHOFER")
-                {
-                    consulta += "INNER JOIN CHOFER AS C ON V.IDCHOFER = C.IDCHOFER ";
-                    consulta += "INNER JOIN PERSONA AS P ON C.IDPERSONA = P.IDPERSONA ";
-                    consulta += "INNER JOIN ZONAS AS Z ON C.IDZONA = Z.IDZONA ";
-                    consulta += "WHERE UPPER(P.NOMBRES) LIKE '%" + buscar.ToUpper() + "%' ";
-                    consulta += "OR UPPER(P.APELLIDOS) LIKE '%" + buscar.ToUpper() + "%' ";
-                    consulta += "OR UPPER(Z.NOMBREZONA) LIKE '%" + buscar.ToUpper() + "%' ";
-                    consulta += "AND YEAR(V.FECHAHORAVIAJE) = " + fecha.Year;
-                    consulta += "AND MONTH(V.FECHAHORAVIAJE) = " + fecha.Month;
-                    consulta += "AND DAY(V.FECHAHORAVIAJE) = " + fecha.Day;
-
-                }
-                else
-                {
-                    consulta += "WHERE UPPER(V.TIPOVIAJE) LIKE '%" + buscar.ToUpper() + "%' ";
-                    consulta += "OR UPPER(V.ESTADO) LIKE '%" + buscar.ToUpper() + "%'";
-                    consulta += "AND YEAR(V.FECHAHORAVIAJE) = " + fecha.Year;
-                    consulta += "AND MONTH(V.FECHAHORAVIAJE) = " + fecha.Month;
-                    consulta += "AND DAY(V.FECHAHORAVIAJE) = " + fecha.Day;
-                }
-
-                datos.SetearConsulta(consulta);
+                datos.SetearConsulta("EXEC SP_VIAJES_X_DIA @CAMPO, @BUSQUEDA, @FECHA");
+                datos.SetearParametro("@CAMPO", campo);
+                datos.SetearParametro("@BUSQUEDA", buscar);
+                datos.SetearParametro("@FECHA", fecha.ToString("yyyy-MM-dd"));
                 datos.EjecutarConsulta();
 
                 while (datos.Lector.Read())
@@ -492,7 +471,7 @@ namespace Negocio
                     aux.Importe = datos.Lector["IMPORTE"] is DBNull ? -1 : (decimal)datos.Lector["IMPORTE"];
 
                     aux.Origen.IDDomicilio = datos.Lector["IDDOMORIGEN"] is DBNull ? -1 : (long)datos.Lector["IDDOMORIGEN"];
-                    
+
                     if (aux.Origen.IDDomicilio != -1)
                     {
                         aux.Origen = domicilioNegocio.ObtenerDomicilio(aux.Origen.IDDomicilio);

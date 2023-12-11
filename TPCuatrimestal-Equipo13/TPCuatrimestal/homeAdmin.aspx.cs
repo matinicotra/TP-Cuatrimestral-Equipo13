@@ -193,10 +193,6 @@ namespace TPCuatrimestal
                     Session["diaSeleccionado"] = DateTime.Today;
                 }
             }
-            else
-            {
-                //solucionar para solo mostrar los viajes del dia si el txtFltro no tiene nada
-            }
         }
     }
 }

@@ -35,7 +35,7 @@
                         <tr>
                             <td class="text-md-center"><%#Eval("TipoViaje")%></td>
                             <td class="text-md-center"><%#((Decimal)Eval("Importe")).ToString("f2")%></td>
-                            <td class="text-md-center"><%#Eval("FechaHoraViaje")%></td>
+                            <td class="text-md-center"><%#((DateTime)Eval("FechaHoraViaje")).ToString("dd-MM-yyyy H:m")%></td>
                         </tr>
                     </tbody>
                 </ItemTemplate>
